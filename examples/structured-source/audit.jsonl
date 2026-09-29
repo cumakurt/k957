@@ -1,0 +1,2 @@
+{"timestamp":"2026-09-27T11:01:00Z","username":"alice","hostname":"workstation","destination_ip":"192.0.2.1","message":"SYNTHETIC access event"}
+{"timestamp":"2026-09-27T11:02:00Z","user":"Bob","src_ip":"invalid","message":"SYNTHETIC invalid IP example"}

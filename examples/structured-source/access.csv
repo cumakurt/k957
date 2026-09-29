@@ -1,0 +1,4 @@
+timestamp,user,host,src_ip,message
+2026-09-27T14:00:00+03:00,alice,WORKSTATION.,192.0.2.1,"SYNTHETIC login
+additional test context"
+invalid,alice,WORKSTATION.,192.0.2.1,invalid timestamp example

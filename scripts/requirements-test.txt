@@ -1,0 +1,2 @@
+# Only the independent Python cryptography integration tests need this package.
+cryptography==49.0.0

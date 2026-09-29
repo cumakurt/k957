@@ -1,0 +1,6 @@
+evidence,source,protocol,source_ip,source_port,destination_ip,destination_port,packets,captured_bytes,original_bytes,first,last,reference_count,references_truncated
+E000001,/workspace/scratch/4de4f0c723af/k957/examples/network-source/big-nano.bin,UDP,192.0.2.77,40000,198.51.100.8,53,1,49,49,2020-09-13T12:26:40.123456789Z,2020-09-13T12:26:40.123456789Z,1,false
+E000003,/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap,UDP,192.0.2.77,40000,198.51.100.8,53,2,142,142,2020-09-13T12:26:40.123456Z,2020-09-13T12:26:41.123456Z,2,false
+E000003,/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap,UDP,198.51.100.8,53,192.0.2.77,40000,1,63,63,2020-09-13T12:26:42.123456Z,2020-09-13T12:26:42.123456Z,1,false
+E000003,/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap,TCP,2001:db8::77,50000,2001:db8::88,443,1,82,82,2020-09-13T12:26:43.123456Z,2020-09-13T12:26:43.123456Z,1,false
+E000003,/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap,TCP,192.0.2.77,40000,198.51.100.8,443,1,54,75,2020-09-13T12:26:46.123456Z,2020-09-13T12:26:46.123456Z,1,false

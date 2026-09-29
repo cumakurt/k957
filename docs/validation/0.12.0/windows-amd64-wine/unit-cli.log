@@ -1,0 +1,145 @@
+=== RUN   TestCLICustodyWorkflow
+{"schema":"k957-evidence/1","version":"0.12.0","id":"bc773885ad1f761715d721638b04e9c8","case":"T","operator":"T","scope":"Synthetic","host":"MacBookPro","os":"windows","arch":"amd64","started":"2026-09-29T08:07:43.947879Z","finished":"2026-09-29T08:07:43.949892Z","status":"complete","items":[{"id":"E000001","source":"C:\\users\\cuma\\AppData\\Local\\Temp\\TestCLICustodyWorkflow2079702658\\001\\source\\data","object":"objects/E000001","kind":"file","size":9,"sha256":"b3cc0475bb78a5026098858e9889acf666d31062d513d303314eca31d36e72f2","modified":"2026-09-29T08:07:43.9451057Z","collected":"2026-09-29T08:07:43.949669Z","mode":"-rw-rw-rw-","changed_during_acquisition":false}],"issues":[]}
+{"events":1,"head":"22ca79cca72877a9c761208c59170e31bf10393615e52c6a0bb326198ec3e807","out":"C:\\users\\cuma\\AppData\\Local\\Temp\\TestCLICustodyWorkflow2079702658\\001\\register.json"}
+{"events":2,"head":"d2d4c2dbea0c8caaa6d71585c83f958a0d76358d9d39ec2acf71477cae1d7757","out":"C:\\users\\cuma\\AppData\\Local\\Temp\\TestCLICustodyWorkflow2079702658\\001\\transfer.json"}
+{"events":3,"head":"59683e4899835044370b95e3970825c43251719a1d8b9e1eb7244dce3db27ae6","out":"C:\\users\\cuma\\AppData\\Local\\Temp\\TestCLICustodyWorkflow2079702658\\001\\accept.json"}
+{"evidence_digest":"a2e224a5a147611dde0ffa256095fdfdb51eef1d42f4e27ac722e5aaca650906","head":"59683e4899835044370b95e3970825c43251719a1d8b9e1eb7244dce3db27ae6","current_holder":"Bob","trust":"all event signatures verified against supplied actor/key trust list","trust_digest":"6c6561735c3599c587eb77c141c1a03dfb96f58171208edf350f0fe2eec3f1c9","events":[{"schema":"k957-custody-event/1","case":"T","evidence_id":"bc773885ad1f761715d721638b04e9c8","evidence_digest":"a2e224a5a147611dde0ffa256095fdfdb51eef1d42f4e27ac722e5aaca650906","sequence":1,"action":"register","actor":"Alice","from":"","to":"Alice","location":"Lab","note":"Synthetic","occurred_at":"2026-09-29T08:07:43.960479Z","recorded_at":"2026-09-29T08:07:43.960479Z","previous":"","signer_sha256":"854237bffc509167d55f14e6a0385151759a85a3f18e374cae70f98873eded07"},{"schema":"k957-custody-event/1","case":"T","evidence_id":"bc773885ad1f761715d721638b04e9c8","evidence_digest":"a2e224a5a147611dde0ffa256095fdfdb51eef1d42f4e27ac722e5aaca650906","sequence":2,"action":"transfer","actor":"Alice","from":"Alice","to":"Bob","location":"Lab","note":"Synthetic","occurred_at":"2026-09-29T08:07:43.96534Z","recorded_at":"2026-09-29T08:07:43.96534Z","previous":"22ca79cca72877a9c761208c59170e31bf10393615e52c6a0bb326198ec3e807","signer_sha256":"854237bffc509167d55f14e6a0385151759a85a3f18e374cae70f98873eded07"},{"schema":"k957-custody-event/1","case":"T","evidence_id":"bc773885ad1f761715d721638b04e9c8","evidence_digest":"a2e224a5a147611dde0ffa256095fdfdb51eef1d42f4e27ac722e5aaca650906","sequence":3,"action":"accept","actor":"Bob","from":"Alice","to":"Bob","location":"Lab","note":"Synthetic","occurred_at":"2026-09-29T08:07:43.969789Z","recorded_at":"2026-09-29T08:07:43.969789Z","previous":"d2d4c2dbea0c8caaa6d71585c83f958a0d76358d9d39ec2acf71477cae1d7757","signer_sha256":"d244b47cf208d34c29cb9ada0937d86973d19981bc0e6ba961f5e8ae5a22a3ff"}]}
+Report: C:\users\cuma\AppData\Local\Temp\TestCLICustodyWorkflow2079702658\001\report/report.html
+flag provided but not defined: -bad
+Usage of custody:
+  -action string
+    	register, transfer, accept, cancel or note
+  -actor string
+    	exact actor identifier in trust list
+  -at string
+    	declared RFC3339 event time; defaults to now
+  -expected-head string
+    	independently retained previous/current custody head
+  -in string
+    	verified plaintext .k957 evidence package
+  -location string
+    	declared storage/handover location
+  -note string
+    	required reason or observation
+  -out string
+    	new custody ledger JSON
+  -previous string
+    	previous custody ledger; omitted for register
+  -sign-key string
+    	required actor Ed25519 private key
+  -to string
+    	recipient for transfer only
+  -trust string
+    	required external actor/public-key trust JSON
+  -trusted-key string
+    	trusted evidence package signing key
+--- PASS: TestCLICustodyWorkflow (0.05s)
+=== RUN   TestCLIWorkflow
+k957 0.12.0
+k957 0.9.0 — portable evidence collection and analysis
+Commands:
+  wizard           interactive Turkish collection / analysis assistant
+  preflight        inspect inventory and estimated destination space without writing
+  collect          collect selected files and optional live system snapshots
+  work-status      inspect resumable acquisition progress and verify parts
+  verify           verify all package objects and optional trusted signature
+  analyze          create HTML report, JSON analysis and CSV timeline
+  share            export a separate masked HTML/JSON/CSV report
+  review           append an analyst decision to a new review ledger
+  custody          append a signed custody declaration to a new ledger
+  custody-verify   verify every custody signature, actor, transition and head
+  keygen           create Ed25519 .key/.pub signing key pair
+  encryption-key   generate a random AES-256 transport key
+  seal / unseal    encrypt/decrypt files in authenticated streaming frames
+  version          show release version
+Use k957 <command> -h for flags. All outputs must be new paths.
+Example:
+  k957 collect --root ./evidence --out ./case.k957 --case CASE-1 --operator Analyst --scope "Approved directory"
+  k957 analyze --in ./case.k957 --out ./report --rules ./examples/rules.json
+{"schema":"k957-evidence/1","version":"0.12.0","id":"5ec0637394b1841ab1d721afd0ef04c4","case":"T","operator":"T","scope":"Test","host":"MacBookPro","os":"windows","arch":"amd64","started":"2026-09-29T08:07:43.995899Z","finished":"2026-09-29T08:07:43.997256Z","status":"complete","items":[{"id":"E000001","source":"C:\\users\\cuma\\AppData\\Local\\Temp\\TestCLIWorkflow3828832200\\001\\src\\log.txt","object":"objects/E000001","kind":"file","size":26,"sha256":"630c8c824f7dd4d7b5f114a453453fbe515339de7f2a9f56ec672c28f1e3101d","modified":"2026-09-29T08:07:43.9917507Z","collected":"2026-09-29T08:07:43.997104Z","mode":"-rw-rw-rw-","changed_during_acquisition":false}],"issues":[]}
+{"collection_status":"complete","integrity":"verified","issues":[],"items":1,"signature":"verified against supplied trusted key"}
+Report: C:\users\cuma\AppData\Local\Temp\TestCLIWorkflow3828832200\001\report/report.html
+{"collection_status":"complete","integrity":"verified","issues":[],"items":1,"signature":"present, not authenticated"}
+--- PASS: TestCLIWorkflow (0.02s)
+=== RUN   TestCLIErrors
+flag provided but not defined: -bad-flag
+Usage of collect:
+  -case string
+    	case identifier
+  -check-space
+    	run preflight before a fresh or resumed logical acquisition
+  -encryption-key string
+    	encrypt staging and final output; requires --work
+  -max-file int
+    	maximum bytes per source (default 268435456)
+  -max-files int
+    	maximum source count (default 10000)
+  -max-total int
+    	maximum acquired bytes (default 2147483648)
+  -operator string
+    	operator name
+  -out string
+    	new .k957 package outside source tree
+  -reserve int
+    	space reserve used by --check-space (default 268435456)
+  -resume
+    	resume an existing --work with identical scope and limits
+  -root string
+    	directory to collect recursively
+  -scope string
+    	authorized collection scope
+  -sign-key string
+    	optional Ed25519 private key file
+  -system
+    	opt-in live system snapshots
+  -timeout duration
+    	collection deadline (default 30m0s)
+  -work string
+    	resumable staging directory outside source/output (logical files only)
+--- PASS: TestCLIErrors (0.00s)
+=== RUN   TestCLIResumable
+{"epochs":[{"host":"MacBookPro","os":"windows","arch":"amd64","id":"ea03c51e4293959e872dfdbe0dc2f66f","started":"2026-09-29T08:07:44.016703Z","finished":"2026-09-29T08:07:44.019907Z","outcome":"completed"}],"inventory_frozen":true,"schema":"k957-evidence/2","version":"0.12.0","id":"a13b3584d4225c76ca8bc1c408e444d5","case":"T","operator":"T","scope":"T","host":"MacBookPro","os":"windows","arch":"amd64","started":"2026-09-29T08:07:44.015648Z","finished":"2026-09-29T08:07:44.019907Z","status":"complete","items":[{"parts":[{"offset":0,"size":25,"sha256":"c336aa26da7d3b7993d2e378f0d1edb3064bcf1dff98f12cc662f5821fce3b6c","epoch":"ea03c51e4293959e872dfdbe0dc2f66f","acquired":"2026-09-29T08:07:44.018358Z"}],"id":"E000001","source":"C:\\users\\cuma\\AppData\\Local\\Temp\\TestCLIResumable1487980875\\001\\source\\log","object":"objects/E000001","kind":"file","size":25,"sha256":"c336aa26da7d3b7993d2e378f0d1edb3064bcf1dff98f12cc662f5821fce3b6c","modified":"2026-09-29T08:07:44.0133356Z","collected":"2026-09-29T08:07:44.019525Z","mode":"-rw-rw-rw-","changed_during_acquisition":false}],"issues":[]}
+{"encrypted":false,"case":"T","source":"C:\\users\\cuma\\AppData\\Local\\Temp\\TestCLIResumable1487980875\\001\\source","files":1,"completed_files":1,"acquired_bytes":25,"planned_bytes":25,"parts":1,"parts_verified":true,"lock_present":false,"epochs":[{"host":"MacBookPro","os":"windows","arch":"amd64","id":"ea03c51e4293959e872dfdbe0dc2f66f","started":"2026-09-29T08:07:44.016703Z","finished":"2026-09-29T08:07:44.019907Z","outcome":"completed"}]}
+{"epochs":[{"host":"MacBookPro","os":"windows","arch":"amd64","id":"ea03c51e4293959e872dfdbe0dc2f66f","started":"2026-09-29T08:07:44.016703Z","finished":"2026-09-29T08:07:44.019907Z","outcome":"completed"},{"host":"MacBookPro","os":"windows","arch":"amd64","id":"5461a10e5cc1c607f5e4a52a2baa5a2a","started":"2026-09-29T08:07:44.023726Z","finished":"2026-09-29T08:07:44.024174Z","outcome":"completed"}],"inventory_frozen":true,"schema":"k957-evidence/2","version":"0.12.0","id":"a13b3584d4225c76ca8bc1c408e444d5","case":"T","operator":"T","scope":"T","host":"MacBookPro","os":"windows","arch":"amd64","started":"2026-09-29T08:07:44.015648Z","finished":"2026-09-29T08:07:44.024174Z","status":"complete","items":[{"parts":[{"offset":0,"size":25,"sha256":"c336aa26da7d3b7993d2e378f0d1edb3064bcf1dff98f12cc662f5821fce3b6c","epoch":"ea03c51e4293959e872dfdbe0dc2f66f","acquired":"2026-09-29T08:07:44.018358Z"}],"id":"E000001","source":"C:\\users\\cuma\\AppData\\Local\\Temp\\TestCLIResumable1487980875\\001\\source\\log","object":"objects/E000001","kind":"file","size":25,"sha256":"c336aa26da7d3b7993d2e378f0d1edb3064bcf1dff98f12cc662f5821fce3b6c","modified":"2026-09-29T08:07:44.0133356Z","collected":"2026-09-29T08:07:44.019525Z","mode":"-rw-rw-rw-","changed_during_acquisition":false}],"issues":[]}
+--- PASS: TestCLIResumable (0.01s)
+=== RUN   TestCLIReview
+{"schema":"k957-evidence/1","version":"0.12.0","id":"b38b6dd1211d7d98111af5059deedcf2","case":"T","operator":"T","scope":"T","host":"MacBookPro","os":"windows","arch":"amd64","started":"2026-09-29T08:07:44.029218Z","finished":"2026-09-29T08:07:44.030175Z","status":"complete","items":[{"id":"E000001","source":"C:\\users\\cuma\\AppData\\Local\\Temp\\TestCLIReview1735614959\\001\\src\\log","object":"objects/E000001","kind":"file","size":15,"sha256":"324cc7150489f06ae9479a79beffef1c5aec4146a2dc4f610d2cb20a900da07e","modified":"2026-09-29T08:07:44.0278249Z","collected":"2026-09-29T08:07:44.030114Z","mode":"-rw-rw-rw-","changed_during_acquisition":false}],"issues":[]}
+Report: C:\users\cuma\AppData\Local\Temp\TestCLIReview1735614959\001\report/report.html
+Report: C:\users\cuma\AppData\Local\Temp\TestCLIReview1735614959\001\reviewed/report.html
+--- PASS: TestCLIReview (0.01s)
+=== RUN   TestCLIEncryptedCollection
+{"encrypted":true,"issues":0,"items":1,"status":"complete"}
+{"encrypted":true,"case":"T","source":"C:\\users\\cuma\\AppData\\Local\\Temp\\TestCLIEncryptedCollection3383698963\\001\\src","files":1,"completed_files":1,"acquired_bytes":15,"planned_bytes":15,"parts":1,"parts_verified":true,"lock_present":false,"epochs":[{"host":"MacBookPro","os":"windows","arch":"amd64","id":"7c2e88fd25f7b2e343ebab53e284cce9","started":"2026-09-29T08:07:44.046245Z","finished":"2026-09-29T08:07:44.049894Z","outcome":"completed"}]}
+{"collection_status":"complete","integrity":"verified","issues":[],"items":1,"signature":"unsigned"}
+--- PASS: TestCLIEncryptedCollection (0.02s)
+=== RUN   TestCLIPreflight
+{"version":"0.12.0","time":"2026-09-29T08:07:44.060045Z","root":"C:\\users\\cuma\\AppData\\Local\\Temp\\TestCLIPreflight1782017949\\001\\src","output":"C:\\users\\cuma\\AppData\\Local\\Temp\\TestCLIPreflight1782017949\\001\\src\\must-not-exist","work":"C:\\users\\cuma\\AppData\\Local\\Temp\\TestCLIPreflight1782017949\\001\\work","encrypted":false,"resume":false,"eligible_files":1,"eligible_bytes":7,"completed_files":0,"acquired_bytes":0,"remaining_bytes":7,"remaining_parts":1,"planned_parts":1,"estimated_output_bytes":16778247,"estimated_work_bytes":67117063,"outcome":"blocked","checks":[{"code":"OUTPUT_IN_SOURCE","status":"blocked","message":"Output is inside the source tree"},{"code":"SOURCE_AND_TARGET_SAME_FILESYSTEM","status":"warning","message":"output shares the source filesystem"},{"code":"SOURCE_AND_TARGET_SAME_FILESYSTEM","status":"warning","message":"work shares the source filesystem"}],"inventory_issues":[],"storage":[{"filesystem":"\\\\?\\Volume{00000000-0000-0000-0000-000000000043}\\","roles":["output","work"],"available_bytes":14921531392,"estimated_additional_bytes":83895310,"reserve_bytes":268435456,"estimated_with_reserve_bytes":352330766,"enough_at_check_time":true}],"notes":["Read-only metadata inventory; evidence contents, permissions to read every file, write access, signing keys and live system commands are not validated.","Estimates are planning allowances, not worst-case guarantees. Filesystem allocation units, quotas, snapshots, concurrent writers, changing sources and compression affect actual space. No capacity is reserved.","Filesystem identity does not prove physical-device separation. Different partitions may share the same physical disk.","Encryption keys are not read or validated for fresh acquisition estimates."]}
+flag provided but not defined: -bad-flag
+Usage of preflight:
+  -encrypted
+    	estimate encrypted resumable mode; does not read a key
+  -encryption-key string
+    	original key for an encrypted --resume checkpoint
+  -max-file int
+    	maximum bytes per source (default 268435456)
+  -max-files int
+    	maximum source count (default 10000)
+  -max-total int
+    	maximum acquired bytes (default 2147483648)
+  -out string
+    	planned new output package
+  -reserve int
+    	additional free-space reserve per target filesystem (default 268435456)
+  -resume
+    	estimate remaining space from an existing checkpoint; use original root and limits
+  -root string
+    	source directory
+  -work string
+    	staging directory (new, or existing with --resume)
+--- PASS: TestCLIPreflight (0.01s)
+=== RUN   TestCLIShareWorkflow
+{"schema":"k957-evidence/1","version":"0.12.0","id":"8b9db48ef7c09ed6cf7af00b69aafd38","case":"PrivateCaseX","operator":"PrivateActorX","scope":"PrivateScopeX","host":"MacBookPro","os":"windows","arch":"amd64","started":"2026-09-29T08:07:44.077154Z","finished":"2026-09-29T08:07:44.079294Z","status":"complete","items":[{"id":"E000001","source":"C:\\users\\cuma\\AppData\\Local\\Temp\\TestCLIShareWorkflow3028492517\\001\\source\\secret.jsonl","object":"objects/E000001","kind":"file","size":127,"sha256":"d3ec6d3b78d16111bbc0cd2c27dab674267bdc03f478288d2682db2eadda287b","modified":"2026-09-29T08:07:44.0731029Z","collected":"2026-09-29T08:07:44.07867Z","mode":"-rw-rw-rw-","changed_during_acquisition":false}],"issues":[]}
+Shared report: C:\users\cuma\AppData\Local\Temp\TestCLIShareWorkflow3028492517\001\shared/report.html
+Shared report: C:\users\cuma\AppData\Local\Temp\TestCLIShareWorkflow3028492517\001\kept/report.html
+--- PASS: TestCLIShareWorkflow (0.03s)
+PASS

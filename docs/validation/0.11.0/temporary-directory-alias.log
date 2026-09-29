@@ -1,0 +1,3 @@
+k957 0.11.0: uncached Go tests with TMPDIR pointing to a directory symlink
+ok  	k957/cmd/k957	0.053s
+ok  	k957/internal/core	3.143s

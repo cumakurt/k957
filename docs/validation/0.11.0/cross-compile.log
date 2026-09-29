@@ -1,0 +1,8 @@
+PASS: linux/arm64 ./internal/core test executable compiled (not executed)
+PASS: linux/arm64 ./cmd/k957 test executable compiled (not executed)
+PASS: windows/arm64 ./internal/core test executable compiled (not executed)
+PASS: windows/arm64 ./cmd/k957 test executable compiled (not executed)
+PASS: darwin/amd64 ./internal/core test executable compiled (not executed)
+PASS: darwin/amd64 ./cmd/k957 test executable compiled (not executed)
+PASS: darwin/arm64 ./internal/core test executable compiled (not executed)
+PASS: darwin/arm64 ./cmd/k957 test executable compiled (not executed)

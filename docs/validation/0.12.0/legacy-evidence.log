@@ -1,0 +1,4 @@
+COMMAND: dist/k957-linux-amd64 verify --in examples/legacy-v1.k957
+{"collection_status":"complete","integrity":"verified","issues":[],"items":2,"signature":"unsigned"}
+COMMAND: dist/k957-linux-amd64 verify --in examples/demo-resumable.k957
+{"collection_status":"complete","integrity":"verified","issues":[],"items":2,"signature":"unsigned"}

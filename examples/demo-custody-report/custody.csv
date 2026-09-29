@@ -1,0 +1,4 @@
+sequence,action,actor,from,to,location,note,occurred_at,recorded_at,signer_sha256,previous
+1,register,Alice,,Alice,Sentetik laboratuvar,Gösterim kaydı; fiziksel teslim beyanı değildir.,2026-09-28T03:02:09.737856245Z,2026-09-28T03:02:09.737856245Z,f459e2b950e15f2ed8bc1fcacefe26ac2a96963fe12bb46e2ce87b87536a2807,
+2,transfer,Alice,Alice,Bob,Sentetik laboratuvar,Gösterim kaydı; fiziksel teslim beyanı değildir.,2026-09-28T03:02:09.742270333Z,2026-09-28T03:02:09.742270333Z,f459e2b950e15f2ed8bc1fcacefe26ac2a96963fe12bb46e2ce87b87536a2807,5d5e495360b7e9de4f5c80ede2717d54044dee2739477b6f7962bcc9f69b5a16
+3,accept,Bob,Alice,Bob,Sentetik laboratuvar,Gösterim kaydı; fiziksel teslim beyanı değildir.,2026-09-28T03:02:09.74636705Z,2026-09-28T03:02:09.74636705Z,c45dd98139b0e9f1287b8ff7d6ec4e1c56aaac9645461c0c59c1719244ea50ab,5f2e1e8e7953d8fb3f515e04e61cfd5a4b71c1df9b78934278865d769d23b5a8

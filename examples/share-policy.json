@@ -1,0 +1,7 @@
+{
+  "schema": "k957-share-policy/1",
+  "keep": [
+    "timestamps"
+  ],
+  "literals": []
+}

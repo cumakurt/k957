@@ -1,0 +1,193 @@
+{
+  "schema": "k957-validation/1",
+  "started": "2026-09-28T20:23:02.597385+00:00",
+  "target": "windows/amd64",
+  "environment": {
+    "kind": "wine",
+    "version": "10.0"
+  },
+  "python": "3.13.12",
+  "python_platform": "win-amd64",
+  "binary": "Z:\\depo\\cuma\\projelerim\\k957\\dist\\k957-windows-amd64.exe",
+  "result": "passed",
+  "steps": [
+    {
+      "name": "format",
+      "status": "skipped",
+      "reason": "Prebuilt mode: Go toolchain checks must be run separately on source."
+    },
+    {
+      "name": "vet",
+      "status": "skipped",
+      "reason": "Prebuilt mode: Go toolchain checks must be run separately on source."
+    },
+    {
+      "name": "race",
+      "status": "skipped",
+      "reason": "Prebuilt mode: Go toolchain checks must be run separately on source."
+    },
+    {
+      "name": "build",
+      "status": "skipped",
+      "reason": "Prebuilt mode: Go toolchain checks must be run separately on source."
+    },
+    {
+      "name": "unit-core",
+      "command": [
+        "Z:\\tmp\\k957-platform-tools\\windows-tests\\core.test.exe",
+        "-test.v",
+        "-test.timeout=3m"
+      ],
+      "status": "passed",
+      "log": "unit-core.log",
+      "exit_code": 0,
+      "duration_seconds": 4.422
+    },
+    {
+      "name": "unit-cli",
+      "command": [
+        "Z:\\tmp\\k957-platform-tools\\windows-tests\\cli.test.exe",
+        "-test.v",
+        "-test.timeout=3m"
+      ],
+      "status": "passed",
+      "log": "unit-cli.log",
+      "exit_code": 0,
+      "duration_seconds": 0.166
+    },
+    {
+      "name": "version",
+      "command": [
+        "Z:\\depo\\cuma\\projelerim\\k957\\dist\\k957-windows-amd64.exe",
+        "version"
+      ],
+      "status": "passed",
+      "log": "version.log",
+      "exit_code": 0,
+      "duration_seconds": 0.046
+    },
+    {
+      "name": "custody_integration",
+      "command": [
+        "Z:\\tmp\\k957-platform-tools\\python-windows\\python.exe",
+        "Z:\\depo\\cuma\\projelerim\\k957\\scripts\\custody_integration.py"
+      ],
+      "status": "passed",
+      "log": "custody_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.782
+    },
+    {
+      "name": "encrypted_integration",
+      "command": [
+        "Z:\\tmp\\k957-platform-tools\\python-windows\\python.exe",
+        "Z:\\depo\\cuma\\projelerim\\k957\\scripts\\encrypted_integration.py"
+      ],
+      "status": "passed",
+      "log": "encrypted_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 4.485
+    },
+    {
+      "name": "integration",
+      "command": [
+        "Z:\\tmp\\k957-platform-tools\\python-windows\\python.exe",
+        "Z:\\depo\\cuma\\projelerim\\k957\\scripts\\integration.py"
+      ],
+      "status": "passed",
+      "log": "integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.703
+    },
+    {
+      "name": "pcap_integration",
+      "command": [
+        "Z:\\tmp\\k957-platform-tools\\python-windows\\python.exe",
+        "Z:\\depo\\cuma\\projelerim\\k957\\scripts\\pcap_integration.py"
+      ],
+      "status": "passed",
+      "log": "pcap_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.524
+    },
+    {
+      "name": "pcapng_integration",
+      "command": [
+        "Z:\\tmp\\k957-platform-tools\\python-windows\\python.exe",
+        "Z:\\depo\\cuma\\projelerim\\k957\\scripts\\pcapng_integration.py"
+      ],
+      "status": "passed",
+      "log": "pcapng_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.436
+    },
+    {
+      "name": "preflight_integration",
+      "command": [
+        "Z:\\tmp\\k957-platform-tools\\python-windows\\python.exe",
+        "Z:\\depo\\cuma\\projelerim\\k957\\scripts\\preflight_integration.py"
+      ],
+      "status": "passed",
+      "log": "preflight_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.623
+    },
+    {
+      "name": "resume_integration",
+      "command": [
+        "Z:\\tmp\\k957-platform-tools\\python-windows\\python.exe",
+        "Z:\\depo\\cuma\\projelerim\\k957\\scripts\\resume_integration.py"
+      ],
+      "status": "passed",
+      "log": "resume_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 3.026
+    },
+    {
+      "name": "review_integration",
+      "command": [
+        "Z:\\tmp\\k957-platform-tools\\python-windows\\python.exe",
+        "Z:\\depo\\cuma\\projelerim\\k957\\scripts\\review_integration.py"
+      ],
+      "status": "passed",
+      "log": "review_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.666
+    },
+    {
+      "name": "share_integration",
+      "command": [
+        "Z:\\tmp\\k957-platform-tools\\python-windows\\python.exe",
+        "Z:\\depo\\cuma\\projelerim\\k957\\scripts\\share_integration.py"
+      ],
+      "status": "passed",
+      "log": "share_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.822
+    },
+    {
+      "name": "structured_integration",
+      "command": [
+        "Z:\\tmp\\k957-platform-tools\\python-windows\\python.exe",
+        "Z:\\depo\\cuma\\projelerim\\k957\\scripts\\structured_integration.py"
+      ],
+      "status": "passed",
+      "log": "structured_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.393
+    },
+    {
+      "name": "crypto_interop",
+      "command": [
+        "Z:\\tmp\\k957-platform-tools\\python-windows\\python.exe",
+        "Z:\\depo\\cuma\\projelerim\\k957\\scripts\\crypto_interop.py"
+      ],
+      "status": "passed",
+      "log": "crypto_interop.log",
+      "exit_code": 0,
+      "duration_seconds": 0.563
+    }
+  ],
+  "binary_sha256": "6c02e4eccc22bf197c0d7c54e696b1bae35bcbb19eb3a0940ec127d5a2b651d3",
+  "finished": "2026-09-28T20:23:20.313272+00:00"
+}

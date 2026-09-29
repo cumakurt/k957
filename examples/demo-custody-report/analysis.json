@@ -1,0 +1,244 @@
+{
+  "custody": {
+    "evidence_digest": "d406672966c93f05ddfb95d462e5635ef0e492b540296c6e1e26817fa81a8d20",
+    "head": "7706e83c0cfb5864bd3f46f639338c2a2a4f524d2852b8d4dcfd1839b1f573ef",
+    "current_holder": "Bob",
+    "trust": "all event signatures verified against supplied actor/key trust list",
+    "trust_digest": "4bbea7f372699d2695b42fa356d6d5527ee9868845860f29b8a615c6ea07249f",
+    "events": [
+      {
+        "schema": "k957-custody-event/1",
+        "case": "DEMO-002",
+        "evidence_id": "1f40aedd8b1b56d54904e47d0f06a1fc",
+        "evidence_digest": "d406672966c93f05ddfb95d462e5635ef0e492b540296c6e1e26817fa81a8d20",
+        "sequence": 1,
+        "action": "register",
+        "actor": "Alice",
+        "from": "",
+        "to": "Alice",
+        "location": "Sentetik laboratuvar",
+        "note": "Gösterim kaydı; fiziksel teslim beyanı değildir.",
+        "occurred_at": "2026-09-28T03:02:09.737856245Z",
+        "recorded_at": "2026-09-28T03:02:09.737856245Z",
+        "previous": "",
+        "signer_sha256": "f459e2b950e15f2ed8bc1fcacefe26ac2a96963fe12bb46e2ce87b87536a2807"
+      },
+      {
+        "schema": "k957-custody-event/1",
+        "case": "DEMO-002",
+        "evidence_id": "1f40aedd8b1b56d54904e47d0f06a1fc",
+        "evidence_digest": "d406672966c93f05ddfb95d462e5635ef0e492b540296c6e1e26817fa81a8d20",
+        "sequence": 2,
+        "action": "transfer",
+        "actor": "Alice",
+        "from": "Alice",
+        "to": "Bob",
+        "location": "Sentetik laboratuvar",
+        "note": "Gösterim kaydı; fiziksel teslim beyanı değildir.",
+        "occurred_at": "2026-09-28T03:02:09.742270333Z",
+        "recorded_at": "2026-09-28T03:02:09.742270333Z",
+        "previous": "5d5e495360b7e9de4f5c80ede2717d54044dee2739477b6f7962bcc9f69b5a16",
+        "signer_sha256": "f459e2b950e15f2ed8bc1fcacefe26ac2a96963fe12bb46e2ce87b87536a2807"
+      },
+      {
+        "schema": "k957-custody-event/1",
+        "case": "DEMO-002",
+        "evidence_id": "1f40aedd8b1b56d54904e47d0f06a1fc",
+        "evidence_digest": "d406672966c93f05ddfb95d462e5635ef0e492b540296c6e1e26817fa81a8d20",
+        "sequence": 3,
+        "action": "accept",
+        "actor": "Bob",
+        "from": "Alice",
+        "to": "Bob",
+        "location": "Sentetik laboratuvar",
+        "note": "Gösterim kaydı; fiziksel teslim beyanı değildir.",
+        "occurred_at": "2026-09-28T03:02:09.74636705Z",
+        "recorded_at": "2026-09-28T03:02:09.74636705Z",
+        "previous": "5f2e1e8e7953d8fb3f515e04e61cfd5a4b71c1df9b78934278865d769d23b5a8",
+        "signer_sha256": "c45dd98139b0e9f1287b8ff7d6ec4e1c56aaac9645461c0c59c1719244ea50ab"
+      }
+    ]
+  },
+  "parse_summaries": [
+    {
+      "evidence": "E000001",
+      "format": "text/RFC3339",
+      "rows": 3,
+      "parsed": 3,
+      "skipped": 0,
+      "limited": false
+    },
+    {
+      "evidence": "E000002",
+      "format": "JSONL",
+      "rows": 2,
+      "parsed": 2,
+      "skipped": 0,
+      "limited": false
+    }
+  ],
+  "evidence_digest": "d406672966c93f05ddfb95d462e5635ef0e492b540296c6e1e26817fa81a8d20",
+  "version": "0.9.0",
+  "run": "fa563ff00b6fcbd34e40e411eb70dd3c",
+  "created": "2026-09-28T09:28:42.101003388Z",
+  "signature": "unsigned",
+  "manifest": {
+    "schema": "k957-evidence/1",
+    "version": "0.2.0",
+    "id": "1f40aedd8b1b56d54904e47d0f06a1fc",
+    "case": "DEMO-002",
+    "operator": "Synthetic fixture",
+    "scope": "Demonstration data only",
+    "host": "9c5d918482ee",
+    "os": "linux",
+    "arch": "amd64",
+    "started": "2026-09-27T12:21:44.257057786Z",
+    "finished": "2026-09-27T12:21:44.257516437Z",
+    "status": "complete",
+    "items": [
+      {
+        "id": "E000001",
+        "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log",
+        "object": "objects/E000001",
+        "kind": "file",
+        "size": 239,
+        "sha256": "bdb889269f50e1b79e2917b1c63aa41396e6423824f4f40bad73b2238fe8b9b7",
+        "modified": "2026-09-27T12:06:58.410394928Z",
+        "collected": "2026-09-27T12:21:44.257150696Z",
+        "mode": "-rw-r--r--",
+        "changed_during_acquisition": false
+      },
+      {
+        "id": "E000002",
+        "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/events.jsonl",
+        "object": "objects/E000002",
+        "kind": "file",
+        "size": 177,
+        "sha256": "f96d264429544617412f3845267775144ef7badc2d3de7eecd40930ddeebbbf2",
+        "modified": "2026-09-27T12:06:58.411318149Z",
+        "collected": "2026-09-27T12:21:44.257508405Z",
+        "mode": "-rw-r--r--",
+        "changed_during_acquisition": false
+      }
+    ],
+    "issues": []
+  },
+  "rules": [
+    {
+      "id": "DEMO-LOGIN-FAIL",
+      "description": "Demo: review failed authentication text",
+      "contains": "failed password",
+      "sha256": ""
+    },
+    {
+      "id": "DEMO-POWERSHELL",
+      "description": "Demo: review PowerShell reference; not a malware verdict",
+      "contains": "powershell",
+      "sha256": ""
+    }
+  ],
+  "findings": [
+    {
+      "id": "F-c0773c4efbdeec10c3c7a1be6aa800997b8692e4858e1315cb8dedcad04aef22",
+      "rule": "DEMO-LOGIN-FAIL",
+      "description": "Demo: review failed authentication text",
+      "evidence": "E000001",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log",
+      "line": 1,
+      "excerpt": "2026-09-27T14:00:00+03:00 SYNTHETIC failed password for demo-user from 192.0.2.15",
+      "review": "unreviewed"
+    },
+    {
+      "id": "F-24cbd652be4963cfa765c1f4994e4d72829d44c026e562f46e040146ecd40b7a",
+      "rule": "DEMO-POWERSHELL",
+      "description": "Demo: review PowerShell reference; not a malware verdict",
+      "evidence": "E000001",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log",
+      "line": 3,
+      "excerpt": "2026-09-27T14:05:00+03:00 SYNTHETIC powershell reference; analyst review required",
+      "review": "unreviewed"
+    }
+  ],
+  "timeline": [
+    {
+      "line": 1,
+      "detail": "2026-09-27T14:00:00+03:00 SYNTHETIC failed password for demo-user from 192.0.2.15",
+      "original_time": "2026-09-27T14:00:00+03:00",
+      "time": "2026-09-27T11:00:00Z",
+      "type": "log_timestamp",
+      "evidence": "E000001",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log"
+    },
+    {
+      "byte_offset": 82,
+      "line": 2,
+      "detail": "2026-09-27T14:02:00+03:00 SYNTHETIC successful session start for demo-user",
+      "original_time": "2026-09-27T14:02:00+03:00",
+      "time": "2026-09-27T11:02:00Z",
+      "type": "log_timestamp",
+      "evidence": "E000001",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log"
+    },
+    {
+      "byte_offset": 157,
+      "line": 3,
+      "detail": "2026-09-27T14:05:00+03:00 SYNTHETIC powershell reference; analyst review required",
+      "original_time": "2026-09-27T14:05:00+03:00",
+      "time": "2026-09-27T11:05:00Z",
+      "type": "log_timestamp",
+      "evidence": "E000001",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log"
+    },
+    {
+      "line": 1,
+      "detail": "SYNTHETIC document opened: example.txt",
+      "original_time": "2026-09-27T11:06:00Z",
+      "time": "2026-09-27T11:06:00Z",
+      "type": "log_timestamp",
+      "evidence": "E000002",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/events.jsonl"
+    },
+    {
+      "byte_offset": 88,
+      "line": 2,
+      "detail": "SYNTHETIC removable media attached",
+      "original_time": "2026-09-27T14:10:00+03:00",
+      "time": "2026-09-27T11:10:00Z",
+      "type": "log_timestamp",
+      "evidence": "E000002",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/events.jsonl"
+    },
+    {
+      "time": "2026-09-27T12:06:58.410394928Z",
+      "type": "file_modified",
+      "evidence": "E000001",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log"
+    },
+    {
+      "time": "2026-09-27T12:06:58.411318149Z",
+      "type": "file_modified",
+      "evidence": "E000002",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/events.jsonl"
+    },
+    {
+      "time": "2026-09-27T12:21:44.257150696Z",
+      "type": "collected",
+      "evidence": "E000001",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log"
+    },
+    {
+      "time": "2026-09-27T12:21:44.257508405Z",
+      "type": "collected",
+      "evidence": "E000002",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/events.jsonl"
+    }
+  ],
+  "notes": [
+    "Timeline includes file metadata, explicit RFC3339/JSONL timestamps and supported PCAP packet timestamps; these are not proof of execution or user attribution.",
+    "Rules are literal matches, not malware verdicts. Every finding requires analyst review.",
+    "Text scanning covers UTF-8 files up to 8 MiB each, 128 MiB total; classic PCAP is parsed separately; other binary formats are inventoried, not parsed.",
+    "Clock offsets are not measured. Timestamps reflect the source host clock converted to UTC.",
+    "Correlations are shared field values across at least two evidence objects, not independent-source corroboration or identity attribution. NAT, shared accounts and duplicate logs can produce matches. User names are case-sensitive; host names lowercased; IPs canonicalized. No network enrichment is performed.",
+    "3 signed custody declarations verified against the supplied actor/key trust list. This is not proof of physical possession, civil identity or trusted time. Trust list provenance must be established outside this package. An independently retained expected head is needed to detect rollback or divergent histories."
+  ]
+}

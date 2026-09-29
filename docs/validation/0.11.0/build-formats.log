@@ -1,0 +1,6 @@
+dist/k957-darwin-amd64:      Mach-O 64-bit x86_64 executable, flags:<|DYLDLINK|PIE>
+dist/k957-darwin-arm64:      Mach-O 64-bit arm64 executable, flags:<|DYLDLINK|PIE>
+dist/k957-linux-amd64:       ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, Go BuildID=POiW2WpiHr2GzXKqnQel/JwgUd-JKGEpvEeoohXxI/m1oNJi-TwniQqKebDhrZ/mqHM-lMqiyadYx0e8E9t, BuildID[sha1]=314bca026e39adc474538892b5e825a657fb42ed, stripped
+dist/k957-linux-arm64:       ELF 64-bit LSB executable, ARM aarch64, version 1 (SYSV), statically linked, Go BuildID=M-tXz-q81FKcs4WEKCgi/fKCT1ZpaqYoKtilJLmrl/neKjOw9n9fLloKloyFZ4/dMXPe-eKgcbHTbgFFVDG, BuildID[sha1]=4f6afd770ce431cdbca239cf94c3f7a4c2dcd420, stripped
+dist/k957-windows-amd64.exe: PE32+ executable for MS Windows 6.01 (console), x86-64, 8 sections
+dist/k957-windows-arm64.exe: PE32+ executable for MS Windows 6.01 (console), ARM64, 6 sections

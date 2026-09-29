@@ -1,0 +1,13 @@
+{
+  "schema": "k957-custody-trust/1",
+  "keys": [
+    {
+      "actor": "Alice",
+      "public_key": "8e7f32bf7bf4d56dc8b081a1e5e5a7245697660f7b1e12d38e1e5b413efadacd"
+    },
+    {
+      "actor": "Bob",
+      "public_key": "246e43a3385f38124578102286463f8846b3ae7272c8c2362bebefca79ddbf6c"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+> python3 scripts/integration.py dist/k957-linux-amd64
+PASS: native CLI, independent ZIP hashes, signature, encryption roundtrip, log timezone, tamper rejection, partial status
+
+> python3 scripts/crypto_interop.py
+PASS: Ed25519 signature and AES-GCM envelope verified independently with Python cryptography
+
+> python3 scripts/resume_integration.py
+PASS: SIGKILL after checkpoint, stale lock rejection, confirmed recovery, source-prefix validation, independent 192 MiB/24-part hashes, two epochs, report
+
+> python3 scripts/review_integration.py
+PASS: signed two-revision CLI review, fresh reanalysis, stable IDs, evidence/old revision unchanged, tamper and changed-rule rejection
+
+> python3 scripts/structured_integration.py
+PASS: CSV/JSONL parsing, skipped-record counts, byte offsets, UTC conversion, 3 cross-evidence entities, CSV export, unchanged evidence
+
+> python3 scripts/encrypted_integration.py
+PASS: encrypted SIGKILL/restart, wrong-key refusal, independent state/chunk AES-GCM and HMAC verification, no fixture plaintext in work/output, 192 MiB final source equality
+
+> python3 scripts/preflight_integration.py
+PASS: metadata-only plan, native free space, combined budget, encrypted allowance, exclusions, overlap gate, verified collection
+
+> python3 scripts/custody_integration.py
+PASS: two signer keys, preserved event signatures, independent Ed25519/domain/hash verification, acceptance state, external-head rollback rejection, tamper rejection, safe HTML/CSV, unchanged package/history
+
+> python3 scripts/share_integration.py
+PASS: all 8 artifacts scanned for 18 sensitive values; signed reviews/custody projected safely; counts and aliases preserved; explicit keep policy; tampered history/ambiguous policy/authoritative reuse rejected; source package/history/analysis unchanged
+
+> python3 scripts/pcap_integration.py
+PASS: independent PCAP records/offsets/byte counts/UTC, four directional flows plus raw-IP capture, IPv6 TCP extension, truncation and four skip reasons, PCAPNG refusal, cross-log IP correlation, no payload findings, masked network exports, unchanged package

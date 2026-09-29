@@ -1,0 +1,210 @@
+{
+  "parse_summaries": [
+    {
+      "evidence": "E000001",
+      "format": "text/RFC3339",
+      "rows": 3,
+      "parsed": 3,
+      "skipped": 0,
+      "limited": false
+    },
+    {
+      "evidence": "E000002",
+      "format": "JSONL",
+      "rows": 2,
+      "parsed": 2,
+      "skipped": 0,
+      "limited": false
+    }
+  ],
+  "review_digest": "a5ab3b4c93455b388231ca51fdcbe6f4271e1cac2f6aac99199a04a87f32ff16",
+  "evidence_digest": "d406672966c93f05ddfb95d462e5635ef0e492b540296c6e1e26817fa81a8d20",
+  "review_history": [
+    {
+      "sequence": 1,
+      "finding": "F-c0773c4efbdeec10c3c7a1be6aa800997b8692e4858e1315cb8dedcad04aef22",
+      "decision": "needs-review",
+      "analyst": "Demo Analist A",
+      "note": "Sentetik örnek için ilk değerlendirme",
+      "created": "2026-09-28T09:28:42.08728907Z",
+      "previous": "",
+      "hash": "d9a9ea070a5db4feae5d8fa363c3747ad94e6595db714af95df28fa13963c43d"
+    },
+    {
+      "sequence": 2,
+      "finding": "F-c0773c4efbdeec10c3c7a1be6aa800997b8692e4858e1315cb8dedcad04aef22",
+      "decision": "rejected",
+      "analyst": "Demo Analist B",
+      "note": "Sentetik test verisi; gerçek olay tespiti değildir",
+      "created": "2026-09-28T09:28:42.092083967Z",
+      "previous": "d9a9ea070a5db4feae5d8fa363c3747ad94e6595db714af95df28fa13963c43d",
+      "hash": "d427f94589e5eb12ad2bba424469f571159fff8fede5eeb555543f7ac6647ec6"
+    }
+  ],
+  "review_signature": "verified against supplied trusted review key",
+  "version": "0.9.0",
+  "run": "01c841c3f09dedb3c255ea092ab6b730",
+  "created": "2026-09-28T09:28:42.096582033Z",
+  "signature": "unsigned",
+  "manifest": {
+    "schema": "k957-evidence/1",
+    "version": "0.2.0",
+    "id": "1f40aedd8b1b56d54904e47d0f06a1fc",
+    "case": "DEMO-002",
+    "operator": "Synthetic fixture",
+    "scope": "Demonstration data only",
+    "host": "9c5d918482ee",
+    "os": "linux",
+    "arch": "amd64",
+    "started": "2026-09-27T12:21:44.257057786Z",
+    "finished": "2026-09-27T12:21:44.257516437Z",
+    "status": "complete",
+    "items": [
+      {
+        "id": "E000001",
+        "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log",
+        "object": "objects/E000001",
+        "kind": "file",
+        "size": 239,
+        "sha256": "bdb889269f50e1b79e2917b1c63aa41396e6423824f4f40bad73b2238fe8b9b7",
+        "modified": "2026-09-27T12:06:58.410394928Z",
+        "collected": "2026-09-27T12:21:44.257150696Z",
+        "mode": "-rw-r--r--",
+        "changed_during_acquisition": false
+      },
+      {
+        "id": "E000002",
+        "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/events.jsonl",
+        "object": "objects/E000002",
+        "kind": "file",
+        "size": 177,
+        "sha256": "f96d264429544617412f3845267775144ef7badc2d3de7eecd40930ddeebbbf2",
+        "modified": "2026-09-27T12:06:58.411318149Z",
+        "collected": "2026-09-27T12:21:44.257508405Z",
+        "mode": "-rw-r--r--",
+        "changed_during_acquisition": false
+      }
+    ],
+    "issues": []
+  },
+  "rules": [
+    {
+      "id": "DEMO-LOGIN-FAIL",
+      "description": "Demo: review failed authentication text",
+      "contains": "failed password",
+      "sha256": ""
+    },
+    {
+      "id": "DEMO-POWERSHELL",
+      "description": "Demo: review PowerShell reference; not a malware verdict",
+      "contains": "powershell",
+      "sha256": ""
+    }
+  ],
+  "findings": [
+    {
+      "id": "F-c0773c4efbdeec10c3c7a1be6aa800997b8692e4858e1315cb8dedcad04aef22",
+      "reviewer": "Demo Analist B",
+      "review_note": "Sentetik test verisi; gerçek olay tespiti değildir",
+      "rule": "DEMO-LOGIN-FAIL",
+      "description": "Demo: review failed authentication text",
+      "evidence": "E000001",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log",
+      "line": 1,
+      "excerpt": "2026-09-27T14:00:00+03:00 SYNTHETIC failed password for demo-user from 192.0.2.15",
+      "review": "rejected"
+    },
+    {
+      "id": "F-24cbd652be4963cfa765c1f4994e4d72829d44c026e562f46e040146ecd40b7a",
+      "rule": "DEMO-POWERSHELL",
+      "description": "Demo: review PowerShell reference; not a malware verdict",
+      "evidence": "E000001",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log",
+      "line": 3,
+      "excerpt": "2026-09-27T14:05:00+03:00 SYNTHETIC powershell reference; analyst review required",
+      "review": "unreviewed"
+    }
+  ],
+  "timeline": [
+    {
+      "line": 1,
+      "detail": "2026-09-27T14:00:00+03:00 SYNTHETIC failed password for demo-user from 192.0.2.15",
+      "original_time": "2026-09-27T14:00:00+03:00",
+      "time": "2026-09-27T11:00:00Z",
+      "type": "log_timestamp",
+      "evidence": "E000001",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log"
+    },
+    {
+      "byte_offset": 82,
+      "line": 2,
+      "detail": "2026-09-27T14:02:00+03:00 SYNTHETIC successful session start for demo-user",
+      "original_time": "2026-09-27T14:02:00+03:00",
+      "time": "2026-09-27T11:02:00Z",
+      "type": "log_timestamp",
+      "evidence": "E000001",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log"
+    },
+    {
+      "byte_offset": 157,
+      "line": 3,
+      "detail": "2026-09-27T14:05:00+03:00 SYNTHETIC powershell reference; analyst review required",
+      "original_time": "2026-09-27T14:05:00+03:00",
+      "time": "2026-09-27T11:05:00Z",
+      "type": "log_timestamp",
+      "evidence": "E000001",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log"
+    },
+    {
+      "line": 1,
+      "detail": "SYNTHETIC document opened: example.txt",
+      "original_time": "2026-09-27T11:06:00Z",
+      "time": "2026-09-27T11:06:00Z",
+      "type": "log_timestamp",
+      "evidence": "E000002",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/events.jsonl"
+    },
+    {
+      "byte_offset": 88,
+      "line": 2,
+      "detail": "SYNTHETIC removable media attached",
+      "original_time": "2026-09-27T14:10:00+03:00",
+      "time": "2026-09-27T11:10:00Z",
+      "type": "log_timestamp",
+      "evidence": "E000002",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/events.jsonl"
+    },
+    {
+      "time": "2026-09-27T12:06:58.410394928Z",
+      "type": "file_modified",
+      "evidence": "E000001",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log"
+    },
+    {
+      "time": "2026-09-27T12:06:58.411318149Z",
+      "type": "file_modified",
+      "evidence": "E000002",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/events.jsonl"
+    },
+    {
+      "time": "2026-09-27T12:21:44.257150696Z",
+      "type": "collected",
+      "evidence": "E000001",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log"
+    },
+    {
+      "time": "2026-09-27T12:21:44.257508405Z",
+      "type": "collected",
+      "evidence": "E000002",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/events.jsonl"
+    }
+  ],
+  "notes": [
+    "Timeline includes file metadata, explicit RFC3339/JSONL timestamps and supported PCAP packet timestamps; these are not proof of execution or user attribution.",
+    "Rules are literal matches, not malware verdicts. Every finding requires analyst review.",
+    "Text scanning covers UTF-8 files up to 8 MiB each, 128 MiB total; classic PCAP is parsed separately; other binary formats are inventoried, not parsed.",
+    "Clock offsets are not measured. Timestamps reflect the source host clock converted to UTC.",
+    "Correlations are shared field values across at least two evidence objects, not independent-source corroboration or identity attribution. NAT, shared accounts and duplicate logs can produce matches. User names are case-sensitive; host names lowercased; IPs canonicalized. No network enrichment is performed.",
+    "2 analyst review events applied. Decisions express the analyst's assessment; a hash chain alone does not authenticate identity or prove history completeness."
+  ]
+}

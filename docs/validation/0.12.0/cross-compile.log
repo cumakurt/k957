@@ -1,0 +1,20 @@
+COMMAND go test -c -o /tmp/k957-platform-tools/windows-tests/core.test.exe ./internal/core TARGET windows/amd64
+PASS: compiled only; runtime execution is recorded separately
+COMMAND go test -c -o /tmp/k957-platform-tools/windows-tests/cli.test.exe ./cmd/k957 TARGET windows/amd64
+PASS: compiled only; runtime execution is recorded separately
+COMMAND go test -c -o /tmp/k957-platform-tools/cross-tests/linux-arm64-core.test ./internal/core TARGET linux/arm64
+PASS: compiled only; runtime execution is recorded separately
+COMMAND go test -c -o /tmp/k957-platform-tools/cross-tests/linux-arm64-cli.test ./cmd/k957 TARGET linux/arm64
+PASS: compiled only; runtime execution is recorded separately
+COMMAND go test -c -o /tmp/k957-platform-tools/cross-tests/windows-arm64-core.test.exe ./internal/core TARGET windows/arm64
+PASS: compiled only; runtime execution is recorded separately
+COMMAND go test -c -o /tmp/k957-platform-tools/cross-tests/windows-arm64-cli.test.exe ./cmd/k957 TARGET windows/arm64
+PASS: compiled only; runtime execution is recorded separately
+COMMAND go test -c -o /tmp/k957-platform-tools/cross-tests/darwin-amd64-core.test ./internal/core TARGET darwin/amd64
+PASS: compiled only; runtime execution is recorded separately
+COMMAND go test -c -o /tmp/k957-platform-tools/cross-tests/darwin-amd64-cli.test ./cmd/k957 TARGET darwin/amd64
+PASS: compiled only; runtime execution is recorded separately
+COMMAND go test -c -o /tmp/k957-platform-tools/cross-tests/darwin-arm64-core.test ./internal/core TARGET darwin/arm64
+PASS: compiled only; runtime execution is recorded separately
+COMMAND go test -c -o /tmp/k957-platform-tools/cross-tests/darwin-arm64-cli.test ./cmd/k957 TARGET darwin/arm64
+PASS: compiled only; runtime execution is recorded separately

@@ -1,0 +1,377 @@
+=== RUN   TestCheckpointReaderAllowsReplacement
+=== RUN   TestCheckpointReaderAllowsReplacement/plain
+=== RUN   TestCheckpointReaderAllowsReplacement/encrypted
+--- PASS: TestCheckpointReaderAllowsReplacement (0.12s)
+    --- PASS: TestCheckpointReaderAllowsReplacement/plain (0.06s)
+    --- PASS: TestCheckpointReaderAllowsReplacement/encrypted (0.06s)
+=== RUN   TestCheckpointBlockedReplacementPreservesPrevious
+--- PASS: TestCheckpointBlockedReplacementPreservesPrevious (1.01s)
+=== RUN   TestCollectNestedUnicodePaths
+--- PASS: TestCollectNestedUnicodePaths (0.01s)
+=== RUN   TestCollectAnalyze
+--- PASS: TestCollectAnalyze (0.01s)
+=== RUN   TestTampering
+=== RUN   TestTampering/objects/E000001
+=== RUN   TestTampering/manifest.json
+=== RUN   TestTampering/manifest.sig
+--- PASS: TestTampering (0.02s)
+    --- PASS: TestTampering/objects/E000001 (0.00s)
+    --- PASS: TestTampering/manifest.json (0.00s)
+    --- PASS: TestTampering/manifest.sig (0.00s)
+=== RUN   TestWrongKey
+--- PASS: TestWrongKey (0.01s)
+=== RUN   TestUnsignedTrust
+--- PASS: TestUnsignedTrust (0.01s)
+=== RUN   TestLimitsAndSymlink
+--- PASS: TestLimitsAndSymlink (0.01s)
+=== RUN   TestOutputProtection
+--- PASS: TestOutputProtection (0.01s)
+=== RUN   TestCancelled
+--- PASS: TestCancelled (0.00s)
+=== RUN   TestEnvelope
+=== RUN   TestEnvelope/A
+=== RUN   TestEnvelope/B
+=== RUN   TestEnvelope/\u008d
+=== RUN   TestEnvelope/\u0099
+--- PASS: TestEnvelope (0.08s)
+    --- PASS: TestEnvelope/A (0.00s)
+    --- PASS: TestEnvelope/B (0.00s)
+    --- PASS: TestEnvelope/\u008d (0.04s)
+    --- PASS: TestEnvelope/\u0099 (0.04s)
+=== RUN   TestDecryptCleanup
+--- PASS: TestDecryptCleanup (0.00s)
+=== RUN   TestRulesAndCSV
+--- PASS: TestRulesAndCSV (0.00s)
+=== RUN   TestManifestDuplicates
+--- PASS: TestManifestDuplicates (0.00s)
+=== RUN   TestSystemTimeout
+--- PASS: TestSystemTimeout (0.00s)
+=== RUN   TestTextBudgetAndBinary
+--- PASS: TestTextBudgetAndBinary (0.00s)
+=== RUN   TestLogTimestamp
+--- PASS: TestLogTimestamp (0.00s)
+=== RUN   TestPrivateKeyExcluded
+--- PASS: TestPrivateKeyExcluded (0.00s)
+=== RUN   TestCustodyHandoverAndPreservedSignatures
+--- PASS: TestCustodyHandoverAndPreservedSignatures (0.01s)
+=== RUN   TestCustodyCancellationAndTransitionRejections
+--- PASS: TestCustodyCancellationAndTransitionRejections (0.01s)
+=== RUN   TestCustodyTrustAndExpectedHead
+--- PASS: TestCustodyTrustAndExpectedHead (0.01s)
+=== RUN   TestCustodyTamperAndBinding
+=== RUN   TestCustodyTamperAndBinding/order
+=== RUN   TestCustodyTamperAndBinding/repeat
+=== RUN   TestCustodyTamperAndBinding/hash
+=== RUN   TestCustodyTamperAndBinding/rehashed-note
+=== RUN   TestCustodyTamperAndBinding/digest
+=== RUN   TestCustodyTamperAndBinding/missing
+=== RUN   TestCustodyTamperAndBinding/signature
+=== RUN   TestCustodyTamperAndBinding/base64
+=== RUN   TestCustodyTamperAndBinding/case
+=== RUN   TestCustodyTamperAndBinding/evidence
+=== RUN   TestCustodyTamperAndBinding/sequence
+=== RUN   TestCustodyTamperAndBinding/binding
+=== RUN   TestCustodyTamperAndBinding/future
+=== RUN   TestCustodyTamperAndBinding/empty-location
+=== RUN   TestCustodyTamperAndBinding/previous
+=== RUN   TestCustodyTamperAndBinding/actor
+=== RUN   TestCustodyTamperAndBinding/from
+--- PASS: TestCustodyTamperAndBinding (0.02s)
+    --- PASS: TestCustodyTamperAndBinding/order (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/repeat (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/hash (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/rehashed-note (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/digest (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/missing (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/signature (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/base64 (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/case (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/evidence (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/sequence (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/binding (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/future (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/empty-location (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/previous (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/actor (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/from (0.00s)
+=== RUN   TestCustodyTimeLimitsAndKeyConsistency
+--- PASS: TestCustodyTimeLimitsAndKeyConsistency (0.03s)
+=== RUN   TestCustodyJSONAndTrustLoading
+--- PASS: TestCustodyJSONAndTrustLoading (0.02s)
+=== RUN   TestCustodyReportEscapesNotes
+--- PASS: TestCustodyReportEscapesNotes (0.02s)
+=== RUN   TestPCAPEndianResolutionOffsetsAndFlows
+--- PASS: TestPCAPEndianResolutionOffsetsAndFlows (0.00s)
+=== RUN   TestPCAPRawIPv6VLANAndExtensions
+--- PASS: TestPCAPRawIPv6VLANAndExtensions (0.00s)
+=== RUN   TestPCAPMalformedFragmentAndUnsupported
+--- PASS: TestPCAPMalformedFragmentAndUnsupported (0.00s)
+=== RUN   TestPCAPTruncationBudgetsAndDirection
+--- PASS: TestPCAPTruncationBudgetsAndDirection (0.00s)
+=== RUN   TestPCAPAnalysisCorrelationAndShare
+--- PASS: TestPCAPAnalysisCorrelationAndShare (0.03s)
+=== RUN   TestNetworkEndpointIPv6
+--- PASS: TestNetworkEndpointIPv6 (0.00s)
+=== RUN   TestPCAPNGSectionsInterfacesAndProvenance
+--- PASS: TestPCAPNGSectionsInterfacesAndProvenance (0.00s)
+=== RUN   TestCaptureLinuxCookedLinks
+--- PASS: TestCaptureLinuxCookedLinks (0.00s)
+=== RUN   TestPCAPNGTimestampPrecisionAndRange
+--- PASS: TestPCAPNGTimestampPrecisionAndRange (0.00s)
+=== RUN   TestPCAPNGMalformedFraming
+=== RUN   TestPCAPNGMalformedFraming/trailing_bytes
+=== RUN   TestPCAPNGMalformedFraming/footer
+=== RUN   TestPCAPNGMalformedFraming/negative_section_length
+=== RUN   TestPCAPNGMalformedFraming/original_length
+=== RUN   TestPCAPNGMalformedFraming/version
+=== RUN   TestPCAPNGMalformedFraming/short_block
+=== RUN   TestPCAPNGMalformedFraming/unaligned_block
+=== RUN   TestPCAPNGMalformedFraming/interface
+=== RUN   TestPCAPNGMalformedFraming/snaplen
+=== RUN   TestPCAPNGMalformedFraming/byte_order
+=== RUN   TestPCAPNGMalformedFraming/huge_block
+=== RUN   TestPCAPNGMalformedFraming/section_too_long
+=== RUN   TestPCAPNGMalformedFraming/length
+=== RUN   TestPCAPNGMalformedFraming/no_interface_in_new_section
+=== RUN   TestPCAPNGMalformedFraming/minor_version
+=== RUN   TestPCAPNGMalformedFraming/section_too_short
+=== RUN   TestPCAPNGMalformedFraming/section_crossing
+=== RUN   TestPCAPNGMalformedFraming/reserved
+=== RUN   TestPCAPNGMalformedFraming/truncated
+--- PASS: TestPCAPNGMalformedFraming (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/trailing_bytes (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/footer (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/negative_section_length (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/original_length (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/version (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/short_block (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/unaligned_block (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/interface (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/snaplen (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/byte_order (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/huge_block (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/section_too_long (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/length (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/no_interface_in_new_section (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/minor_version (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/section_too_short (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/section_crossing (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/reserved (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/truncated (0.00s)
+=== RUN   TestPCAPNGSkippedPacketsAndMetadata
+--- PASS: TestPCAPNGSkippedPacketsAndMetadata (0.00s)
+=== RUN   TestPCAPNGBudgetsAndTruncatedPrefix
+--- PASS: TestPCAPNGBudgetsAndTruncatedPrefix (0.06s)
+=== RUN   TestResumePreflightRemainingBudget
+=== RUN   TestResumePreflightRemainingBudget/plain
+=== RUN   TestResumePreflightRemainingBudget/encrypted
+--- PASS: TestResumePreflightRemainingBudget (0.23s)
+    --- PASS: TestResumePreflightRemainingBudget/plain (0.13s)
+    --- PASS: TestResumePreflightRemainingBudget/encrypted (0.10s)
+=== RUN   TestResumePreflightMountedStagingBudgets
+--- PASS: TestResumePreflightMountedStagingBudgets (0.08s)
+=== RUN   TestResumePreflightCompletedFrozenInventory
+--- PASS: TestResumePreflightCompletedFrozenInventory (0.51s)
+=== RUN   TestResumePreflightRejectsInvalidState
+=== RUN   TestResumePreflightRejectsInvalidState/lock
+=== RUN   TestResumePreflightRejectsInvalidState/source-missing
+=== RUN   TestResumePreflightRejectsInvalidState/source-size
+=== RUN   TestResumePreflightRejectsInvalidState/source-time
+=== RUN   TestResumePreflightRejectsInvalidState/chunk-missing
+=== RUN   TestResumePreflightRejectsInvalidState/chunk-size
+=== RUN   TestResumePreflightRejectsInvalidState/chunk-directory
+=== RUN   TestResumePreflightRejectsInvalidState/root
+=== RUN   TestResumePreflightRejectsInvalidState/limits
+=== RUN   TestResumePreflightRejectsInvalidState/case
+=== RUN   TestResumePreflightRejectsInvalidState/operator
+=== RUN   TestResumePreflightRejectsInvalidState/scope
+=== RUN   TestResumePreflightRejectsInvalidState/existing-output
+=== RUN   TestResumePreflightRejectsInvalidState/epochs
+--- PASS: TestResumePreflightRejectsInvalidState (1.60s)
+    --- PASS: TestResumePreflightRejectsInvalidState/lock (0.11s)
+    --- PASS: TestResumePreflightRejectsInvalidState/source-missing (0.10s)
+    --- PASS: TestResumePreflightRejectsInvalidState/source-size (0.07s)
+    --- PASS: TestResumePreflightRejectsInvalidState/source-time (0.15s)
+    --- PASS: TestResumePreflightRejectsInvalidState/chunk-missing (0.08s)
+    --- PASS: TestResumePreflightRejectsInvalidState/chunk-size (0.09s)
+    --- PASS: TestResumePreflightRejectsInvalidState/chunk-directory (0.09s)
+    --- PASS: TestResumePreflightRejectsInvalidState/root (0.11s)
+    --- PASS: TestResumePreflightRejectsInvalidState/limits (0.08s)
+    --- PASS: TestResumePreflightRejectsInvalidState/case (0.13s)
+    --- PASS: TestResumePreflightRejectsInvalidState/operator (0.12s)
+    --- PASS: TestResumePreflightRejectsInvalidState/scope (0.14s)
+    --- PASS: TestResumePreflightRejectsInvalidState/existing-output (0.10s)
+    --- PASS: TestResumePreflightRejectsInvalidState/epochs (0.23s)
+=== RUN   TestResumePreflightAuthenticationAndCancellation
+--- PASS: TestResumePreflightAuthenticationAndCancellation (0.09s)
+=== RUN   TestResumePreflightDoesNotReplaceIntegrityVerification
+--- PASS: TestResumePreflightDoesNotReplaceIntegrityVerification (0.09s)
+=== RUN   TestPreflightCombinedBudget
+--- PASS: TestPreflightCombinedBudget (0.01s)
+=== RUN   TestPreflightSeparateVolumes
+--- PASS: TestPreflightSeparateVolumes (0.00s)
+=== RUN   TestPreflightUncertainProbes
+=== RUN   TestPreflightUncertainProbes/sourceerror
+=== RUN   TestPreflightUncertainProbes/sourceempty
+=== RUN   TestPreflightUncertainProbes/sourcenegative
+=== RUN   TestPreflightUncertainProbes/targeterror
+=== RUN   TestPreflightUncertainProbes/targetempty
+=== RUN   TestPreflightUncertainProbes/targetnegative
+--- PASS: TestPreflightUncertainProbes (0.05s)
+    --- PASS: TestPreflightUncertainProbes/sourceerror (0.01s)
+    --- PASS: TestPreflightUncertainProbes/sourceempty (0.01s)
+    --- PASS: TestPreflightUncertainProbes/sourcenegative (0.01s)
+    --- PASS: TestPreflightUncertainProbes/targeterror (0.01s)
+    --- PASS: TestPreflightUncertainProbes/targetempty (0.01s)
+    --- PASS: TestPreflightUncertainProbes/targetnegative (0.01s)
+=== RUN   TestPreflightSourceWarningAndEncryption
+--- PASS: TestPreflightSourceWarningAndEncryption (0.01s)
+=== RUN   TestPreflightOverlapAndExisting
+=== RUN   TestPreflightOverlapAndExisting/output-in-source
+=== RUN   TestPreflightOverlapAndExisting/work-in-source
+=== RUN   TestPreflightOverlapAndExisting/source-in-work
+=== RUN   TestPreflightOverlapAndExisting/work-equals-output
+=== RUN   TestPreflightOverlapAndExisting/existing-output
+=== RUN   TestPreflightOverlapAndExisting/existing-work
+--- PASS: TestPreflightOverlapAndExisting (0.03s)
+    --- PASS: TestPreflightOverlapAndExisting/output-in-source (0.01s)
+    --- PASS: TestPreflightOverlapAndExisting/work-in-source (0.01s)
+    --- PASS: TestPreflightOverlapAndExisting/source-in-work (0.00s)
+    --- PASS: TestPreflightOverlapAndExisting/work-equals-output (0.00s)
+    --- PASS: TestPreflightOverlapAndExisting/existing-output (0.00s)
+    --- PASS: TestPreflightOverlapAndExisting/existing-work (0.00s)
+=== RUN   TestPreflightBudgetsAndCancellation
+=== RUN   TestPreflightBudgetsAndCancellation/file
+=== RUN   TestPreflightBudgetsAndCancellation/total
+=== RUN   TestPreflightBudgetsAndCancellation/count
+=== RUN   TestPreflightBudgetsAndCancellation/empty
+--- PASS: TestPreflightBudgetsAndCancellation (0.01s)
+    --- PASS: TestPreflightBudgetsAndCancellation/file (0.00s)
+    --- PASS: TestPreflightBudgetsAndCancellation/total (0.00s)
+    --- PASS: TestPreflightBudgetsAndCancellation/count (0.00s)
+    --- PASS: TestPreflightBudgetsAndCancellation/empty (0.00s)
+=== RUN   TestPreflightInvalidInput
+=== RUN   TestPreflightInvalidInput/root
+=== RUN   TestPreflightInvalidInput/output
+=== RUN   TestPreflightInvalidInput/system
+=== RUN   TestPreflightInvalidInput/limit
+=== RUN   TestPreflightInvalidInput/reserve
+=== RUN   TestPreflightInvalidInput/missing-root
+=== RUN   TestPreflightInvalidInput/file-root
+=== RUN   TestPreflightInvalidInput/missing-parent
+--- PASS: TestPreflightInvalidInput (0.02s)
+    --- PASS: TestPreflightInvalidInput/root (0.00s)
+    --- PASS: TestPreflightInvalidInput/output (0.00s)
+    --- PASS: TestPreflightInvalidInput/system (0.00s)
+    --- PASS: TestPreflightInvalidInput/limit (0.00s)
+    --- PASS: TestPreflightInvalidInput/reserve (0.00s)
+    --- PASS: TestPreflightInvalidInput/missing-root (0.00s)
+    --- PASS: TestPreflightInvalidInput/file-root (0.00s)
+    --- PASS: TestPreflightInvalidInput/missing-parent (0.01s)
+=== RUN   TestNativeVolumeProbe
+--- PASS: TestNativeVolumeProbe (0.00s)
+=== RUN   TestResumeAcrossEpochs
+--- PASS: TestResumeAcrossEpochs (0.42s)
+=== RUN   TestResumePrefixMutationSameMetadata
+--- PASS: TestResumePrefixMutationSameMetadata (0.13s)
+=== RUN   TestResumeCorruptedChunk
+--- PASS: TestResumeCorruptedChunk (0.10s)
+=== RUN   TestResumeMetadataChange
+--- PASS: TestResumeMetadataChange (0.09s)
+=== RUN   TestResumeOptionBindingAndLock
+--- PASS: TestResumeOptionBindingAndLock (0.09s)
+=== RUN   TestResumeCompletedReuseAndFrozenInventory
+--- PASS: TestResumeCompletedReuseAndFrozenInventory (0.40s)
+=== RUN   TestResumeEmptyFileAndSkippedSources
+--- PASS: TestResumeEmptyFileAndSkippedSources (0.01s)
+=== RUN   TestResumePartManifestTamper
+--- PASS: TestResumePartManifestTamper (0.44s)
+=== RUN   TestResumePathIsolation
+--- PASS: TestResumePathIsolation (0.04s)
+=== RUN   TestResumeCheckpointPathEscape
+--- PASS: TestResumeCheckpointPathEscape (0.10s)
+=== RUN   TestInspectWork
+--- PASS: TestInspectWork (0.09s)
+=== RUN   TestRejectSystemResumable
+--- PASS: TestRejectSystemResumable (0.05s)
+=== RUN   TestReviewStableIDsAndHistory
+--- PASS: TestReviewStableIDsAndHistory (0.01s)
+=== RUN   TestReviewSignatureAndTamper
+--- PASS: TestReviewSignatureAndTamper (0.01s)
+=== RUN   TestReviewBasisMismatch
+--- PASS: TestReviewBasisMismatch (0.01s)
+=== RUN   TestReviewValidationAndEscaping
+--- PASS: TestReviewValidationAndEscaping (0.01s)
+=== RUN   TestReviewReanalysisStable
+--- PASS: TestReviewReanalysisStable (0.00s)
+=== RUN   TestShareDefaultNoSensitiveValuesOrSourceMutation
+--- PASS: TestShareDefaultNoSensitiveValuesOrSourceMutation (0.01s)
+=== RUN   TestShareSelectiveKeepAndCrossFieldRedaction
+--- PASS: TestShareSelectiveKeepAndCrossFieldRedaction (0.00s)
+=== RUN   TestShareLiteralLongestAndEscaping
+--- PASS: TestShareLiteralLongestAndEscaping (0.01s)
+=== RUN   TestSharePolicyAndExportFailures
+--- PASS: TestSharePolicyAndExportFailures (0.01s)
+=== RUN   TestShareMatchingBudgetAndEnumProjection
+--- PASS: TestShareMatchingBudgetAndEnumProjection (0.01s)
+=== RUN   TestEncryptedResumeAndSignedOutput
+--- PASS: TestEncryptedResumeAndSignedOutput (0.34s)
+=== RUN   TestEncryptedWrongKeyAndMode
+--- PASS: TestEncryptedWrongKeyAndMode (0.08s)
+=== RUN   TestEncryptedTampering
+--- PASS: TestEncryptedTampering (0.13s)
+=== RUN   TestStageDomainSeparation
+--- PASS: TestStageDomainSeparation (0.00s)
+=== RUN   TestEncryptionKeyIsolation
+--- PASS: TestEncryptionKeyIsolation (0.03s)
+=== RUN   TestEncryptedPipelineWriteFailure
+--- PASS: TestEncryptedPipelineWriteFailure (0.32s)
+=== RUN   TestPlainWorkCannotConvertInPlace
+--- PASS: TestPlainWorkCannotConvertInPlace (0.02s)
+=== RUN   TestStructuredCSVMultiline
+--- PASS: TestStructuredCSVMultiline (0.00s)
+=== RUN   TestStructuredRejectedRecords
+--- PASS: TestStructuredRejectedRecords (0.00s)
+=== RUN   TestStructuredCSVHeadersAndErrors
+--- PASS: TestStructuredCSVHeadersAndErrors (0.00s)
+=== RUN   TestStructuredOffsetsAndLimits
+--- PASS: TestStructuredOffsetsAndLimits (0.00s)
+=== RUN   TestCorrelationSemantics
+--- PASS: TestCorrelationSemantics (0.00s)
+=== RUN   TestCorrelationReferenceLimit
+--- PASS: TestCorrelationReferenceLimit (0.00s)
+=== RUN   TestStructuredEndToEnd
+--- PASS: TestStructuredEndToEnd (0.02s)
+=== RUN   FuzzRules
+=== RUN   FuzzRules/seed#0
+--- PASS: FuzzRules (0.00s)
+    --- PASS: FuzzRules/seed#0 (0.00s)
+=== RUN   FuzzEnvelope
+=== RUN   FuzzEnvelope/seed#0
+--- PASS: FuzzEnvelope (0.00s)
+    --- PASS: FuzzEnvelope/seed#0 (0.00s)
+=== RUN   FuzzPCAP
+=== RUN   FuzzPCAP/seed#0
+=== RUN   FuzzPCAP/seed#1
+=== RUN   FuzzPCAP/seed#2
+--- PASS: FuzzPCAP (0.00s)
+    --- PASS: FuzzPCAP/seed#0 (0.00s)
+    --- PASS: FuzzPCAP/seed#1 (0.00s)
+    --- PASS: FuzzPCAP/seed#2 (0.00s)
+=== RUN   FuzzPCAPNG
+=== RUN   FuzzPCAPNG/seed#0
+=== RUN   FuzzPCAPNG/seed#1
+=== RUN   FuzzPCAPNG/seed#2
+=== RUN   FuzzPCAPNG/seed#3
+--- PASS: FuzzPCAPNG (0.00s)
+    --- PASS: FuzzPCAPNG/seed#0 (0.00s)
+    --- PASS: FuzzPCAPNG/seed#1 (0.00s)
+    --- PASS: FuzzPCAPNG/seed#2 (0.00s)
+    --- PASS: FuzzPCAPNG/seed#3 (0.00s)
+=== RUN   FuzzStructuredLogs
+=== RUN   FuzzStructuredLogs/seed#0
+=== RUN   FuzzStructuredLogs/seed#1
+--- PASS: FuzzStructuredLogs (0.00s)
+    --- PASS: FuzzStructuredLogs/seed#0 (0.00s)
+    --- PASS: FuzzStructuredLogs/seed#1 (0.00s)
+PASS

@@ -1,0 +1,584 @@
+{
+  "capture_summaries": [
+    {
+      "evidence": "E000001",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/big-nano.bin",
+      "format": "PCAP",
+      "byte_order": "big",
+      "timestamp_resolution": "nanoseconds",
+      "link_type": 101,
+      "records": 1,
+      "parsed": 1,
+      "skipped": 0,
+      "truncated_packets": 0,
+      "skip_reasons": {},
+      "flow_omitted_packets": 0,
+      "limited": false
+    },
+    {
+      "evidence": "E000003",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap",
+      "format": "PCAP",
+      "byte_order": "little",
+      "timestamp_resolution": "microseconds",
+      "link_type": 1,
+      "records": 9,
+      "parsed": 5,
+      "skipped": 4,
+      "truncated_packets": 1,
+      "skip_reasons": {
+        "fragment": 1,
+        "invalid_ip_length": 1,
+        "invalid_timestamp": 1,
+        "unsupported_link_protocol": 1
+      },
+      "flow_omitted_packets": 0,
+      "limited": false
+    },
+    {
+      "evidence": "E000004",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/unsupported.pcapng",
+      "format": "PCAPNG",
+      "link_type": 0,
+      "records": 0,
+      "parsed": 0,
+      "skipped": 0,
+      "truncated_packets": 0,
+      "skip_reasons": {},
+      "flow_omitted_packets": 0,
+      "limited": false,
+      "error": "PCAPNG is not supported in this version"
+    }
+  ],
+  "network_flows": [
+    {
+      "evidence": "E000001",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/big-nano.bin",
+      "protocol": "UDP",
+      "source_ip": "192.0.2.77",
+      "destination_ip": "198.51.100.8",
+      "source_port": 40000,
+      "destination_port": 53,
+      "packets": 1,
+      "captured_bytes": 49,
+      "original_bytes": 49,
+      "first": "2020-09-13T12:26:40.123456789Z",
+      "last": "2020-09-13T12:26:40.123456789Z",
+      "references": [
+        {
+          "packet": 1,
+          "byte_offset": 24,
+          "time": "2020-09-13T12:26:40.123456789Z",
+          "captured_length": 49,
+          "original_length": 49
+        }
+      ],
+      "references_truncated": false
+    },
+    {
+      "evidence": "E000003",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap",
+      "protocol": "UDP",
+      "source_ip": "192.0.2.77",
+      "destination_ip": "198.51.100.8",
+      "source_port": 40000,
+      "destination_port": 53,
+      "packets": 2,
+      "captured_bytes": 142,
+      "original_bytes": 142,
+      "first": "2020-09-13T12:26:40.123456Z",
+      "last": "2020-09-13T12:26:41.123456Z",
+      "references": [
+        {
+          "packet": 1,
+          "byte_offset": 24,
+          "time": "2020-09-13T12:26:40.123456Z",
+          "captured_length": 71,
+          "original_length": 71
+        },
+        {
+          "packet": 2,
+          "byte_offset": 111,
+          "time": "2020-09-13T12:26:41.123456Z",
+          "captured_length": 71,
+          "original_length": 71
+        }
+      ],
+      "references_truncated": false
+    },
+    {
+      "evidence": "E000003",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap",
+      "protocol": "UDP",
+      "source_ip": "198.51.100.8",
+      "destination_ip": "192.0.2.77",
+      "source_port": 53,
+      "destination_port": 40000,
+      "packets": 1,
+      "captured_bytes": 63,
+      "original_bytes": 63,
+      "first": "2020-09-13T12:26:42.123456Z",
+      "last": "2020-09-13T12:26:42.123456Z",
+      "references": [
+        {
+          "packet": 3,
+          "byte_offset": 198,
+          "time": "2020-09-13T12:26:42.123456Z",
+          "captured_length": 63,
+          "original_length": 63
+        }
+      ],
+      "references_truncated": false
+    },
+    {
+      "evidence": "E000003",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap",
+      "protocol": "TCP",
+      "source_ip": "2001:db8::77",
+      "destination_ip": "2001:db8::88",
+      "source_port": 50000,
+      "destination_port": 443,
+      "packets": 1,
+      "captured_bytes": 82,
+      "original_bytes": 82,
+      "first": "2020-09-13T12:26:43.123456Z",
+      "last": "2020-09-13T12:26:43.123456Z",
+      "references": [
+        {
+          "packet": 4,
+          "byte_offset": 277,
+          "time": "2020-09-13T12:26:43.123456Z",
+          "captured_length": 82,
+          "original_length": 82
+        }
+      ],
+      "references_truncated": false
+    },
+    {
+      "evidence": "E000003",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap",
+      "protocol": "TCP",
+      "source_ip": "192.0.2.77",
+      "destination_ip": "198.51.100.8",
+      "source_port": 40000,
+      "destination_port": 443,
+      "packets": 1,
+      "captured_bytes": 54,
+      "original_bytes": 75,
+      "first": "2020-09-13T12:26:46.123456Z",
+      "last": "2020-09-13T12:26:46.123456Z",
+      "references": [
+        {
+          "packet": 7,
+          "byte_offset": 512,
+          "time": "2020-09-13T12:26:46.123456Z",
+          "captured_length": 54,
+          "original_length": 75
+        }
+      ],
+      "references_truncated": false
+    }
+  ],
+  "parse_summaries": [
+    {
+      "evidence": "E000001",
+      "format": "PCAP",
+      "rows": 1,
+      "parsed": 1,
+      "skipped": 0,
+      "limited": false
+    },
+    {
+      "evidence": "E000002",
+      "format": "JSONL",
+      "rows": 1,
+      "parsed": 1,
+      "skipped": 0,
+      "limited": false
+    },
+    {
+      "evidence": "E000003",
+      "format": "PCAP",
+      "rows": 9,
+      "parsed": 5,
+      "skipped": 4,
+      "limited": false
+    },
+    {
+      "evidence": "E000004",
+      "format": "PCAPNG",
+      "rows": 0,
+      "parsed": 0,
+      "skipped": 0,
+      "limited": false,
+      "error": "PCAPNG is not supported in this version"
+    }
+  ],
+  "correlations": [
+    {
+      "kind": "ip",
+      "value": "192.0.2.77",
+      "events": 6,
+      "sources": 3,
+      "first": "2020-09-13T12:26:40Z",
+      "last": "2020-09-13T12:26:46.123456Z",
+      "references": [
+        {
+          "evidence": "E000002",
+          "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/observer.jsonl",
+          "line": 1,
+          "byte_offset": 0,
+          "role": "source_ip",
+          "time": "2020-09-13T12:26:40Z"
+        },
+        {
+          "packet": 1,
+          "evidence": "E000003",
+          "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap",
+          "line": 0,
+          "byte_offset": 24,
+          "role": "source_ip",
+          "time": "2020-09-13T12:26:40.123456Z"
+        },
+        {
+          "packet": 1,
+          "evidence": "E000001",
+          "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/big-nano.bin",
+          "line": 0,
+          "byte_offset": 24,
+          "role": "source_ip",
+          "time": "2020-09-13T12:26:40.123456789Z"
+        },
+        {
+          "packet": 2,
+          "evidence": "E000003",
+          "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap",
+          "line": 0,
+          "byte_offset": 111,
+          "role": "source_ip",
+          "time": "2020-09-13T12:26:41.123456Z"
+        },
+        {
+          "packet": 3,
+          "evidence": "E000003",
+          "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap",
+          "line": 0,
+          "byte_offset": 198,
+          "role": "destination_ip",
+          "time": "2020-09-13T12:26:42.123456Z"
+        },
+        {
+          "packet": 7,
+          "evidence": "E000003",
+          "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap",
+          "line": 0,
+          "byte_offset": 512,
+          "role": "source_ip",
+          "time": "2020-09-13T12:26:46.123456Z"
+        }
+      ],
+      "references_truncated": false
+    },
+    {
+      "kind": "ip",
+      "value": "198.51.100.8",
+      "events": 5,
+      "sources": 2,
+      "first": "2020-09-13T12:26:40.123456Z",
+      "last": "2020-09-13T12:26:46.123456Z",
+      "references": [
+        {
+          "packet": 1,
+          "evidence": "E000003",
+          "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap",
+          "line": 0,
+          "byte_offset": 24,
+          "role": "destination_ip",
+          "time": "2020-09-13T12:26:40.123456Z"
+        },
+        {
+          "packet": 1,
+          "evidence": "E000001",
+          "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/big-nano.bin",
+          "line": 0,
+          "byte_offset": 24,
+          "role": "destination_ip",
+          "time": "2020-09-13T12:26:40.123456789Z"
+        },
+        {
+          "packet": 2,
+          "evidence": "E000003",
+          "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap",
+          "line": 0,
+          "byte_offset": 111,
+          "role": "destination_ip",
+          "time": "2020-09-13T12:26:41.123456Z"
+        },
+        {
+          "packet": 3,
+          "evidence": "E000003",
+          "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap",
+          "line": 0,
+          "byte_offset": 198,
+          "role": "source_ip",
+          "time": "2020-09-13T12:26:42.123456Z"
+        },
+        {
+          "packet": 7,
+          "evidence": "E000003",
+          "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap",
+          "line": 0,
+          "byte_offset": 512,
+          "role": "destination_ip",
+          "time": "2020-09-13T12:26:46.123456Z"
+        }
+      ],
+      "references_truncated": false
+    }
+  ],
+  "evidence_digest": "2ce5e200de430073b9bc051ab9d72a71d86216eb154c8c08d29edd259b21c515",
+  "version": "0.9.0",
+  "run": "ba3e3f2b08fb4c70ffc464bb5d27d158",
+  "created": "2026-09-28T09:28:42.183027382Z",
+  "signature": "unsigned",
+  "manifest": {
+    "schema": "k957-evidence/1",
+    "version": "0.9.0",
+    "id": "e190b2ad1d4af01118d2f0f5aa5d5bb4",
+    "case": "PCAP-DEMO",
+    "operator": "Demo",
+    "scope": "Yalnızca bu dizindeki sentetik ağ ve log örnekleri",
+    "host": "04ce55db14bc",
+    "os": "linux",
+    "arch": "amd64",
+    "started": "2026-09-28T09:28:42.179334595Z",
+    "finished": "2026-09-28T09:28:42.179875617Z",
+    "status": "complete",
+    "items": [
+      {
+        "id": "E000001",
+        "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/big-nano.bin",
+        "object": "objects/E000001",
+        "kind": "file",
+        "size": 89,
+        "sha256": "e014546513ae18d13bd5a1882325036393047d111fa87ca513d29b3fb3a47642",
+        "modified": "2026-09-28T09:28:42.153902363Z",
+        "collected": "2026-09-28T09:28:42.179462442Z",
+        "mode": "-rw-r--r--",
+        "changed_during_acquisition": false
+      },
+      {
+        "id": "E000002",
+        "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/observer.jsonl",
+        "object": "objects/E000002",
+        "kind": "file",
+        "size": 90,
+        "sha256": "292215af3845718b2f5410bf33ce17cbd05aa210e8b8887ee03d5a2e52f58c50",
+        "modified": "2026-09-28T09:28:42.153946217Z",
+        "collected": "2026-09-28T09:28:42.179780778Z",
+        "mode": "-rw-r--r--",
+        "changed_during_acquisition": false
+      },
+      {
+        "id": "E000003",
+        "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap",
+        "object": "objects/E000003",
+        "kind": "file",
+        "size": 748,
+        "sha256": "0911c04c3abfb98f200f23194877aea335ef7cd068f7201612702b629a00c004",
+        "modified": "2026-09-28T09:28:42.153861523Z",
+        "collected": "2026-09-28T09:28:42.179820697Z",
+        "mode": "-rw-r--r--",
+        "changed_during_acquisition": false
+      },
+      {
+        "id": "E000004",
+        "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/unsupported.pcapng",
+        "object": "objects/E000004",
+        "kind": "file",
+        "size": 4,
+        "sha256": "531d04aaf63e526de83a4f74863b20df18e916bd7d0bf67cef890f4e063ed777",
+        "modified": "2026-09-28T09:28:42.153924986Z",
+        "collected": "2026-09-28T09:28:42.179871952Z",
+        "mode": "-rw-r--r--",
+        "changed_during_acquisition": false
+      }
+    ],
+    "issues": []
+  },
+  "rules": [
+    {
+      "id": "DEMO-LOGIN-FAIL",
+      "description": "Demo: review failed authentication text",
+      "contains": "failed password",
+      "sha256": ""
+    },
+    {
+      "id": "DEMO-POWERSHELL",
+      "description": "Demo: review PowerShell reference; not a malware verdict",
+      "contains": "powershell",
+      "sha256": ""
+    }
+  ],
+  "findings": [],
+  "timeline": [
+    {
+      "source_ip": "192.0.2.77",
+      "line": 1,
+      "detail": "synthetic observer",
+      "original_time": "2020-09-13T12:26:40Z",
+      "time": "2020-09-13T12:26:40Z",
+      "type": "log_timestamp",
+      "evidence": "E000002",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/observer.jsonl"
+    },
+    {
+      "packet": 1,
+      "protocol": "UDP",
+      "source_port": 40000,
+      "destination_port": 53,
+      "captured_length": 71,
+      "original_length": 71,
+      "source_ip": "192.0.2.77",
+      "destination_ip": "198.51.100.8",
+      "byte_offset": 24,
+      "time": "2020-09-13T12:26:40.123456Z",
+      "type": "pcap_packet",
+      "evidence": "E000003",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap"
+    },
+    {
+      "packet": 1,
+      "protocol": "UDP",
+      "source_port": 40000,
+      "destination_port": 53,
+      "captured_length": 49,
+      "original_length": 49,
+      "source_ip": "192.0.2.77",
+      "destination_ip": "198.51.100.8",
+      "byte_offset": 24,
+      "time": "2020-09-13T12:26:40.123456789Z",
+      "type": "pcap_packet",
+      "evidence": "E000001",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/big-nano.bin"
+    },
+    {
+      "packet": 2,
+      "protocol": "UDP",
+      "source_port": 40000,
+      "destination_port": 53,
+      "captured_length": 71,
+      "original_length": 71,
+      "source_ip": "192.0.2.77",
+      "destination_ip": "198.51.100.8",
+      "byte_offset": 111,
+      "time": "2020-09-13T12:26:41.123456Z",
+      "type": "pcap_packet",
+      "evidence": "E000003",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap"
+    },
+    {
+      "packet": 3,
+      "protocol": "UDP",
+      "source_port": 53,
+      "destination_port": 40000,
+      "captured_length": 63,
+      "original_length": 63,
+      "source_ip": "198.51.100.8",
+      "destination_ip": "192.0.2.77",
+      "byte_offset": 198,
+      "time": "2020-09-13T12:26:42.123456Z",
+      "type": "pcap_packet",
+      "evidence": "E000003",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap"
+    },
+    {
+      "packet": 4,
+      "protocol": "TCP",
+      "source_port": 50000,
+      "destination_port": 443,
+      "captured_length": 82,
+      "original_length": 82,
+      "tcp_flags": 2,
+      "source_ip": "2001:db8::77",
+      "destination_ip": "2001:db8::88",
+      "byte_offset": 277,
+      "time": "2020-09-13T12:26:43.123456Z",
+      "type": "pcap_packet",
+      "evidence": "E000003",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap"
+    },
+    {
+      "packet": 7,
+      "protocol": "TCP",
+      "source_port": 40000,
+      "destination_port": 443,
+      "captured_length": 54,
+      "original_length": 75,
+      "tcp_flags": 2,
+      "source_ip": "192.0.2.77",
+      "destination_ip": "198.51.100.8",
+      "byte_offset": 512,
+      "time": "2020-09-13T12:26:46.123456Z",
+      "type": "pcap_packet",
+      "evidence": "E000003",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap"
+    },
+    {
+      "time": "2026-09-28T09:28:42.153861523Z",
+      "type": "file_modified",
+      "evidence": "E000003",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap"
+    },
+    {
+      "time": "2026-09-28T09:28:42.153902363Z",
+      "type": "file_modified",
+      "evidence": "E000001",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/big-nano.bin"
+    },
+    {
+      "time": "2026-09-28T09:28:42.153924986Z",
+      "type": "file_modified",
+      "evidence": "E000004",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/unsupported.pcapng"
+    },
+    {
+      "time": "2026-09-28T09:28:42.153946217Z",
+      "type": "file_modified",
+      "evidence": "E000002",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/observer.jsonl"
+    },
+    {
+      "time": "2026-09-28T09:28:42.179462442Z",
+      "type": "collected",
+      "evidence": "E000001",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/big-nano.bin"
+    },
+    {
+      "time": "2026-09-28T09:28:42.179780778Z",
+      "type": "collected",
+      "evidence": "E000002",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/observer.jsonl"
+    },
+    {
+      "time": "2026-09-28T09:28:42.179820697Z",
+      "type": "collected",
+      "evidence": "E000003",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap"
+    },
+    {
+      "time": "2026-09-28T09:28:42.179871952Z",
+      "type": "collected",
+      "evidence": "E000004",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/unsupported.pcapng"
+    }
+  ],
+  "notes": [
+    "Timeline includes file metadata, explicit RFC3339/JSONL timestamps and supported PCAP packet timestamps; these are not proof of execution or user attribution.",
+    "Rules are literal matches, not malware verdicts. Every finding requires analyst review.",
+    "Text scanning covers UTF-8 files up to 8 MiB each, 128 MiB total; classic PCAP is parsed separately; other binary formats are inventoried, not parsed.",
+    "Clock offsets are not measured. Timestamps reflect the source host clock converted to UTC.",
+    "PCAP: classic v2.4 Ethernet/raw-IP TCP/UDP headers only. No capture, payload inspection, checksums, reassembly, DNS resolution or session reconstruction. Directional five-tuples group all matching packets within one evidence object; MAC/VLAN identity is not part of the grouping; retransmissions and repeated sessions are not deduplicated. Byte counters are recorded frame sizes, not application traffic. Each capture is limited to 64 MiB and 20,000 records, 256 MiB total, shared 50,000 log-event/capture-record budget, 10,000 flows total and 20 references per flow. See capture summaries for omissions; IP addresses do not identify people.",
+    "Correlations are shared field values across at least two evidence objects, not independent-source corroboration or identity attribution. NAT, shared accounts and duplicate logs can produce matches. User names are case-sensitive; host names lowercased; IPs canonicalized. No network enrichment is performed."
+  ]
+}

@@ -1,0 +1,8 @@
+time_utc,event_type,evidence_id,source,line,original_time,detail,user,host,source_ip,destination_ip,byte_offset,packet,protocol,source_port,destination_port,captured_length,original_length,tcp_flags
+2026-09-27T11:00:00Z,log_timestamp,E000001,/workspace/scratch/4de4f0c723af/k957/examples/structured-source/access.csv,2,2026-09-27T14:00:00+03:00,"SYNTHETIC login
+additional test context",alice,workstation,192.0.2.1,,35,0,,0,0,0,0,0
+2026-09-27T11:01:00Z,log_timestamp,E000002,/workspace/scratch/4de4f0c723af/k957/examples/structured-source/audit.jsonl,1,2026-09-27T11:01:00Z,SYNTHETIC access event,alice,workstation,,192.0.2.1,0,0,,0,0,0,0,0
+2026-09-27T17:05:42.137904851Z,file_modified,E000001,/workspace/scratch/4de4f0c723af/k957/examples/structured-source/access.csv,0,,,,,,,0,0,,0,0,0,0,0
+2026-09-27T17:05:42.139053223Z,file_modified,E000002,/workspace/scratch/4de4f0c723af/k957/examples/structured-source/audit.jsonl,0,,,,,,,0,0,,0,0,0,0,0
+2026-09-27T17:05:42.188150643Z,collected,E000001,/workspace/scratch/4de4f0c723af/k957/examples/structured-source/access.csv,0,,,,,,,0,0,,0,0,0,0,0
+2026-09-27T17:05:42.188391355Z,collected,E000002,/workspace/scratch/4de4f0c723af/k957/examples/structured-source/audit.jsonl,0,,,,,,,0,0,,0,0,0,0,0

@@ -1,0 +1,3 @@
+finding_id,rule,evidence_id,source,line,review,analyst,reason,excerpt
+F-c0773c4efbdeec10c3c7a1be6aa800997b8692e4858e1315cb8dedcad04aef22,DEMO-LOGIN-FAIL,E000001,/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log,1,rejected,Demo Analist B,Sentetik test verisi; gerçek olay tespiti değildir,2026-09-27T14:00:00+03:00 SYNTHETIC failed password for demo-user from 192.0.2.15
+F-24cbd652be4963cfa765c1f4994e4d72829d44c026e562f46e040146ecd40b7a,DEMO-POWERSHELL,E000001,/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log,3,unreviewed,,,2026-09-27T14:05:00+03:00 SYNTHETIC powershell reference; analyst review required

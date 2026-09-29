@@ -1,0 +1,412 @@
+==306==WARNING: reading executable name failed with errno 2, some stack frames may not be symbolized
+==306==WARNING: reading executable name failed with errno 2, some stack frames may not be symbolized
+=== RUN   TestCLICustodyWorkflow
+{"schema":"k957-evidence/1","version":"0.9.0","id":"4417a320c9b7bcfe4085d6d39c4e6a58","case":"T","operator":"T","scope":"Synthetic","host":"cd2abc95e355","os":"linux","arch":"amd64","started":"2026-09-28T04:06:52.64689486Z","finished":"2026-09-28T04:06:52.648329008Z","status":"complete","items":[{"id":"E000001","source":"/workspace/scratch/4de4f0c723af/toolchain/tmp/TestCLICustodyWorkflow1592051538/001/source/data","object":"objects/E000001","kind":"file","size":9,"sha256":"b3cc0475bb78a5026098858e9889acf666d31062d513d303314eca31d36e72f2","modified":"2026-09-28T04:06:52.64336432Z","collected":"2026-09-28T04:06:52.648311993Z","mode":"-rw-------","changed_during_acquisition":false}],"issues":[]}
+{"events":1,"head":"743f198364883eb776260c0a826059373d3448259d520d496e8d1a9e0694208a","out":"/workspace/scratch/4de4f0c723af/toolchain/tmp/TestCLICustodyWorkflow1592051538/001/register.json"}
+{"events":2,"head":"7ffb4c8dc28b28c1d37f5b36eff8305a23255812f3e0620742dc5c78370ec9a4","out":"/workspace/scratch/4de4f0c723af/toolchain/tmp/TestCLICustodyWorkflow1592051538/001/transfer.json"}
+{"events":3,"head":"b38bb813f56c1abfb58d10695ea2077c66879aacb5111f306ca7baa6a9f6fc5c","out":"/workspace/scratch/4de4f0c723af/toolchain/tmp/TestCLICustodyWorkflow1592051538/001/accept.json"}
+{"evidence_digest":"37e66809eab54e1c9d599eabcf61ee732a625a65a69586be40ec110162cdb359","head":"b38bb813f56c1abfb58d10695ea2077c66879aacb5111f306ca7baa6a9f6fc5c","current_holder":"Bob","trust":"all event signatures verified against supplied actor/key trust list","trust_digest":"50d1e7dca5c2cd945d1784fe44614a6a1e2028b3a2ad3e546a506e04c26d48e4","events":[{"schema":"k957-custody-event/1","case":"T","evidence_id":"4417a320c9b7bcfe4085d6d39c4e6a58","evidence_digest":"37e66809eab54e1c9d599eabcf61ee732a625a65a69586be40ec110162cdb359","sequence":1,"action":"register","actor":"Alice","from":"","to":"Alice","location":"Lab","note":"Synthetic","occurred_at":"2026-09-28T04:06:52.653543723Z","recorded_at":"2026-09-28T04:06:52.653543723Z","previous":"","signer_sha256":"9012922fd179698bfc8d2b5ee58d885535d4e528820b572a16bf263a130f8fcc"},{"schema":"k957-custody-event/1","case":"T","evidence_id":"4417a320c9b7bcfe4085d6d39c4e6a58","evidence_digest":"37e66809eab54e1c9d599eabcf61ee732a625a65a69586be40ec110162cdb359","sequence":2,"action":"transfer","actor":"Alice","from":"Alice","to":"Bob","location":"Lab","note":"Synthetic","occurred_at":"2026-09-28T04:06:52.659376598Z","recorded_at":"2026-09-28T04:06:52.659376598Z","previous":"743f198364883eb776260c0a826059373d3448259d520d496e8d1a9e0694208a","signer_sha256":"9012922fd179698bfc8d2b5ee58d885535d4e528820b572a16bf263a130f8fcc"},{"schema":"k957-custody-event/1","case":"T","evidence_id":"4417a320c9b7bcfe4085d6d39c4e6a58","evidence_digest":"37e66809eab54e1c9d599eabcf61ee732a625a65a69586be40ec110162cdb359","sequence":3,"action":"accept","actor":"Bob","from":"Alice","to":"Bob","location":"Lab","note":"Synthetic","occurred_at":"2026-09-28T04:06:52.668436994Z","recorded_at":"2026-09-28T04:06:52.668436994Z","previous":"7ffb4c8dc28b28c1d37f5b36eff8305a23255812f3e0620742dc5c78370ec9a4","signer_sha256":"c9b195c69819034fc21aeb73bf2b92c3d8e4fdc17af3e7debdb6b3e48dc08578"}]}
+Report: /workspace/scratch/4de4f0c723af/toolchain/tmp/TestCLICustodyWorkflow1592051538/001/report/report.html
+flag provided but not defined: -bad
+Usage of custody:
+  -action string
+    	register, transfer, accept, cancel or note
+  -actor string
+    	exact actor identifier in trust list
+  -at string
+    	declared RFC3339 event time; defaults to now
+  -expected-head string
+    	independently retained previous/current custody head
+  -in string
+    	verified plaintext .k957 evidence package
+  -location string
+    	declared storage/handover location
+  -note string
+    	required reason or observation
+  -out string
+    	new custody ledger JSON
+  -previous string
+    	previous custody ledger; omitted for register
+  -sign-key string
+    	required actor Ed25519 private key
+  -to string
+    	recipient for transfer only
+  -trust string
+    	required external actor/public-key trust JSON
+  -trusted-key string
+    	trusted evidence package signing key
+--- PASS: TestCLICustodyWorkflow (0.05s)
+=== RUN   TestCLIWorkflow
+k957 0.9.0
+k957 0.9.0 — portable evidence collection and analysis
+Commands:
+  wizard           interactive Turkish collection / analysis assistant
+  preflight        inspect inventory and estimated destination space without writing
+  collect          collect selected files and optional live system snapshots
+  work-status      inspect resumable acquisition progress and verify parts
+  verify           verify all package objects and optional trusted signature
+  analyze          create HTML report, JSON analysis and CSV timeline
+  share            export a separate masked HTML/JSON/CSV report
+  review           append an analyst decision to a new review ledger
+  custody          append a signed custody declaration to a new ledger
+  custody-verify   verify every custody signature, actor, transition and head
+  keygen           create Ed25519 .key/.pub signing key pair
+  encryption-key   generate a random AES-256 transport key
+  seal / unseal    encrypt/decrypt files in authenticated streaming frames
+  version          show release version
+Use k957 <command> -h for flags. All outputs must be new paths.
+Example:
+  k957 collect --root ./evidence --out ./case.k957 --case CASE-1 --operator Analyst --scope "Approved directory"
+  k957 analyze --in ./case.k957 --out ./report --rules ./examples/rules.json
+{"schema":"k957-evidence/1","version":"0.9.0","id":"45bbb979074b860b61891c4622bdc73e","case":"T","operator":"T","scope":"Test","host":"cd2abc95e355","os":"linux","arch":"amd64","started":"2026-09-28T04:06:52.699684531Z","finished":"2026-09-28T04:06:52.700874395Z","status":"complete","items":[{"id":"E000001","source":"/workspace/scratch/4de4f0c723af/toolchain/tmp/TestCLIWorkflow2872524480/001/src/log.txt","object":"objects/E000001","kind":"file","size":26,"sha256":"630c8c824f7dd4d7b5f114a453453fbe515339de7f2a9f56ec672c28f1e3101d","modified":"2026-09-28T04:06:52.695364444Z","collected":"2026-09-28T04:06:52.70085803Z","mode":"-rw-------","changed_during_acquisition":false}],"issues":[]}
+{"collection_status":"complete","integrity":"verified","issues":[],"items":1,"signature":"verified against supplied trusted key"}
+Report: /workspace/scratch/4de4f0c723af/toolchain/tmp/TestCLIWorkflow2872524480/001/report/report.html
+{"collection_status":"complete","integrity":"verified","issues":[],"items":1,"signature":"present, not authenticated"}
+--- PASS: TestCLIWorkflow (0.02s)
+=== RUN   TestCLIErrors
+flag provided but not defined: -bad-flag
+Usage of collect:
+  -case string
+    	case identifier
+  -check-space
+    	run preflight before a fresh logical acquisition
+  -encryption-key string
+    	encrypt staging and final output; requires --work
+  -max-file int
+    	maximum bytes per source (default 268435456)
+  -max-files int
+    	maximum source count (default 10000)
+  -max-total int
+    	maximum acquired bytes (default 2147483648)
+  -operator string
+    	operator name
+  -out string
+    	new .k957 package outside source tree
+  -reserve int
+    	space reserve used by --check-space (default 268435456)
+  -resume
+    	resume an existing --work with identical scope and limits
+  -root string
+    	directory to collect recursively
+  -scope string
+    	authorized collection scope
+  -sign-key string
+    	optional Ed25519 private key file
+  -system
+    	opt-in live system snapshots
+  -timeout duration
+    	collection deadline (default 30m0s)
+  -work string
+    	resumable staging directory outside source/output (logical files only)
+--- PASS: TestCLIErrors (0.00s)
+=== RUN   TestCLIResumable
+{"epochs":[{"host":"cd2abc95e355","os":"linux","arch":"amd64","id":"c2e594b5c9538d2bb6fa15d4636d7b95","started":"2026-09-28T04:06:52.720021824Z","finished":"2026-09-28T04:06:52.721396182Z","outcome":"completed"}],"inventory_frozen":true,"schema":"k957-evidence/2","version":"0.9.0","id":"eeaf1ac01355cff7f64002a1c922e298","case":"T","operator":"T","scope":"T","host":"cd2abc95e355","os":"linux","arch":"amd64","started":"2026-09-28T04:06:52.719305436Z","finished":"2026-09-28T04:06:52.721396182Z","status":"complete","items":[{"parts":[{"offset":0,"size":25,"sha256":"c336aa26da7d3b7993d2e378f0d1edb3064bcf1dff98f12cc662f5821fce3b6c","epoch":"c2e594b5c9538d2bb6fa15d4636d7b95","acquired":"2026-09-28T04:06:52.72063682Z"}],"id":"E000001","source":"/workspace/scratch/4de4f0c723af/toolchain/tmp/TestCLIResumable1084503311/001/source/log","object":"objects/E000001","kind":"file","size":25,"sha256":"c336aa26da7d3b7993d2e378f0d1edb3064bcf1dff98f12cc662f5821fce3b6c","modified":"2026-09-28T04:06:52.717693358Z","collected":"2026-09-28T04:06:52.721008144Z","mode":"-rw-------","changed_during_acquisition":false}],"issues":[]}
+{"encrypted":false,"case":"T","source":"/workspace/scratch/4de4f0c723af/toolchain/tmp/TestCLIResumable1084503311/001/source","files":1,"completed_files":1,"acquired_bytes":25,"planned_bytes":25,"parts":1,"parts_verified":true,"lock_present":false,"epochs":[{"host":"cd2abc95e355","os":"linux","arch":"amd64","id":"c2e594b5c9538d2bb6fa15d4636d7b95","started":"2026-09-28T04:06:52.720021824Z","finished":"2026-09-28T04:06:52.721396182Z","outcome":"completed"}]}
+{"epochs":[{"host":"cd2abc95e355","os":"linux","arch":"amd64","id":"c2e594b5c9538d2bb6fa15d4636d7b95","started":"2026-09-28T04:06:52.720021824Z","finished":"2026-09-28T04:06:52.721396182Z","outcome":"completed"},{"host":"cd2abc95e355","os":"linux","arch":"amd64","id":"1070c976924693ad84d01f0db5bca83c","started":"2026-09-28T04:06:52.740205522Z","finished":"2026-09-28T04:06:52.740698407Z","outcome":"completed"}],"inventory_frozen":true,"schema":"k957-evidence/2","version":"0.9.0","id":"eeaf1ac01355cff7f64002a1c922e298","case":"T","operator":"T","scope":"T","host":"cd2abc95e355","os":"linux","arch":"amd64","started":"2026-09-28T04:06:52.719305436Z","finished":"2026-09-28T04:06:52.740698407Z","status":"complete","items":[{"parts":[{"offset":0,"size":25,"sha256":"c336aa26da7d3b7993d2e378f0d1edb3064bcf1dff98f12cc662f5821fce3b6c","epoch":"c2e594b5c9538d2bb6fa15d4636d7b95","acquired":"2026-09-28T04:06:52.72063682Z"}],"id":"E000001","source":"/workspace/scratch/4de4f0c723af/toolchain/tmp/TestCLIResumable1084503311/001/source/log","object":"objects/E000001","kind":"file","size":25,"sha256":"c336aa26da7d3b7993d2e378f0d1edb3064bcf1dff98f12cc662f5821fce3b6c","modified":"2026-09-28T04:06:52.717693358Z","collected":"2026-09-28T04:06:52.721008144Z","mode":"-rw-------","changed_during_acquisition":false}],"issues":[]}
+--- PASS: TestCLIResumable (0.03s)
+=== RUN   TestCLIReview
+{"schema":"k957-evidence/1","version":"0.9.0","id":"77b3060dbdc944d31b2edc4c153580e4","case":"T","operator":"T","scope":"T","host":"cd2abc95e355","os":"linux","arch":"amd64","started":"2026-09-28T04:06:52.744350261Z","finished":"2026-09-28T04:06:52.745609658Z","status":"complete","items":[{"id":"E000001","source":"/workspace/scratch/4de4f0c723af/toolchain/tmp/TestCLIReview4204002132/001/src/log","object":"objects/E000001","kind":"file","size":15,"sha256":"324cc7150489f06ae9479a79beffef1c5aec4146a2dc4f610d2cb20a900da07e","modified":"2026-09-28T04:06:52.743364557Z","collected":"2026-09-28T04:06:52.745552042Z","mode":"-rw-------","changed_during_acquisition":false}],"issues":[]}
+Report: /workspace/scratch/4de4f0c723af/toolchain/tmp/TestCLIReview4204002132/001/report/report.html
+Report: /workspace/scratch/4de4f0c723af/toolchain/tmp/TestCLIReview4204002132/001/reviewed/report.html
+--- PASS: TestCLIReview (0.01s)
+=== RUN   TestCLIEncryptedCollection
+{"encrypted":true,"issues":0,"items":1,"status":"complete"}
+{"encrypted":true,"case":"T","source":"/workspace/scratch/4de4f0c723af/toolchain/tmp/TestCLIEncryptedCollection911265255/001/src","files":1,"completed_files":1,"acquired_bytes":15,"planned_bytes":15,"parts":1,"parts_verified":true,"lock_present":false,"epochs":[{"host":"cd2abc95e355","os":"linux","arch":"amd64","id":"17357de87e651c148861d96e27eed2e6","started":"2026-09-28T04:06:52.756857797Z","finished":"2026-09-28T04:06:52.758064085Z","outcome":"completed"}]}
+{"collection_status":"complete","integrity":"verified","issues":[],"items":1,"signature":"unsigned"}
+--- PASS: TestCLIEncryptedCollection (0.01s)
+=== RUN   TestCLIPreflight
+{"version":"0.9.0","time":"2026-09-28T04:06:52.763329459Z","root":"/workspace/scratch/4de4f0c723af/toolchain/tmp/TestCLIPreflight1282648361/001/src","output":"/workspace/scratch/4de4f0c723af/toolchain/tmp/TestCLIPreflight1282648361/001/src/must-not-exist","work":"/workspace/scratch/4de4f0c723af/toolchain/tmp/TestCLIPreflight1282648361/001/work","encrypted":false,"eligible_files":1,"eligible_bytes":7,"planned_parts":1,"estimated_output_bytes":16778247,"estimated_work_bytes":67117063,"outcome":"blocked","checks":[{"code":"OUTPUT_IN_SOURCE","status":"blocked","message":"Output is inside the source tree"},{"code":"SOURCE_AND_TARGET_SAME_FILESYSTEM","status":"warning","message":"output shares the source filesystem"},{"code":"SOURCE_AND_TARGET_SAME_FILESYSTEM","status":"warning","message":"work shares the source filesystem"}],"inventory_issues":[],"storage":[{"filesystem":"device:27","roles":["output","work"],"available_bytes":27911901184,"estimated_additional_bytes":83895310,"reserve_bytes":268435456,"estimated_with_reserve_bytes":352330766,"enough_at_check_time":true}],"notes":["Read-only metadata inventory; evidence contents, permissions to read every file, write access, encryption/signing keys and live system commands are not validated.","Estimates are planning allowances, not worst-case guarantees. Filesystem allocation units, quotas, snapshots, concurrent writers, changing sources and compression affect actual space. No capacity is reserved.","Filesystem identity does not prove physical-device separation. Different partitions may share the same physical disk.","Only a fresh logical acquisition is supported. Existing resume work and live snapshots require separate assessment."]}
+flag provided but not defined: -bad-flag
+Usage of preflight:
+  -encrypted
+    	estimate encrypted resumable mode; does not read a key
+  -max-file int
+    	maximum bytes per source (default 268435456)
+  -max-files int
+    	maximum source count (default 10000)
+  -max-total int
+    	maximum acquired bytes (default 2147483648)
+  -out string
+    	planned new output package
+  -reserve int
+    	additional free-space reserve per target filesystem (default 268435456)
+  -root string
+    	source directory
+  -work string
+    	planned new staging directory
+--- PASS: TestCLIPreflight (0.00s)
+=== RUN   TestCLIShareWorkflow
+{"schema":"k957-evidence/1","version":"0.9.0","id":"59635d855b0f29f0395780b6929439c4","case":"PrivateCaseX","operator":"PrivateActorX","scope":"PrivateScopeX","host":"cd2abc95e355","os":"linux","arch":"amd64","started":"2026-09-28T04:06:52.765824979Z","finished":"2026-09-28T04:06:52.766702577Z","status":"complete","items":[{"id":"E000001","source":"/workspace/scratch/4de4f0c723af/toolchain/tmp/TestCLIShareWorkflow1112361163/001/source/secret.jsonl","object":"objects/E000001","kind":"file","size":127,"sha256":"d3ec6d3b78d16111bbc0cd2c27dab674267bdc03f478288d2682db2eadda287b","modified":"2026-09-28T04:06:52.763364605Z","collected":"2026-09-28T04:06:52.766692071Z","mode":"-rw-------","changed_during_acquisition":false}],"issues":[]}
+Shared report: /workspace/scratch/4de4f0c723af/toolchain/tmp/TestCLIShareWorkflow1112361163/001/shared/report.html
+Shared report: /workspace/scratch/4de4f0c723af/toolchain/tmp/TestCLIShareWorkflow1112361163/001/kept/report.html
+--- PASS: TestCLIShareWorkflow (0.01s)
+PASS
+coverage: 76.2% of statements
+ok  	k957/cmd/k957	1.146s	coverage: 76.2% of statements
+==352==WARNING: reading executable name failed with errno 2, some stack frames may not be symbolized
+==352==WARNING: reading executable name failed with errno 2, some stack frames may not be symbolized
+=== RUN   TestCollectAnalyze
+--- PASS: TestCollectAnalyze (0.01s)
+=== RUN   TestTampering
+=== RUN   TestTampering/objects/E000001
+=== RUN   TestTampering/manifest.json
+=== RUN   TestTampering/manifest.sig
+--- PASS: TestTampering (0.02s)
+    --- PASS: TestTampering/objects/E000001 (0.00s)
+    --- PASS: TestTampering/manifest.json (0.00s)
+    --- PASS: TestTampering/manifest.sig (0.00s)
+=== RUN   TestWrongKey
+--- PASS: TestWrongKey (0.00s)
+=== RUN   TestUnsignedTrust
+--- PASS: TestUnsignedTrust (0.00s)
+=== RUN   TestLimitsAndSymlink
+--- PASS: TestLimitsAndSymlink (0.00s)
+=== RUN   TestOutputProtection
+--- PASS: TestOutputProtection (0.00s)
+=== RUN   TestCancelled
+--- PASS: TestCancelled (0.00s)
+=== RUN   TestEnvelope
+=== RUN   TestEnvelope/A
+=== RUN   TestEnvelope/B
+=== RUN   TestEnvelope/\u008d
+=== RUN   TestEnvelope/\u0099
+--- PASS: TestEnvelope (0.16s)
+    --- PASS: TestEnvelope/A (0.00s)
+    --- PASS: TestEnvelope/B (0.00s)
+    --- PASS: TestEnvelope/\u008d (0.08s)
+    --- PASS: TestEnvelope/\u0099 (0.08s)
+=== RUN   TestDecryptCleanup
+--- PASS: TestDecryptCleanup (0.00s)
+=== RUN   TestRulesAndCSV
+--- PASS: TestRulesAndCSV (0.00s)
+=== RUN   TestManifestDuplicates
+--- PASS: TestManifestDuplicates (0.01s)
+=== RUN   TestSystemTimeout
+--- PASS: TestSystemTimeout (0.00s)
+=== RUN   TestTextBudgetAndBinary
+--- PASS: TestTextBudgetAndBinary (0.00s)
+=== RUN   TestLogTimestamp
+--- PASS: TestLogTimestamp (0.00s)
+=== RUN   TestPrivateKeyExcluded
+--- PASS: TestPrivateKeyExcluded (0.00s)
+=== RUN   TestCustodyHandoverAndPreservedSignatures
+--- PASS: TestCustodyHandoverAndPreservedSignatures (0.03s)
+=== RUN   TestCustodyCancellationAndTransitionRejections
+--- PASS: TestCustodyCancellationAndTransitionRejections (0.03s)
+=== RUN   TestCustodyTrustAndExpectedHead
+--- PASS: TestCustodyTrustAndExpectedHead (0.01s)
+=== RUN   TestCustodyTamperAndBinding
+=== RUN   TestCustodyTamperAndBinding/case
+=== RUN   TestCustodyTamperAndBinding/evidence
+=== RUN   TestCustodyTamperAndBinding/missing
+=== RUN   TestCustodyTamperAndBinding/signature
+=== RUN   TestCustodyTamperAndBinding/base64
+=== RUN   TestCustodyTamperAndBinding/digest
+=== RUN   TestCustodyTamperAndBinding/order
+=== RUN   TestCustodyTamperAndBinding/repeat
+=== RUN   TestCustodyTamperAndBinding/hash
+=== RUN   TestCustodyTamperAndBinding/rehashed-note
+=== RUN   TestCustodyTamperAndBinding/actor
+=== RUN   TestCustodyTamperAndBinding/from
+=== RUN   TestCustodyTamperAndBinding/sequence
+=== RUN   TestCustodyTamperAndBinding/binding
+=== RUN   TestCustodyTamperAndBinding/future
+=== RUN   TestCustodyTamperAndBinding/empty-location
+=== RUN   TestCustodyTamperAndBinding/previous
+--- PASS: TestCustodyTamperAndBinding (0.05s)
+    --- PASS: TestCustodyTamperAndBinding/case (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/evidence (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/missing (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/signature (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/base64 (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/digest (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/order (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/repeat (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/hash (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/rehashed-note (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/actor (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/from (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/sequence (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/binding (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/future (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/empty-location (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/previous (0.00s)
+=== RUN   TestCustodyTimeLimitsAndKeyConsistency
+--- PASS: TestCustodyTimeLimitsAndKeyConsistency (0.01s)
+=== RUN   TestCustodyJSONAndTrustLoading
+--- PASS: TestCustodyJSONAndTrustLoading (0.02s)
+=== RUN   TestCustodyReportEscapesNotes
+--- PASS: TestCustodyReportEscapesNotes (0.01s)
+=== RUN   TestPCAPEndianResolutionOffsetsAndFlows
+--- PASS: TestPCAPEndianResolutionOffsetsAndFlows (0.00s)
+=== RUN   TestPCAPRawIPv6VLANAndExtensions
+--- PASS: TestPCAPRawIPv6VLANAndExtensions (0.00s)
+=== RUN   TestPCAPMalformedFragmentAndUnsupported
+--- PASS: TestPCAPMalformedFragmentAndUnsupported (0.00s)
+=== RUN   TestPCAPTruncationBudgetsAndDirection
+--- PASS: TestPCAPTruncationBudgetsAndDirection (0.00s)
+=== RUN   TestPCAPAnalysisCorrelationAndShare
+--- PASS: TestPCAPAnalysisCorrelationAndShare (0.02s)
+=== RUN   TestNetworkEndpointIPv6
+--- PASS: TestNetworkEndpointIPv6 (0.00s)
+=== RUN   TestPreflightCombinedBudget
+--- PASS: TestPreflightCombinedBudget (0.00s)
+=== RUN   TestPreflightSeparateVolumes
+--- PASS: TestPreflightSeparateVolumes (0.00s)
+=== RUN   TestPreflightUncertainProbes
+=== RUN   TestPreflightUncertainProbes/sourceerror
+=== RUN   TestPreflightUncertainProbes/sourceempty
+=== RUN   TestPreflightUncertainProbes/sourcenegative
+=== RUN   TestPreflightUncertainProbes/targeterror
+=== RUN   TestPreflightUncertainProbes/targetempty
+=== RUN   TestPreflightUncertainProbes/targetnegative
+--- PASS: TestPreflightUncertainProbes (0.00s)
+    --- PASS: TestPreflightUncertainProbes/sourceerror (0.00s)
+    --- PASS: TestPreflightUncertainProbes/sourceempty (0.00s)
+    --- PASS: TestPreflightUncertainProbes/sourcenegative (0.00s)
+    --- PASS: TestPreflightUncertainProbes/targeterror (0.00s)
+    --- PASS: TestPreflightUncertainProbes/targetempty (0.00s)
+    --- PASS: TestPreflightUncertainProbes/targetnegative (0.00s)
+=== RUN   TestPreflightSourceWarningAndEncryption
+--- PASS: TestPreflightSourceWarningAndEncryption (0.00s)
+=== RUN   TestPreflightOverlapAndExisting
+=== RUN   TestPreflightOverlapAndExisting/output-in-source
+=== RUN   TestPreflightOverlapAndExisting/work-in-source
+=== RUN   TestPreflightOverlapAndExisting/source-in-work
+=== RUN   TestPreflightOverlapAndExisting/work-equals-output
+=== RUN   TestPreflightOverlapAndExisting/existing-output
+=== RUN   TestPreflightOverlapAndExisting/existing-work
+--- PASS: TestPreflightOverlapAndExisting (0.00s)
+    --- PASS: TestPreflightOverlapAndExisting/output-in-source (0.00s)
+    --- PASS: TestPreflightOverlapAndExisting/work-in-source (0.00s)
+    --- PASS: TestPreflightOverlapAndExisting/source-in-work (0.00s)
+    --- PASS: TestPreflightOverlapAndExisting/work-equals-output (0.00s)
+    --- PASS: TestPreflightOverlapAndExisting/existing-output (0.00s)
+    --- PASS: TestPreflightOverlapAndExisting/existing-work (0.00s)
+=== RUN   TestPreflightBudgetsAndCancellation
+=== RUN   TestPreflightBudgetsAndCancellation/file
+=== RUN   TestPreflightBudgetsAndCancellation/total
+=== RUN   TestPreflightBudgetsAndCancellation/count
+=== RUN   TestPreflightBudgetsAndCancellation/empty
+--- PASS: TestPreflightBudgetsAndCancellation (0.00s)
+    --- PASS: TestPreflightBudgetsAndCancellation/file (0.00s)
+    --- PASS: TestPreflightBudgetsAndCancellation/total (0.00s)
+    --- PASS: TestPreflightBudgetsAndCancellation/count (0.00s)
+    --- PASS: TestPreflightBudgetsAndCancellation/empty (0.00s)
+=== RUN   TestPreflightInvalidInput
+=== RUN   TestPreflightInvalidInput/root
+=== RUN   TestPreflightInvalidInput/output
+=== RUN   TestPreflightInvalidInput/system
+=== RUN   TestPreflightInvalidInput/limit
+=== RUN   TestPreflightInvalidInput/reserve
+=== RUN   TestPreflightInvalidInput/missing-root
+=== RUN   TestPreflightInvalidInput/file-root
+=== RUN   TestPreflightInvalidInput/missing-parent
+--- PASS: TestPreflightInvalidInput (0.00s)
+    --- PASS: TestPreflightInvalidInput/root (0.00s)
+    --- PASS: TestPreflightInvalidInput/output (0.00s)
+    --- PASS: TestPreflightInvalidInput/system (0.00s)
+    --- PASS: TestPreflightInvalidInput/limit (0.00s)
+    --- PASS: TestPreflightInvalidInput/reserve (0.00s)
+    --- PASS: TestPreflightInvalidInput/missing-root (0.00s)
+    --- PASS: TestPreflightInvalidInput/file-root (0.00s)
+    --- PASS: TestPreflightInvalidInput/missing-parent (0.00s)
+=== RUN   TestNativeVolumeProbe
+--- PASS: TestNativeVolumeProbe (0.00s)
+=== RUN   TestResumeAcrossEpochs
+--- PASS: TestResumeAcrossEpochs (1.84s)
+=== RUN   TestResumePrefixMutationSameMetadata
+--- PASS: TestResumePrefixMutationSameMetadata (0.20s)
+=== RUN   TestResumeCorruptedChunk
+--- PASS: TestResumeCorruptedChunk (0.16s)
+=== RUN   TestResumeMetadataChange
+--- PASS: TestResumeMetadataChange (0.27s)
+=== RUN   TestResumeOptionBindingAndLock
+--- PASS: TestResumeOptionBindingAndLock (0.09s)
+=== RUN   TestResumeCompletedReuseAndFrozenInventory
+--- PASS: TestResumeCompletedReuseAndFrozenInventory (2.49s)
+=== RUN   TestResumeEmptyFileAndSkippedSources
+--- PASS: TestResumeEmptyFileAndSkippedSources (0.01s)
+=== RUN   TestResumePartManifestTamper
+--- PASS: TestResumePartManifestTamper (2.79s)
+=== RUN   TestResumePathIsolation
+--- PASS: TestResumePathIsolation (0.08s)
+=== RUN   TestResumeCheckpointPathEscape
+--- PASS: TestResumeCheckpointPathEscape (0.13s)
+=== RUN   TestInspectWork
+--- PASS: TestInspectWork (0.16s)
+=== RUN   TestRejectSystemResumable
+--- PASS: TestRejectSystemResumable (0.06s)
+=== RUN   TestReviewStableIDsAndHistory
+--- PASS: TestReviewStableIDsAndHistory (0.01s)
+=== RUN   TestReviewSignatureAndTamper
+--- PASS: TestReviewSignatureAndTamper (0.01s)
+=== RUN   TestReviewBasisMismatch
+--- PASS: TestReviewBasisMismatch (0.01s)
+=== RUN   TestReviewValidationAndEscaping
+--- PASS: TestReviewValidationAndEscaping (0.01s)
+=== RUN   TestReviewReanalysisStable
+--- PASS: TestReviewReanalysisStable (0.00s)
+=== RUN   TestShareDefaultNoSensitiveValuesOrSourceMutation
+--- PASS: TestShareDefaultNoSensitiveValuesOrSourceMutation (0.01s)
+=== RUN   TestShareSelectiveKeepAndCrossFieldRedaction
+--- PASS: TestShareSelectiveKeepAndCrossFieldRedaction (0.00s)
+=== RUN   TestShareLiteralLongestAndEscaping
+--- PASS: TestShareLiteralLongestAndEscaping (0.01s)
+=== RUN   TestSharePolicyAndExportFailures
+--- PASS: TestSharePolicyAndExportFailures (0.00s)
+=== RUN   TestShareMatchingBudgetAndEnumProjection
+--- PASS: TestShareMatchingBudgetAndEnumProjection (0.01s)
+=== RUN   TestEncryptedResumeAndSignedOutput
+--- PASS: TestEncryptedResumeAndSignedOutput (1.60s)
+=== RUN   TestEncryptedWrongKeyAndMode
+--- PASS: TestEncryptedWrongKeyAndMode (0.10s)
+=== RUN   TestEncryptedTampering
+--- PASS: TestEncryptedTampering (0.17s)
+=== RUN   TestStageDomainSeparation
+--- PASS: TestStageDomainSeparation (0.00s)
+=== RUN   TestEncryptionKeyIsolation
+--- PASS: TestEncryptionKeyIsolation (0.07s)
+=== RUN   TestEncryptedPipelineWriteFailure
+--- PASS: TestEncryptedPipelineWriteFailure (1.69s)
+=== RUN   TestPlainWorkCannotConvertInPlace
+--- PASS: TestPlainWorkCannotConvertInPlace (0.01s)
+=== RUN   TestStructuredCSVMultiline
+--- PASS: TestStructuredCSVMultiline (0.00s)
+=== RUN   TestStructuredRejectedRecords
+--- PASS: TestStructuredRejectedRecords (0.00s)
+=== RUN   TestStructuredCSVHeadersAndErrors
+--- PASS: TestStructuredCSVHeadersAndErrors (0.00s)
+=== RUN   TestStructuredOffsetsAndLimits
+--- PASS: TestStructuredOffsetsAndLimits (0.00s)
+=== RUN   TestCorrelationSemantics
+--- PASS: TestCorrelationSemantics (0.00s)
+=== RUN   TestCorrelationReferenceLimit
+--- PASS: TestCorrelationReferenceLimit (0.00s)
+=== RUN   TestStructuredEndToEnd
+--- PASS: TestStructuredEndToEnd (0.01s)
+=== RUN   FuzzRules
+=== RUN   FuzzRules/seed#0
+--- PASS: FuzzRules (0.00s)
+    --- PASS: FuzzRules/seed#0 (0.00s)
+=== RUN   FuzzEnvelope
+=== RUN   FuzzEnvelope/seed#0
+--- PASS: FuzzEnvelope (0.00s)
+    --- PASS: FuzzEnvelope/seed#0 (0.00s)
+=== RUN   FuzzPCAP
+=== RUN   FuzzPCAP/seed#0
+=== RUN   FuzzPCAP/seed#1
+=== RUN   FuzzPCAP/seed#2
+--- PASS: FuzzPCAP (0.00s)
+    --- PASS: FuzzPCAP/seed#0 (0.00s)
+    --- PASS: FuzzPCAP/seed#1 (0.00s)
+    --- PASS: FuzzPCAP/seed#2 (0.00s)
+=== RUN   FuzzStructuredLogs
+=== RUN   FuzzStructuredLogs/seed#0
+=== RUN   FuzzStructuredLogs/seed#1
+--- PASS: FuzzStructuredLogs (0.00s)
+    --- PASS: FuzzStructuredLogs/seed#0 (0.00s)
+    --- PASS: FuzzStructuredLogs/seed#1 (0.00s)
+PASS
+coverage: 82.4% of statements
+ok  	k957/internal/core	13.431s	coverage: 82.4% of statements

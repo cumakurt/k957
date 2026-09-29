@@ -1,0 +1,97 @@
+{
+  "name": "k957",
+  "version": "0.12.0",
+  "status": "developer-preview",
+  "build_toolchain": "go1.26.8",
+  "go_module_dependencies": [],
+  "runtime_tested": [
+    "linux/amd64"
+  ],
+  "cross_compiled": [
+    "linux/amd64",
+    "linux/arm64",
+    "windows/amd64",
+    "windows/arm64",
+    "darwin/amd64",
+    "darwin/arm64"
+  ],
+  "test_coverage_total_percent": 84.3,
+  "production_validated": false,
+  "resumable_acquisition": true,
+  "accepted_evidence_schemas": [
+    "k957-evidence/1",
+    "k957-evidence/2"
+  ],
+  "process_kill_recovery_tested": true,
+  "physical_usb_disconnect_tested": false,
+  "analyst_review": true,
+  "signed_review_history": true,
+  "structured_csv_jsonl": true,
+  "cross_evidence_entity_correlations": true,
+  "encrypted_staging": true,
+  "streaming_encrypted_acquisition_output": true,
+  "encrypted_process_kill_recovery_tested": true,
+  "metadata_preflight": true,
+  "filesystem_capacity_estimates": true,
+  "optional_collection_preflight_gate": true,
+  "physical_device_separation_verified": false,
+  "signed_custody_events": true,
+  "recipient_acceptance_required": true,
+  "external_actor_key_trust": true,
+  "optional_external_custody_head_check": true,
+  "custody_formats": [
+    "k957-custody/1",
+    "k957-custody-event/1",
+    "k957-custody-trust/1"
+  ],
+  "trusted_timestamp_authority": false,
+  "redacted_share_reports": true,
+  "separate_shared_report_schema": "k957-shared-report/1",
+  "share_policy_schema": "k957-share-policy/1",
+  "shared_free_text_omitted": true,
+  "anonymity_guaranteed": false,
+  "classic_pcap_header_analysis": true,
+  "pcapng_analysis": true,
+  "live_packet_capture": false,
+  "tcp_udp_directional_flows": true,
+  "packet_payload_analysis": false,
+  "packet_checksum_validation": false,
+  "ip_fragment_reassembly": false,
+  "pcapng_enhanced_packet_blocks": true,
+  "pcapng_mixed_sections": true,
+  "pcapng_interface_provenance": true,
+  "linux_sll_sll2_header_analysis": true,
+  "packaged_example_report_version": "0.9.0",
+  "compatibility_runtime_tested": [
+    {
+      "target": "windows/amd64",
+      "environment": "Wine 10.0",
+      "unit_tests": true,
+      "integration_scripts_passed": 12
+    }
+  ],
+  "native_platform_tests_pending": [
+    "linux/arm64",
+    "windows/amd64",
+    "windows/arm64",
+    "darwin/amd64",
+    "darwin/arm64"
+  ],
+  "platform_test_receipts": [
+    "docs/validation/0.12.0/linux-amd64/validation.json",
+    "docs/validation/0.12.0/windows-amd64-wine/validation.json"
+  ],
+  "ci_workflow": ".github/workflows/platform-tests.yml",
+  "ci_workflow_executed": false,
+  "test_coverage_platform": "linux/amd64",
+  "resume_preflight": true,
+  "optional_resumed_collection_preflight_gate": true,
+  "windows_event_xml": true,
+  "native_evtx_analysis": false,
+  "windows_event_xml_encodings": [
+    "UTF-8",
+    "UTF-16LE with BOM",
+    "UTF-16BE with BOM"
+  ],
+  "shared_windows_context_omitted": true
+}

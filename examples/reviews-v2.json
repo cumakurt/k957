@@ -1,0 +1,29 @@
+{
+  "schema": "k957-review/1",
+  "basis": "a633d20b4117d15f8f1eeca468c055c3324e8b99e6e6fb9cc8cd38e293036be3",
+  "case": "DEMO-002",
+  "evidence_digest": "d406672966c93f05ddfb95d462e5635ef0e492b540296c6e1e26817fa81a8d20",
+  "events": [
+    {
+      "sequence": 1,
+      "finding": "F-c0773c4efbdeec10c3c7a1be6aa800997b8692e4858e1315cb8dedcad04aef22",
+      "decision": "needs-review",
+      "analyst": "Demo Analist A",
+      "note": "Sentetik örnek için ilk değerlendirme",
+      "created": "2026-09-28T09:28:42.08728907Z",
+      "previous": "",
+      "hash": "d9a9ea070a5db4feae5d8fa363c3747ad94e6595db714af95df28fa13963c43d"
+    },
+    {
+      "sequence": 2,
+      "finding": "F-c0773c4efbdeec10c3c7a1be6aa800997b8692e4858e1315cb8dedcad04aef22",
+      "decision": "rejected",
+      "analyst": "Demo Analist B",
+      "note": "Sentetik test verisi; gerçek olay tespiti değildir",
+      "created": "2026-09-28T09:28:42.092083967Z",
+      "previous": "d9a9ea070a5db4feae5d8fa363c3747ad94e6595db714af95df28fa13963c43d",
+      "hash": "d427f94589e5eb12ad2bba424469f571159fff8fede5eeb555543f7ac6647ec6"
+    }
+  ],
+  "signature": "27a7ec6f37c9572f32d2163a359f0b593df8c983a4f4440781c726a7a673e4fe34dec23d284723bde02f0bd17dbacefb1bda703cb4e065a1a3310e6303e83e00"
+}

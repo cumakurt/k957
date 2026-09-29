@@ -1,0 +1,1 @@
+PASS: forced process termination after checkpoint, stale lock rejection, confirmed recovery, source-prefix validation, independent 192 MiB/24-part hashes, two epochs, report

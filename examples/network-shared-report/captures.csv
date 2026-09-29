@@ -1,0 +1,12 @@
+evidence,source,format,records,parsed,skipped,truncated_packets,flow_omitted_packets,limited,has_error,skip_reasons
+E000001,[PATHS-000001],PCAP,1,1,0,0,0,false,false,"{}
+"
+E000003,[PATHS-000003],PCAP,9,5,4,1,0,false,false,"{
+  ""fragment"": 1,
+  ""invalid_ip_length"": 1,
+  ""invalid_timestamp"": 1,
+  ""unsupported_link_protocol"": 1
+}
+"
+E000004,[PATHS-000004],PCAPNG,0,0,0,0,0,false,true,"{}
+"

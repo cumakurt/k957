@@ -1,0 +1,183 @@
+{
+  "parse_summaries": [
+    {
+      "evidence": "E000001",
+      "format": "text/RFC3339",
+      "rows": 3,
+      "parsed": 3,
+      "skipped": 0,
+      "limited": false
+    },
+    {
+      "evidence": "E000002",
+      "format": "JSONL",
+      "rows": 2,
+      "parsed": 2,
+      "skipped": 0,
+      "limited": false
+    }
+  ],
+  "evidence_digest": "d406672966c93f05ddfb95d462e5635ef0e492b540296c6e1e26817fa81a8d20",
+  "version": "0.9.0",
+  "run": "124d305931563485f696603a9d3a1e65",
+  "created": "2026-09-28T09:28:42.065790103Z",
+  "signature": "unsigned",
+  "manifest": {
+    "schema": "k957-evidence/1",
+    "version": "0.2.0",
+    "id": "1f40aedd8b1b56d54904e47d0f06a1fc",
+    "case": "DEMO-002",
+    "operator": "Synthetic fixture",
+    "scope": "Demonstration data only",
+    "host": "9c5d918482ee",
+    "os": "linux",
+    "arch": "amd64",
+    "started": "2026-09-27T12:21:44.257057786Z",
+    "finished": "2026-09-27T12:21:44.257516437Z",
+    "status": "complete",
+    "items": [
+      {
+        "id": "E000001",
+        "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log",
+        "object": "objects/E000001",
+        "kind": "file",
+        "size": 239,
+        "sha256": "bdb889269f50e1b79e2917b1c63aa41396e6423824f4f40bad73b2238fe8b9b7",
+        "modified": "2026-09-27T12:06:58.410394928Z",
+        "collected": "2026-09-27T12:21:44.257150696Z",
+        "mode": "-rw-r--r--",
+        "changed_during_acquisition": false
+      },
+      {
+        "id": "E000002",
+        "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/events.jsonl",
+        "object": "objects/E000002",
+        "kind": "file",
+        "size": 177,
+        "sha256": "f96d264429544617412f3845267775144ef7badc2d3de7eecd40930ddeebbbf2",
+        "modified": "2026-09-27T12:06:58.411318149Z",
+        "collected": "2026-09-27T12:21:44.257508405Z",
+        "mode": "-rw-r--r--",
+        "changed_during_acquisition": false
+      }
+    ],
+    "issues": []
+  },
+  "rules": [
+    {
+      "id": "DEMO-LOGIN-FAIL",
+      "description": "Demo: review failed authentication text",
+      "contains": "failed password",
+      "sha256": ""
+    },
+    {
+      "id": "DEMO-POWERSHELL",
+      "description": "Demo: review PowerShell reference; not a malware verdict",
+      "contains": "powershell",
+      "sha256": ""
+    }
+  ],
+  "findings": [
+    {
+      "id": "F-c0773c4efbdeec10c3c7a1be6aa800997b8692e4858e1315cb8dedcad04aef22",
+      "rule": "DEMO-LOGIN-FAIL",
+      "description": "Demo: review failed authentication text",
+      "evidence": "E000001",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log",
+      "line": 1,
+      "excerpt": "2026-09-27T14:00:00+03:00 SYNTHETIC failed password for demo-user from 192.0.2.15",
+      "review": "unreviewed"
+    },
+    {
+      "id": "F-24cbd652be4963cfa765c1f4994e4d72829d44c026e562f46e040146ecd40b7a",
+      "rule": "DEMO-POWERSHELL",
+      "description": "Demo: review PowerShell reference; not a malware verdict",
+      "evidence": "E000001",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log",
+      "line": 3,
+      "excerpt": "2026-09-27T14:05:00+03:00 SYNTHETIC powershell reference; analyst review required",
+      "review": "unreviewed"
+    }
+  ],
+  "timeline": [
+    {
+      "line": 1,
+      "detail": "2026-09-27T14:00:00+03:00 SYNTHETIC failed password for demo-user from 192.0.2.15",
+      "original_time": "2026-09-27T14:00:00+03:00",
+      "time": "2026-09-27T11:00:00Z",
+      "type": "log_timestamp",
+      "evidence": "E000001",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log"
+    },
+    {
+      "byte_offset": 82,
+      "line": 2,
+      "detail": "2026-09-27T14:02:00+03:00 SYNTHETIC successful session start for demo-user",
+      "original_time": "2026-09-27T14:02:00+03:00",
+      "time": "2026-09-27T11:02:00Z",
+      "type": "log_timestamp",
+      "evidence": "E000001",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log"
+    },
+    {
+      "byte_offset": 157,
+      "line": 3,
+      "detail": "2026-09-27T14:05:00+03:00 SYNTHETIC powershell reference; analyst review required",
+      "original_time": "2026-09-27T14:05:00+03:00",
+      "time": "2026-09-27T11:05:00Z",
+      "type": "log_timestamp",
+      "evidence": "E000001",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log"
+    },
+    {
+      "line": 1,
+      "detail": "SYNTHETIC document opened: example.txt",
+      "original_time": "2026-09-27T11:06:00Z",
+      "time": "2026-09-27T11:06:00Z",
+      "type": "log_timestamp",
+      "evidence": "E000002",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/events.jsonl"
+    },
+    {
+      "byte_offset": 88,
+      "line": 2,
+      "detail": "SYNTHETIC removable media attached",
+      "original_time": "2026-09-27T14:10:00+03:00",
+      "time": "2026-09-27T11:10:00Z",
+      "type": "log_timestamp",
+      "evidence": "E000002",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/events.jsonl"
+    },
+    {
+      "time": "2026-09-27T12:06:58.410394928Z",
+      "type": "file_modified",
+      "evidence": "E000001",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log"
+    },
+    {
+      "time": "2026-09-27T12:06:58.411318149Z",
+      "type": "file_modified",
+      "evidence": "E000002",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/events.jsonl"
+    },
+    {
+      "time": "2026-09-27T12:21:44.257150696Z",
+      "type": "collected",
+      "evidence": "E000001",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log"
+    },
+    {
+      "time": "2026-09-27T12:21:44.257508405Z",
+      "type": "collected",
+      "evidence": "E000002",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/events.jsonl"
+    }
+  ],
+  "notes": [
+    "Timeline includes file metadata, explicit RFC3339/JSONL timestamps and supported PCAP packet timestamps; these are not proof of execution or user attribution.",
+    "Rules are literal matches, not malware verdicts. Every finding requires analyst review.",
+    "Text scanning covers UTF-8 files up to 8 MiB each, 128 MiB total; classic PCAP is parsed separately; other binary formats are inventoried, not parsed.",
+    "Clock offsets are not measured. Timestamps reflect the source host clock converted to UTC.",
+    "Correlations are shared field values across at least two evidence objects, not independent-source corroboration or identity attribution. NAT, shared accounts and duplicate logs can produce matches. User names are case-sensitive; host names lowercased; IPs canonicalized. No network enrichment is performed."
+  ]
+}

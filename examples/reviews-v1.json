@@ -1,0 +1,19 @@
+{
+  "schema": "k957-review/1",
+  "basis": "a633d20b4117d15f8f1eeca468c055c3324e8b99e6e6fb9cc8cd38e293036be3",
+  "case": "DEMO-002",
+  "evidence_digest": "d406672966c93f05ddfb95d462e5635ef0e492b540296c6e1e26817fa81a8d20",
+  "events": [
+    {
+      "sequence": 1,
+      "finding": "F-c0773c4efbdeec10c3c7a1be6aa800997b8692e4858e1315cb8dedcad04aef22",
+      "decision": "needs-review",
+      "analyst": "Demo Analist A",
+      "note": "Sentetik örnek için ilk değerlendirme",
+      "created": "2026-09-28T09:28:42.08728907Z",
+      "previous": "",
+      "hash": "d9a9ea070a5db4feae5d8fa363c3747ad94e6595db714af95df28fa13963c43d"
+    }
+  ],
+  "signature": "8fe53dc9fa6ef4442421590f494cb5524c3b0efa4fd94adbbca3e65a2a9cc18d2b35f7485ba81aeb0d4ef3c94cc085a17479bc34487deabe389528f7224c7405"
+}

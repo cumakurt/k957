@@ -1,0 +1,4 @@
+kind,value,events,sources,first,last,references_truncated
+host,[HOSTS-000002],2,2,2026-09-27T11:00:00Z,2026-09-27T11:01:00Z,false
+ip,[IPS-000001],2,2,2026-09-27T11:00:00Z,2026-09-27T11:01:00Z,false
+user,[USERS-000001],2,2,2026-09-27T11:00:00Z,2026-09-27T11:01:00Z,false

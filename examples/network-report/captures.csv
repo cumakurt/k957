@@ -1,0 +1,12 @@
+evidence,source,format,records,parsed,skipped,truncated_packets,flow_omitted_packets,limited,error,skip_reasons
+E000001,/workspace/scratch/4de4f0c723af/k957/examples/network-source/big-nano.bin,PCAP,1,1,0,0,0,false,,"{}
+"
+E000003,/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap,PCAP,9,5,4,1,0,false,,"{
+  ""fragment"": 1,
+  ""invalid_ip_length"": 1,
+  ""invalid_timestamp"": 1,
+  ""unsupported_link_protocol"": 1
+}
+"
+E000004,/workspace/scratch/4de4f0c723af/k957/examples/network-source/unsupported.pcapng,PCAPNG,0,0,0,0,0,false,PCAPNG is not supported in this version,"{}
+"

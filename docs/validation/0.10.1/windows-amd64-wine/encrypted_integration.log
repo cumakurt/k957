@@ -1,0 +1,1 @@
+PASS: encrypted forced process termination/restart, wrong-key refusal, independent state/chunk AES-GCM and HMAC verification, no fixture plaintext in work/output, 192 MiB final source equality

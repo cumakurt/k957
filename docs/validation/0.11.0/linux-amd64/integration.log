@@ -1,0 +1,1 @@
+PASS: native CLI, independent ZIP hashes, signature, encryption roundtrip, log timezone, tamper rejection, partial status

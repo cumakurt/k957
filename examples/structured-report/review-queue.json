@@ -1,5 +1,0 @@
-{
-  "schema": "k957-review-queue/1",
-  "note": "Priority is a documented review order, not a threat probability or severity score. Volume does not affect rank.",
-  "rows": []
-}

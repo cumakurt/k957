@@ -1,8 +1,0 @@
-{
-  "schema": "k957-portable-exports/1",
-  "source_analysis_digest": "a1d0d1e0063bc422982e62faea7956abb6fb8e7ddd9acebd803245b1ea4afaed",
-  "dated_events": 6,
-  "distinct_sha256": 2,
-  "distinct_ips": 1,
-  "note": "timeline.jsonl uses the Timesketch datetime/message/timestamp_desc fields and retains evidence references. Undated events are retained in analysis.json and timeline.csv. Hashes and IPs are observations, not threat-intelligence verdicts; no online lookup was performed."
-}

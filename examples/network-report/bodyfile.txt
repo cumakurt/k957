@@ -1,4 +1,0 @@
-0|/depo/cuma/projelerim/k957/examples/network-source/big-nano.bin|0|r/r--------|0|0|89|0|1790589522|0|0
-0|/depo/cuma/projelerim/k957/examples/network-source/observer.jsonl|0|r/r--------|0|0|90|0|1790589522|0|0
-0|/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap|0|r/r--------|0|0|748|0|1790589522|0|0
-0|/depo/cuma/projelerim/k957/examples/network-source/unsupported.pcapng|0|r/r--------|0|0|4|0|1790589522|0|0

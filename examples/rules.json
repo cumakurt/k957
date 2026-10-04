@@ -1,4 +1,0 @@
-[
-  {"id":"DEMO-LOGIN-FAIL","description":"Demo: review failed authentication text","contains":"failed password"},
-  {"id":"DEMO-POWERSHELL","description":"Demo: review PowerShell reference; not a malware verdict","contains":"powershell"}
-]

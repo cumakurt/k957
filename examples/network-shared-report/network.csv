@@ -1,6 +1,0 @@
-evidence,source,protocol,source_ip,source_port,destination_ip,destination_port,packets,captured_bytes,original_bytes,first,last,reference_count,references_truncated,section,interface_id
-E000001,[PATHS-000001],UDP,[IPS-000001],40000,[IPS-000002],53,1,49,49,,,1,false,0,0
-E000003,[PATHS-000003],UDP,[IPS-000001],40000,[IPS-000002],53,2,142,142,,,2,false,0,0
-E000003,[PATHS-000003],UDP,[IPS-000002],53,[IPS-000001],40000,1,63,63,,,1,false,0,0
-E000003,[PATHS-000003],TCP,[IPS-000003],50000,[IPS-000004],443,1,82,82,,,1,false,0,0
-E000003,[PATHS-000003],TCP,[IPS-000001],40000,[IPS-000002],443,1,54,75,,,1,false,0,0

@@ -1,3 +1,0 @@
-id,rule,evidence,source,line,review,reviewer
-F000001,R0001,E000001,[PATHS-000001],1,rejected,[ACTORS-000002]
-F000002,R0002,E000001,[PATHS-000001],3,unreviewed,

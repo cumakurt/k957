@@ -1,3 +1,0 @@
-finding_id,rule,evidence_id,source,line,review,analyst,reason,excerpt
-F-b0f0af6edbe14eb8c756e2f31f4a3a5cf78fff34b207ed8c8d808c5032f75ffe,DEMO-LOGIN-FAIL,E000001,/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log,1,unreviewed,,,2026-09-27T14:00:00+03:00 SYNTHETIC failed password for demo-user from 192.0.2.15
-F-edd3dac45d5cfb1b434f1fb16ae52a3a9108596002a019d837cf6b860325a4eb,DEMO-POWERSHELL,E000001,/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log,3,unreviewed,,,2026-09-27T14:05:00+03:00 SYNTHETIC powershell reference; analyst review required

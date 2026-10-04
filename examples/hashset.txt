@@ -1,5 +1,0 @@
-# Examiner SHA-256 set. A bare hash is known-bad.
-# known-good <64 hex> <label>
-# The hash below is SHA-256 of the ASCII string k957-known-bad-example.
-# It is synthetic. It is not an indicator from a real investigation.
-9df3ae7b881244fa5281e5512d7fd9a183f2413f65c58cbffbaddaf93bb6fa35 synthetic-example

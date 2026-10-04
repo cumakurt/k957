@@ -1,7 +1,0 @@
-time,type,evidence,source,line,byte_offset,user,host,source_ip,destination_ip,packet,protocol,source_port,destination_port,captured_length,original_length,tcp_flags,section,interface_id
-2026-09-27T11:00:00Z,log_timestamp,E000001,[PATHS-000001],2,35,[USERS-000001],[HOSTS-000002],[IPS-000001],,0,,0,0,0,0,0,0,0
-2026-09-27T11:01:00Z,log_timestamp,E000002,[PATHS-000002],1,0,[USERS-000001],[HOSTS-000002],,[IPS-000001],0,,0,0,0,0,0,0,0
-2026-09-27T17:05:42.137904851Z,file_modified,E000001,[PATHS-000001],0,0,,,,,0,,0,0,0,0,0,0,0
-2026-09-27T17:05:42.139053223Z,file_modified,E000002,[PATHS-000002],0,0,,,,,0,,0,0,0,0,0,0,0
-2026-09-27T17:05:42.188150643Z,collected,E000001,[PATHS-000001],0,0,,,,,0,,0,0,0,0,0,0,0
-2026-09-27T17:05:42.188391355Z,collected,E000002,[PATHS-000002],0,0,,,,,0,,0,0,0,0,0,0,0

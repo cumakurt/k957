@@ -1,4 +1,0 @@
-sequence,action,actor,from,to,location,occurred_at,recorded_at
-1,register,[ACTORS-000003],,[ACTORS-000003],[LOCATIONS-000001],,
-2,transfer,[ACTORS-000003],[ACTORS-000003],[ACTORS-000002],[LOCATIONS-000001],,
-3,accept,[ACTORS-000002],[ACTORS-000003],[ACTORS-000002],[LOCATIONS-000001],,

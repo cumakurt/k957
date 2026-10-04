@@ -1,2 +1,0 @@
-0|/workspace/scratch/4de4f0c723af/k957/examples/structured-source/access.csv|0|r/r--------|0|0|195|0|1790528742|0|0
-0|/workspace/scratch/4de4f0c723af/k957/examples/structured-source/audit.jsonl|0|r/r--------|0|0|255|0|1790528742|0|0

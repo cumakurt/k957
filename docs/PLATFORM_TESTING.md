@@ -1,5 +1,7 @@
 # Platform validation
 
+Latest source-quality revision: native Linux AMD64 passed 34 checks with two explicit optional skips. The prior native Windows AMD64 receipts remain historical and source-bound; this revision still needs native Windows acceptance. See [the current test report](TEST_REPORT.md).
+
 The same command runs local and CI validation on Linux, Windows and macOS:
 
 ```sh

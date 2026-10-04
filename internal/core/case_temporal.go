@@ -118,6 +118,8 @@ func CorrelateCase(ctx context.Context, dir, field string, window time.Duration,
 	scopes := map[string]string{}
 	values := map[string]string{}
 	read := 0
+	timed := int64(0)
+	untimed := 0
 	limited := false
 	db, e := openCaseIndex(ctx, path)
 	if e != nil {
@@ -148,6 +150,10 @@ func CorrelateCase(ctx context.Context, dir, field string, window time.Duration,
 			return result, e
 		}
 		if ev.Type == "collected" || ev.Type == "file_modified" {
+			continue
+		}
+		if ev.Time.IsZero() {
+			untimed++
 			continue
 		}
 		value, ok := eventField(ev, field)
@@ -181,6 +187,7 @@ func CorrelateCase(ctx context.Context, dir, field string, window time.Duration,
 		}
 		stamp := ev.Time.Add(-time.Duration(clock.OffsetNS))
 		buckets[key] = append(buckets[key], TemporalReference{RowID: id, Digest: digest, Reference: referenceEvent(ev), EstimatedUTC: stamp, UncertaintyNS: clock.UncertaintyNS, ClockKnown: known})
+		timed++
 		scopes[key] = scope
 		values[key] = value
 	}
@@ -233,7 +240,11 @@ func CorrelateCase(ctx context.Context, dir, field string, window time.Duration,
 	if after != before {
 		return result, errors.New("case index changed during temporal correlation")
 	}
-	result.Coverage = []Coverage{coverage("temporal_events", "events", int64(read), int64(read), 100000, !limited), coverage("temporal_groups", "groups", eligible, int64(len(result.Groups)), 2000, !limited)}
+	result.Coverage = []Coverage{coverage("temporal_events", "events", int64(read), timed, 100000, !limited), coverage("temporal_groups", "groups", eligible, int64(len(result.Groups)), 2000, !limited)}
+	if untimed > 0 {
+		result.Coverage[0].Reasons = map[string]int{"missing_absolute_time": untimed}
+	}
+	result.Notes = append(result.Notes, "Only events with an absolute timestamp and the selected field enter temporal groups. Untimed events remain in the original case index.")
 	result.Notes = append(result.Notes, "Examined "+strconv.Itoa(read)+" indexed event rows. Window groups are deterministic disjoint clusters anchored to their first displayed/estimated time; adjacent/overlapping windows are not exhaustively enumerated.")
 	return result, nil
 }

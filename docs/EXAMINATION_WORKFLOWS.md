@@ -170,3 +170,5 @@ Current execution record: Linux AMD64 passed 30 checks with 76.4% unit statement
 ## Exported USN journal records
 
 Offline USN v2/v3 record streams now use the isolated worker and flow into timeline, structured rules, full analysis JSON, usn.csv and native document references. See [format and limitations](USN_JOURNAL.md). The existing independent reference measurements above predate this parser; this addition has not received new runtime/reference validation.
+
+Temporal candidate grouping excludes events without an absolute timestamp. Those events remain queryable in the original index; temporal coverage records `missing_absolute_time` and reports the count that actually entered timestamped buckets. Zero time is never converted into a fabricated candidate date.

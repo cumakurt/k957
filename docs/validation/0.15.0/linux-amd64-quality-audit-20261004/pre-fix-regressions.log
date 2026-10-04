@@ -1,0 +1,12 @@
+--- FAIL: TestReportSealRejectsPrivateKeyAndAliases (0.01s)
+    --- FAIL: TestReportSealRejectsPrivateKeyAndAliases/inside (0.01s)
+        report_key_boundary_test.go:45: private key accepted in sealed bundle: <nil>
+    --- FAIL: TestReportSealRejectsPrivateKeyAndAliases/hard-link (0.00s)
+        report_key_boundary_test.go:45: private key accepted in sealed bundle: <nil>
+    --- FAIL: TestReportSealRejectsPrivateKeyAndAliases/copied (0.00s)
+        report_key_boundary_test.go:45: private key accepted in sealed bundle: <nil>
+--- FAIL: TestTemporalCorrelationOmitsUntimedRecords (0.01s)
+    temporal_missing_time_test.go:42: untimed records became temporal candidates: groups=2 err=<nil>
+FAIL
+FAIL	k957/internal/core	0.032s
+FAIL

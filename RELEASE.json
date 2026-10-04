@@ -11,10 +11,10 @@
     "repository": "https://github.com/cumakurt/k957",
     "linkedin": "https://www.linkedin.com/in/cuma-kurt-34414917/"
   },
-  "generated": "2026-10-04T12:44:18.231320+00:00",
+  "generated": "2026-10-04T14:04:51.961693+00:00",
   "build_toolchain": "go version go1.26.8 linux/amd64",
   "source_manifest": "SOURCE.json",
-  "source_sha256": "41535d7226d87ad2293d06c043aaec4401d33c81c078cfddea0de2252be4fdac",
+  "source_sha256": "9a6bc153e7f6ef5100e76fddd924293f51c473cb76bdd4a59d8c4e0373fbadd3",
   "cross_compiled": [
     "linux/amd64",
     "linux/arm64",
@@ -24,36 +24,30 @@
     "darwin/arm64"
   ],
   "runtime_tested": [
-    "linux/amd64",
-    "windows/amd64"
+    "linux/amd64"
   ],
   "native_platform_tests_pending": [
     "linux/arm64",
+    "windows/amd64",
     "windows/arm64",
     "darwin/amd64",
     "darwin/arm64"
   ],
   "validation": {
-    "name": "docs/validation/0.15.0/linux-amd64-developer-20261004/validation.json",
-    "sha256": "e7333d21d27a0171ace498535b2e004b18b01ce9c5db62c3fb73070d0cba498d",
+    "name": "docs/validation/0.15.0/linux-amd64-quality-audit-20261004/validation.json",
+    "sha256": "5a9dab4989f6c651cc25485f49f068c8517c6cb41df19ca44eb1397469093b06",
     "target": "linux/amd64"
   },
   "validations": [
     {
-      "name": "docs/validation/0.15.0/linux-amd64-developer-20261004/validation.json",
-      "sha256": "e7333d21d27a0171ace498535b2e004b18b01ce9c5db62c3fb73070d0cba498d",
+      "name": "docs/validation/0.15.0/linux-amd64-quality-audit-20261004/validation.json",
+      "sha256": "5a9dab4989f6c651cc25485f49f068c8517c6cb41df19ca44eb1397469093b06",
       "target": "linux/amd64"
-    },
-    {
-      "name": "docs/validation/0.15.0/windows-amd64-developer-20261004/validation.json",
-      "sha256": "de1fd1577de2040963819b4728db0f956c5273fd4b645d3d764b6da7b04f30cc",
-      "target": "windows/amd64"
     }
   ],
   "test_coverage_total_percent": 75.6,
   "test_coverage_by_target": {
-    "linux/amd64": 75.6,
-    "windows/amd64": 74.1
+    "linux/amd64": 75.6
   },
   "local_assistant_evaluation": null,
   "go_module_dependencies": [
@@ -207,8 +201,8 @@
     {
       "target": "linux/amd64",
       "name": "dist/k957-linux-amd64",
-      "bytes": 18968738,
-      "sha256": "e9583368d53207c6186395571ac5b6157307af16edec23e6484512610579834f",
+      "bytes": 18989218,
+      "sha256": "cfb4f4b77eb6f33862fdff80368c923064a01da2919ea875816a220cd44257cb",
       "static_check": "/depo/cuma/projelerim/k957/dist/k957-linux-amd64: elf static check passed (0 platform libraries)",
       "native_runtime": "passed retained validation; device scenarios not validated",
       "platform_signature": "unsigned"
@@ -217,7 +211,7 @@
       "target": "linux/arm64",
       "name": "dist/k957-linux-arm64",
       "bytes": 17957026,
-      "sha256": "7e14b333c24993246115f06ff8f90f36ab467b6bf25a0d92ddfa93f23a9efef2",
+      "sha256": "9660746a0b817842a070b227f038bfedbccdf89e561f0eec23e3ed8e5343acf6",
       "static_check": "/depo/cuma/projelerim/k957/dist/k957-linux-arm64: elf static check passed (0 platform libraries)",
       "native_runtime": "unvalidated",
       "platform_signature": "unsigned"
@@ -225,17 +219,17 @@
     {
       "target": "windows/amd64",
       "name": "dist/k957-windows-amd64.exe",
-      "bytes": 19275776,
-      "sha256": "df296695bd3b309740c633e1371dcdb0ad0849f514988b27ad0fa6cb8f943009",
+      "bytes": 19297792,
+      "sha256": "044d5bd8ba5ea5168691b873e83364158149f74b55921951b95a2259ef6fd466",
       "static_check": "/depo/cuma/projelerim/k957/dist/k957-windows-amd64.exe: pe static check passed (1 platform libraries)",
-      "native_runtime": "passed retained validation; device scenarios not validated",
+      "native_runtime": "unvalidated",
       "platform_signature": "unsigned"
     },
     {
       "target": "windows/arm64",
       "name": "dist/k957-windows-arm64.exe",
-      "bytes": 17948160,
-      "sha256": "2e6cb8df9dc16975b2f5510ee8541ad513f4a43be8fc9c636ad432b998141a85",
+      "bytes": 17967104,
+      "sha256": "7e16857629ca11cf3ca4e5b47cc148991acd9143b08d8dd3260a3121fea5e16a",
       "static_check": "/depo/cuma/projelerim/k957/dist/k957-windows-arm64.exe: pe static check passed (1 platform libraries)",
       "native_runtime": "unvalidated",
       "platform_signature": "unsigned"
@@ -243,8 +237,8 @@
     {
       "target": "darwin/amd64",
       "name": "dist/k957-darwin-amd64",
-      "bytes": 19032448,
-      "sha256": "b7efb408c48cadcfc9e7500e3c624ff0d852f6f4d08583c1d02a2b17cbcac944",
+      "bytes": 19057104,
+      "sha256": "317f8ba466ff72dcc7866da2bd6b64275ea48910e5dc4cb7612754bf1bb5d4a9",
       "static_check": "/depo/cuma/projelerim/k957/dist/k957-darwin-amd64: mach-o static check passed (4 platform libraries)",
       "native_runtime": "unvalidated",
       "platform_signature": "unsigned"
@@ -252,8 +246,8 @@
     {
       "target": "darwin/arm64",
       "name": "dist/k957-darwin-arm64",
-      "bytes": 18078098,
-      "sha256": "4e9baf253e17688253c4bbf14e33bdbbf96ac76b6e7523195d1b3e05da5ecf14",
+      "bytes": 18111202,
+      "sha256": "5c4c6974d119e39c5d19a67647d2e9f7bb7e73a79d8f760b0e6e88a24b578c43",
       "static_check": "/depo/cuma/projelerim/k957/dist/k957-darwin-arm64: mach-o static check passed (4 platform libraries)",
       "native_runtime": "unvalidated",
       "platform_signature": "unsigned"

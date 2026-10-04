@@ -398,7 +398,7 @@ func run(args []string) error {
 			if e != nil {
 				return e
 			}
-			if e = core.ExportShared(shared, *out); e != nil {
+			if e = core.ExportSharedContext(ctx, shared, *out); e != nil {
 				return e
 			}
 			core.ReportProgress(ctx, core.Progress{Phase: "export", Detail: *out, Step: 1, Steps: 1})

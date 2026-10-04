@@ -101,7 +101,7 @@ k957 helps you collect computer evidence, check whether it has changed, examine 
 
 For example, you can preserve a folder of logs, find failed sign-in records, inspect a supported browser-history database, compare several collections and give another person a PDF with references to the original evidence. A reported match is something to examine. It is not automatically proof of an attack or a person's responsibility.
 
-**Release status: developer preview.** Native Linux AMD64 and Windows AMD64 checks have been executed for the current source. Six operating-system/processor targets are built. Windows ARM64, native macOS, physical-device tests and valid kernel-memory corpus accuracy remain unvalidated. Read [RELEASE.json](RELEASE.json) and [the test report](docs/TEST_REPORT.md) for exact source/executable bindings and the scope of each run.
+**Release status: developer preview.** Native Linux AMD64 checks have been executed for the current source. Prior Windows AMD64 checks apply to their recorded source; this revised source still needs native Windows acceptance. Six operating-system/processor targets are built. Windows ARM64, native macOS, physical-device tests and valid kernel-memory corpus accuracy remain unvalidated. Read [RELEASE.json](RELEASE.json) and [the test report](docs/TEST_REPORT.md) for exact source/executable bindings and the scope of each run.
 
 This guide explains the current executable. Application messages, wizard prompts and reports are English. The Turkish guide explains the same commands in Turkish; it does not change the application's language. Original evidence can contain any language.
 
@@ -1400,7 +1400,7 @@ These are distinct from uncapped complete RAM results. Look at the actual covera
 
 ### Tested platforms and release status
 
-Current source has retained native Linux AMD64 and Windows AMD64 validation, Windows console/API checks and external-tool integrations. All six binaries undergo build/static-link checks. Native Windows ARM64/macOS, broad physical-device coverage and valid kernel accuracy remain open. The 100,000-object Windows source-scale pass belongs to the separately recorded source/run described in the test report; do not treat it as every test passing for every build. Synthetic negative-image Volatility checks are not positive kernel enumeration tests.
+Current source has retained native Linux AMD64 validation. Prior source-bound Windows AMD64 validation, console/API checks and external-tool integrations are retained as historical measurements. All six binaries undergo build/static-link checks. Native Windows ARM64/macOS, broad physical-device coverage and valid kernel accuracy remain open. The 100,000-object Windows source-scale pass belongs to the separately recorded source/run described in the test report; do not treat it as every test passing for every build. Synthetic negative-image Volatility checks are not positive kernel enumeration tests.
 
 The executable is a developer preview, not a claim of courtroom certification, broad malware-detection accuracy. [Development plan](docs/DEVELOPMENT_PLAN.md) describes the recorded scope. [Release metadata](RELEASE.json), [test report](docs/TEST_REPORT.md) and [platform matrix](docs/PLATFORM_TESTING.md) identify exact runs and limitations.
 

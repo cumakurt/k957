@@ -15,6 +15,8 @@ k957 report-verify --report ./report --trusted-key ./examiner.pub
 
 The native PDF is a reading edition, with embedded DejaVu fonts, numbered sections, source hashes/references and folios. HTML provides filtering, page navigation, review-state counts and labelled UTC activity distribution. Histogram counts describe source rows; they are not a severity score. Printing HTML includes all finding/inventory rows in the analysis projection, regardless of the current page/filter, then restores the interactive state.
 
+Keep the report-signing private key outside the bundle. `report-seal` rejects the active key file, hard links to it and exact key-file copies in the bundle; rejected operations preserve the key and write no seal. This check is not a general scan for secrets in arbitrary text or RAM results. Shared exports observe caller cancellation across JSON/CSV/HTML/PDF and remove their newly created incomplete bundle; existing output directories are never replaced.
+
 ## Scope and omissions
 
 PDF/DOCX text is limited to 16 KiB per paragraph and 1 MiB aggregate. Reading editions sample up to 500 findings, events, inventory objects, IOC matches and review records, 200 notes/coverage records, 400 acquisition issues, and 30 memory observation previews per image. Case PDFs sample up to 200 rows of each included index kind. `documents.json` discloses omissions. These are presentation limits: **complete RAM scan JSONL and external kernel outputs have no automatic result-count or image/output-size cap**. Full result names/counts/hashes and kernel method statuses appear before general findings.

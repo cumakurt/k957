@@ -1,6 +1,7 @@
 package core
 
 import (
+	"bytes"
 	"crypto/rand"
 	"encoding/hex"
 	"encoding/json"
@@ -74,19 +75,10 @@ func ID() string {
 	return hex.EncodeToString(b)
 }
 func WriteNew(path string, b []byte) error {
-	f, e := os.OpenFile(path, os.O_CREATE|os.O_EXCL|os.O_WRONLY, 0600)
-	if e != nil {
-		return e
-	}
-	_, e = f.Write(b)
-	if e == nil {
-		e = f.Sync()
-	}
-	c := f.Close()
-	if e != nil {
-		return e
-	}
-	return c
+	return writeFileNew(path, func(out io.Writer) error {
+		_, err := io.Copy(out, bytes.NewReader(b))
+		return err
+	})
 }
 func ReadLimited(path string, n int64) ([]byte, error) {
 	f, e := os.Open(path)

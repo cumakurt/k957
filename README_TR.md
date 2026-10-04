@@ -101,7 +101,7 @@ k957; bilgisayardaki verileri delil paketi olarak toplamanıza, sonradan değiş
 
 Örneğin günlük dosyalarının bulunduğu bir klasörü koruyabilir, başarısız oturum açma kayıtlarını bulabilir, desteklenen bir tarayıcı geçmişi veritabanını inceleyebilir, farklı bilgisayarlardan alınmış koleksiyonları birlikte değerlendirebilir ve kaynak delile başvuru içeren bir PDF hazırlayabilirsiniz. Bir eşleşmenin bulunması, tek başına saldırı gerçekleştiğini veya bir kişinin sorumlu olduğunu göstermez.
 
-**Sürüm durumu: geliştirici önizlemesi.** Güncel kaynak için Linux AMD64 ve gerçek Windows AMD64 üzerinde kontroller çalıştırılmıştır. Altı işletim sistemi/işlemci hedefi için dosya derlenmektedir. Windows ARM64, gerçek macOS, fiziksel cihaz senaryoları ve doğru çekirdek sembolleriyle bellek nesnelerinin adli doğruluğu henüz doğrulanmamıştır. Hangi kaynak ve dosyanın hangi kapsamda kontrol edildiğini [RELEASE.json](RELEASE.json) ve [test raporundan](docs/TEST_REPORT.md) okuyabilirsiniz.
+**Sürüm durumu: geliştirici önizlemesi.** Güncel kaynak Linux AMD64 üzerinde kontrol edilmiştir. Önceki gerçek Windows AMD64 kontrolleri kayıtlı eski kaynak kimliğine aittir; bu yeni kaynak için yerel Windows kabulü henüz yapılmamıştır. Altı işletim sistemi/işlemci hedefi için dosya derlenmektedir. Windows ARM64, gerçek macOS, fiziksel cihaz senaryoları ve doğru çekirdek sembolleriyle bellek nesnelerinin adli doğruluğu henüz doğrulanmamıştır. Hangi kaynak ve dosyanın hangi kapsamda kontrol edildiğini [RELEASE.json](RELEASE.json) ve [test raporundan](docs/TEST_REPORT.md) okuyabilirsiniz.
 
 Bu belge güncel programın kullanımını anlatır. Programın ekran mesajları, etkileşimli sihirbazı ve raporları İngilizcedir. Türkçe kılavuz aynı işlemleri Türkçe açıklar; uygulamanın dilini değiştirmez. Toplanan özgün deliller herhangi bir dilde olabilir.
 
@@ -1400,7 +1400,7 @@ Bunlar tavansız tam RAM sonuçlarından ayrıdır. Her çıktının gerçek kap
 
 ### Denenen platformlar ve sürüm durumu
 
-Güncel kaynakta saklanan yerel Linux AMD64 ve Windows AMD64 doğrulamaları, Windows konsol/API kontrolleri ve harici araç entegrasyonları vardır. Altı çalıştırılabilir dosyada derleme/statik bağlantı kontrolleri yapılır. Yerel Windows ARM64/macOS, geniş fiziksel cihaz kapsamı ve geçerli çekirdek doğruluğu açıktır. Windows 100.000 nesne yük denetimi test raporundaki ayrı kaynak/çalıştırmaya aittir; her derlemede tüm testlerin geçtiğini söylemeyin. Yapay geçersiz imaj Volatility testi pozitif çekirdek nesnesi kurtarma testi değildir.
+Güncel kaynak için yerel Linux AMD64 doğrulaması saklanmıştır. Önceki kaynak kimliğine bağlı Windows AMD64 doğrulaması, konsol/API kontrolleri ve harici araç entegrasyonları tarihsel ölçüm olarak korunmuştur. Altı çalıştırılabilir dosyada derleme/statik bağlantı kontrolleri yapılır. Yerel Windows ARM64/macOS, geniş fiziksel cihaz kapsamı ve geçerli çekirdek doğruluğu açıktır. Windows 100.000 nesne yük denetimi test raporundaki ayrı kaynak/çalıştırmaya aittir; her derlemede tüm testlerin geçtiğini söylemeyin. Yapay geçersiz imaj Volatility testi pozitif çekirdek nesnesi kurtarma testi değildir.
 
 Çalıştırılabilir dosya geliştirici önizlemesidir; mahkeme sertifikası, geniş zararlı tespit doğruluğu iddiası değildir. [Geliştirme planı](docs/DEVELOPMENT_PLAN.md) kayıtlı kapsamı açıklar. [Sürüm üst verisi](RELEASE.json), [test raporu](docs/TEST_REPORT.md) ve [platform matrisi](docs/PLATFORM_TESTING.md) gerçek çalıştırma/sınırları gösterir.
 

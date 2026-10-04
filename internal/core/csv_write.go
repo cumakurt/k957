@@ -1,10 +1,27 @@
 package core
 
 import (
+	"context"
 	"encoding/csv"
 	"io"
 	"os"
 )
+
+type contextWriter struct {
+	ctx context.Context
+	w   io.Writer
+}
+
+func (w contextWriter) Write(p []byte) (int, error) {
+	if err := w.ctx.Err(); err != nil {
+		return 0, err
+	}
+	n, err := w.w.Write(p)
+	if err == nil {
+		err = w.ctx.Err()
+	}
+	return n, err
+}
 
 // CSV exports write directly to an exclusively created file. The csv.Writer's
 // fixed buffer avoids retaining a second copy of every serialized row in RAM.

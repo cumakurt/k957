@@ -1,0 +1,35 @@
+
+  K957  /  RELEASE BUILD
+  ------------------------------------------------------------
+  Targets  6  |  CGO disabled  |  netgo + osusergo
+  Source   9a6bc153e7f6ef51
+  Output   dist/
+
+  [1/6] linux/amd64      Compiling
+  [1/6] linux/amd64      Checking platform libraries
+  DONE  linux/amd64           1s    18.1 MiB
+        dist/k957-linux-amd64
+  [2/6] linux/arm64      Compiling
+  [2/6] linux/arm64      Checking platform libraries
+  DONE  linux/arm64           1s    17.1 MiB
+        dist/k957-linux-arm64
+  [3/6] windows/amd64    Compiling
+  [3/6] windows/amd64    Checking platform libraries
+  DONE  windows/amd64         2s    18.4 MiB
+        dist/k957-windows-amd64.exe
+  [4/6] windows/arm64    Compiling
+  [4/6] windows/arm64    Checking platform libraries
+  DONE  windows/arm64         1s    17.1 MiB
+        dist/k957-windows-arm64.exe
+  [5/6] darwin/amd64     Compiling
+  [5/6] darwin/amd64     Checking platform libraries
+  DONE  darwin/amd64          2s    18.2 MiB
+        dist/k957-darwin-amd64
+  [6/6] darwin/arm64     Compiling
+  [6/6] darwin/arm64     Checking platform libraries
+  DONE  darwin/arm64          2s    17.3 MiB
+        dist/k957-darwin-arm64
+
+  BUILD COMPLETE  6/6 targets  |  9s elapsed
+  All artifacts passed the platform library policy.
+

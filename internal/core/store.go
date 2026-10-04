@@ -751,7 +751,7 @@ func analyzeCollection(ctx context.Context, dir string, rules []Rule, trustedKey
 		item.Errors = []string{e.Error()}
 		return item
 	}
-	if e = ExportShared(shared, filepath.Join(report, "shared")); e != nil {
+	if e = ExportSharedContext(ctx, shared, filepath.Join(report, "shared")); e != nil {
 		item.Status = "failed"
 		item.Errors = []string{e.Error()}
 		return item

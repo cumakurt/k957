@@ -56,6 +56,10 @@ func reportFiles(ctx context.Context, dir string) ([]ReportFile, error) {
 }
 
 func reportFilesExcept(ctx context.Context, dir, exclude string) ([]ReportFile, error) {
+	return reportFilesExceptProtected(ctx, dir, exclude, nil)
+}
+
+func reportFilesExceptProtected(ctx context.Context, dir, exclude string, protected os.FileInfo) ([]ReportFile, error) {
 	root, e := os.Lstat(dir)
 	if e != nil {
 		return nil, e
@@ -91,12 +95,15 @@ func reportFilesExcept(ctx context.Context, dir, exclude string) ([]ReportFile, 
 		if !validReportName(name) {
 			return errors.New("invalid report bundle path")
 		}
-		info, e := entry.Info()
+		info, e := os.Lstat(file)
 		if e != nil {
 			return e
 		}
 		if !info.Mode().IsRegular() {
 			return errors.New("special file in report bundle")
+		}
+		if protected != nil && os.SameFile(info, protected) {
+			return errors.New("report signing key must be outside the bundle, including hard links")
 		}
 		sum, e := fileSHA256Progress(file, "", 0, &verifyMeter{ctx: ctx})
 		if e != nil {
@@ -192,6 +199,13 @@ func reportSignatureBytes(body []byte) []byte {
 // SealReport authenticates a derived report bundle. It does not replace the
 // original package/collection signatures or certify the examiner's conclusions.
 func SealReport(ctx context.Context, dir, keyPath string) (seal ReportSeal, err error) {
+	if e := ctx.Err(); e != nil {
+		return seal, e
+	}
+	keyInfo, e := os.Stat(keyPath)
+	if e != nil {
+		return seal, e
+	}
 	keyBytes, e := ReadLimited(keyPath, 4096)
 	if e != nil {
 		return seal, e
@@ -205,12 +219,18 @@ func SealReport(ctx context.Context, dir, keyPath string) (seal ReportSeal, err 
 			return seal, errors.New("report is already sealed or seal paths are unavailable")
 		}
 	}
-	files, e := reportFiles(ctx, dir)
+	files, e := reportFilesExceptProtected(ctx, dir, "", keyInfo)
 	if e != nil {
 		return seal, e
 	}
 	if len(files) == 0 {
 		return seal, errors.New("empty report bundle")
+	}
+	keyDigest := sha256.Sum256(keyBytes)
+	for _, file := range files {
+		if file.SHA256 == hex.EncodeToString(keyDigest[:]) {
+			return seal, errors.New("report bundle contains a copy of its private signing key")
+		}
 	}
 	bindings, e := reportBindings(dir)
 	if e != nil {

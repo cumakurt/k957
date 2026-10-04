@@ -1,0 +1,25 @@
+k957 case  [########################]  100%  0s  case  1/1  /tmp/k957-source-scale-hvptfqsp/store/MacBookPro/20261004T135951Z
+k957 case  [------------------------]    0%  estimating  examine  1/2000  /tmp/k957-source-scale-hvptfqsp/source/000/object-000000.bin
+k957 case  [#-----------------------]    5%  estimating  examine  100/2000  /tmp/k957-source-scale-hvptfqsp/source/000/object-000099.bin
+k957 case  [##----------------------]   10%  estimating  examine  200/2000  /tmp/k957-source-scale-hvptfqsp/source/000/object-000199.bin
+k957 case  [####--------------------]   15%  estimating  examine  300/2000  /tmp/k957-source-scale-hvptfqsp/source/000/object-000299.bin
+k957 case  [#####-------------------]   20%  estimating  examine  400/2000  /tmp/k957-source-scale-hvptfqsp/source/000/object-000399.bin
+k957 case  [######------------------]   25%  estimating  examine  500/2000  /tmp/k957-source-scale-hvptfqsp/source/000/object-000499.bin
+k957 case  [#######-----------------]   30%  estimating  examine  600/2000  /tmp/k957-source-scale-hvptfqsp/source/000/object-000599.bin
+k957 case  [########----------------]   35%  estimating  examine  700/2000  /tmp/k957-source-scale-hvptfqsp/source/000/object-000699.bin
+k957 case  [##########--------------]   40%  estimating  examine  800/2000  /tmp/k957-source-scale-hvptfqsp/source/000/object-000799.bin
+k957 case  [###########-------------]   45%  estimating  examine  900/2000  /tmp/k957-source-scale-hvptfqsp/source/000/object-000899.bin
+k957 case  [############------------]   50%  estimating  examine  1000/2000  /tmp/k957-source-scale-hvptfqsp/source/000/object-000999.bin
+k957 case  [#############-----------]   55%  estimating  examine  1100/2000  /tmp/k957-source-scale-hvptfqsp/source/001/object-001099.bin
+k957 case  [##############----------]   60%  estimating  examine  1200/2000  /tmp/k957-source-scale-hvptfqsp/source/001/object-001199.bin
+k957 case  [################--------]   65%  estimating  examine  1300/2000  /tmp/k957-source-scale-hvptfqsp/source/001/object-001299.bin
+k957 case  [#################-------]   70%  estimating  examine  1400/2000  /tmp/k957-source-scale-hvptfqsp/source/001/object-001399.bin
+k957 case  [##################------]   75%  estimating  examine  1500/2000  /tmp/k957-source-scale-hvptfqsp/source/001/object-001499.bin
+k957 case  [###################-----]   80%  estimating  examine  1600/2000  /tmp/k957-source-scale-hvptfqsp/source/001/object-001599.bin
+k957 case  [####################----]   85%  estimating  examine  1700/2000  /tmp/k957-source-scale-hvptfqsp/source/001/object-001699.bin
+k957 case  [######################--]   90%  estimating  examine  1800/2000  /tmp/k957-source-scale-hvptfqsp/source/001/object-001799.bin
+k957 case  [#######################-]   95%  estimating  examine  1900/2000  /tmp/k957-source-scale-hvptfqsp/source/001/object-001899.bin
+k957 case  [########################]  100%  0s  examine  2000/2000  /tmp/k957-source-scale-hvptfqsp/source/001/object-001999.bin
+k957 case  [########################]  100%  0s  case  1/1  /tmp/k957-source-scale-hvptfqsp/source/000/object-000000.bin
+k957 case  finished  1s  [########################]  100%  1s  1/1  /tmp/k957-source-scale-hvptfqsp/source/001/object-001999.bin
+Case: /tmp/k957-source-scale-hvptfqsp/case/report.html

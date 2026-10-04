@@ -1,11 +1,12 @@
 package core
 
 import (
-	"bytes"
 	"context"
 	"encoding/csv"
+	"encoding/json"
 	"errors"
 	"html/template"
+	"io"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -19,20 +20,48 @@ func sharedTime(t *time.Time) string {
 	return t.Format(time.RFC3339Nano)
 }
 func sharedCSV(path string, header []string, rows [][]string) error {
-	var b bytes.Buffer
-	w := csv.NewWriter(&b)
-	// bytes.Buffer writes cannot fail; Flush still finalizes the record.
-	_ = w.Write(header)
-	for _, r := range rows {
-		for i := range r {
-			r[i] = csvSafe(r[i])
-		}
-		_ = w.Write(r)
-	}
-	w.Flush()
-	return WriteNew(path, b.Bytes())
+	return sharedCSVContext(context.Background(), path, header, rows)
 }
-func ExportShared(s SharedReport, out string) (err error) {
+
+func sharedCSVContext(ctx context.Context, path string, header []string, rows [][]string) error {
+	return writeFileNew(path, func(out io.Writer) error {
+		w := csv.NewWriter(contextWriter{ctx: ctx, w: out})
+		if err := ctx.Err(); err != nil {
+			return err
+		}
+		if err := w.Write(header); err != nil {
+			return err
+		}
+		for _, row := range rows {
+			if err := ctx.Err(); err != nil {
+				return err
+			}
+			safe := make([]string, len(row))
+			for i, value := range row {
+				safe[i] = csvSafe(value)
+			}
+			if err := w.Write(safe); err != nil {
+				return err
+			}
+		}
+		w.Flush()
+		if err := w.Error(); err != nil {
+			return err
+		}
+		return ctx.Err()
+	})
+}
+
+func ExportShared(s SharedReport, out string) error {
+	return ExportSharedContext(context.Background(), s, out)
+}
+
+// ExportSharedContext retains the legacy API while propagating cancellation
+// through CSV, HTML and PDF generation and removing incomplete new bundles.
+func ExportSharedContext(ctx context.Context, s SharedReport, out string) (err error) {
+	if err = ctx.Err(); err != nil {
+		return err
+	}
 	if s.Schema != shareSchema || s.Version != Version || !s.Policy.FreeTextOmitted {
 		return errors.New("invalid shared report schema")
 	}
@@ -45,42 +74,46 @@ func ExportShared(s SharedReport, out string) (err error) {
 			os.RemoveAll(out)
 		}
 	}()
-	if err = WriteJSONNew(filepath.Join(out, "shared.json"), s); err != nil {
+	if err = writeFileNew(filepath.Join(out, "shared.json"), func(w io.Writer) error {
+		encoder := json.NewEncoder(contextWriter{ctx: ctx, w: w})
+		encoder.SetIndent("", "  ")
+		return encoder.Encode(s)
+	}); err != nil {
 		return err
 	}
 	rows := [][]string{}
 	for _, x := range s.Items {
 		rows = append(rows, []string{x.ID, x.Source, x.Kind, strconv.FormatInt(x.Size, 10), sharedTime(x.Modified), sharedTime(x.Collected), strconv.FormatBool(x.Changed)})
 	}
-	if err = sharedCSV(filepath.Join(out, "evidence.csv"), []string{"id", "source", "kind", "size", "modified", "collected", "changed"}, rows); err != nil {
+	if err = sharedCSVContext(ctx, filepath.Join(out, "evidence.csv"), []string{"id", "source", "kind", "size", "modified", "collected", "changed"}, rows); err != nil {
 		return err
 	}
 	rows = [][]string{}
 	for _, x := range s.Findings {
 		rows = append(rows, []string{x.ID, x.Rule, x.Evidence, x.Source, strconv.Itoa(x.Line), x.Review, x.Reviewer})
 	}
-	if err = sharedCSV(filepath.Join(out, "findings.csv"), []string{"id", "rule", "evidence", "source", "line", "review", "reviewer"}, rows); err != nil {
+	if err = sharedCSVContext(ctx, filepath.Join(out, "findings.csv"), []string{"id", "rule", "evidence", "source", "line", "review", "reviewer"}, rows); err != nil {
 		return err
 	}
 	rows = [][]string{}
 	for _, x := range s.Timeline {
 		rows = append(rows, []string{sharedTime(x.Time), x.Type, x.Evidence, x.Source, strconv.Itoa(x.Line), strconv.FormatInt(x.ByteOffset, 10), x.User, x.Host, x.SourceIP, x.DestinationIP, strconv.Itoa(x.Packet), x.Protocol, strconv.Itoa(int(x.SourcePort)), strconv.Itoa(int(x.DestinationPort)), strconv.FormatInt(x.CapturedLength, 10), strconv.FormatInt(x.OriginalLength, 10), strconv.Itoa(int(x.TCPFlags)), strconv.Itoa(x.Section), strconv.FormatUint(uint64(x.InterfaceID), 10)})
 	}
-	if err = sharedCSV(filepath.Join(out, "timeline.csv"), []string{"time", "type", "evidence", "source", "line", "byte_offset", "user", "host", "source_ip", "destination_ip", "packet", "protocol", "source_port", "destination_port", "captured_length", "original_length", "tcp_flags", "section", "interface_id"}, rows); err != nil {
+	if err = sharedCSVContext(ctx, filepath.Join(out, "timeline.csv"), []string{"time", "type", "evidence", "source", "line", "byte_offset", "user", "host", "source_ip", "destination_ip", "packet", "protocol", "source_port", "destination_port", "captured_length", "original_length", "tcp_flags", "section", "interface_id"}, rows); err != nil {
 		return err
 	}
 	rows = [][]string{}
 	for _, x := range s.Correlations {
 		rows = append(rows, []string{x.Kind, x.Value, strconv.Itoa(x.Events), strconv.Itoa(x.Sources), sharedTime(x.First), sharedTime(x.Last), strconv.FormatBool(x.Truncated)})
 	}
-	if err = sharedCSV(filepath.Join(out, "correlations.csv"), []string{"kind", "value", "events", "sources", "first", "last", "references_truncated"}, rows); err != nil {
+	if err = sharedCSVContext(ctx, filepath.Join(out, "correlations.csv"), []string{"kind", "value", "events", "sources", "first", "last", "references_truncated"}, rows); err != nil {
 		return err
 	}
 	rows = [][]string{}
 	for _, x := range s.Reviews {
 		rows = append(rows, []string{strconv.Itoa(x.Sequence), x.Finding, x.Decision, x.Analyst, sharedTime(x.Created)})
 	}
-	if err = sharedCSV(filepath.Join(out, "reviews.csv"), []string{"sequence", "finding", "decision", "analyst", "created"}, rows); err != nil {
+	if err = sharedCSVContext(ctx, filepath.Join(out, "reviews.csv"), []string{"sequence", "finding", "decision", "analyst", "created"}, rows); err != nil {
 		return err
 	}
 	if len(s.Custody) > 0 {
@@ -88,26 +121,27 @@ func ExportShared(s SharedReport, out string) (err error) {
 		for _, x := range s.Custody {
 			rows = append(rows, []string{strconv.Itoa(x.Sequence), x.Action, x.Actor, x.From, x.To, x.Location, sharedTime(x.OccurredAt), sharedTime(x.RecordedAt)})
 		}
-		if err = sharedCSV(filepath.Join(out, "custody.csv"), []string{"sequence", "action", "actor", "from", "to", "location", "occurred_at", "recorded_at"}, rows); err != nil {
+		if err = sharedCSVContext(ctx, filepath.Join(out, "custody.csv"), []string{"sequence", "action", "actor", "from", "to", "location", "occurred_at", "recorded_at"}, rows); err != nil {
 			return err
 		}
 	}
-	if e := exportSharedNetwork(s, out); e != nil {
+	if e := exportSharedNetworkContext(ctx, s, out); e != nil {
 		return e
 	}
 	t, e := template.New("shared").Funcs(template.FuncMap{"stamp": sharedTime, "endpoint": networkEndpoint}).Parse(sharedTemplate)
 	if e != nil {
 		return e
 	}
-	var b bytes.Buffer
-	if e = t.Execute(&b, s); e != nil {
-		return e
-	}
-	if err = WriteNew(filepath.Join(out, "report.html"), b.Bytes()); err != nil {
+	if err = writeFileNew(filepath.Join(out, "report.html"), func(w io.Writer) error {
+		return t.Execute(contextWriter{ctx: ctx, w: w}, s)
+	}); err != nil {
 		return err
 	}
-	if e := exportSharedPDF(context.Background(), s, out); e != nil {
+	if e := exportSharedPDF(ctx, s, out); e != nil {
 		return e
+	}
+	if err = ctx.Err(); err != nil {
+		return err
 	}
 	ok = true
 	return nil

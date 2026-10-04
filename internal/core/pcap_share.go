@@ -1,6 +1,7 @@
 package core
 
 import (
+	"context"
 	"path/filepath"
 	"strconv"
 	"time"
@@ -76,12 +77,15 @@ func projectSharedNetwork(a Analysis, s *SharedReport, m *shareMasker, sourceID 
 	}
 }
 func exportSharedNetwork(s SharedReport, out string) error {
+	return exportSharedNetworkContext(context.Background(), s, out)
+}
+func exportSharedNetworkContext(ctx context.Context, s SharedReport, out string) error {
 	if len(s.NetworkFlows) > 0 {
 		rows := [][]string{}
 		for _, f := range s.NetworkFlows {
 			rows = append(rows, []string{f.Evidence, f.Source, f.Protocol, f.SourceIP, strconv.Itoa(int(f.SourcePort)), f.DestinationIP, strconv.Itoa(int(f.DestinationPort)), strconv.Itoa(f.Packets), strconv.FormatInt(f.CapturedBytes, 10), strconv.FormatInt(f.OriginalBytes, 10), sharedTime(f.First), sharedTime(f.Last), strconv.Itoa(len(f.References)), strconv.FormatBool(f.ReferencesTruncated), strconv.Itoa(f.Section), strconv.FormatUint(uint64(f.InterfaceID), 10)})
 		}
-		if e := sharedCSV(filepath.Join(out, "network.csv"), []string{"evidence", "source", "protocol", "source_ip", "source_port", "destination_ip", "destination_port", "packets", "captured_bytes", "original_bytes", "first", "last", "reference_count", "references_truncated", "section", "interface_id"}, rows); e != nil {
+		if e := sharedCSVContext(ctx, filepath.Join(out, "network.csv"), []string{"evidence", "source", "protocol", "source_ip", "source_port", "destination_ip", "destination_port", "packets", "captured_bytes", "original_bytes", "first", "last", "reference_count", "references_truncated", "section", "interface_id"}, rows); e != nil {
 			return e
 		}
 	}
@@ -90,7 +94,7 @@ func exportSharedNetwork(s SharedReport, out string) error {
 		for _, c := range s.CaptureSummaries {
 			rows = append(rows, []string{c.Evidence, c.Source, c.Format, strconv.Itoa(c.Records), strconv.Itoa(c.Parsed), strconv.Itoa(c.Skipped), strconv.Itoa(c.TruncatedPackets), strconv.Itoa(c.FlowOmittedPackets), strconv.FormatBool(c.Limited), strconv.FormatBool(c.HasError), string(JSON(c.SkipReasons)), strconv.Itoa(c.Sections), strconv.Itoa(c.InterfaceCount), strconv.Itoa(c.Blocks), strconv.Itoa(c.IgnoredBlocks)})
 		}
-		return sharedCSV(filepath.Join(out, "captures.csv"), []string{"evidence", "source", "format", "records", "parsed", "skipped", "truncated_packets", "flow_omitted_packets", "limited", "has_error", "skip_reasons", "sections", "interface_count", "blocks", "ignored_blocks"}, rows)
+		return sharedCSVContext(ctx, filepath.Join(out, "captures.csv"), []string{"evidence", "source", "format", "records", "parsed", "skipped", "truncated_packets", "flow_omitted_packets", "limited", "has_error", "skip_reasons", "sections", "interface_count", "blocks", "ignored_blocks"}, rows)
 	}
 	return nil
 }

@@ -1,0 +1,4 @@
+RUN collect
+RUN verify
+RUN case
+PASSED: /depo/cuma/projelerim/k957/validation-results/quality-audit-linux-amd64-authorized-20261004/source-scale

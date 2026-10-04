@@ -2,6 +2,10 @@
 
 ## 0.15.0 — developer preview
 
+- Source-quality audit: refuse report seals containing the active signing key, hard links to it or exact key-file copies. Preserve the original key and leave no partial seal on rejection.
+- Exclude untimed events from temporal candidate grouping and disclose missing absolute timestamps while retaining original indexed records.
+- Route small-file writes through exclusive, synced failure cleanup. Stream shared CSV/HTML instead of retaining an additional serialized copy; preserve caller-owned CSV rows and propagate cancellation through shared JSON/CSV/HTML/PDF exports.
+
 - Added exact native parser/record and USN file-ID filters to case queries, the local viewer and signed bookmarks. New indexes include native reference IDs in literal search. Related USN navigation retains collection/evidence scope; viewer requests cancel/discard stale results and paginate the last submitted filter set.
 
 - Added source-scoped USN file record groups with complete emitted-record references and grouped JSON/CSV exports. HTML/PDF/DOCX show names, parents, reason flags and observed time bounds with explicit group/property omission counts; shared projections omit private groups.

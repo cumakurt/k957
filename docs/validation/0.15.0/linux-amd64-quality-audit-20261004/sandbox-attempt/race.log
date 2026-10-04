@@ -1,0 +1,25 @@
+ok  	k957/cmd/k957	3.467s
+--- FAIL: TestAssistantExactReferencesAndSignedReview (0.02s)
+panic: httptest: failed to listen on a port: listen tcp6 [::1]:0: socket: operation not permitted [recovered, repanicked]
+
+goroutine 23 [running]:
+testing.tRunner.func1.2({0x1790c00, 0xc00027c9f0})
+	/usr/lib/go-1.26/src/testing/testing.go:1974 +0x419
+testing.tRunner.func1()
+	/usr/lib/go-1.26/src/testing/testing.go:1977 +0x67f
+panic({0x1790c00?, 0xc00027c9f0?})
+	/usr/lib/go-1.26/src/runtime/panic.go:860 +0x13a
+net/http/httptest.newLocalListener()
+	/usr/lib/go-1.26/src/net/http/httptest/server.go:72 +0x165
+net/http/httptest.NewUnstartedServer(...)
+	/usr/lib/go-1.26/src/net/http/httptest/server.go:120
+net/http/httptest.NewServer({0x1949a60, 0xc0001b27c0})
+	/usr/lib/go-1.26/src/net/http/httptest/server.go:107 +0x2c
+k957/internal/core.TestAssistantExactReferencesAndSignedReview(0xc000156908)
+	/depo/cuma/projelerim/k957/internal/core/assistant_test.go:38 +0x165
+testing.tRunner(0xc000156908, 0x193b9f0)
+	/usr/lib/go-1.26/src/testing/testing.go:2036 +0x21d
+created by testing.(*T).Run in goroutine 1
+	/usr/lib/go-1.26/src/testing/testing.go:2101 +0xb13
+FAIL	k957/internal/core	0.392s
+FAIL

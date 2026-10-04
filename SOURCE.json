@@ -1,6 +1,6 @@
 {
   "schema": "k957-source/1",
-  "sha256": "41535d7226d87ad2293d06c043aaec4401d33c81c078cfddea0de2252be4fdac",
+  "sha256": "9a6bc153e7f6ef5100e76fddd924293f51c473cb76bdd4a59d8c4e0373fbadd3",
   "files": [
     {
       "name": "cmd/k957/anchor_cmd.go",
@@ -69,8 +69,8 @@
     },
     {
       "name": "cmd/k957/main.go",
-      "bytes": 22571,
-      "sha256": "9699000e319f89e0ba1a61aea16f969479c755b59f13edd37ac146456e536349"
+      "bytes": 22583,
+      "sha256": "b54b9863b8c58a61a6b043f9e7d2081c1ea2b4cbfba7829bdd8712a74413becb"
     },
     {
       "name": "cmd/k957/main_test.go",
@@ -334,8 +334,8 @@
     },
     {
       "name": "internal/core/case_temporal.go",
-      "bytes": 8905,
-      "sha256": "85f5ee62e995435e464274e3f39145fea9d817e167e9d84e1aaf8e5df1c52807"
+      "bytes": 9271,
+      "sha256": "d79a7158a1fa6b545b1c73cd3605a01edda88ead8d0ef5b057ffa8361c4e5d07"
     },
     {
       "name": "internal/core/case_temporal_test.go",
@@ -454,8 +454,8 @@
     },
     {
       "name": "internal/core/csv_write.go",
-      "bytes": 1068,
-      "sha256": "435dc9b1fdc8ce3f85a4e9fe1dfbfb187949238dd485ea468bdc359ca225ff37"
+      "bytes": 1338,
+      "sha256": "9381c5456bcdeeb894e469b43e8cee137d3f56f84424678e516e471e285cba0c"
     },
     {
       "name": "internal/core/csv_write_test.go",
@@ -669,8 +669,8 @@
     },
     {
       "name": "internal/core/model.go",
-      "bytes": 3999,
-      "sha256": "df7949e63cf94bb180abd6580c250d3164ce85fd137d20749021b81cd2c47a8d"
+      "bytes": 3921,
+      "sha256": "09c9f3ac77693de39d0ffea75854934f3a728cda8dc00d1eb6d8a08a00640cf8"
     },
     {
       "name": "internal/core/native_case_regression_test.go",
@@ -749,8 +749,8 @@
     },
     {
       "name": "internal/core/pcap_share.go",
-      "bytes": 6943,
-      "sha256": "42b56267e62055ffcfbfc3c75b955215aa1c8255bc4cd44544f7fd17fc9907b1"
+      "bytes": 7134,
+      "sha256": "1dc28b2391982e21903b5e942d98f90520aeb113557a954e3e4e0ecb030f0f4e"
     },
     {
       "name": "internal/core/pcap_test.go",
@@ -883,6 +883,11 @@
       "sha256": "260925b8263c2f29c541828d3e83fd34d32d5830c4eb639d36db22eeeb82d65c"
     },
     {
+      "name": "internal/core/report_key_boundary_test.go",
+      "bytes": 1666,
+      "sha256": "ff10b0dbb78dcd06339aca673208f94f901a34ff21fb5ce55cb3c34663eb4bcc"
+    },
+    {
       "name": "internal/core/report_memory_upgrade_test.go",
       "bytes": 9367,
       "sha256": "10ac93e847e4cd028fcfe176bf00aa37a500c84357d2011ab52b4b7490c138f1"
@@ -899,8 +904,8 @@
     },
     {
       "name": "internal/core/report_seal.go",
-      "bytes": 11059,
-      "sha256": "547591f0a92df1be64cc7f28391783c28f11fe172f34f11de0950d871d56506a"
+      "bytes": 11759,
+      "sha256": "d05b1eedec7ea36117f0f3afdac56ac074040cdc420fb071c392b5c2cf496180"
     },
     {
       "name": "internal/core/report_seal_test.go",
@@ -958,9 +963,14 @@
       "sha256": "be68def929b077dae54455bcfab166fd361a7a999ef96460b1cef9ac95556457"
     },
     {
+      "name": "internal/core/share_cancellation_test.go",
+      "bytes": 3301,
+      "sha256": "c7e0172004409b41405389ecb070faa0d455126fd1c4f760788285b59303a5d1"
+    },
+    {
       "name": "internal/core/share_export.go",
-      "bytes": 11126,
-      "sha256": "b4731a7a2b8b5da64f059ad26b93ed0fe7f4ab63c563f8e3d7bd4743f04934bf"
+      "bytes": 12210,
+      "sha256": "74ff7b4b9ab50368434dc17254ba10df4446f3531ac5d61d76dba1a782d9c7cd"
     },
     {
       "name": "internal/core/share_test.go",
@@ -1019,8 +1029,8 @@
     },
     {
       "name": "internal/core/store.go",
-      "bytes": 25266,
-      "sha256": "f8f3cfe47ef7281a391e17f9fddd2d43ac4c4d8b68973dec4551eb0a0898b983"
+      "bytes": 25278,
+      "sha256": "00a4e0aaf5f3c882575697786c1da8c646fe123117584c7ef80e1468b2b82568"
     },
     {
       "name": "internal/core/structured.go",
@@ -1036,6 +1046,11 @@
       "name": "internal/core/system.go",
       "bytes": 8405,
       "sha256": "44c04c66f4e5f13b0581b40f91bea6750ff5081a8b744287bc097c107427b203"
+    },
+    {
+      "name": "internal/core/temporal_missing_time_test.go",
+      "bytes": 1613,
+      "sha256": "c1a4d1a8f977c495bc4421f47f0fd7673954f28f46ea3c0651f03ac60af511b8"
     },
     {
       "name": "internal/core/testdata/EVTX_LICENSE.txt",

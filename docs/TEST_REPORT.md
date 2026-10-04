@@ -1,6 +1,26 @@
-# k957 0.15.0 native Windows and developer credits — 2026-10-04
+# Source quality and logic audit — 2026-10-04
 
-Current source: `41535d7226d87ad2293d06c043aaec4401d33c81c078cfddea0de2252be4fdac`.
+Current source: `9a6bc153e7f6ef5100e76fddd924293f51c473cb76bdd4a59d8c4e0373fbadd3`.
+
+[Native Linux AMD64 validation](validation/0.15.0/linux-amd64-quality-audit-20261004/validation.json) passed **34 checks with two explicit optional skips**: no configured cached local assistant, and no configured real Volatility tool/reference-image check. Statement coverage is **75.6%**. The run includes uncached units, race detection, vet, source-bound native build, the million-row index benchmark, independent cryptographic/native-artifact/document checks, memory streaming/synthetic suite, custody/review/share/resume checks and a synthetic 2,000-object collection/case load. Existing physical-device and valid kernel-reference accuracy limits remain open.
+
+The [pre-fix reproduction](validation/0.15.0/linux-amd64-quality-audit-20261004/pre-fix-regressions.log) runs new regressions against an isolated copy of the previous committed source. It deliberately fails on three signing-key inclusion variants (direct file, hard link and exact copy) and on false temporal grouping of untimed events. These same regressions pass on the corrected source. The new tests also cover cancellation, CSV formula escaping without caller-row mutation, failure cleanup and preservation of existing outputs.
+
+Corrections:
+
+- Report sealing rejects the active private-key file and its hard links before hashing those files, and rejects exact key-file copies before writing a seal. Rejection preserves the key and creates no partial seal. This prevents those specific accidental key-inclusion paths; it is not a general secret scanner for arbitrary report text or memory strings.
+- Temporal grouping requires an absolute timestamp. Missing-time events remain in the case index; temporal coverage counts them as omitted and reports `missing_absolute_time`.
+- Small new-file writes reuse exclusive, synced publication and failed-file cleanup. Shared CSV/HTML output streams directly; shared exports pass cancellation through JSON/CSV/HTML/PDF, preserve caller-owned rows and remove incomplete newly created bundles.
+
+The first [sandbox attempt](validation/0.15.0/linux-amd64-quality-audit-20261004/sandbox-attempt/validation.json) failed units/race because `httptest` was denied a local TCP listening socket. The same complete validation passed after local socket access was authorized. That failed receipt is retained rather than represented as a passing run.
+
+All six release targets also compiled and passed platform-library checks; see the [build log](validation/0.15.0/linux-amd64-quality-audit-20261004/six-target-build.log).
+
+This revision has current native Linux AMD64 execution. Earlier Windows AMD64 results below remain bound to their older source, and do not certify these new changes on native Windows. Release status remains developer preview.
+
+# Previous native Windows and developer-credit validation — 2026-10-04
+
+Recorded source: `41535d7226d87ad2293d06c043aaec4401d33c81c078cfddea0de2252be4fdac`.
 
 [Linux AMD64 validation](validation/0.15.0/linux-amd64-developer-20261004/validation.json) passed 33 checks with two explicit optional-tool/model skips; statement coverage is 75.6%. [Native Windows AMD64 validation](validation/0.15.0/windows-amd64-developer-20261004/validation.json) passed 29 checks with six explicit skips: five Go source checks delegated to the [native supplemental execution](validation/0.15.0/windows-amd64-developer-20261004/supplement/result.json), plus the unconfigured local assistant. All eight supplemental checks passed, including native build, vet, units, the million-row index benchmark and native execution of cross-compiled race binaries. Windows statement coverage is 74.1%.
 

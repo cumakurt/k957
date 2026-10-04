@@ -40,6 +40,8 @@ Contents:
 
 ### Choose the executable
 
+A source checkout does not include compiled binaries. Build them with the instructions under **Building, validation and release artifacts**; the start scripts require an existing `dist/` build. Prepared executables can be distributed separately as release assets. See [repository and release preparation](docs/REPOSITORY.md).
+
 Use the file that matches both your operating system and processor:
 
 - Linux on an Intel/AMD 64-bit computer: `dist/k957-linux-amd64`.

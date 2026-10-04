@@ -203,7 +203,7 @@ def main():
                      not any(part in ('__pycache__', 'output', 'reports') for part in p.relative_to(ROOT).parts) and
                      p.suffix not in ('.pyc', '.pyo')]
     selected += [ROOT / a['name'] for a in artifacts]
-    selected += [ROOT / name for name in ('go.mod', 'go.sum', 'README.md', 'README_TR.md', 'CHANGELOG.md',
+    selected += [ROOT / name for name in ('.gitignore', '.gitattributes', 'go.mod', 'go.sum', 'README.md', 'README_TR.md', 'CHANGELOG.md',
                  'LICENSE', 'RELEASE.json', 'SOURCE.json', 'THIRD_PARTY_NOTICES.md', 'start-unix.sh', 'start-windows.cmd')]
     rows = [f'{sha256(p)}  {p.relative_to(ROOT).as_posix()}' for p in sorted(set(selected)) if p.is_file()]
     (ROOT / 'SHA256SUMS.txt').write_text('\n'.join(rows) + '\n')

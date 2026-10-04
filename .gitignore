@@ -3,3 +3,18 @@ __pycache__/
 .venv/
 validation-results/
 output/
+
+# Local builds and transient coverage; publish executables as release assets.
+/dist/
+/coverage.out
+/coverage.html
+*.test
+
+# Private signing/transport keys and local environment settings.
+*.key
+/.env
+/.env.*
+!/.env.example
+
+# Locally generated investigation dossiers.
+/case/

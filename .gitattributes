@@ -1,0 +1,27 @@
+# Keep source identity stable across operating systems.
+*.go text eol=lf
+*.py text eol=lf
+*.sh text eol=lf
+*.ps1 text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+go.mod text eol=lf
+go.sum text eol=lf
+
+# Signed examples and retained receipts depend on their exact original bytes.
+examples/** -text
+internal/core/testdata/** -text
+docs/validation/** -text whitespace=cr-at-eol,-blank-at-eof,-space-before-tab
+docs/validation/**/*.log whitespace=cr-at-eol,-blank-at-eof,-space-before-tab,-blank-at-eol
+
+# Preserve upstream license/font bytes, including original whitespace.
+licenses/** -text -whitespace
+internal/core/fonts/** -text -whitespace
+
+*.k957 -text
+*.pdf -text
+*.docx -text
+*.png -text
+*.ttf -text

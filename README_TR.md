@@ -40,6 +40,8 @@ Bu belge güncel programın kullanımını anlatır. Programın ekran mesajları
 
 ### Doğru çalıştırılabilir dosyayı seçin
 
+Kaynak kod deposunun kopyasında derlenmiş programlar bulunmaz. **Derleme, doğrulama ve sürüm dosyaları** bölümündeki adımlarla üretin; başlangıç betikleri `dist/` altında mevcut derleme ister. Hazırlanan programlar ayrıca sürüm dosyaları olarak dağıtılabilir. [Depo ve sürüm hazırlığı](docs/REPOSITORY.md) belgesine bakın.
+
 İşletim sistemine ve işlemci türüne birlikte uygun dosyayı kullanın:
 
 - Intel/AMD 64 bit işlemcili Linux: `dist/k957-linux-amd64`.

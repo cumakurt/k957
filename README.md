@@ -2,6 +2,101 @@
 
 **English** · [Turkish user guide](README_TR.md)
 
+## Static build and installation
+
+Start here to obtain a working executable. The Git repository contains source code; compiled programs in `dist/` are local build outputs and are not included in a fresh clone.
+
+### 1. What does the static build mean?
+
+The build scripts compile the Go application with `CGO_ENABLED=0`, `netgo` and `osusergo`, then check each executable's platform-library dependencies. No C compiler or separately installed Go/Python runtime is needed to **run** the resulting application. Go and Python are needed to **build it with these scripts**.
+
+Linux executables have no dynamic platform-library dependencies. Windows still uses standard Windows system DLLs; macOS retains its system runtime/resolver and native certificate frameworks. The macOS program is therefore not a completely self-contained executable without system libraries. Optional Volatility, Sleuth Kit, memory acquisition drivers and local models are separate tools and are not bundled by the static build.
+
+### 2. Prepare the build tools
+
+- **Go:** `go.mod` requires Go 1.26.0 or newer. Retained current release builds used **Go 1.26.8**; use that version when following the recorded build setup.
+- **Python 3.11 or newer:** the build uses Python's standard library for source fingerprints and executable dependency checks. The independent test-suite packages are not required just to build.
+- **Git:** needed for the clone commands below. If you already extracted the source archive, open that extracted project folder instead.
+- **Shell:** Bash on Linux/macOS, PowerShell on Windows. Initial Go module downloads need access to the configured module sources unless those modules are already cached.
+
+Check the tools in your terminal, then build from the project root, where `go.mod` and `scripts/` are located.
+
+### 3. Build on Linux or macOS
+
+```sh
+git clone https://github.com/cumakurt/k957.git
+cd k957
+go version
+python3 --version
+bash scripts/build.sh
+```
+
+Skip `git clone` if you already have the repository; use `cd` to open your existing copy. The script creates all six target executables under `dist/`: Linux, Windows and macOS, each in AMD64 and ARM64 variants. It prints compilation progress and checks platform libraries for every target. `BUILD COMPLETE` means the build/check sequence completed; it does not mean every target was run on a real machine.
+
+For Linux on Intel/AMD, start with:
+
+```sh
+./dist/k957-linux-amd64 version
+./dist/k957-linux-amd64 help
+```
+
+For Apple Silicon macOS:
+
+```sh
+./dist/k957-darwin-arm64 version
+./dist/k957-darwin-arm64 help
+```
+
+For ARM64 Linux use `k957-linux-arm64`; for an Intel Mac use `k957-darwin-amd64`. A downloaded/copied Unix executable may need `chmod +x <path>` before use.
+
+### 4. Build on Windows
+
+Open PowerShell and run:
+
+```powershell
+git clone https://github.com/cumakurt/k957.git
+cd k957
+go version
+python --version
+.\scripts\build.ps1
+.\dist\k957-windows-amd64.exe version
+.\dist\k957-windows-amd64.exe help
+```
+
+The Windows script also builds all six targets and checks their platform libraries. On an ARM64 Windows operating system, run `.\dist\k957-windows-arm64.exe` instead. The script expects `python` to resolve to Python 3.11 or newer and `go` to resolve to the selected Go toolchain. If either command is missing, complete that tool's installation/PATH setup before building. If PowerShell blocks the script, follow the computer's script-execution policy; see the troubleshooting section for other startup issues.
+
+### 5. Install or use the executable directly
+
+There is no mandatory installer, background service or database server. Running the correct file in `dist/` is enough. If you obtain a prepared executable separately, place it in a folder you control, verify it against independently trusted release/checksum information and use the filename for its target. This guide does not assert that a downloadable GitHub release is already published.
+
+For a convenient user-local Linux installation after building:
+
+```sh
+mkdir -p "$HOME/.local/bin"
+cp ./dist/k957-linux-amd64 "$HOME/.local/bin/k957"
+chmod +x "$HOME/.local/bin/k957"
+"$HOME/.local/bin/k957" version
+"$HOME/.local/bin/k957" help
+```
+
+On macOS, replace the source filename with the matching `k957-darwin-*` executable. If `$HOME/.local/bin` is already on your PATH, you can type `k957`; otherwise use the full path shown above. Building and user-local installation do not require root. Some later acquisition methods require appropriate privileges.
+
+For a user-local Windows installation:
+
+```powershell
+$k957Bin = Join-Path $env:LOCALAPPDATA 'k957\bin'
+New-Item -ItemType Directory -Force -Path $k957Bin | Out-Null
+Copy-Item .\dist\k957-windows-amd64.exe (Join-Path $k957Bin 'k957.exe')
+& (Join-Path $k957Bin 'k957.exe') version
+& (Join-Path $k957Bin 'k957.exe') help
+```
+
+Use the ARM64 source filename on ARM64 Windows. You can later add that folder to your user PATH if you want the `k957` shorthand. Copy only the program for ordinary use; `start-unix.sh` and `start-windows.cmd` instead expect their original project layout with `dist/` beside them.
+
+The `version` and `help` commands do not collect your computer. Continue with **Getting ready** and **First exercise** after they work. Keep application updates separate from evidence/report directories. For build identities, validation and release packaging, see [the later build section](#building-validation-and-release-artifacts) and [repository preparation](docs/REPOSITORY.md).
+
+## Application overview
+
 k957 helps you collect computer evidence, check whether it has changed, examine supported records and create reports. You run it by typing commands in a terminal. You do not need to write software to use the supplied executables.
 
 For example, you can preserve a folder of logs, find failed sign-in records, inspect a supported browser-history database, compare several collections and give another person a PDF with references to the original evidence. A reported match is something to examine. It is not automatically proof of an attack or a person's responsibility.
@@ -12,7 +107,7 @@ This guide explains the current executable. Application messages, wizard prompts
 
 ## How to read this guide
 
-1. Start with **Getting ready** and **First exercise**. These use artificial demonstration files.
+1. Start with **Static build and installation**, then **Getting ready** and **First exercise**. These use artificial demonstration files.
 2. Read **Understanding the results** before treating a report as a conclusion.
 3. Choose a **Usage scenario** for your task.
 4. Use **Command reference** when you need a particular option. Each command includes purpose, an example, the expected result and every option exposed by its help.
@@ -20,6 +115,8 @@ This guide explains the current executable. Application messages, wizard prompts
 
 Contents:
 
+- [Static build and installation](#static-build-and-installation)
+- [Application overview](#application-overview)
 - [Getting ready](#getting-ready)
 - [Basic concepts](#basic-concepts)
 - [First exercise](#first-exercise)
@@ -40,7 +137,7 @@ Contents:
 
 ### Choose the executable
 
-A source checkout does not include compiled binaries. Build them with the instructions under **Building, validation and release artifacts**; the start scripts require an existing `dist/` build. Prepared executables can be distributed separately as release assets. See [repository and release preparation](docs/REPOSITORY.md).
+A source checkout does not include compiled binaries. Build them with the opening **Static build and installation** instructions; the start scripts require an existing `dist/` build. Prepared executables can be distributed separately as release assets. See [repository and release preparation](docs/REPOSITORY.md).
 
 Use the file that matches both your operating system and processor:
 
@@ -1365,7 +1462,7 @@ Ctrl+C requests immediate exit 130. Inspect the work status before any supported
 
 ### Running binaries versus compiling source
 
-To use supplied binaries you do not need Go or Python. To compile, install the Go version specified by [go.mod](go.mod), Go 1.26.0 or newer; retained current builds used Go 1.26.8, and use the repository's build script. Initial dependency download may need network access. The build creates six static-target executables and checks platform-library dependencies; compilation alone is not a native runtime test.
+The opening [Static build and installation](#static-build-and-installation) section explains tool requirements, all six targets and user-local installation. Use those steps for your first build. The commands below are a reminder for an existing source checkout; compilation alone is not a native runtime test.
 
 ```sh
 scripts/build.sh

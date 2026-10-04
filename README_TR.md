@@ -2,6 +2,101 @@
 
 **Türkçe** · [English user guide](README.md)
 
+## Statik derleme ve kurulum
+
+Çalışan bir program elde etmek için önce bu bölümden başlayın. Git deposunda kaynak kod bulunur; `dist/` altındaki derlenmiş programlar yerel derleme çıktısıdır ve yeni alınan depo kopyasına dahil değildir.
+
+### 1. Statik derleme ne demektir?
+
+Derleme betikleri Go uygulamasını `CGO_ENABLED=0`, `netgo` ve `osusergo` ile derler, ardından her programın platform kütüphanesi bağımlılıklarını kontrol eder. Oluşan uygulamayı **çalıştırmak** için C derleyicisi veya ayrıca kurulmuş Go/Python çalışma ortamı gerekmez. Bu betiklerle **derlemek** için Go ve Python gerekir.
+
+Linux programlarında dinamik platform kütüphanesi bağımlılığı yoktur. Windows standart Windows sistem DLL'lerini kullanmaya devam eder; macOS sistem çalışma ve DNS çözümleme kütüphanelerini ve yerel sertifika çerçevelerini kullanır. Dolayısıyla macOS dosyası sistem kütüphanesiz, tamamen bağımsız bir program değildir. İsteğe bağlı Volatility, Sleuth Kit, bellek edinim sürücüsü ve yerel modeller ayrı araçlardır; statik derlemeye dahil edilmez.
+
+### 2. Derleme araçlarını hazırlayın
+
+- **Go:** `go.mod`, Go 1.26.0 veya yenisini ister. Saklanan güncel sürüm derlemeleri **Go 1.26.8** kullanır; kayıtlı derleme düzenini izlemek için bu sürümü kullanın.
+- **Python 3.11 veya yenisi:** kaynak parmak izi ve program bağımlılık kontrolünde standart kütüphane kullanılır. Yalnızca derlemek için bağımsız test paketi bağımlılıklarını kurmanız gerekmez.
+- **Git:** aşağıdaki depo kopyalama komutlarında gerekir. Kaynak arşivini zaten açtıysanız onun proje klasörüne girin.
+- **Terminal:** Linux/macOS'ta Bash, Windows'ta PowerShell. Go modülleri önbellekte değilse ilk indirme yapılandırılmış modül kaynaklarına erişim ister.
+
+Araçları terminalde kontrol edin; derlemeyi `go.mod` ve `scripts/` klasörünün bulunduğu proje kökünde çalıştırın.
+
+### 3. Linux veya macOS'ta derleyin
+
+```sh
+git clone https://github.com/cumakurt/k957.git
+cd k957
+go version
+python3 --version
+bash scripts/build.sh
+```
+
+Depo zaten varsa `git clone` adımını atlayıp `cd` ile mevcut kopyaya girin. Betik `dist/` altında altı hedef dosyası oluşturur: Linux, Windows ve macOS için AMD64/ARM64. Her hedefte derleme ilerlemesini gösterir ve platform kütüphanelerini denetler. `BUILD COMPLETE`, derleme/kontrol sırasının tamamlandığını belirtir; bütün hedeflerin gerçek bilgisayarda çalıştırıldığı anlamına gelmez.
+
+Intel/AMD işlemcili Linux için:
+
+```sh
+./dist/k957-linux-amd64 version
+./dist/k957-linux-amd64 help
+```
+
+Apple Silicon macOS için:
+
+```sh
+./dist/k957-darwin-arm64 version
+./dist/k957-darwin-arm64 help
+```
+
+ARM64 Linux'ta `k957-linux-arm64`, Intel Mac'te `k957-darwin-amd64` kullanın. İndirilen/kopyalanan Unix dosyasında önce `chmod +x <dosya-yolu>` gerekebilir.
+
+### 4. Windows'ta derleyin
+
+PowerShell açıp çalıştırın:
+
+```powershell
+git clone https://github.com/cumakurt/k957.git
+cd k957
+go version
+python --version
+.\scripts\build.ps1
+.\dist\k957-windows-amd64.exe version
+.\dist\k957-windows-amd64.exe help
+```
+
+Windows betiği de altı hedefi derleyip platform kütüphanelerini kontrol eder. ARM64 Windows işletim sisteminde `.\dist\k957-windows-arm64.exe` çalıştırın. Betik, `python` komutunun Python 3.11 veya yenisini, `go` komutunun seçtiğiniz Go derleyicisini bulmasını bekler. Komut bulunamazsa derlemeden önce ilgili aracın kurulum/PATH ayarını tamamlayın. PowerShell betiği engelliyorsa bilgisayarın betik çalıştırma politikasını izleyin; diğer başlangıç sorunları için sorun giderme bölümüne bakın.
+
+### 5. Kurun veya doğrudan çalıştırın
+
+Zorunlu kurulum programı, arka plan hizmeti veya veritabanı sunucusu yoktur. `dist/` içindeki doğru dosyayı çalıştırmak yeterlidir. Hazır programı ayrıca edindiyseniz kontrol ettiğiniz bir klasöre koyun; bağımsız güvenilen sürüm/özet bilgisiyle doğrulayıp hedefe uygun dosya adını kullanın. Bu kılavuz, indirilebilir GitHub sürümünün zaten yayımlandığını iddia etmez.
+
+Derleme sonrasında kullanıcıya özel Linux kurulumu:
+
+```sh
+mkdir -p "$HOME/.local/bin"
+cp ./dist/k957-linux-amd64 "$HOME/.local/bin/k957"
+chmod +x "$HOME/.local/bin/k957"
+"$HOME/.local/bin/k957" version
+"$HOME/.local/bin/k957" help
+```
+
+macOS'ta kaynak adını uygun `k957-darwin-*` dosyasıyla değiştirin. `$HOME/.local/bin` zaten PATH içindeyse `k957` yazabilirsiniz; değilse yukarıdaki tam yolu kullanın. Derleme ve kullanıcıya özel kurulum root istemez; sonraki bazı edinim yöntemleri uygun ayrıcalık ister.
+
+Kullanıcıya özel Windows kurulumu:
+
+```powershell
+$k957Bin = Join-Path $env:LOCALAPPDATA 'k957\bin'
+New-Item -ItemType Directory -Force -Path $k957Bin | Out-Null
+Copy-Item .\dist\k957-windows-amd64.exe (Join-Path $k957Bin 'k957.exe')
+& (Join-Path $k957Bin 'k957.exe') version
+& (Join-Path $k957Bin 'k957.exe') help
+```
+
+ARM64 Windows'ta kaynak dosyayı ARM64 karşılığıyla değiştirin. İsterseniz klasörü sonradan kullanıcı PATH'ine ekleyip `k957` kısa adını kullanın. Normal kullanımda yalnızca program dosyasını kopyalayabilirsiniz; `start-unix.sh` ve `start-windows.cmd` ise yanlarında `dist/` bulunan özgün proje düzenini bekler.
+
+`version` ve `help` bilgisayarınızı toplamaz. Bunlar çalışınca **Hazırlık** ve **İlk uygulama** bölümlerine geçin. Program güncellemelerini delil/rapor klasörlerinden ayrı tutun. Derleme kimliği, doğrulama ve sürüm paketleme için [ilerideki derleme bölümü](#derleme-doğrulama-ve-sürüm-dosyaları) ve [depo hazırlığı](docs/REPOSITORY.md) belgesine bakın.
+
+## Uygulamaya genel bakış
+
 k957; bilgisayardaki verileri delil paketi olarak toplamanıza, sonradan değişip değişmediğini kontrol etmenize, desteklenen kayıtları incelemenize ve rapor oluşturmanıza yardımcı olur. Programı terminale komut yazarak kullanırsınız. Hazır çalıştırılabilir dosyaları kullanmak için yazılım geliştirmeniz gerekmez.
 
 Örneğin günlük dosyalarının bulunduğu bir klasörü koruyabilir, başarısız oturum açma kayıtlarını bulabilir, desteklenen bir tarayıcı geçmişi veritabanını inceleyebilir, farklı bilgisayarlardan alınmış koleksiyonları birlikte değerlendirebilir ve kaynak delile başvuru içeren bir PDF hazırlayabilirsiniz. Bir eşleşmenin bulunması, tek başına saldırı gerçekleştiğini veya bir kişinin sorumlu olduğunu göstermez.
@@ -12,7 +107,7 @@ Bu belge güncel programın kullanımını anlatır. Programın ekran mesajları
 
 ## Bu kılavuzu nasıl kullanmalısınız?
 
-1. **Hazırlık** ve **İlk uygulama** bölümlerinden başlayın. Bunlarda yapay örnek dosyalar kullanılır.
+1. Önce **Statik derleme ve kurulum**, ardından **Hazırlık** ve **İlk uygulama** bölümlerini okuyun. Bunlarda yapay örnek dosyalar kullanılır.
 2. Bir raporu sonuç olarak değerlendirmeden önce **Sonuçları anlama** bölümünü okuyun.
 3. Yapacağınız işe uygun **Kullanım senaryosunu** seçin.
 4. Belirli bir seçeneğe ihtiyaç duyduğunuzda **Komutların ayrıntılı açıklaması** bölümüne bakın. Her komutta amacı, örneği, beklenen sonucu ve yardım ekranında sunulan tüm seçenekler bulunur.
@@ -20,6 +115,8 @@ Bu belge güncel programın kullanımını anlatır. Programın ekran mesajları
 
 İçindekiler:
 
+- [Statik derleme ve kurulum](#statik-derleme-ve-kurulum)
+- [Uygulamaya genel bakış](#uygulamaya-genel-bakış)
 - [Hazırlık](#hazırlık)
 - [Temel kavramlar](#temel-kavramlar)
 - [İlk uygulama](#ilk-uygulama)
@@ -40,7 +137,7 @@ Bu belge güncel programın kullanımını anlatır. Programın ekran mesajları
 
 ### Doğru çalıştırılabilir dosyayı seçin
 
-Kaynak kod deposunun kopyasında derlenmiş programlar bulunmaz. **Derleme, doğrulama ve sürüm dosyaları** bölümündeki adımlarla üretin; başlangıç betikleri `dist/` altında mevcut derleme ister. Hazırlanan programlar ayrıca sürüm dosyaları olarak dağıtılabilir. [Depo ve sürüm hazırlığı](docs/REPOSITORY.md) belgesine bakın.
+Kaynak kod deposunun kopyasında derlenmiş programlar bulunmaz. İlk **Statik derleme ve kurulum** bölümündeki adımlarla üretin; başlangıç betikleri `dist/` altında mevcut derleme ister. Hazırlanan programlar ayrıca sürüm dosyaları olarak dağıtılabilir. [Depo ve sürüm hazırlığı](docs/REPOSITORY.md) belgesine bakın.
 
 İşletim sistemine ve işlemci türüne birlikte uygun dosyayı kullanın:
 
@@ -1365,7 +1462,7 @@ Ctrl+C hemen 130 çıkışı ister. Desteklenen devamdan önce çalışma durumu
 
 ### Hazır dosya kullanmak ile kaynak derlemek
 
-Hazır programı kullanmak için Go/Python gerekmez. Derlemek için [go.mod](go.mod) sürümünü, Go 1.26.0 veya yenisini (saklanan güncel derlemeler Go 1.26.8 kullanır) kurup deponun derleme betiğini çalıştırın. İlk bağımlılık indirmesi ağ isteyebilir. Betik altı statik hedef dosyasını oluşturup platform kütüphanesi bağımlılıklarını kontrol eder; derleme tek başına yerel çalışma testi değildir.
+Başlangıçtaki [Statik derleme ve kurulum](#statik-derleme-ve-kurulum) bölümü araç gereksinimlerini, altı hedefi ve kullanıcıya özel kurulumu açıklar. İlk derlemede o adımları izleyin. Aşağıdaki komutlar mevcut kaynak kopyası için hatırlatmadır; derleme tek başına yerel çalışma testi değildir.
 
 ```sh
 scripts/build.sh

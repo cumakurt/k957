@@ -1,51 +1,49 @@
-# Toplama öncesi kontrol
+# Acquisition preflight
 
-Version 0.11.0 also supports `preflight --resume` and `collect --resume --check-space` for existing plain/encrypted checkpoints. See [RESUME_PREFLIGHT.md](RESUME_PREFLIGHT.md) for remaining-space accounting, required original options/key and validation limits. The fresh-acquisition workflow is documented below.
+Version 0.11.0 also supports `preflight --resume` and `collect --resume --check-space` for existing plain/encrypted checkpoints. See [RESUME_PREFLIGHT.md](RESUME_PREFLIGHT.md) for remaining-space accounting, required original options/key and validation limits. The fresh-acquisition workflow is documented below. The historical filename is retained for existing links; this document is in English.
 
-`preflight`, yeni bir mantıksal edinimin kaynak envanterini ve tahmini depolama ihtiyacını JSON olarak gösterir. Dosya içeriklerini okumaz/kopyalamaz, çıktı veya çalışma dizini oluşturmaz, yer ayırmaz. Dizin/metadata okumaları işletim sistemindeki erişim kayıtlarını etkileyebilir; hedefte sıfır değişiklik garantisi değildir.
-
-```sh
-k957 preflight --root /kaynak --out /harici/vaka.k957 \
-  --work /harici/vaka-work --reserve 268435456
-```
-
-Hedeflerin üst dizinleri mevcut, çıktı ve çalışma alanı ise henüz oluşturulmamış olmalıdır. `--work` verilmezse yalnızca çıktı için bütçe hesaplanır. `--encrypted` şifreli çalışma/çıktı ek yükünü hesaba katar; anahtar okumaz ve doğrulamaz. Sonuç standart çıktıya yazılır; yolları ve dosya adlarını içerebilir. JSON'u kaydedecekseniz kaynağın dışında, uygun erişim izinlerine sahip bir konum seçin.
-
-## Sonuçların anlamı
-
-| outcome | Anlamı | CLI çıkış kodu |
-|---|---|---|
-| pass | Uygulanan kontrollerde sorun bulunmadı | 0 |
-| warning | Kaynak/hedef aynı dosya sistemi, boş seçim veya envanter dışlamaları var | 0 |
-| unknown | Dosya sistemi kimliği veya boş alan belirlenemedi | 1 |
-| blocked | Yol çakışması, mevcut hedef veya tahmini alan yetersizliği var | 1 |
-
-Birden fazla durum varsa blocked, unknown, warning, pass sırasıyla en güçlü sonuç seçilir. `checks` ve `inventory_issues` her zaman incelenmelidir; warning sonucu tam envanter garantisi vermez.
-
-## Alan hesabı
-
-Ön kontrol, devam ettirilebilir toplamanın metadata envanterini kullanır. Varsayılanlar dosya başına 256 MiB, toplam 2 GiB ve 10.000 dosyadır; `--max-file`, `--max-total`, `--max-files` ile değiştirilebilir. Symlink/özel dosyalar ve limit dışı dosyalar gerekçeleriyle atlanır. Dosya sayısı sınırına erişildiğinde kalan ağaç gezilmez. `eligible_bytes`, seçilen dosyaların mantıksal boyutudur; fiziksel disk doluluğu değildir. Tek geçişli toplama ve daha sonra değişmiş bir kaynak farklı sonuç verebilir.
-
-Tahmin, seçili byte sayısına ZIP/manifest için %1 + dosya başına 1 KiB + 16 MiB; çalışma alanı için %10 + dosya/parça başına 4 KiB + 64 MiB planlama payı ekler. Şifreli modda blob ve zarf ek yükleri ayrıca eklenir. Bunlar kanıtlanmış en kötü durum sınırları değildir. Özellikle dosya sistemi tahsis birimi, quota, snapshot, sıkıştırma, uzun yollar, büyüyen kaynak ve eşzamanlı yazıcılar gerçek tüketimi değiştirebilir.
-
-Çıktı ve çalışma alanı aynı dosya sistemindeyse ihtiyaçları toplanır; `--reserve` yalnızca bir kez eklenir. Farklı dosya sistemlerinde her birine ayrı rezerv eklenir. Aynı dosya sisteminden farklı zamanlarda alınan kapasite örneklerinin küçüğü kullanılır. Varsayılan rezerv 256 MiB'dir. Toplama alan tüketirken tekrar kontrol yapılmaz, alan kilitlenmez/rezerve edilmez.
-
-Linux/macOS üzerinde statfs ve aygıt kimliği, Windows üzerinde GetDiskFreeSpaceExW ve volume GUID kullanılır. Farklı bölümler aynı fiziksel aygıtta olabilir; bu modül fiziksel disk ayrımı veya write blocker kontrolü yapmaz. Kimliği belirlenemeyen ağ/paylaşım dosya sistemleri unknown dönebilir.
-
-## Toplamanın önüne bağlama
+`preflight` reports a new logical acquisition's source inventory and estimated storage requirements as JSON. It does not read/copy file contents, create output/work directories or reserve space. Directory/metadata reads can affect operating-system access records; this is not a zero-change guarantee.
 
 ```sh
-k957 collect --root /kaynak --out /harici/vaka.k957 \
-  --work /harici/vaka-work --case VAKA-001 --operator Analist \
-  --scope "Onaylı klasör" --check-space --reserve 268435456
+k957 preflight --root /source --out /external/case.k957 \
+  --work /external/case-work --reserve 268435456
 ```
 
-`--check-space` isteğe bağlıdır. blocked/unknown halinde toplama başlamaz; warning/pass halinde devam eder. Ayrıntılı JSON için bağımsız `preflight` komutunu kullanın. Şifreli toplamada `--encryption-key` verilmesi tahmini şifreli moda geçirir; stderr yalnızca ön kontrol sonucunu gösterir.
+Destination parent directories must exist; output and work paths must be new. Without `--work`, only the output budget is calculated. `--encrypted` includes encrypted staging/output overhead without reading or validating a key. Stdout can include source paths and filenames. Save it outside the source tree with appropriate permissions.
 
-Fresh acquisition rebuilds its inventory after preflight. Resume planning uses the frozen checkpoint and supports `--check-space`; see [RESUME_PREFLIGHT.md](RESUME_PREFLIGHT.md). System snapshots remain unsupported. Reading/writing permissions, destination health and evidence content integrity are not established by a capacity plan; collection performs its own checks. No point-in-time consistency or reserved capacity is implied.
+## Outcomes
 
-## Doğrulama ve uyumluluk
+- `pass`: implemented checks found no issue; exit 0.
+- `warning`: shared source/destination filesystem, empty selection or inventory exclusions; exit 0.
+- `unknown`: filesystem identity or capacity unavailable; exit 1.
+- `blocked`: overlapping paths, existing destination or insufficient estimated space; exit 1.
+
+Precedence is blocked, unknown, warning, pass. Always inspect `checks` and `inventory_issues`; warning does not guarantee a complete inventory.
+
+## Capacity accounting
+
+Preflight uses the resumable collector's metadata inventory. Defaults are 256 MiB per file, 2 GiB total and 10,000 files, adjustable with `--max-file`, `--max-total` and `--max-files`. Symlinks, special files and files outside limits are skipped with reasons. Traversal stops at the file-count ceiling. `eligible_bytes` means selected logical bytes, not allocated disk space. Single-pass collection and a subsequently changed source may produce different results.
+
+The output estimate adds 1% of selected bytes, 1 KiB per file and 128 MiB for ZIP/manifest overhead. Work storage adds 10%, 4 KiB per file/part and 512 MiB for checkpoint replacement. Encrypted blob/envelope overhead is added separately. These are planning allowances, not proven worst-case bounds. Allocation units, quotas, snapshots, compression, long paths, growing sources and concurrent writers affect actual consumption.
+
+Output/work requirements sharing one filesystem are combined with one reserve. Different filesystems receive separate reserves. When samples differ, the smallest available capacity is used. The default reserve is 256 MiB. Space is neither reserved nor continuously rechecked during acquisition.
+
+Linux/macOS use statfs/device identity; Windows uses GetDiskFreeSpaceExW and volume GUID. Different partitions may share a physical device. This module does not verify physical-device separation or write blockers. Unidentified network/shared filesystems may return unknown.
+
+## Gate collection
+
+```sh
+k957 collect --root /source --out /external/case.k957 \
+  --work /external/case-work --case CASE-001 --operator Examiner \
+  --scope "Authorized directory" --check-space --reserve 268435456
+```
+
+`--check-space` is optional: blocked/unknown prevents collection, warning/pass permits it. Use standalone `preflight` for detailed JSON. `--encryption-key` selects the encrypted estimate; stderr shows the preflight outcome.
+
+Fresh acquisition rebuilds its inventory after preflight. Resume planning uses the frozen checkpoint and supports `--check-space`; see [RESUME_PREFLIGHT.md](RESUME_PREFLIGHT.md). System snapshots remain unsupported. Capacity planning does not establish permissions, destination health, content integrity, point-in-time consistency or reserved capacity; collection performs its own checks.
+
+## Validation and compatibility
 
 Controlled unit tests cover capacity boundaries, uncertainty, combined/separate budgets and resume guards. `scripts/preflight_integration.py`, `scripts/resume_integration.py` and `scripts/encrypted_integration.py` exercise native capacity, unchanged checkpoint bytes and gated recovery. Current platform receipts are in [TEST_REPORT.md](TEST_REPORT.md). Native Windows/macOS devices and physical disk exhaustion remain untested.
 
-v0.5 ve daha eski açık checkpoint işleri oluşturuldukları binary sürümüyle tamamlanmalıdır. Bu sürüm eski v1/v2 final delil paketlerini okuyabilir; değerlendirme dosyaları ise analiz sürümüne bağlıdır ve yeni analiz için yeniden üretilmelidir.
+Complete earlier checkpoints with their original binary. Earlier v1/v2 final packages remain readable; review histories are bound to their analyzer version and must be regenerated for a new analysis.

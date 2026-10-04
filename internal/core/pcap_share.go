@@ -72,7 +72,7 @@ func projectSharedNetwork(a Analysis, s *SharedReport, m *shareMasker, sourceID 
 		s.CaptureSummaries = append(s.CaptureSummaries, SharedCaptureSummary{Sections: c.Sections, InterfaceCount: len(c.Interfaces), Blocks: c.Blocks, IgnoredBlocks: c.IgnoredBlocks, Evidence: sourceID(c.Evidence), Source: m.value("paths", c.Source), Format: shareEnum(c.Format, "PCAP", "PCAPNG"), Records: c.Records, Parsed: c.Parsed, Skipped: c.Skipped, TruncatedPackets: c.TruncatedPackets, SkipReasons: reasons, FlowOmittedPackets: c.FlowOmittedPackets, Limited: c.Limited, HasError: c.Error != ""})
 	}
 	if len(a.CaptureSummaries) > 0 {
-		s.Notes = append(s.Notes, "PCAP/PCAPNG yalnızca TCP/UDP başlıklarını kapsar; payload, checksum, yeniden birleştirme veya oturum analizi yoktur. Akışlar aynı yönlü 5'li değerleri paket bazında toplar; PCAPNG bölüm ve arayüzleri ayrı gruplanır. MAC/VLAN ve SLL2 işletim sistemi arayüz kimliği gruplamaya dahil değildir. Zamansız/eski paket blokları atlanır; diğer bloklar yalnızca sayılır. Portlar, uzunluklar, sayaçlar ve paket konumları paylaşımda korunur; atlanan kayıtları kapsam tablosundan inceleyin.")
+		s.Notes = append(s.Notes, "Shared PCAP/PCAPNG fields contain TCP/UDP packet headers and directional flow totals; payload bytes, checksum details and session reconstruction are omitted from this projection. Flows group packets by directional five-tuple, separately for each PCAPNG section/interface. MAC/VLAN and SLL2 operating-system interface identity are not grouping keys. Untimed/obsolete packet blocks are skipped; other blocks are counted only. Ports, lengths, counts and packet positions are retained; inspect the coverage table for omissions.")
 	}
 }
 func exportSharedNetwork(s SharedReport, out string) error {

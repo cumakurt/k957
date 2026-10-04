@@ -1,69 +1,65 @@
-# k957 0.4.0 — Yapılandırılmış loglar ve kaynaklar arası ilişkiler
+# k957 0.4.0 — Structured logs and cross-source correlations
 
-`analyze` artık UTF-8 CSV ve JSONL kayıtlarından zaman, kullanıcı, cihaz ve IP alanlarını çıkarır. Ek bağlantı veya ağ servisi gerekmez. Mevcut `collect` ile logları toplayıp `analyze` çalıştırmanız yeterlidir.
+`analyze` extracts time, user, host and IP fields from UTF-8 CSV/JSONL without network services. Collect logs using the existing collector and then analyze. The historical filename is retained; this document is in English.
 
 ```sh
-k957 collect --root loglar --out vaka.k957 --case VAKA-004 --operator Analist --scope "Onaylı loglar"
-k957 analyze --in vaka.k957 --out rapor
+k957 collect --root logs --out case.k957 --case CASE-004 --operator Examiner --scope "Authorized logs"
+k957 analyze --in case.k957 --out report
 ```
 
-## Desteklenen şema
+## Supported schema
 
-| Anlam | Desteklenen alanlar |
-|---|---|
-| Zaman | `timestamp`, `time`, `@timestamp` |
-| Açıklama | `message`, `event` |
-| Kullanıcı | `user`, `username` |
-| Cihaz | `host`, `hostname` |
-| Kaynak IP | `src_ip`, `source_ip` |
-| Hedef IP | `dst_ip`, `destination_ip` |
+- Time: `timestamp`, `time`, `@timestamp`.
+- Description: `message`, `event`.
+- User: `user`, `username`.
+- Host: `host`, `hostname`.
+- Source IP: `src_ip`, `source_ip`.
+- Destination IP: `dst_ip`, `destination_ip`.
 
-Zaman zorunludur ve açık saat dilimli RFC3339 biçiminde olmalıdır: `2026-09-27T14:00:00+03:00` veya `2026-09-27T11:00:00Z`. Diğer alanlar isteğe bağlıdır. Tanınan alanlarda metin değerleri beklenir; sayılar/nesneler reddedilir, null boş alan gibi ele alınır. Aynı anlamdaki iki alan farklı dolu değerler taşıyorsa kayıt atlanır. IP dolu ancak geçersizse tüm olay atlanır. JSON anahtarları büyük/küçük harfe duyarlıdır; bilinmeyen alanlar analizde kullanılmaz, orijinal delilde kalır.
-
-CSV örneği:
+Time is required as RFC3339 with an explicit offset, such as `2026-09-27T14:00:00+03:00` or `2026-09-27T11:00:00Z`. Other fields are optional strings; numbers/objects are rejected and null means empty. Conflicting nonempty aliases skip the record. Invalid nonempty IPs skip the whole event. JSON names are case-sensitive; unknown fields remain in original evidence but are not interpreted.
 
 ```csv
 timestamp,user,host,src_ip,dst_ip,message
 2026-09-27T14:00:00+03:00,alice,workstation,192.0.2.1,198.51.100.2,login
 ```
 
-JSONL örneği (her fiziksel satır tek JSON nesnesi):
+JSONL requires one object per physical line:
 
 ```json
 {"timestamp":"2026-09-27T11:01:00Z","username":"alice","hostname":"workstation","destination_ip":"192.0.2.1","message":"access"}
 ```
 
-- `.csv`: virgül ayırıcı, başlık satırı, çift tırnaklı/çok satırlı alanlar ve CRLF desteklenir. CSV başlıkları küçük harfe çevrilip dış boşluklar kaldırılır. Yinelenen/boş başlık reddedilir; 128 sütun sınırı vardır.
-- `.jsonl` / `.ndjson`: satır başına nesne; yinelenen JSON anahtarları reddedilir. CSV'nin çok satırlı alan desteği JSONL için geçerli değildir.
-- Diğer UTF-8 dosyalarda açık RFC3339 ile başlayan metin veya JSON nesnesi satırları okunur.
-- Noktalı virgül/sekme ayırıcılar, UTF-16, otomatik yıl/saat dilimi tahmini, iç içe ECS alanları ve native EVTX/journal formatları bu sürümde desteklenmez.
+- CSV supports commas, a header, quoted/multiline fields and CRLF. Header names are trimmed/lowercased; empty/duplicate names are rejected, with at most 128 columns.
+- JSONL/NDJSON rejects duplicate keys and does not permit multiline objects.
+- Other UTF-8 files support lines beginning with explicit RFC3339 or a JSON object.
+- This text parser does not infer separators, years, timezones or nested ECS fields, nor parse UTF-16/native journal/EVTX. Separate current native workers are documented in [ARTIFACTS.md](ARTIFACTS.md).
 
-## Kaynak izlenebilirliği
+## Source traceability
 
-Olaylarda delil kimliği, kaynak yolu, fiziksel satır numarası, sıfır tabanlı byte başlangıcı, orijinal zaman ve UTC karşılığı korunur. CSV'de satır ve byte konumu çok satırlı kaydın başlangıcını gösterir; metin içindeki bir alanın ayrı offset'i değildir. CSV CRLF normalizasyonu ayrıştırılmış açıklamayı etkileyebilir; tam byte içeriği orijinal delildedir. Açıklama görüntüsü 400 Unicode karakterle sınırlıdır.
+Events retain evidence ID, source path, physical line, zero-based byte offset, original timestamp and UTC conversion. Multiline CSV references identify the record start rather than an individual field. CSV CRLF normalization can affect parsed descriptions; original bytes remain authoritative. Description projection is bounded at 400 Unicode characters.
 
-`analysis.json` içindeki `parse_summaries` ve HTML'deki **Ayrıştırma kapsamı** tablosu, incelenen dolu kayıt, üretilen olay ve atlanan kayıt sayılarını gösterir. Boş satırlar sayılmaz. CSV yapısal hata veya yanlış sütun sayısında o dosyanın ayrıştırılması durur; hata ve atlanan kayıt sayısı yazılır. `limited=true` kalan kayıtların olay bütçesi nedeniyle işlenmediğini belirtir; `rows` bu durumda tüm dosyanın kayıt sayısı değildir.
+`parse_summaries` and the HTML parsing-coverage table expose examined nonempty records, emitted events and skips. Empty lines are not counted. CSV structural/column errors stop parsing that file with diagnostics. `limited=true` discloses an event-budget stop; its `rows` is not the complete file count.
 
-Metin/binary/boyut bütçesi nedeniyle hiç incelenmeyen dosyalar mevcut analiz notlarında belirtilir. Düz metin kuralları satır bazlı çalışmaya devam eder; çok satırlı CSV alanlarının birleştirilmiş içeriğinde ayrı kural motoru uygulanmaz.
+Unexamined text/binary/size-budget inputs are disclosed separately. Literal rules remain physical-line-based; they do not run as a separate engine over joined multiline CSV fields.
 
-## İlişkilendirme
+## Correlation
 
-Aynı kullanıcı, cihaz adı veya IP değeri en az iki farklı delil nesnesinde görülürse bir ilişki kaydı üretilir. IP adresleri standartlaştırılır (IPv4-mapped IPv6, IPv4'e dönüştürülür). Cihaz adları küçük harfe çevrilir ve sondaki nokta kaldırılır. Kullanıcı adı büyük/küçük harfe duyarlıdır; dış boşluklar kaldırılır. Kaynak ve hedef IP aynı olayda aynıysa olay bir kez sayılır; iki rol birlikte kaydedilir.
+A shared user/host/IP across at least two evidence objects creates a candidate correlation. IPs are canonicalized, including mapped IPv4; hosts are lowercased with a trailing dot removed; users are trimmed and case-sensitive. Equal source/destination IP in one event counts once with both roles.
 
-Her ilişkide olay sayısı, farklı delil sayısı, ilk/son zaman ve kaynak kayıt referansları vardır. Çıktılar: HTML tablosu, `analysis.json` ve özet `correlations.csv`. Ayrıntılı referanslar JSON ve HTML'dedir. Sonuç sıralaması belirlenimlidir.
+Results retain event/object counts, first/last times and bounded references in JSON/HTML, with summaries in `correlations.csv`. Ordering is deterministic.
 
-**Ortak değer, aynı kişi/cihazın veya saldırının kanıtı değildir.** NAT, paylaşılan hesap, aynı dosyanın farklı kopyaları, yeniden kullanılan IP'ler ve isim çakışmaları ilişki oluşturabilir. İki delil nesnesi, iki bağımsız kaynak anlamına gelmez. Zaman yakınlığı için otomatik eşik veya nedensellik çıkarımı yoktur; sadece desteklenen kayıtlardaki ortak alanlar listelenir. DNS, WHOIS ve tehdit istihbaratı sorgusu yapılmaz.
+**Shared values do not establish identity, a common device or an attack.** NAT, shared accounts, duplicate files, reused IPs and name collisions can create matches. Two objects are not necessarily independent sources. These basic correlations do not infer causality/time proximity or perform DNS/WHOIS/threat-intelligence lookups. Current examiner-supplied temporal estimates are a separate workflow.
 
-## Kaynak sınırları
+## Resource limits
 
-- Mevcut 8 MiB/dosya ve 128 MiB toplam UTF-8 okuma sınırı korunur.
-- En fazla 50.000 ayrıştırılmış log olayı; dosya metadata olayları buna eklenir.
-- JSONL satırı ve CSV hücresi en fazla 65.536 byte.
-- Kullanıcı/cihaz/IP alanı en fazla 256 byte; limit aşımında olay atlanır.
-- En fazla 20.000 farklı varlık anahtarı. Yeni değerler sınırdan sonra atlanır ve analiz notuna yazılır.
-- İlişki başına en fazla 200 referans listelenir; olay/delil sayıları işlem gören olaylardan hesaplanmaya devam eder. Referans listesi tüm kaynakları temsil etmeyebilir; `references_truncated` işaretine bakın ve zaman çizelgesini inceleyin.
-- Otomatik bulgu sınırına ulaşılması analizi erken bitirebilir; mevcut sınırlama notu korunur.
+- 8 MiB per text file and 128 MiB total UTF-8 scanning.
+- 50,000 parsed log events; file metadata events are additional.
+- 65,536-byte JSONL lines/CSV cells.
+- 256-byte user/host/IP fields; oversized records are skipped.
+- 20,000 distinct entity keys; later new values are omitted with a note.
+- 200 references per correlation; processed event/object counts continue beyond reference projection. Inspect `references_truncated` and the full timeline.
+- Finding truncation is disclosed; current analysis continues supported parsing after reaching the finding cap.
 
-## Sürüm geçişi
+## Version compatibility
 
-v1/v2 delil paketleri okunur. Eski değerlendirme kayıtları sürüm dayanağı nedeniyle 0.4'e otomatik taşınmaz; eski imzalı raporları koruyun ve yeni analizi yeniden değerlendirin. Önceki sürümle açılmış toplama checkpoint'lerini aynı önceki binary ile tamamlayın; final paketleri 0.4 ile analiz edebilirsiniz.
+v1/v2 packages remain readable. Reviews are bound to analyzer version; preserve earlier signed histories and reanalyze for new decisions. Complete old checkpoints with their producing binary and analyze the final package using a compatible current reader.

@@ -1,4 +1,85 @@
-# Değişiklikler
+# Changelog
+
+## 0.15.0 — developer preview
+
+- Added exact native parser/record and USN file-ID filters to case queries, the local viewer and signed bookmarks. New indexes include native reference IDs in literal search. Related USN navigation retains collection/evidence scope; viewer requests cancel/discard stale results and paginate the last submitted filter set.
+
+- Added source-scoped USN file record groups with complete emitted-record references and grouped JSON/CSV exports. HTML/PDF/DOCX show names, parents, reason flags and observed time bounds with explicit group/property omission counts; shared projections omit private groups.
+
+- Added isolated offline USN v2/v3 examination, original file/parent identifiers and FILETIME/offset references, decoded reason flags, structured event rule fields and usn.csv. Unsupported/malformed records and projection limits are explicit; live USN acquisition, full-path reconstruction and native reference validation remain pending.
+
+- Added a colored Bash build console with target progress, artifact sizes, durations, failure diagnostics, plain redirected output and final source-consistency checks.
+- Extended signed adaptive acquisition to Linux executable file mappings and Windows loaded modules/DLLs. Retained virtual addresses, Linux mapping/device/inode references, Windows module metadata, observed paths and explicit failures; report summaries expose mapping coverage.
+
+- Corrected little-endian LiME identification so renamed packaged memory images enter the memory pipeline. Removed the 4 MiB report-seal manifest ceiling while preserving version 1 signatures, strict JSON checks and per-file integrity verification. Manifest reads now check regular-file identity and support cancellation.
+
+- Added default native PDF folios for analysis, masked sharing, cases and selected records, with embedded fonts, source/omission receipts, page totals and recorded glyph escapes. Redesigned HTML and corrected printing of paginated/filterable rows.
+- Removed artificial memory image/range/result/tool runtime/output/symbol limits. Added complete hashed private string/URL/hit/observation JSONL, streaming full CSV, temporary/output filesystem staging, and discovery of all installed platform/global plugins with dump/thread options and failed/unavailable method receipts.
+- Added signed adaptive process-executable acquisition, exact offline SHA-256/IP/domain indicators with native/packet references, documented review ordering, Timesketch JSONL, observed hash/IP lists and explicitly supplied ATT&CK rule mappings.
+- Added independent report/IOC/portable-export and synthetic >8 GiB memory orchestration checks. Documented the remaining development and validation plan.
+
+- Removed image-sized temporary staging from default store/case RAM scanning. One read-only descriptor supplies both the scanner and SHA-256; results require the signed image hash plus file identity/size/mtime checks. External tools retain private staging. Added zero-capacity/unavailable-temp, mutation, replacement and cancellation regressions and signed CLI integration.
+- Labelled verification/analysis byte progress as read workload and mark failed batch operations as failed without forcing success checkmarks or 100%.
+
+- Standardized wizard, CLI help, shared HTML/JSON notices, operational documentation and current synthetic examples on English. The root README_TR.md remains the sole localized document. Local assistant instructions require English investigation suggestions while preserving exact source quotations.
+
+- Corrected the mismatch between the 100,000-object collection ceiling and the former 16 MiB manifest ceiling. Manifest generation/verification now share a 128 MiB bound and exact-byte-compatible per-entry encoding; checkpoint limits and preflight allowances were aligned.
+- Streamed legacy case inventory/timeline/bodyfile exports using additive SQLite projection tables, preserving numeric nanosecond ordering, stable ties and CSV escaping independently of the examination index limit. Case HTML and examination CSV now use synced exclusive output with failed-file cleanup.
+- Corrected piped case stdout to contain only its JSON summary; report navigation moved to stderr. Added regression checks and an explicit independently verified synthetic source/case load runner.
+
+- Added native SQLite/WAL browser-history, EVTX, clean Registry and binary launchd plist workers with verified private inputs, process/time/output limits and Linux seccomp/CPU controls.
+- Added explicit logical acquisition guarantees, separately identified SQLite online backups, bounded descriptor metadata and acquisition-epoch sampling. Full platform snapshots/ACL/ADS fidelity remain pending.
+- Added verified collection-record/signer snapshots and private archive copies bound to signed artifact hashes, preventing later path replacement from supplying unverified metadata. These copies require additional temporary disk space and I/O.
+- Added uniform stage coverage, immutable examination/hash checks, scoped case events/findings/reviews/activity/memory/boundary index, pagination and loopback read-only viewer.
+- Added structured all/any typed event rules, labelled-corpus confusion metrics, examiner-supplied clock/identity policies, signed case bookmarks and covered subset exports.
+- Added bounded TCP session candidates/reassembly, selected DNS/HTTP/TLS metadata and complete-packet checksums, with gap/overlap/offload semantics and packet provenance.
+- Added native Unicode PDF/DOCX, checked JSON writes, streamed analysis CSV, and domain-separated report-bundle signatures with file/source bindings and full/shared disclosure separation.
+- Added external offline Volatility enumeration, Sleuth Kit raw-image examination/inode recovery, and selected offline CloudTrail import with input/tool/provider scope provenance.
+- Added failed disk-tool receipts with bounded, hashed diagnostic outputs and explicit partial-file names; canceled/failed recovery never publishes a successful recovered file. Pre-invocation/hash failures still remove new output directories.
+- Added a loopback cached-model assistant accepting exact cited field quotations, with separate signed examiner decisions. Actual local inference passed three synthetic quotation tasks in the current retained run; an earlier wrong-field task miss is retained. Citation validity, requested-task quality and forensic assurance are recorded separately.
+- Added custody key validity/revocation policy and externally trusted witness head anchors. Trusted timestamping/hardware signing remain pending.
+- Added source fingerprints, build-info, pinned dependency notices and coherent six-target build/release/checksum generation. Native execution remains Linux AMD64; cross compilation is not device assurance.
+- Fixed PDF mid-word wrapping, Windows C-runtime DLL suffix checks and a stale CLI error test that accidentally invoked live full acquisition. Expanded independent artifact/document/tool comparisons and measured one-million-row derived-index behavior.
+- Disclosed unsupported known string properties in binary launchd projections. Added native Registry/binary plist and external JSON fuzz targets, and retained incremental fuzz diagnostics on command failure/timeout.
+- Fixed SQLite query-limit coverage when invalid rows produce no events: the lookahead now marks truncation, including skipped records. Added a regression that failed before the fix.
+- Evidence schemas v1/v2 remain readable. Older strict readers may reject new optional metadata; old checkpoint/review bases must be used with their producing analyzer version. Regenerate analysis/review bases for 0.15.0.
+- See docs/EXAMINATION_WORKFLOWS.md and docs/IMPLEMENTATION_PROGRESS.md for precise implemented scope, current validation and outstanding work. The eighteen-area plan is not fully complete.
+
+## 0.14.0
+
+- Relicensed under the GNU Affero General Public License v3 or later. See `LICENSE`.
+- Full-mode collection records now include `collector_sha256`, the SHA-256 of the executable that wrote them. The collection signature covers that field.
+- Analysis identifies file signatures from the first 560 bytes and writes `filetypes.csv`. An extension that disagrees with the signature is recorded, not turned into a finding by itself.
+- `analyze` and `share` accept `--hash-set`. `known-bad` SHA-256 values become unreviewed findings. `known-good` values are recorded and are not findings.
+- Analysis writes a Sleuth Kit `bodyfile.txt`. Only mtime is populated.
+- Added `k957 case`, which verifies every collection in a store and writes a derived dossier: inventory, cross-collection duplicate hashes, hash-set matches, signature mismatches, a bodyfile and an HTML brief. The dossier is not a new evidence package.
+- Collection records from 0.13.0 still verify. Resume checkpoints remain bound to the version that created them.
+- Evidence schemas v1/v2 remain readable. Physical disk imaging, native EVTX/registry/MFT parsing and in-process kernel reconstruction remain unimplemented. See `docs/CASE.md`.
+- Expanded Linux, Windows and macOS triage profiles: persistence locations, registry hives other than the password databases, Amcache, SRUM, Prefetch, browser history files, macOS quarantine/TCC/Safari history, and package metadata. Password hashes and browser credential stores are not collected.
+- Live snapshots add Linux logins, timers and package lists; Windows firewall, Winlogon, Sysmon, Defender, Terminal Services and BITS event XML; macOS kernel extensions, SIP, packages and a 30-minute unified log extract.
+- Analysis extracts scheduled-task commands, launchd program arguments, systemd ExecStart lines and Prefetch executable names into `persistence.csv`. See `docs/ARTIFACTS.md`.
+- Analysis interprets collected host evidence into `activity.csv`: SSH, sudo, cron, account creation, shell and PowerShell history, and Windows logon, process, service, task, account and PowerShell events.
+- `collect`, `preflight`, `verify`, `analyze`, `case` and `share` write a live stderr summary: phase, current item, percent when the work quantity is known, and an estimated remaining time. The summary is not stored as evidence.
+- Ctrl+C stops the process immediately from any command or phase and exits 130. The in-progress operation is not finished.
+- A terminal full `collect` prints a grouped summary instead of the collection record. The complete record remains `collection.json`. Piped stdout still receives JSON.
+- Terminal `verify`, `analyze` and `case` print a grouped summary of counts and per-collection status. Failed collections show a short reason. Piped stdout still receives JSON.
+- Memory analysis folds ASCII case without `bytes.ToLower`. Invalid UTF-8 in an image used to expand that copy, and an index into it could panic the scan.
+- `verify` reports bytes read. A single collection no longer shows 100% before its files are hashed.
+- `analyze` reports the same byte progress through verification and the memory scan. A single collection no longer shows 100% before that work starts.
+- `analyze` writes an English examination report: a brief, grouped literal-match samples, and browser pages for findings and inventory. The full timeline stays in `timeline.csv`. At that historical release, the masked shared report retained its original locale; it is English in 0.15.0.
+- A memory banner match is kept only when `linux version` is followed by a digit. Collector notes that contain those words no longer hide a later version line.
+- Memory analysis no longer depends on Volatility for triage. A stream of the image records ELF, PE and Mach-O headers, passwd-style accounts, `/proc/net` text rows, module `vermagic` strings, NUL-separated command lines, selected environment keys, and PEM headers in `memory-observations.csv`. Password hashes, secret values, and private-key bodies are omitted. These rows are presence in the image, not a kernel task or socket walk.
+
+## 0.13.0
+
+- Added zero-argument full mode: `collect` acquires physical memory, live system snapshots and the OS artifact profile; `verify` and `analyze` cover every `output/<hostname>/<UTC timestamp>/` collection.
+- Added a signed `k957-collection/1` record, `signing.pub`, and a coreutils-compatible `SHA256SUMS` list. A generated signing key is discarded after use; its fingerprint is printed.
+- Added Linux LiME v1 memory acquisition from `/proc/iomem` and `/proc/kcore`, plus an external-tool path for Windows and macOS. Images carry SHA-256, SHA-1 and MD5.
+- Added streaming LiME/raw analysis: literal ASCII and UTF-16LE rules, kernel banner, URL indicators, zero-page counts and Volatility 3 command lines. Reports add `memory.csv` and `memory-hits.csv`.
+- Store analysis uses a built-in literal triage rule set when `--rules` is omitted and writes every supported report plus a masked shared report.
+- A source read error now keeps the readable prefix instead of discarding the collection. Oversized snapshot files keep their prefix. `help` reports the current version and `-h` exits 0.
+- Live command snapshots now stop at 4 MiB. The previous cap was bypassed because `io.Copy` used `bytes.Buffer.ReadFrom`.
+- Evidence schemas v1/v2 remain readable. In-process process-list reconstruction, macOS native RAM capture and physical disk imaging remain unimplemented. See `docs/MEMORY.md`.
 
 ## 0.12.0
 
@@ -42,83 +123,84 @@
 
 ## 0.9.0
 
-- Klasik PCAP v2.4 dört endian/zaman varyantı; Ethernet/raw IPv4/IPv6 TCP/UDP.
-- İki VLAN etiketi ve sınırlı IPv6 uzantı yürüyüşü; fragmentleri gerekçeyle atlama.
-- Paket sıra/byte referansları, nanosaniye zamanları, portlar ve TCP bayrakları.
-- Dosya bazında yönlü beşli akış özetleri, boyut/sayaç/limit raporu.
-- PCAP ve log IP ortaklıkları; normal ve maskelenmiş HTML/JSON/CSV desteği.
-- PCAPNG ve desteklenmeyen link metadata için açık hata; payload çözümleme yok.
-- Bağımsız Python fixture/kayıt doğrulaması ve 153.041 girdilik kısa fuzz testi.
+- Classic PCAP v2.4 with four byte-order/time variants, Ethernet/raw IPv4/IPv6 TCP/UDP.
+- Two VLAN tags and bounded IPv6 extensions; explicit fragment skips.
+- Packet ordinal/byte references, nanosecond times, ports and TCP flags.
+- Per-object directional flow summaries and size/count/limit reports.
+- Shared packet/log IP correlations and full/masked HTML/JSON/CSV.
+- Explicit unsupported PCAPNG/link metadata errors in this historical release; no payload interpretation.
+- Independent Python fixture checks and a short 153,041-input fuzz campaign.
 
 ## 0.8.0
 
-- `share`: ayrı ve daraltılmış şemadan HTML/JSON/CSV paylaşım raporu.
-- Varsayılan vaka/kişi/cihaz/IP/yol/konum takma değerleri; kaynak zamanlarını çıkarma.
-- Serbest metinleri, özgün kimlik/hash/imzaları ve geri eşlemeyi paylaşım çıktısından çıkarma.
-- keep kategorileri ve literal ifadeleri için katı politika dosyası.
-- Açık bırakılan alanlarda bilinen kapalı değerleri de maskeleme; uzun eşleşme önceliği.
-- Doğrulanmış analist/devir geçmişinin maskelenmiş özeti; tüm çıktı dosyalarında sızıntı testleri.
-- Güncel altı binary, örnek paylaşım raporları ve kapsamlı Türkçe kullanım belgesi.
+- Separate restricted-schema sharing HTML/JSON/CSV.
+- Default case/user/host/IP/path/location aliases and omitted source times.
+- Omitted free text, original identifiers/hashes/signatures and reverse mappings.
+- Strict disclosure categories/literal policies and cross-field longer-match masking.
+- Verified examiner/custody projections with leakage checks across every output.
+- Six binaries, example sharing reports and operational documentation.
 
 ## 0.7.0
 
-- Her olayı ayrı Ed25519 imzasıyla koruyan `custody` ve `custody-verify`.
-- register/transfer/accept/cancel/note; teslim alan onayına kadar bekleyen devir.
-- Harici kişi/anahtar güven listesi ve kimlik eşleşmesi kontrolü.
-- Manifest/vaka/paket kimliği bağı; önceki olay özeti, sıra ve zaman tutarlılığı.
-- Bağımsız son kayıt özetiyle eski sürüme dönüş kontrolü.
-- HTML/JSON devir geçmişi ve `custody.csv`; önceki imzaları koruyan yeni dosyalar.
-- Yinelenen JSON anahtarları ve belirsiz alan adları reddi; bağımsız Python imza/hash doğrulaması.
+- Per-event Ed25519 custody signatures with register/transfer/accept/cancel/note.
+- Pending transfer until recipient acceptance, external actor/key trust and identity checks.
+- Manifest/case/package binding, previous head, sequence and time validation.
+- Independently retained current heads reject older valid history.
+- HTML/JSON/CSV history preserves original signatures in new revisions.
+- Duplicate/ambiguous JSON rejection and independent Python signature/hash checks.
 
 ## 0.6.0
 
-- Salt metadata envanteri ve JSON raporuyla `preflight`.
-- Kaynak/çıktı/çalışma yolu çakışmaları, var olan hedef ve dosya limitleri kontrolü.
-- OS boş alan sorgusu; aynı dosya sistemindeki çalışma + çıktı için birleşik bütçe.
-- Şifreli mod ek yükü, dosya sistemi başına rezerv ve pass/warning/unknown/blocked sonuçları.
-- Yeni mantıksal edinimde `collect --check-space`; bilinmeyen/yetersiz kapasitede durdurma.
-- Denetimli kapasite testleri, Linux native entegrasyon testi ve güncellenmiş altı binary.
+- Metadata-only JSON acquisition preflight and path/destination/file-limit checks.
+- OS capacity queries, combined same-filesystem budgets, encrypted overhead and per-filesystem reserves.
+- pass/warning/unknown/blocked outcomes; optional collection gating refuses insufficient/unknown capacity.
+- Controlled capacity tests, native Linux integration and six updated binaries.
 
 ## 0.5.0
 
-- `collect --work --encryption-key`: AES-256-GCM checkpoint ve parça deposu.
-- Amaç ayrımlı anahtarlar, HMAC parça adları, her blob için rastgele nonce.
-- Final ZIP verisini düz ara dosya oluşturmadan taşıma zarfına şifreleme.
-- Şifreli work-status, aynı anahtarla resume, yanlış anahtar/mod ve bozuk ciphertext reddi.
-- Şifreli modda özet stdout; tam manifest yalnızca paket içinde.
-- 192 MiB SIGKILL/yeniden başlatma, bağımsız kripto doğrulama ve çıktı hatası testleri.
+- AES-256-GCM checkpoint/chunk staging with purpose-separated keys, HMAC names and fresh nonces.
+- Direct final ZIP encryption without a plaintext intermediate.
+- Encrypted status/resume, wrong-key/mode/ciphertext rejection and summary stdout.
+- Independent cryptography, output-failure and 192 MiB termination/recovery tests.
 
 ## 0.4.0
 
-- UTF-8 CSV/JSONL için açık şemalı olay ayrıştırma; çok satırlı CSV ve saat dilimi dönüşümü.
-- Kaynak fiziksel satırı ve byte konumu; okunan/ayrıştırılan/atlanan kayıt özetleri.
-- Kullanıcı, cihaz ve IP alanları; en az iki delilde ortak değerlerin kaynak bağlantılı listesi.
-- Sınırlı varlık indeksi, referans listesi ve `correlations.csv`.
-- Çelişen/tekrarlanan alanları, yanlış IP ve bozuk kayıtları gizlemeden reddetme.
-- Parser fuzz ve bağımsız CLI entegrasyon testleri.
+- Explicit UTF-8 CSV/JSONL event schema with multiline CSV, timezone conversion and original line/byte references.
+- Parsed/skipped coverage, user/host/IP fields and cross-object shared-value references.
+- Bounded entity/reference storage and correlation CSV.
+- Invalid IPs, conflicting/duplicate fields and malformed records produce explicit skips/errors.
+- Parser fuzzing and independent CLI integration.
 
 ## 0.3.0
 
-- Tekrarlanabilir bulgu kimlikleri ve sürüm/delil/kural/sonuç dayanağına bağlı analist değerlendirmeleri.
-- `review`: confirmed/rejected/needs-review, zorunlu analist/gerekçe, yeni dosyada önceki kararları koruma.
-- Opsiyonel Ed25519 imzası; imzalı geçmişe eklemede önceki imza doğrulaması.
-- `analyze --reviews --review-key`: delili yeniden doğrulayıp analizi tekrar üreterek kararları uygulama.
-- HTML/JSON karar geçmişi ve `findings.csv`.
-- Değiştirilmiş geçmiş, yanlış dayanak, yanlış anahtar ve rapor enjeksiyonu testleri.
+- Reproducible finding IDs and version/evidence/rule/result-bound examiner reviews.
+- Required examiner/reason, confirmed/rejected/needs-review decisions and retained prior history in new files.
+- Optional Ed25519 signatures with previous-signature verification on extension.
+- Evidence revalidation/reanalysis before applying reviews; HTML/JSON history and findings CSV.
+- Tampered history, wrong basis/key and report-injection regression tests.
 
 ## 0.2.0
 
-- `collect --work` ile 8 MiB parçalara dayanan, checkpoint saklayan mantıksal toplama.
-- `--resume` ile aynı vaka/kapsam/envanter/limitler üzerinde devam.
-- Tamamlanan parçaların ve dosyaların hash kontrolü; yarım dosyanın kaynaktaki ön bölümünün yeniden hash kontrolü.
-- İşlem kilidi, kaynak/çalışma/çıktı ağacı ayrımı, çalışma dosyalarında symlink ve path kaçışı reddi.
-- `work-status --verify-parts` ile salt okunur ilerleme ve bütünlük kontrolü.
-- v2 pakette parça aralıkları ve edinim dönemleri; v1 okuma desteği korunur.
-- HTML/JSON raporlarda edinim dönemleri ve sabit envanter sınırları.
-- SIGKILL kurtarma dahil otomatik testler; altı OS/mimari için yeni binary.
+- Resumable 8 MiB logical-file chunks, checkpoints and frozen case/scope/inventory/limits.
+- Completed chunk/file verification and acquired-source-prefix rereading.
+- Writer locks, path separation and staging symlink/traversal rejection.
+- Read-only work status/part verification, v2 part ranges/epochs and preserved v1 reading.
+- HTML/JSON acquisition epochs and frozen-inventory limits.
+- Process-termination recovery tests and six targets.
 
-Edinim sırasında şifreleme, fiziksel disk/RAM ve bulut bağlantıları bu sürümün parçası değildir.
+Encryption during acquisition, physical disk/RAM acquisition and cloud integration were outside this historical release.
 
 ## 0.1.0
 
-İlk Go çekirdeği: mantıksal toplama, opsiyonel sistem anlık görüntüleri, SHA-256/Ed25519, şifreli taşıma, temel log/kurallar ve HTML/JSON/CSV raporlama.
+Initial Go core: logical collection, optional system snapshots, SHA-256/Ed25519, encrypted transport, basic log/rule analysis and HTML/JSON/CSV reporting.
+
+### Release readiness regression checks
+
+- Correct Linux process mapping and document coverage test expectations without hiding unavailable acquisition outcomes or omitted document content.
+- Add USN v2/v3, exact native case query and scoped grouping regressions, a synthetic collection/report/signed-selection integration and a Chromium request-ordering/navigation check.
+- Retain a current native Linux validation receipt; other native target acceptance remains pending.
+
+### Windows console rendering
+
+- Detect Windows console handles with GetConsoleMode and enable processed output/virtual terminal processing before rendering ANSI progress or colors. Preserve existing console flags.
+- Fall back to plain progress and uncolored summaries when VT setup fails or TERM=dumb. Apply the same capability check to Ctrl+C cursor restoration. NO_COLOR disables colors without disabling supported cursor control.

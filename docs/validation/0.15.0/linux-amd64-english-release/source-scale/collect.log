@@ -1,0 +1,12 @@
+k957 collect  [###---------------------]   14%  estimating  prepare  1/1  /tmp/k957-source-scale-vucwq91y/store/MacBookPro/20261001T133125Z
+k957 collect  [o-----------------------]  estimating  files  1  31 B  /tmp/k957-source-scale-vucwq91y/source/000/object-000000.bin
+k957 collect  [-------o----------------]  estimating  files  26432  800.2 KiB  /tmp/k957-source-scale-vucwq91y/source/026/object-026431.bin
+k957 collect  [----------o-------------]  estimating  files  52139  1.5 MiB  /tmp/k957-source-scale-vucwq91y/source/052/object-052138.bin
+k957 collect  [---------------o--------]  estimating  files  91960  2.7 MiB  /tmp/k957-source-scale-vucwq91y/source/091/object-091959.bin
+k957 collect  [#####################---]   86%  est. 1s  package  100000/100000  3.0 MiB  /tmp/k957-source-scale-vucwq91y/store/MacBookPro/20261001T133125Z/e...
+k957 collect  [#####################---]   86%  est. 1s  seal  0/1  collection record
+k957 collect  [########################]  100%  8s  seal  1/1  /tmp/k957-source-scale-vucwq91y/store/MacBookPro/20261001T133125Z
+k957 collect  finished  8s  [########################]  100%  8s  1/1  /tmp/k957-source-scale-vucwq91y/store/MacBookPro/20261001T133125Z
+collection: /tmp/k957-source-scale-vucwq91y/store/MacBookPro/20261001T133125Z
+signing fingerprint: bd78891fc945ffde2f0463725b1923a140d5371210b1087eb53b13ebf0d5095b
+private signing key was discarded; record the fingerprint independently

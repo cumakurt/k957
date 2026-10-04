@@ -1,0 +1,5 @@
+[
+  {"id":"EVENT-LOG-CLEARED","description":"Review a Windows log-cleared event; confirm authorization and source context","event":{"all":[{"field":"type","op":"equals","value":"windows_event"},{"field":"windows.event_id","op":"equals","value":"1102"}]}},
+  {"id":"BROWSER-REFERENCE-DOMAIN","description":"Demonstration browser reference rule, not a verdict","event":{"all":[{"field":"type","op":"equals","value":"browser_visit"},{"field":"detail","op":"contains","value":"https://example.test/"}]}},
+  {"id":"PRIVATE-SOURCE-IP","description":"Demonstration private-address match","event":{"all":[{"field":"source_ip","op":"cidr","value":"10.0.0.0/8"}],"any":[{"field":"protocol","op":"equals","value":"TCP"},{"field":"protocol","op":"equals","value":"UDP"}]}}
+]

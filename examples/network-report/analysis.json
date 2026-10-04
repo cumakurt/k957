@@ -1,8 +1,230 @@
 {
+  "network_interpretations": [
+    {
+      "metadata_bytes": 0,
+      "evidence": "E000001",
+      "sessions": [],
+      "observations": [],
+      "omissions": {
+        "dns_malformed_or_unsupported": 1
+      },
+      "checksums": {
+        "ip_valid": 1,
+        "transport_valid": 1
+      },
+      "limited": false
+    },
+    {
+      "metadata_bytes": 0,
+      "evidence": "E000003",
+      "sessions": [
+        {
+          "id": "E000003-S1",
+          "evidence": "E000003",
+          "source": "/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap",
+          "endpoint_a": "[2001:db8::77]:50000",
+          "endpoint_b": "[2001:db8::88]:443",
+          "first": "2020-09-13T12:26:43.123456Z",
+          "last": "2020-09-13T12:26:43.123456Z",
+          "packets": 1,
+          "reassembled_bytes": 0,
+          "syn_observed": true,
+          "close_observed": false,
+          "capture_gaps": false,
+          "conflicting_overlap": false,
+          "retransmissions": 0,
+          "limited": false,
+          "checksums": {
+            "valid": 1
+          },
+          "references": [
+            {
+              "packet": 4,
+              "byte_offset": 277,
+              "time": "2020-09-13T12:26:43.123456Z",
+              "captured_length": 82,
+              "original_length": 82
+            }
+          ],
+          "references_truncated": false
+        },
+        {
+          "id": "E000003-S2",
+          "evidence": "E000003",
+          "source": "/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap",
+          "endpoint_a": "192.0.2.77:40000",
+          "endpoint_b": "198.51.100.8:443",
+          "first": "2020-09-13T12:26:46.123456Z",
+          "last": "2020-09-13T12:26:46.123456Z",
+          "packets": 1,
+          "reassembled_bytes": 0,
+          "syn_observed": true,
+          "close_observed": false,
+          "capture_gaps": true,
+          "conflicting_overlap": false,
+          "retransmissions": 0,
+          "limited": false,
+          "checksums": {
+            "unknown_truncated": 1
+          },
+          "references": [
+            {
+              "packet": 7,
+              "byte_offset": 512,
+              "time": "2020-09-13T12:26:46.123456Z",
+              "captured_length": 54,
+              "original_length": 75
+            }
+          ],
+          "references_truncated": false
+        }
+      ],
+      "observations": [],
+      "omissions": {
+        "dns_malformed_or_unsupported": 3,
+        "truncated_tcp_payload": 1
+      },
+      "checksums": {
+        "ip_valid": 4,
+        "transport_unknown_truncated": 1,
+        "transport_valid": 4
+      },
+      "limited": false
+    },
+    {
+      "metadata_bytes": 0,
+      "evidence": "E000004",
+      "sessions": [],
+      "observations": [],
+      "omissions": {},
+      "checksums": {},
+      "limited": false
+    }
+  ],
+  "coverage": [
+    {
+      "schema": "k957-coverage/1",
+      "stage": "inventory",
+      "unit": "objects",
+      "status": "complete",
+      "eligible": 4,
+      "emitted": 4,
+      "omitted": 0,
+      "total_known": true
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "parser",
+      "format": "JSONL",
+      "unit": "records",
+      "status": "complete",
+      "eligible": 1,
+      "emitted": 1,
+      "omitted": 0,
+      "total_known": true
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "parser",
+      "format": "PCAP",
+      "unit": "records",
+      "status": "partial",
+      "eligible": 10,
+      "emitted": 6,
+      "omitted": 4,
+      "total_known": true
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "parser",
+      "format": "PCAPNG",
+      "unit": "records",
+      "status": "partial",
+      "eligible": 0,
+      "emitted": 0,
+      "omitted": 0,
+      "total_known": false,
+      "reasons": {
+        "parser_error": 1
+      }
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "findings",
+      "unit": "findings",
+      "status": "complete",
+      "eligible": 0,
+      "emitted": 0,
+      "omitted": 0,
+      "total_known": true,
+      "limit": 10000
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "acquisition_metadata",
+      "unit": "objects",
+      "status": "complete",
+      "eligible": 4,
+      "emitted": 4,
+      "omitted": 0,
+      "total_known": true
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "network_protocols",
+      "unit": "observations",
+      "status": "partial",
+      "eligible": 0,
+      "emitted": 0,
+      "omitted": 0,
+      "total_known": false,
+      "limit": 5000,
+      "reasons": {
+        "dns_malformed_or_unsupported": 1
+      }
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "network_protocols",
+      "unit": "observations",
+      "status": "partial",
+      "eligible": 0,
+      "emitted": 0,
+      "omitted": 0,
+      "total_known": false,
+      "limit": 5000,
+      "reasons": {
+        "dns_malformed_or_unsupported": 3,
+        "truncated_tcp_payload": 1
+      }
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "network_protocols",
+      "unit": "observations",
+      "status": "complete",
+      "eligible": 0,
+      "emitted": 0,
+      "omitted": 0,
+      "total_known": true,
+      "limit": 5000
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "correlation_references",
+      "unit": "references",
+      "status": "complete",
+      "eligible": 11,
+      "emitted": 11,
+      "omitted": 0,
+      "total_known": true,
+      "limit": 200
+    }
+  ],
   "capture_summaries": [
     {
       "evidence": "E000001",
-      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/big-nano.bin",
+      "source": "/depo/cuma/projelerim/k957/examples/network-source/big-nano.bin",
       "format": "PCAP",
       "byte_order": "big",
       "timestamp_resolution": "nanoseconds",
@@ -17,7 +239,7 @@
     },
     {
       "evidence": "E000003",
-      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap",
+      "source": "/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap",
       "format": "PCAP",
       "byte_order": "little",
       "timestamp_resolution": "microseconds",
@@ -37,8 +259,9 @@
     },
     {
       "evidence": "E000004",
-      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/unsupported.pcapng",
+      "source": "/depo/cuma/projelerim/k957/examples/network-source/unsupported.pcapng",
       "format": "PCAPNG",
+      "timestamp_resolution": "per-interface",
       "link_type": 0,
       "records": 0,
       "parsed": 0,
@@ -47,13 +270,13 @@
       "skip_reasons": {},
       "flow_omitted_packets": 0,
       "limited": false,
-      "error": "PCAPNG is not supported in this version"
+      "error": "truncated pcapng block header at byte 0"
     }
   ],
   "network_flows": [
     {
       "evidence": "E000001",
-      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/big-nano.bin",
+      "source": "/depo/cuma/projelerim/k957/examples/network-source/big-nano.bin",
       "protocol": "UDP",
       "source_ip": "192.0.2.77",
       "destination_ip": "198.51.100.8",
@@ -77,7 +300,7 @@
     },
     {
       "evidence": "E000003",
-      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap",
+      "source": "/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap",
       "protocol": "UDP",
       "source_ip": "192.0.2.77",
       "destination_ip": "198.51.100.8",
@@ -108,7 +331,7 @@
     },
     {
       "evidence": "E000003",
-      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap",
+      "source": "/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap",
       "protocol": "UDP",
       "source_ip": "198.51.100.8",
       "destination_ip": "192.0.2.77",
@@ -132,7 +355,7 @@
     },
     {
       "evidence": "E000003",
-      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap",
+      "source": "/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap",
       "protocol": "TCP",
       "source_ip": "2001:db8::77",
       "destination_ip": "2001:db8::88",
@@ -156,7 +379,7 @@
     },
     {
       "evidence": "E000003",
-      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap",
+      "source": "/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap",
       "protocol": "TCP",
       "source_ip": "192.0.2.77",
       "destination_ip": "198.51.100.8",
@@ -211,7 +434,7 @@
       "parsed": 0,
       "skipped": 0,
       "limited": false,
-      "error": "PCAPNG is not supported in this version"
+      "error": "truncated pcapng block header at byte 0"
     }
   ],
   "correlations": [
@@ -225,7 +448,7 @@
       "references": [
         {
           "evidence": "E000002",
-          "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/observer.jsonl",
+          "source": "/depo/cuma/projelerim/k957/examples/network-source/observer.jsonl",
           "line": 1,
           "byte_offset": 0,
           "role": "source_ip",
@@ -234,7 +457,7 @@
         {
           "packet": 1,
           "evidence": "E000003",
-          "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap",
+          "source": "/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap",
           "line": 0,
           "byte_offset": 24,
           "role": "source_ip",
@@ -243,7 +466,7 @@
         {
           "packet": 1,
           "evidence": "E000001",
-          "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/big-nano.bin",
+          "source": "/depo/cuma/projelerim/k957/examples/network-source/big-nano.bin",
           "line": 0,
           "byte_offset": 24,
           "role": "source_ip",
@@ -252,7 +475,7 @@
         {
           "packet": 2,
           "evidence": "E000003",
-          "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap",
+          "source": "/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap",
           "line": 0,
           "byte_offset": 111,
           "role": "source_ip",
@@ -261,7 +484,7 @@
         {
           "packet": 3,
           "evidence": "E000003",
-          "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap",
+          "source": "/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap",
           "line": 0,
           "byte_offset": 198,
           "role": "destination_ip",
@@ -270,7 +493,7 @@
         {
           "packet": 7,
           "evidence": "E000003",
-          "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap",
+          "source": "/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap",
           "line": 0,
           "byte_offset": 512,
           "role": "source_ip",
@@ -290,7 +513,7 @@
         {
           "packet": 1,
           "evidence": "E000003",
-          "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap",
+          "source": "/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap",
           "line": 0,
           "byte_offset": 24,
           "role": "destination_ip",
@@ -299,7 +522,7 @@
         {
           "packet": 1,
           "evidence": "E000001",
-          "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/big-nano.bin",
+          "source": "/depo/cuma/projelerim/k957/examples/network-source/big-nano.bin",
           "line": 0,
           "byte_offset": 24,
           "role": "destination_ip",
@@ -308,7 +531,7 @@
         {
           "packet": 2,
           "evidence": "E000003",
-          "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap",
+          "source": "/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap",
           "line": 0,
           "byte_offset": 111,
           "role": "destination_ip",
@@ -317,7 +540,7 @@
         {
           "packet": 3,
           "evidence": "E000003",
-          "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap",
+          "source": "/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap",
           "line": 0,
           "byte_offset": 198,
           "role": "source_ip",
@@ -326,7 +549,7 @@
         {
           "packet": 7,
           "evidence": "E000003",
-          "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap",
+          "source": "/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap",
           "line": 0,
           "byte_offset": 512,
           "role": "destination_ip",
@@ -336,88 +559,165 @@
       "references_truncated": false
     }
   ],
-  "evidence_digest": "2ce5e200de430073b9bc051ab9d72a71d86216eb154c8c08d29edd259b21c515",
-  "version": "0.9.0",
-  "run": "ba3e3f2b08fb4c70ffc464bb5d27d158",
-  "created": "2026-09-28T09:28:42.183027382Z",
+  "evidence_digest": "437b2b835e89517219337b56181efa02fc7ace87dd35a73ded0c2c3f60591268",
+  "version": "0.15.0",
+  "run": "eea41540e55790042e8acf4da4a61905",
+  "created": "2026-10-01T18:14:13.686588351Z",
   "signature": "unsigned",
   "manifest": {
+    "acquisition": {
+      "method": "logical-live-files",
+      "origin": "raw_file_bytes",
+      "filesystem_snapshot": false,
+      "multi_file_atomic": false,
+      "sqlite_transaction_consistent": false,
+      "notes": [
+        "Files are read individually. Metadata change detection is not an atomic filesystem or multi-file snapshot.",
+        "Filesystem device identifiers do not prove physical-device separation.",
+        "SQLite main/sidecar copies may describe different transaction states. Use explicit sqlite-acquire for a separately identified logical backup."
+      ]
+    },
     "schema": "k957-evidence/1",
-    "version": "0.9.0",
-    "id": "e190b2ad1d4af01118d2f0f5aa5d5bb4",
+    "version": "0.15.0",
+    "id": "be13b73e6c3f45bb65d4e3188d11dc7a",
     "case": "PCAP-DEMO",
     "operator": "Demo",
-    "scope": "Yalnızca bu dizindeki sentetik ağ ve log örnekleri",
-    "host": "04ce55db14bc",
+    "scope": "Synthetic network and log examples in this directory only",
+    "host": "MacBookPro",
     "os": "linux",
     "arch": "amd64",
-    "started": "2026-09-28T09:28:42.179334595Z",
-    "finished": "2026-09-28T09:28:42.179875617Z",
+    "started": "2026-10-01T13:22:11.720050846Z",
+    "finished": "2026-10-01T13:22:11.721801893Z",
     "status": "complete",
     "items": [
       {
+        "metadata": {
+          "sampled": "2026-10-01T13:22:11.720165794Z",
+          "status": "captured",
+          "device": "device:66306",
+          "inode": "60971834",
+          "uid": 1000,
+          "gid": 1000,
+          "links": 1,
+          "accessed": "2026-10-01T06:13:30.794670482Z",
+          "changed": "2026-09-28T14:27:03.256795897Z",
+          "created": "2026-09-28T14:27:03.256545114Z"
+        },
         "id": "E000001",
-        "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/big-nano.bin",
+        "source": "/depo/cuma/projelerim/k957/examples/network-source/big-nano.bin",
         "object": "objects/E000001",
         "kind": "file",
         "size": 89,
         "sha256": "e014546513ae18d13bd5a1882325036393047d111fa87ca513d29b3fb3a47642",
-        "modified": "2026-09-28T09:28:42.153902363Z",
-        "collected": "2026-09-28T09:28:42.179462442Z",
+        "modified": "2026-09-28T09:58:42Z",
+        "collected": "2026-10-01T13:22:11.720664659Z",
         "mode": "-rw-r--r--",
         "changed_during_acquisition": false
       },
       {
+        "metadata": {
+          "sampled": "2026-10-01T13:22:11.720786173Z",
+          "status": "captured",
+          "device": "device:66306",
+          "inode": "60971835",
+          "uid": 1000,
+          "gid": 1000,
+          "links": 1,
+          "accessed": "2026-10-01T06:13:30.794670482Z",
+          "changed": "2026-09-28T14:27:03.256914182Z",
+          "created": "2026-09-28T14:27:03.256795897Z"
+        },
         "id": "E000002",
-        "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/observer.jsonl",
+        "source": "/depo/cuma/projelerim/k957/examples/network-source/observer.jsonl",
         "object": "objects/E000002",
         "kind": "file",
         "size": 90,
         "sha256": "292215af3845718b2f5410bf33ce17cbd05aa210e8b8887ee03d5a2e52f58c50",
-        "modified": "2026-09-28T09:28:42.153946217Z",
-        "collected": "2026-09-28T09:28:42.179780778Z",
+        "modified": "2026-09-28T09:58:42Z",
+        "collected": "2026-10-01T13:22:11.721123585Z",
         "mode": "-rw-r--r--",
         "changed_during_acquisition": false
       },
       {
+        "metadata": {
+          "sampled": "2026-10-01T13:22:11.721169639Z",
+          "status": "captured",
+          "device": "device:66306",
+          "inode": "60971836",
+          "uid": 1000,
+          "gid": 1000,
+          "links": 1,
+          "accessed": "2026-10-01T06:13:30.794670482Z",
+          "changed": "2026-09-28T14:27:03.257024448Z",
+          "created": "2026-09-28T14:27:03.256914182Z"
+        },
         "id": "E000003",
-        "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap",
+        "source": "/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap",
         "object": "objects/E000003",
         "kind": "file",
         "size": 748,
         "sha256": "0911c04c3abfb98f200f23194877aea335ef7cd068f7201612702b629a00c004",
-        "modified": "2026-09-28T09:28:42.153861523Z",
-        "collected": "2026-09-28T09:28:42.179820697Z",
+        "modified": "2026-09-28T09:58:42Z",
+        "collected": "2026-10-01T13:22:11.721344174Z",
         "mode": "-rw-r--r--",
         "changed_during_acquisition": false
       },
       {
+        "metadata": {
+          "sampled": "2026-10-01T13:22:11.721392742Z",
+          "status": "captured",
+          "device": "device:66306",
+          "inode": "60971837",
+          "uid": 1000,
+          "gid": 1000,
+          "links": 1,
+          "accessed": "2026-10-01T06:13:30.794670482Z",
+          "changed": "2026-09-28T14:27:03.257140828Z",
+          "created": "2026-09-28T14:27:03.257024448Z"
+        },
         "id": "E000004",
-        "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/unsupported.pcapng",
+        "source": "/depo/cuma/projelerim/k957/examples/network-source/unsupported.pcapng",
         "object": "objects/E000004",
         "kind": "file",
         "size": 4,
         "sha256": "531d04aaf63e526de83a4f74863b20df18e916bd7d0bf67cef890f4e063ed777",
-        "modified": "2026-09-28T09:28:42.153924986Z",
-        "collected": "2026-09-28T09:28:42.179871952Z",
+        "modified": "2026-09-28T09:58:42Z",
+        "collected": "2026-10-01T13:22:11.721741617Z",
         "mode": "-rw-r--r--",
         "changed_during_acquisition": false
       }
     ],
     "issues": []
   },
-  "rules": [
+  "rules": [],
+  "file_types": [
     {
-      "id": "DEMO-LOGIN-FAIL",
-      "description": "Demo: review failed authentication text",
-      "contains": "failed password",
-      "sha256": ""
+      "evidence": "E000001",
+      "source": "/depo/cuma/projelerim/k957/examples/network-source/big-nano.bin",
+      "media_type": "application/vnd.tcpdump.pcap",
+      "description": "classic PCAP capture",
+      "matched_by": "magic"
     },
     {
-      "id": "DEMO-POWERSHELL",
-      "description": "Demo: review PowerShell reference; not a malware verdict",
-      "contains": "powershell",
-      "sha256": ""
+      "evidence": "E000002",
+      "source": "/depo/cuma/projelerim/k957/examples/network-source/observer.jsonl",
+      "media_type": "application/octet-stream",
+      "description": "no recognized signature",
+      "matched_by": "none"
+    },
+    {
+      "evidence": "E000003",
+      "source": "/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap",
+      "media_type": "application/vnd.tcpdump.pcap",
+      "description": "classic PCAP capture",
+      "matched_by": "magic"
+    },
+    {
+      "evidence": "E000004",
+      "source": "/depo/cuma/projelerim/k957/examples/network-source/unsupported.pcapng",
+      "media_type": "application/x-pcapng",
+      "description": "PCAPNG capture",
+      "matched_by": "magic"
     }
   ],
   "findings": [],
@@ -430,7 +730,7 @@
       "time": "2020-09-13T12:26:40Z",
       "type": "log_timestamp",
       "evidence": "E000002",
-      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/observer.jsonl"
+      "source": "/depo/cuma/projelerim/k957/examples/network-source/observer.jsonl"
     },
     {
       "packet": 1,
@@ -445,7 +745,7 @@
       "time": "2020-09-13T12:26:40.123456Z",
       "type": "pcap_packet",
       "evidence": "E000003",
-      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap"
+      "source": "/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap"
     },
     {
       "packet": 1,
@@ -460,7 +760,7 @@
       "time": "2020-09-13T12:26:40.123456789Z",
       "type": "pcap_packet",
       "evidence": "E000001",
-      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/big-nano.bin"
+      "source": "/depo/cuma/projelerim/k957/examples/network-source/big-nano.bin"
     },
     {
       "packet": 2,
@@ -475,7 +775,7 @@
       "time": "2020-09-13T12:26:41.123456Z",
       "type": "pcap_packet",
       "evidence": "E000003",
-      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap"
+      "source": "/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap"
     },
     {
       "packet": 3,
@@ -490,7 +790,7 @@
       "time": "2020-09-13T12:26:42.123456Z",
       "type": "pcap_packet",
       "evidence": "E000003",
-      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap"
+      "source": "/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap"
     },
     {
       "packet": 4,
@@ -506,7 +806,7 @@
       "time": "2020-09-13T12:26:43.123456Z",
       "type": "pcap_packet",
       "evidence": "E000003",
-      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap"
+      "source": "/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap"
     },
     {
       "packet": 7,
@@ -522,63 +822,69 @@
       "time": "2020-09-13T12:26:46.123456Z",
       "type": "pcap_packet",
       "evidence": "E000003",
-      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap"
+      "source": "/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap"
     },
     {
-      "time": "2026-09-28T09:28:42.153861523Z",
-      "type": "file_modified",
-      "evidence": "E000003",
-      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap"
-    },
-    {
-      "time": "2026-09-28T09:28:42.153902363Z",
+      "time": "2026-09-28T09:58:42Z",
       "type": "file_modified",
       "evidence": "E000001",
-      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/big-nano.bin"
+      "source": "/depo/cuma/projelerim/k957/examples/network-source/big-nano.bin"
     },
     {
-      "time": "2026-09-28T09:28:42.153924986Z",
-      "type": "file_modified",
-      "evidence": "E000004",
-      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/unsupported.pcapng"
-    },
-    {
-      "time": "2026-09-28T09:28:42.153946217Z",
+      "time": "2026-09-28T09:58:42Z",
       "type": "file_modified",
       "evidence": "E000002",
-      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/observer.jsonl"
+      "source": "/depo/cuma/projelerim/k957/examples/network-source/observer.jsonl"
     },
     {
-      "time": "2026-09-28T09:28:42.179462442Z",
+      "time": "2026-09-28T09:58:42Z",
+      "type": "file_modified",
+      "evidence": "E000003",
+      "source": "/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap"
+    },
+    {
+      "time": "2026-09-28T09:58:42Z",
+      "type": "file_modified",
+      "evidence": "E000004",
+      "source": "/depo/cuma/projelerim/k957/examples/network-source/unsupported.pcapng"
+    },
+    {
+      "time": "2026-10-01T13:22:11.720664659Z",
       "type": "collected",
       "evidence": "E000001",
-      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/big-nano.bin"
+      "source": "/depo/cuma/projelerim/k957/examples/network-source/big-nano.bin"
     },
     {
-      "time": "2026-09-28T09:28:42.179780778Z",
+      "time": "2026-10-01T13:22:11.721123585Z",
       "type": "collected",
       "evidence": "E000002",
-      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/observer.jsonl"
+      "source": "/depo/cuma/projelerim/k957/examples/network-source/observer.jsonl"
     },
     {
-      "time": "2026-09-28T09:28:42.179820697Z",
+      "time": "2026-10-01T13:22:11.721344174Z",
       "type": "collected",
       "evidence": "E000003",
-      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap"
+      "source": "/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap"
     },
     {
-      "time": "2026-09-28T09:28:42.179871952Z",
+      "time": "2026-10-01T13:22:11.721741617Z",
       "type": "collected",
       "evidence": "E000004",
-      "source": "/workspace/scratch/4de4f0c723af/k957/examples/network-source/unsupported.pcapng"
+      "source": "/depo/cuma/projelerim/k957/examples/network-source/unsupported.pcapng"
     }
   ],
   "notes": [
-    "Timeline includes file metadata, explicit RFC3339/JSONL timestamps and supported PCAP packet timestamps; these are not proof of execution or user attribution.",
-    "Rules are literal matches, not malware verdicts. Every finding requires analyst review.",
-    "Text scanning covers UTF-8 files up to 8 MiB each, 128 MiB total; classic PCAP is parsed separately; other binary formats are inventoried, not parsed.",
+    "Timeline includes file metadata, explicit log/XML timestamps and supported PCAP packet timestamps; these are not proof of execution or user attribution.",
+    "Literal, SHA-256 and structured event rules produce review candidates. Every finding requires analyst review.",
+    "Text scanning covers supported UTF-8/XML records up to 8 MiB per file and 128 MiB total. Separate bounded workers interpret selected SQLite/WAL browser visits, EVTX system metadata, clean Registry key/value projections and binary launchd plists. CloudTrail exports and PCAP/PCAPNG have separate bounded parsers; unsupported binary formats remain inventory entries.",
     "Clock offsets are not measured. Timestamps reflect the source host clock converted to UTC.",
-    "PCAP: classic v2.4 Ethernet/raw-IP TCP/UDP headers only. No capture, payload inspection, checksums, reassembly, DNS resolution or session reconstruction. Directional five-tuples group all matching packets within one evidence object; MAC/VLAN identity is not part of the grouping; retransmissions and repeated sessions are not deduplicated. Byte counters are recorded frame sizes, not application traffic. Each capture is limited to 64 MiB and 20,000 records, 256 MiB total, shared 50,000 log-event/capture-record budget, 10,000 flows total and 20 references per flow. See capture summaries for omissions; IP addresses do not identify people.",
+    "File types are magic-byte hints from the first 560 bytes. An extension mismatch is recorded, not treated as a finding. bodyfile.txt exports mtime only; atime, ctime, crtime, uid, gid and MD5 are zero because SHA-256 is authoritative.",
+    "Activity rows interpret SSH, sudo, cron, account creation, shell and PowerShell history, Windows security events, Prefetch names and persistence commands. They are triage readings, not findings and not proof of attribution.",
+    "Acquisition method: logical-live-files; origin: raw_file_bytes",
+    "Files are read individually. Metadata change detection is not an atomic filesystem or multi-file snapshot.",
+    "Filesystem device identifiers do not prove physical-device separation.",
+    "SQLite main/sidecar copies may describe different transaction states. Use explicit sqlite-acquire for a separately identified logical backup.",
+    "PCAP v2.4 and PCAPNG: Ethernet/raw-IP/Linux SLL/SLL2 TCP/UDP headers plus selected DNS, initial HTTP headers and TLS ClientHello metadata. PCAPNG Enhanced Packet Blocks are analyzed; untimed Simple Packet Blocks and obsolete Packet Blocks are counted and skipped. Other blocks are counted as ignored. Binary/sub-nanosecond timestamps are floored to nanoseconds. Interface names, comments and decryption secrets are not exported. No live capture, IP fragment reassembly, external DNS lookup or TLS decryption. Bounded TCP session candidates/reassembly and selected protocol projections retain packet references and explicit gap/overlap policies. Complete IPv4/TCP/UDP checksums are checked; invalid_or_offloaded is not a malicious verdict. Directional five-tuples group all matching packets within one evidence object and PCAPNG section/interface; MAC/VLAN/SLL2 operating-system interface identity is not part of the grouping; directional flow totals retain repeated packets; separate session candidates apply SYN, idle, RST and FIN boundaries. Byte counters are recorded frame sizes, not application traffic. Each capture is limited to 64 MiB and 20,000 records, 256 MiB total, shared 50,000 log-event/capture-record budget, 10,000 flows total and 20 references per flow. PCAPNG also has limits of 100,000 blocks, 256 sections and 1,024 interfaces per file. See capture summaries for omissions; IP addresses do not identify people.",
     "Correlations are shared field values across at least two evidence objects, not independent-source corroboration or identity attribution. NAT, shared accounts and duplicate logs can produce matches. User names are case-sensitive; host names lowercased; IPs canonicalized. No network enrichment is performed."
   ]
 }

@@ -1,0 +1,3 @@
+k957 verify  [------------------------]    0%  estimating  verify  0/1  /tmp/k957-source-scale-z76we2_n/store/MacBookPro/20261001T073957Z/evidence.k957
+k957 verify  [########################]  100%  4s  verify  1/1  /tmp/k957-source-scale-z76we2_n/store/MacBookPro/20261001T073957Z/evidence.k957
+k957 verify  finished  4s  [########################]  100%  4s  1/1  /tmp/k957-source-scale-z76we2_n/store/MacBookPro/20261001T073957Z/evidence.k957

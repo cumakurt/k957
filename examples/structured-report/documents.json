@@ -1,0 +1,114 @@
+{
+  "pdf_pages": 7,
+  "glyph_escapes": [
+    "U+000A"
+  ],
+  "schema": "k957-report-documents/1",
+  "evidence_digest": "8f7ab5c486db890c2588a9a3e436f3ae69aa5f501b567064c93510f876e0503a",
+  "source_analysis_digest": "a1d0d1e0063bc422982e62faea7956abb6fb8e7ddd9acebd803245b1ea4afaed",
+  "formats": [
+    "pdf"
+  ],
+  "coverage": [
+    {
+      "schema": "k957-coverage/1",
+      "stage": "document_findings",
+      "unit": "findings",
+      "status": "complete",
+      "eligible": 0,
+      "emitted": 0,
+      "omitted": 0,
+      "total_known": true,
+      "limit": 500
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "document_timeline",
+      "unit": "events",
+      "status": "complete",
+      "eligible": 6,
+      "emitted": 6,
+      "omitted": 0,
+      "total_known": true,
+      "limit": 500
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "document_issues",
+      "unit": "issues",
+      "status": "complete",
+      "eligible": 0,
+      "emitted": 0,
+      "omitted": 0,
+      "total_known": true,
+      "limit": 400
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "document_notes",
+      "unit": "notes",
+      "status": "complete",
+      "eligible": 7,
+      "emitted": 7,
+      "omitted": 0,
+      "total_known": true,
+      "limit": 200
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "document_coverage",
+      "unit": "rows",
+      "status": "complete",
+      "eligible": 6,
+      "emitted": 6,
+      "omitted": 0,
+      "total_known": true,
+      "limit": 200
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "document_inventory",
+      "unit": "objects",
+      "status": "complete",
+      "eligible": 2,
+      "emitted": 2,
+      "omitted": 0,
+      "total_known": true,
+      "limit": 500
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "document_indicator_matches",
+      "unit": "matches",
+      "status": "complete",
+      "eligible": 0,
+      "emitted": 0,
+      "omitted": 0,
+      "total_known": true,
+      "limit": 500
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "document_reviews",
+      "unit": "records",
+      "status": "complete",
+      "eligible": 0,
+      "emitted": 0,
+      "omitted": 0,
+      "total_known": true,
+      "limit": 500
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "document_text",
+      "unit": "bytes",
+      "status": "complete",
+      "eligible": 4420,
+      "emitted": 4420,
+      "omitted": 0,
+      "total_known": true,
+      "limit": 1048576
+    }
+  ],
+  "note": "PDF is the default derived reading edition. Tables and text have explicit projection limits; full JSON, CSV and disk-backed memory results remain alongside it. Glyph escapes preserve unsupported characters as code points. Source evidence and examiner decisions require independent verification."
+}

@@ -1,0 +1,1 @@
+PASS: all 8 artifacts scanned for 18 sensitive values; signed reviews/custody projected safely; counts and aliases preserved; explicit keep policy; tampered history/ambiguous policy/authoritative reuse rejected; source package/history/analysis unchanged

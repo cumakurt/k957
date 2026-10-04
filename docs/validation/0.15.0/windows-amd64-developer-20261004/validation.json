@@ -1,0 +1,384 @@
+{
+  "schema": "k957-validation/1",
+  "started": "2026-10-04T10:21:35.177973+00:00",
+  "target": "windows/amd64",
+  "environment": {
+    "kind": "native",
+    "version": "10.0.26200"
+  },
+  "python": "3.13.7",
+  "python_platform": "win-amd64",
+  "binary": "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\repo-developer\\dist\\k957-windows-amd64.exe",
+  "result": "passed",
+  "steps": [
+    {
+      "name": "format",
+      "status": "skipped",
+      "reason": "Prebuilt mode: Go toolchain checks must be run separately on source."
+    },
+    {
+      "name": "vet",
+      "status": "skipped",
+      "reason": "Prebuilt mode: Go toolchain checks must be run separately on source."
+    },
+    {
+      "name": "coverage",
+      "status": "skipped",
+      "reason": "Prebuilt mode: Go toolchain checks must be run separately on source."
+    },
+    {
+      "name": "race",
+      "status": "skipped",
+      "reason": "Prebuilt mode: Go toolchain checks must be run separately on source."
+    },
+    {
+      "name": "build",
+      "status": "skipped",
+      "reason": "Prebuilt mode: Go toolchain checks must be run separately on source."
+    },
+    {
+      "name": "unit-core",
+      "command": [
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\tests-developer\\core.test.exe",
+        "-test.v",
+        "-test.timeout=3m"
+      ],
+      "status": "passed",
+      "log": "unit-core.log",
+      "exit_code": 0,
+      "duration_seconds": 16.799
+    },
+    {
+      "name": "unit-cli",
+      "command": [
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\tests-developer\\cli.test.exe",
+        "-test.v",
+        "-test.timeout=3m"
+      ],
+      "status": "passed",
+      "log": "unit-cli.log",
+      "exit_code": 0,
+      "duration_seconds": 1.576
+    },
+    {
+      "name": "version",
+      "command": [
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\repo-developer\\dist\\k957-windows-amd64.exe",
+        "version"
+      ],
+      "status": "passed",
+      "log": "version.log",
+      "exit_code": 0,
+      "duration_seconds": 0.025
+    },
+    {
+      "name": "build-info",
+      "command": [
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\repo-developer\\dist\\k957-windows-amd64.exe",
+        "build-info"
+      ],
+      "status": "passed",
+      "log": "build-info.log",
+      "exit_code": 0,
+      "duration_seconds": 0.017
+    },
+    {
+      "name": "static-library-policy",
+      "command": [
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\python\\python.exe",
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\repo-developer\\scripts\\check_static_test.py"
+      ],
+      "status": "passed",
+      "log": "static-library-policy.log",
+      "exit_code": 0,
+      "duration_seconds": 0.116
+    },
+    {
+      "name": "release-metadata-policy",
+      "command": [
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\python\\python.exe",
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\repo-developer\\scripts\\release_test.py"
+      ],
+      "status": "passed",
+      "log": "release-metadata-policy.log",
+      "exit_code": 0,
+      "duration_seconds": 0.241
+    },
+    {
+      "name": "english-language-policy",
+      "command": [
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\python\\python.exe",
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\repo-developer\\scripts\\check_language.py"
+      ],
+      "status": "passed",
+      "log": "english-language-policy.log",
+      "exit_code": 0,
+      "duration_seconds": 0.417
+    },
+    {
+      "name": "assistant_model_integration",
+      "command": [
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\python\\python.exe",
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\repo-developer\\scripts\\assistant_model_integration.py"
+      ],
+      "status": "skipped",
+      "log": "assistant_model_integration.log",
+      "exit_code": 77,
+      "reason": "Optional native tool/reference prerequisites unavailable; see retained log.",
+      "duration_seconds": 0.106
+    },
+    {
+      "name": "custody_integration",
+      "command": [
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\python\\python.exe",
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\repo-developer\\scripts\\custody_integration.py"
+      ],
+      "status": "passed",
+      "log": "custody_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.582
+    },
+    {
+      "name": "disk_tool_integration",
+      "command": [
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\python\\python.exe",
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\repo-developer\\scripts\\disk_tool_integration.py"
+      ],
+      "status": "passed",
+      "log": "disk_tool_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.576
+    },
+    {
+      "name": "encrypted_integration",
+      "command": [
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\python\\python.exe",
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\repo-developer\\scripts\\encrypted_integration.py"
+      ],
+      "status": "passed",
+      "log": "encrypted_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 4.643
+    },
+    {
+      "name": "full_integration",
+      "command": [
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\python\\python.exe",
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\repo-developer\\scripts\\full_integration.py"
+      ],
+      "status": "passed",
+      "log": "full_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.569
+    },
+    {
+      "name": "integration",
+      "command": [
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\python\\python.exe",
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\repo-developer\\scripts\\integration.py"
+      ],
+      "status": "passed",
+      "log": "integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.576
+    },
+    {
+      "name": "memory_stream_integration",
+      "command": [
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\python\\python.exe",
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\repo-developer\\scripts\\memory_stream_integration.py"
+      ],
+      "status": "passed",
+      "log": "memory_stream_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.536
+    },
+    {
+      "name": "memory_suite_integration",
+      "command": [
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\python\\python.exe",
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\repo-developer\\scripts\\memory_suite_integration.py"
+      ],
+      "status": "passed",
+      "log": "memory_suite_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 3.62
+    },
+    {
+      "name": "memory_tool_integration",
+      "command": [
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\python\\python.exe",
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\repo-developer\\scripts\\memory_tool_integration.py"
+      ],
+      "status": "passed",
+      "log": "memory_tool_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 2.062
+    },
+    {
+      "name": "native_artifact_integration",
+      "command": [
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\python\\python.exe",
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\repo-developer\\scripts\\native_artifact_integration.py"
+      ],
+      "status": "passed",
+      "log": "native_artifact_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.686
+    },
+    {
+      "name": "pcap_integration",
+      "command": [
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\python\\python.exe",
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\repo-developer\\scripts\\pcap_integration.py"
+      ],
+      "status": "passed",
+      "log": "pcap_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.562
+    },
+    {
+      "name": "pcapng_integration",
+      "command": [
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\python\\python.exe",
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\repo-developer\\scripts\\pcapng_integration.py"
+      ],
+      "status": "passed",
+      "log": "pcapng_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.517
+    },
+    {
+      "name": "preflight_integration",
+      "command": [
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\python\\python.exe",
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\repo-developer\\scripts\\preflight_integration.py"
+      ],
+      "status": "passed",
+      "log": "preflight_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.424
+    },
+    {
+      "name": "report_documents_integration",
+      "command": [
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\python\\python.exe",
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\repo-developer\\scripts\\report_documents_integration.py"
+      ],
+      "status": "passed",
+      "log": "report_documents_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.492
+    },
+    {
+      "name": "report_upgrade_integration",
+      "command": [
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\python\\python.exe",
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\repo-developer\\scripts\\report_upgrade_integration.py"
+      ],
+      "status": "passed",
+      "log": "report_upgrade_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 1.282
+    },
+    {
+      "name": "resume_integration",
+      "command": [
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\python\\python.exe",
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\repo-developer\\scripts\\resume_integration.py"
+      ],
+      "status": "passed",
+      "log": "resume_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 2.599
+    },
+    {
+      "name": "review_integration",
+      "command": [
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\python\\python.exe",
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\repo-developer\\scripts\\review_integration.py"
+      ],
+      "status": "passed",
+      "log": "review_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.445
+    },
+    {
+      "name": "share_integration",
+      "command": [
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\python\\python.exe",
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\repo-developer\\scripts\\share_integration.py"
+      ],
+      "status": "passed",
+      "log": "share_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 1.168
+    },
+    {
+      "name": "structured_integration",
+      "command": [
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\python\\python.exe",
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\repo-developer\\scripts\\structured_integration.py"
+      ],
+      "status": "passed",
+      "log": "structured_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.216
+    },
+    {
+      "name": "usn_integration",
+      "command": [
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\python\\python.exe",
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\repo-developer\\scripts\\usn_integration.py"
+      ],
+      "status": "passed",
+      "log": "usn_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.663
+    },
+    {
+      "name": "windows_xml_integration",
+      "command": [
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\python\\python.exe",
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\repo-developer\\scripts\\windows_xml_integration.py"
+      ],
+      "status": "passed",
+      "log": "windows_xml_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.68
+    },
+    {
+      "name": "crypto_interop",
+      "command": [
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\python\\python.exe",
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\repo-developer\\scripts\\crypto_interop.py"
+      ],
+      "status": "passed",
+      "log": "crypto_interop.log",
+      "exit_code": 0,
+      "duration_seconds": 0.248
+    },
+    {
+      "name": "source-scale",
+      "command": [
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\python\\python.exe",
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\repo-developer\\scripts\\source_scale.py",
+        "--binary",
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\repo-developer\\dist\\k957-windows-amd64.exe",
+        "--out",
+        "C:\\Users\\cmk\\AppData\\Local\\Temp\\k957-native-validation-20261002\\validation-07\\source-scale",
+        "--objects",
+        "2000",
+        "--timeout",
+        "600"
+      ],
+      "status": "passed",
+      "log": "source-scale.log",
+      "exit_code": 0,
+      "duration_seconds": 12.477
+    }
+  ],
+  "source_sha256": "41535d7226d87ad2293d06c043aaec4401d33c81c078cfddea0de2252be4fdac",
+  "binary_sha256": "df296695bd3b309740c633e1371dcdb0ad0849f514988b27ad0fa6cb8f943009",
+  "finished": "2026-10-04T10:22:30.227987+00:00"
+}

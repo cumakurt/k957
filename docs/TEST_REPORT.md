@@ -1,3 +1,93 @@
+# k957 0.15.0 native Windows and developer credits — 2026-10-04
+
+Current source: `41535d7226d87ad2293d06c043aaec4401d33c81c078cfddea0de2252be4fdac`.
+
+[Linux AMD64 validation](validation/0.15.0/linux-amd64-developer-20261004/validation.json) passed 33 checks with two explicit optional-tool/model skips; statement coverage is 75.6%. [Native Windows AMD64 validation](validation/0.15.0/windows-amd64-developer-20261004/validation.json) passed 29 checks with six explicit skips: five Go source checks delegated to the [native supplemental execution](validation/0.15.0/windows-amd64-developer-20261004/supplement/result.json), plus the unconfigured local assistant. All eight supplemental checks passed, including native build, vet, units, the million-row index benchmark and native execution of cross-compiled race binaries. Windows statement coverage is 74.1%.
+
+Cuma Kurt's public developer name, email, repository and LinkedIn links are included in help/version, build-info, HTML and PDF/DOCX software credits. Independent PDF and DOCX extraction checks all four values; HTML and build-info have matching checks. Credits identify the software developer separately from the case operator/examiner. All six [release binaries](../RELEASE.json) bind the same source and passed library checks; the manifest now accepts multiple native platform receipts and retains both Linux/Windows source and executable bindings.
+
+Native Windows found and corrected SQLite drive-URI serialization, asynchronous cancellation cleanup retaining SQLite handles, console VT capability detection, prebuilt fixture lookup and PDF reference-tool encoding. POSIX fixtures keep their original platform expectations; Windows sharing protection preserves evidence hash assertions. The latest Windows ANSI/OEM command-output normalization has native code-page regressions. The [earlier Console Host visual check](validation/0.15.0/windows-amd64-native-20261004/console-host.png) shows rendered colors/progress and no literal ANSI sequences against the earlier `014179...` source.
+
+The [100,000-source-object receipt](validation/0.15.0/windows-amd64-scale-20261004/source-scale/scale.json) passed collection, independent signatures/hashes, package verification, CSV/bodyfile/index counts, chronology and duplicate checks against source `23b094...`, before developer credits were added. The surrounding full run retained one checkpoint-poll sharing error in the Python restart harness; it is not presented as a successful full run. The harness now retries Windows EACCES only while polling an active collector inside the existing 20-second deadline; persistent access denial still fails the interruption assertion, retaining the interruption, stale-lock and independent part/hash assertions. An earlier 600-second outer deadline also expired; the repeated load check used explicit longer harness deadlines. Initial portable-Python path mistakes were corrected before the retained source-bound final run.
+
+Live Windows snapshots and event exports produced a declared partial collection on the earlier source: two optional Registry paths and the Sysmon channel were absent. Integrity verification and analysis succeeded; raw VM evidence remains in the task-owned guest directory and is excluded from release artifacts. Synthetic RAM tools and actual offline Volatility invalid-image handling do not establish valid Windows kernel-object accuracy or driver-backed RAM acquisition.
+
+[Native Windows large-memory receipt](validation/0.15.0/windows-amd64-developer-20261004/large-memory-windows.json) passed an 8 GiB + 1 byte synthetic image, three plugin attempts including a declared failure, 100,002 rows, 39,400,789 output bytes, retained diagnostics and unchanged source SHA-256. Automatic tool timeout remained zero. This tests orchestration and staging; it does not validate kernel objects.
+
+Windows ARM64, native macOS, physical RAM/device acquisition, USB/power interruption, enterprise controls and distribution signing remain unvalidated. The release remains a developer preview. Earlier sections below retain their original scope and source bindings.
+
+# Windows console correction — 2026-10-02
+
+Source: `cfb66fd7585e5c141faade76c87af685280ee382a61230835c584931ded0eabd`.
+
+Windows progress previously assumed character-device output supported ANSI control sequences. The renderer now verifies a console handle and enables virtual terminal processing before emitting cursor/color commands. Failed setup and TERM=dumb use plain output; summaries and interrupt cursor restoration share the capability check.
+
+This correction has no new runtime test receipt. Earlier Linux validation below applies only to its recorded source. Native Windows Console Host/Terminal visual acceptance remains pending; see [console acceptance](PLATFORM_TESTING.md#windows-console-acceptance). Cross-build results are retained in [the build log](validation/0.15.0/six-target-windows-console-build.log).
+
+# Release readiness recheck — 2026-10-02
+
+Source: `258dc1a8f2dd65f1c21d3b3c9a3ff7e74fe5ed855a82f0bf9a9e680e72f80aed`.
+
+Fixed two outdated test assumptions: missing Linux process maps now produce explicit unavailable mapping references, and document omission assertions locate coverage by stage instead of row position. Added regressions for exact native case filters, invalid filters, scoped USN identities, USN v2/v3 decoding, record limits and truncated-input partial results.
+
+The [native Linux receipt](validation/0.15.0/linux-amd64-release-readiness/validation.json) records **34 passed, zero failed, one skipped**. It includes uncached units, race detection, vet, the million-row case benchmark, native artifact references, RAM streaming/tool suites, report documents, cryptographic checks and a new synthetic USN acquisition-to-signed-selection integration. Statement coverage is **75.6%**. Cached local model integration was skipped because no runtime/model endpoint was configured.
+
+A separate [Chromium check](validation/0.15.0/linux-amd64-release-readiness/case-viewer-browser.log) passed cancellation, stale-response rejection, submitted-filter pagination and source-scoped related navigation using synthetic responses. It does not establish accessibility or full browser compatibility.
+
+Release status remains **developer preview**. Native Windows, macOS and ARM64 runtime acceptance, positive real-memory/symbol accuracy and physical-device scenarios remain open. No configured Git remote is available to dispatch the existing native-platform CI matrix. Passing Linux checks and cross compilation do not establish production readiness across all advertised targets. Original acquired evidence was not accessed or changed.
+
+# Latest source status
+
+Date: 2026-10-02. Source: `42049c6b6ff11131fa75fae2a49b64736ee57676472431fd4822f776dbdb8a39`. Added exact native parser/record and USN file-ID filters to CLI queries, the local viewer and signed bookmarks. New indexes include reference identifiers in literal search. Related USN navigation retains collection/evidence scope; new viewer searches cancel/discard stale responses, and pagination retains submitted filters.
+
+All six targets compiled and passed platform-library checks; [build log](validation/0.15.0/six-target-native-case-search-build.log). No new tests were added or run. SQL runtime, browser interaction and bookmark acceptance for this addition remain pending. Earlier receipts remain source-bound historical measurements.
+
+# Previous USN grouping source status
+
+Date: 2026-10-02. Source: `dfc8f68fadcd33fd06502d9065e62a90e1d13a75db3cb59c8827cc14b267a2cf`. Added USN file record groups scoped by evidence/source/version/file ID, complete emitted-record references in `usn-files.json` and `usn-files.csv`, and HTML/PDF/DOCX group views with explicit group/name/parent omission coverage. No full path, rename pair or file lifetime is inferred.
+
+All six targets compiled and passed platform-library checks; [build log](validation/0.15.0/six-target-usn-groups-build.log). No new tests were added or run. Runtime/reference and rendered-output acceptance for these additions remain pending; previous receipts remain bound to their original source.
+
+# Previous adaptive/USN source status
+
+Date: 2026-10-02. Current source: `85b25ecb2a3fa67b2c601a597c240274deab8f31927fdc16d0cdd7093d534bae`. The Bash builder now has terminal colors, target stages, artifact sizes, elapsed time, failure diagnostics and a final source-consistency check. Adaptive acquisition adds Linux executable file mappings and Windows Tool Help loaded modules; offline USN v2/v3 interpretation adds structured events, rule fields, native record references and `usn.csv`.
+
+All six release targets compiled and passed their platform-library checks; see [final build log](validation/0.15.0/six-target-adaptive-usn-final-build.log). No new tests were added or run. Current runtime/reference acceptance remains pending, and `RELEASE.json` has no current native validation receipt. Earlier measurements below certify only their recorded source revisions.
+
+# Previous LiME/seal source status
+
+The subsequent LiME/seal correction has source fingerprint `4f19638a7535720a25f801679f1dbacf25578d080d71c397e5abeb547bf7d9eb`. It corrects renamed LiME image identification, removes the report-seal manifest size ceiling, checks manifest file identity and cleans up partial seal writes. Six-target compilation is recorded separately in [the build log](validation/0.15.0/six-target-lime-seal-build.log). No tests were run for this correction; all runtime measurements below remain bound to earlier source. `RELEASE.json` intentionally has no current native validation receipt.
+
+# k957 0.15.0 collection, memory and reporting upgrade validation
+
+Date: 2026-10-01. [Native Linux AMD64 receipt](validation/0.15.0/linux-amd64-report-memory-upgrade/validation.json): **35/35 checks passed**, source `265b94b0c47d619b6ffd67eb9b00b2c903f5bbb6b1ee4fe9f6e65be1c9610b50`. Formatting, vet, uncached units, race checks, source-bound build, release/library/language policy, all integrations, actual local-model quotation tasks and the 100,000-source-object check passed. Statement coverage is 76.3%. [Six-target build log](validation/0.15.0/six-target-report-memory-build.log) records cross compilation and platform-library checks; native runtime acceptance remains Linux AMD64.
+
+The [large-image suite receipt](validation/0.15.0/linux-amd64-report-memory-upgrade/large-memory-suite.json) uses an 8,589,934,593-byte synthetic sparse source with a full private staged copy, 100,002 output rows, 39,400,789 bytes of JSON and diagnostics above 64 KiB. It checks unchanged source hashes, dump/thread options, all retained output hashes, partial failure and output-filesystem staging when `/tmp` is too small. This is orchestration/I/O assurance, not a real kernel accuracy test. The [actual Volatility suite negative check](validation/0.15.0/linux-amd64-report-memory-upgrade/real-memory-suite-negative.json) separately records installed plugin discovery and invalid-image/missing-symbol outcomes.
+
+[Independent reporting/IOC integration](validation/0.15.0/linux-amd64-report-memory-upgrade/report_upgrade_integration.log) checks default native PDF/receipts, real SQLite browser row provenance, exact offline domain matches, explicit ATT&CK candidate counts, Timesketch fields, documented review ordering, masked PDF privacy and inclusion of default PDF in the signature contract. Full CSV/JSONL regressions retain matches/observations beyond former cutoffs; long ASCII/UTF-16LE strings and URL segments reconstruct across tiny input windows. Suite record/output mutation and unrecorded nested receipts are rejected. Signed adaptive process-executable acquisition has synthetic reference, scope-preservation and tamper checks; native Windows/macOS discovery remains unmeasured.
+
+[Chromium visual/print receipt](validation/0.15.0/linux-amd64-report-memory-upgrade/visual-check.json) confirms all 60 finding/inventory rows are included for print after filtering, the prior filtered state is restored, there are no page script errors and a 390-pixel viewport has no document-wide horizontal overflow. The native PDF [cover](validation/0.15.0/linux-amd64-report-memory-upgrade/pdf-page-1.png), [body](validation/0.15.0/linux-amd64-report-memory-upgrade/pdf-page-4.png) and [HTML view](validation/0.15.0/linux-amd64-report-memory-upgrade/html-desktop.png) were visually inspected. This is a synthetic rendering check, not an accessibility or broad renderer audit.
+
+The [initial full attempt](validation/0.15.0/linux-amd64-report-memory-upgrade-initial/validation.json) is retained: three old privacy harnesses attempted UTF-8 decoding of new binary PDF files. They now independently extract PDF text and retain their original assertions; focused and full repeats passed. Other preexisting work was preserved. Existing example evidence hashes remained unchanged while reports and synthetic signed histories were regenerated. The user's root-owned original memory collection was not read or modified.
+
+[Open development scopes](DEVELOPMENT_PLAN.md) identify the remaining engineering work and external resources. Native operation on every target/device and positive kernel-reference accuracy are not claimed. Earlier measurements below remain historical and source-bound.
+
+# k957 0.15.0 RAM streaming correction validation
+
+Date: 2026-10-01. [Native Linux AMD64 receipt](validation/0.15.0/linux-amd64-memory-stream/validation.json): **33/33 checks passed** against source `3689c22ba7a6fa952970c2d5c402ff9fcb4ac58a6faecc45fb936f5be174115b`. Formatting, vet, uncached units, race detection, native source-bound build, language/release/library policies, all integrations and the explicit 100,000-source-object check passed. Current statement coverage is 76.6%; only Linux AMD64 has current native execution. [Six-target build log](validation/0.15.0/six-target-memory-stream-build.log) records cross compilation and static/platform-library checks.
+
+Default collection/case RAM scanning now hashes the exact stream consumed by the in-process scanner through one read-only descriptor, with signed-hash and identity/size/mtime checks. It creates no image-sized temporary copy. The [new independent CLI integration](validation/0.15.0/linux-amd64-memory-stream/memory_stream_integration.log) exercises a synthetic signed external LiME image with an unavailable temporary directory, including store analysis and case export, exact original hashes and physical addresses. Zero reported staging capacity, wrong hashes, same-metadata modification, path replacement, empty/invalid inputs and cancellation have unit regressions. [The isolated prior-scanner regression](validation/0.15.0/memory-capacity-before.log) reproduces the reported `insufficient private staging space including 64 MiB reserve` error; the [passing regressions](validation/0.15.0/memory-stream-regression.log) supersede it. The earlier [initial regression log](validation/0.15.0/memory-stream-before.log) also records the old temporary-directory dependence and expectations for the new stricter source-path policy.
+
+Verification/analysis progress labels repeated reads as `read workload`; failed batch operations display `failed` rather than completed success markers. External tools and package copies retain private staging. The user's root-owned 31.4 GiB image was neither read nor modified for these checks, and this report does not assert successful analysis of that particular image. Earlier validation sections retain their original source bindings.
+
+# k957 0.15.0 English application validation
+
+Date: 2026-10-01. [Native Linux AMD64 receipt](validation/0.15.0/linux-amd64-english-release/validation.json): **32/32 checks passed** against source `c672c9e826462e1a1e5a43fa50eda8da3d0b4ab3f7d51b7a8298091c1e575dc6`. Formatting, vet, uncached unit tests, race detection, source-bound build, language policy, release/library policies, all integrations, actual local-model inference and the independent 100,000-source-object run passed. Statement coverage is 76.4%. [Six-target build log](validation/0.15.0/six-target-english-release-build.log) records cross compilation and static/platform library checks; only Linux AMD64 has current native execution.
+
+The wizard, shared-report labels/limitations, operational documents and synthetic reports are English. English prompt/report regressions and `scripts/check_language.py` guard the application text. Root `README_TR.md` remains Turkish. Original evidence bytes, arbitrary user content, dependency licenses and raw historical test receipts retain their original content; they are not translated as application labels. The synthetic network demonstration package was recollected with an English scope, and demonstration review/custody histories were freshly signed and verified with temporary keys. Four other compatibility packages retain their original hashes.
+
+The [first attempt](validation/0.15.0/linux-amd64-english/validation.json) is retained as failed: general Go package enumeration encountered a protected generated `dist/output` directory, and the language check found the older synthetic network package's scope declaration. The runner now enumerates both source trees, and the example was regenerated. The final repeat passed every step. Real field/device/native Windows/macOS/ARM64 and browser accessibility assurance remains outside these results. Earlier results below remain historical and source-bound.
+
 # k957 0.12.0 validation
 
 Date: 2026-09-29. Native Linux AMD64 with Go 1.26.8 and Python 3.14.7; Windows AMD64 compatibility execution under Wine 10.0 with Windows Python 3.13.12. Independent cryptography checks use 49.0.0. No third-party Go modules were added.
@@ -64,124 +154,61 @@ Fuzz campaigns are short smoke tests, not exhaustive validation. Only Linux AMD6
 
 # Historical 0.9.0 test report
 
-Tarih: 28 Eylül 2026. Ortam: kısıtlı Linux AMD64 çalışma ortamı. Derleyici: Go 1.26.1. Çekirdek üçüncü taraf Go modülü kullanmaz.
+Date: 2026-09-28. Environment: restricted Linux AMD64. Compiler: Go 1.26.1. The core at this version used no third-party Go modules.
 
-## Gerçekleştirilen kontroller
+## Executed checks
 
-| Kontrol | Sonuç |
-|---|---|
-| `go test -race -coverprofile=coverage.out ./...` | Başarılı; veri yarışı raporlanmadı |
-| `go vet ./...` | Başarılı |
-| CLI paket statement coverage | %76,2 |
-| Core paket statement coverage | %82,4 |
-| Toplam statement coverage | %81,7 |
-| Native CLI uçtan uca akış | Başarılı |
-| Klasik PCAP: iki byte sırası, mikro/nanosaniye zamanı | Başarılı |
-| Ethernet, VLAN, raw IP, IPv4/IPv6 TCP/UDP başlıkları | Başarılı |
-| Bağımsız Python ile kayıt konumu, zaman ve byte sayaçları | Başarılı |
-| Yönlü akışlar, ters yön, sıra dışı zaman ve referans sınırları | Başarılı |
-| Eksik payload ile tam başlık / eksik transport başlığı ayrımı | Beklenen kabul/atlama sonuçları |
-| Fragment, bozuk kayıt, desteklenmeyen protokol ve PCAPNG | Atlanma/hata nedenleri doğrulandı |
-| PCAP kayıt/akış/dosya bütçeleri ve bozuk uzunluklar | Sınırlar doğrulandı |
-| Ağ ve log kaynaklarında ortak IP, paket referansları | Başarılı |
-| Ağ HTML/JSON/CSV çıktısı ve paylaşımda IP/yol/zaman maskeleme | Başarılı |
-| PCAP payload işaretinin bulguya dönüşmemesi ve delilin değişmezliği | Başarılı |
-| FuzzPCAP, 2 işçi, yaklaşık 9 saniye | 153.041 yürütme; hata bulunmadı |
-| Paylaşım: sekiz çıktı dosyasında 18 hassas değer taraması | Değerler bulunmadı |
-| Paylaşım: ham delil, analiz ve imzalı kayıtların değişmezliği | Byte hash'leri aynı |
-| Takma değerlerin tablo/ref bağlantıları ve sayıların korunması | Başarılı |
-| Açık bırakılan alanlarda çapraz maskeleme, literal ve uzun eşleşme | Başarılı |
-| Paylaşım politikası: belirsiz JSON, bilinmeyen kategori ve sınırlar | Reddedildi |
-| Bozuk geçmişten paylaşım ve paylaşımdan review üretme | Reddedildi; çıktı oluşturulmadı |
-| Paylaşım HTML/CSV içerik kaçışları | Başarılı |
-| İki farklı anahtarla register/transfer/accept | Başarılı; eski imzalar korundu |
-| Transfer beklerken sorumlu ve kabul sonrası değişim | Doğrulandı |
-| İptal, yanlış imzacı ve geçersiz durum geçişleri | Beklenen kabul/ret sonuçları |
-| Bağımsız Python ile olay imzası, domain ve hash kontrolü | Başarılı |
-| Delil bağı, sıra, olay değiştirme ve yeniden hash'leme | Reddedildi |
-| Harici son kayıt özetiyle eski sürüme dönüş | Reddedildi |
-| Devir kayıtlarında yinelenen JSON alanı, zaman ve boyut sınırları | Beklenen ret sonuçları |
-| Devir HTML/JSON/CSV çıktısı ve içerik kaçışları | Başarılı |
-| Ön kontrol: birleşik bütçe ve dosya sistemi başına rezerv | Başarılı; denetimli kapasite değerleri |
-| Ön kontrol: kapasite yetersizliği/belirsizliği | blocked/unknown; toplama başlamadı |
-| Ön kontrol: mevcut hedef, çakışma, limitler ve iptal | Başarılı |
-| Linux native boş alan ve salt metadata planı | Başarılı; kaynak içerikleri aynı, hedef oluşturulmadı |
-| Ön kontrol sonrası toplama ve paket doğrulama | Başarılı |
-| Şifreli 192 MiB edinimde SIGKILL ve aynı anahtarla devam | Başarılı |
-| Python cryptography ile staged checkpoint/parça AES-GCM ve HMAC kontrolü | Başarılı |
-| Yanlış anahtar, değiştirilmiş state/chunk ve amaç uyuşmazlığı | Reddedildi |
-| Enjekte edilmiş çıktı yazma hatası | Döndürüldü; pipe kilitlenmedi |
-| Sentetik düz metin işareti ve kaynak yolu taraması | Şifreli çalışma/çıktı dosyalarında bulunmadı |
-| CSV/JSONL alanları, çok satırlı CSV, CRLF ve byte konumları | Başarılı |
-| Geçersiz IP, çelişen alan, tekrar JSON anahtarı ve hatalı CSV | Atlanma/hata raporu doğrulandı |
-| Üç ortak varlık, farklı delil sayısı ve CSV çıktısı | Başarılı |
-| v0.4.0 sırasında FuzzStructuredLogs, yaklaşık 6 saniye | 74.853 yürütme; hata bulunmadı |
-| İmzalı iki değerlendirme sürümü ve yeniden analiz | Başarılı |
-| Ham delil ve önceki değerlendirme dosyasının değişmemesi | Başarılı |
-| Değiştirilmiş geçmiş, yanlış imza anahtarı ve kural dayanağı | Reddedildi |
-| Analist notlarında HTML/CSV güvenliği | Otomatik test geçti |
-| 192 MiB dosyada SIGKILL ve yeniden başlatma | Başarılı; 24 parça bağımsız doğrulandı |
-| Stale lock reddi ve doğrulanmış süreç kapanışı sonrası kurtarma | Başarılı |
-| Kayıtlı ön bölümün aynı metadata ile değiştirilmesi | Devam reddedildi |
-| Bozuk checkpoint parçası / kaynak değişikliği | Devam reddedildi |
-| Edinim dönemleri ve v2 pakette parça hash kontrolü | Başarılı |
-| Salt okunur work-status / tamamlanan dosya yeniden kullanımı | Başarılı |
-| Python stdlib ile bağımsız ZIP boyut/hash ve kaynak byte karşılaştırması | Başarılı |
-| Python cryptography ile bağımsız Ed25519 doğrulaması | Başarılı |
-| Python cryptography ile AES-GCM çerçeve çözümü | Başarılı |
-| v0.1.0 sırasında FuzzEnvelope, 2 işçi, yaklaşık 5 saniye | 183.868 yürütme, hata bulunmadı |
-| v0.1.0 sırasında FuzzRules, 2 işçi, yaklaşık 6 saniye | 9.138 yürütme, hata bulunmadı |
-| Altı OS/mimari için cross-compile | Başarılı |
-| Binary formatı kontrolü | Linux ELF, Windows PE32+, macOS Mach-O |
+- `go test -race -coverprofile=coverage.out ./...` and `go vet ./...`: passed, with no data races reported. Statement coverage: CLI 76.2%, core 82.4%, total 81.7%.
+- Native CLI end-to-end flow: passed.
+- Classic PCAP: both byte orders, microsecond/nanosecond timestamps, Ethernet/VLAN/raw IP, IPv4/IPv6 TCP/UDP headers: passed. Independent Python checks confirmed record positions, times and byte counts.
+- Directional/reverse flows, out-of-order timestamps and reference limits: passed. Complete headers with missing payload and incomplete transport headers produced the expected acceptance/skip results.
+- Fragments, malformed records, unsupported protocols and PCAPNG produced verified skip/error reasons. Record/flow/file budgets and malformed lengths respected their limits.
+- Shared IPs across network/log evidence, packet references, HTML/JSON/CSV export, shared IP/path/time masking, exclusion of payload markers from findings and unchanged evidence bytes: passed.
+- `FuzzPCAP`, two workers, approximately nine seconds: 153,041 executions, no failure.
+- Sharing: none of 18 sensitive markers appeared in eight output files. Raw evidence, analysis and signed records retained their byte hashes. Alias/table/reference consistency, preserved counts, cross-field masking, literal/longest matching and HTML/CSV escaping passed.
+- Ambiguous policy JSON, unknown categories, policy limits, invalid histories and attempts to review a sharing report were rejected without output.
+- Two-key custody registration/transfer/acceptance preserved previous signatures. Holder state during a pending transfer and after acceptance, cancellation, wrong signers and invalid transitions produced the expected results.
+- Independent Python verified custody event signatures, domain separation and hashes. Evidence-binding, sequence, payload modification/re-hashing and rollback against an external expected head were rejected. Duplicate JSON fields, timestamp/size bounds and safe HTML/JSON/CSV export passed.
+- Preflight combined budgets and per-filesystem reserves passed using controlled capacity values. Insufficient/unknown space produced blocked/unknown status before collection. Existing destinations, overlaps, limits and cancellation passed. Native Linux free-space and metadata-only planning left source content unchanged and created no destination. Collection and package verification after preflight passed.
+- Encrypted 192 MiB acquisition recovered after SIGKILL with the same key. Independent Python cryptography verified staged checkpoint/chunk AES-GCM and HMAC. Wrong keys, altered state/chunks and purpose mismatches were rejected. An injected output-write failure returned without blocking the pipe. Synthetic plaintext markers and source paths were absent from encrypted work/output files.
+- CSV/JSONL fields, multiline CSV, CRLF and byte positions passed. Invalid IPs, conflicting fields, duplicate JSON keys and malformed CSV produced verified skip/error reports. Three shared entities, distinct evidence counts and CSV export passed.
+- Historical `FuzzStructuredLogs` during 0.4.0, approximately six seconds: 74,853 executions, no failure.
+- Two signed review revisions and fresh analysis passed. Raw evidence and the previous revision remained unchanged. Altered histories, wrong signing keys and changed rule bases were rejected. Analyst-note HTML/CSV safety passed automated checks.
+- Plain 192 MiB acquisition recovered after SIGKILL; 24 chunks were independently verified. Stale-lock rejection, recovery after confirmed process exit, acquisition epochs, v2 chunk hashes, read-only work status and completed-file reuse passed. Same-metadata prefix mutations, corrupt checkpoint chunks and changed sources prevented resume.
+- Python standard-library checks independently verified ZIP sizes/hashes and original source bytes. Python cryptography independently verified Ed25519 signatures and decrypted AES-GCM frames.
+- Historical 0.1.0 `FuzzEnvelope`: two workers, approximately five seconds, 183,868 executions without failure. Historical 0.1.0 `FuzzRules`: two workers, approximately six seconds, 9,138 executions without failure.
+- All six OS/architecture targets cross-compiled. Formats were Linux ELF, Windows PE32+ and macOS Mach-O.
 
-v0.9.0 için yeni FuzzPCAP kampanyası çalıştırıldı; sonuçları `pcap-fuzz.txt` içindedir. Kripto/kural sonuçları önceki sürümde değişmemiş kod üzerinde alınan tarihsel sonuçlardır; bu hedefler bu sürümde yeniden fuzz edilmedi. Yapılandırılmış log hedefi v0.4.0 sırasında çalıştırıldı. Kampanyalar kısa duman testleridir; kapsamlı fuzz doğrulaması değildir. Coverage oranı kalite veya doğruluk garantisi değildir. Ayrıntılı final test çıktısı `test-output.txt`, kapsam bilgisi `coverage.txt`, on CLI entegrasyonunun sonuçları `integration-output.txt` içindedir. Son IPv6 uç nokta gösterimi düzenlemesinden sonra tüm Go testleri, race/vet kontrolleri, altı derleme ve PCAP entegrasyonu yeniden başarıyla çalıştırıldı.
+The new 0.9.0 PCAP campaign is recorded in `pcap-fuzz.txt`. Cryptographic/rule fuzz measurements were historical runs against unchanged code; those targets were not fuzzed again for this release. Structured-log fuzzing ran during 0.4.0. These short campaigns are smoke checks, not exhaustive validation. Coverage does not establish correctness. Final test, coverage and ten CLI integration results are in `test-output.txt`, `coverage.txt` and `integration-output.txt`. After the final IPv6 endpoint display change, Go tests, race/vet checks, six builds and PCAP integration all passed again.
 
-Yeni senaryo `python3 scripts/resume_integration.py` ile yeniden çalıştırılabilir. Gerçek bir alt süreç ilk checkpoint sonrasında SIGKILL ile durdurulur; süreç kapanışı doğrulandıktan sonra test kendi stale lock dosyasını kaldırır, devam ettirir ve 24 parçayı Python ile karşılaştırır. Bu, fiziksel güç/USB kesintisi testi değildir.
+Reproduce process recovery with `python3 scripts/resume_integration.py`: a real child process is terminated after its first checkpoint, its exit is confirmed, the test removes its own stale lock, resumes collection and independently compares 24 chunks. This does not establish physical power/USB interruption behavior.
 
-## Test edilen davranışlar
+## Tested behavior
 
-- Dosya edinimi, imzalı paket açma, HTML/JSON/CSV üretme.
-- Delil nesnesi, manifest veya imza değiştirildiğinde reddetme.
-- Yanlış güven anahtarı ve imzasız pakete güven anahtarı verilmesi.
-- Paket dışı/path traversal isimli ek kayıtların reddi.
-- Yinelenen manifest nesnesi reddi.
-- Dosya boyutu sınırı, symlink atlama ve kısmi durum kaydı.
-- Kaynağın içine çıktı üretme ve var olan dosyayı ezme girişimini engelleme.
-- İptal edilmiş toplamanın çıktı bırakmaması.
-- AES-GCM için boş veri, küçük veri, tam çerçeve ve çoklu çerçeve.
-- Şifreli veride kesilme, değiştirme ve sona veri ekleme reddi.
-- Şifre çözme hatasında yeni düz dosyanın kaldırılması.
-- HTML delil içeriğinin escape edilmesi; CSV formül başlangıçlarının korunması.
-- Geçersiz kurallar, binary metin taraması sınırı, eksik yardımcı komut.
-- JSONL/RFC3339 UTC dönüşümü; zaman dilimi olmayan logda tahmin yapılmaması.
-- Özel imza anahtarının kaynak kökünde bulunmasının reddi.
-- Komut satırından anahtar üretme, toplama, doğrulama, analiz, şifreleme/çözme.
+- File acquisition, opening signed packages and HTML/JSON/CSV exports.
+- Rejection of modified evidence objects, manifests/signatures, wrong trusted keys and trusted-key requirements on unsigned packages.
+- Rejection of extra/path-traversal archive records and duplicate manifest objects.
+- File-size limits, skipped symlinks and recorded partial collection status.
+- Prevention of source/output overlap and overwriting existing outputs; cancelled collection leaves no output.
+- Empty, short, complete-frame and multi-frame AES-GCM data; rejection of truncation, modification and appended data; removal of newly decrypted output on failure.
+- HTML escaping and CSV formula-prefix protection.
+- Invalid rules, bounded binary/text scanning and missing helper commands.
+- JSONL/RFC3339 conversion to UTC without guessing a timezone for unqualified log times.
+- Rejection of private signing keys inside the source root.
+- CLI key generation, collection, verification, analysis, encryption and decryption.
 
-## Platform matrisi
+## Platform execution
 
-| Platform | Derlendi | Çalıştırıldı |
-|---|---|---|
-| Linux AMD64 | Evet | Evet, bu kısıtlı ortamda |
-| Linux ARM64 | Evet | Hayır |
-| Windows AMD64 | Evet | Hayır |
-| Windows ARM64 | Evet | Hayır |
-| macOS AMD64 | Evet | Hayır |
-| macOS ARM64 | Evet | Hayır |
+All six targets built. Only Linux AMD64 executed, in the restricted environment. Linux ARM64, Windows AMD64/ARM64 and macOS AMD64/ARM64 binaries were not executed for this historical release.
 
-## Gerçekleştirilemeyen veya kapsam dışı kontroller
+## Unperformed or excluded checks
 
-Fiziksel USB ayırma, güç kesintisi, gerçek disk dolması/bozuk sektör, donanım write blocker, Windows ACL/kurumsal denetim, macOS TCC/notarization, gerçek RAM/disk edinimi, çok terabayt yük, bozuk ağ dosya sistemleri ve bağımsız adli laboratuvar doğrulaması yapılmadı. HTML escaping test edildi; tarayıcı görsel/erişilebilirlik testi yapılmadı. Native sistem yardımcı komutlarının gerçek Windows/macOS çıktıları test edilmedi. Üretim güvenlik denetimi veya NIST sertifikası bulunmaz.
+Physical USB/power interruption, real full disks/bad sectors, hardware write blockers, native Windows ACL/enterprise controls, macOS TCC/notarization, real RAM/disk acquisition, multi-terabyte loads, broken network filesystems and independent forensic-laboratory validation were not performed. HTML escaping was tested; browser visual/accessibility checks were not. Real native Windows/macOS helper output was not tested. This was not a production security audit or NIST certification.
 
-Değerlendirme entegrasyonu: `python3 scripts/review_integration.py`. GUI, çok kullanıcı yetki sistemi ve fiziksel cihaz doğrulaması bu sürümde eklenmedi.
-
-Yeni bağımsız CLI testi: `python3 scripts/structured_integration.py`. 74.853 girdilik fuzz kampanyası kısa bir duman testidir, kapsamlı doğrulama değildir.
-
-Şifreli toplama entegrasyonu: `python3 scripts/encrypted_integration.py` (Python cryptography gerekir). Bilinen sentetik işaretlerin bulunmaması tüm yan kanal/swap/çekirdek sızıntılarının test edildiği anlamına gelmez. Bu sürüm bağımsız üretim güvenlik denetimi değildir.
-
-Ön kontrol entegrasyonu: `python3 scripts/preflight_integration.py`. Alan yetersizliği birim testinde denetimli kapasiteyle üretildi; gerçek disk dolması ve Windows/macOS boş alan API çalıştırma testleri yapılmadı.
-
-Devir entegrasyonu: `python3 scripts/custody_integration.py` (Python cryptography gerekir). İki anahtarlı olay imzaları bağımsız kontrol edildi. Delil paketinin ve eski kayıt dosyalarının byte hashleri değişmedi. Fiziksel devir, gerçek kişi kimliği, anahtar iptal servisi, güvenilir zaman damgası veya merkezi kayıt altyapısı bu testin kapsamı değildir.
-
-Paylaşım entegrasyonu: `python3 scripts/share_integration.py`. İmzalı karar/devir girdileriyle sekiz paylaşım dosyasında 18 bilinen hassas değer tarandı. Bu, gerçek dünya anonimleştirme veya tüm kişisel veriyi tanıma doğrulaması değildir; serbest metinler tamamen çıkarılır. Paylaşım raporunun tarayıcı görsel/erişilebilirlik testi yapılmadı.
-
-PCAP entegrasyonu: `python3 scripts/pcap_integration.py`. Python ile üretilen sentetik kayıtların konumları, zamanları ve uzunlukları bağımsız hesaplandı. Gerçek saha kayıtlarında geniş uyumluluk testi yapılmadı. PCAPNG, canlı paket yakalama, IP fragment birleştirme, TCP oturum yeniden kurma, payload ve checksum analizi desteklenmez. Ağ akışı aynı delildeki yönlü beşli anahtara göre gruplamadır; benzersiz bağlantı veya kişi sayısı değildir. Ayrıntılar `PCAP_TR.md` içindedir.
+- `python3 scripts/review_integration.py`: signed reviews; no GUI, multi-user authorization or physical-device validation was added in this release.
+- `python3 scripts/structured_integration.py`: independent structured-log CLI checks; the 74,853-input fuzz campaign was a short smoke check.
+- `python3 scripts/encrypted_integration.py`: requires Python cryptography. Absence of known plaintext markers does not establish absence of side-channel, swap or kernel leaks.
+- `python3 scripts/preflight_integration.py`: insufficient space was simulated with controlled capacity; real full-disk and native Windows/macOS free-space APIs were not executed.
+- `python3 scripts/custody_integration.py`: requires Python cryptography. Two-key event signatures were independently checked; evidence and previous ledger hashes remained unchanged. Physical transfers, civil identity, key-revocation services, trusted timestamps and centralized custody infrastructure were outside its scope.
+- `python3 scripts/share_integration.py`: 18 known private markers were checked across eight files with signed review/custody inputs. This does not establish real-world anonymization or complete personal-data recognition. Free text is omitted. Browser visual/accessibility checks were not performed.
+- `python3 scripts/pcap_integration.py`: independently calculated synthetic record positions, times and lengths. Broad field-capture compatibility was not tested. At 0.9.0, PCAPNG, live capture, IP fragment reconstruction, TCP session reconstruction, payload and checksum analysis were unsupported. Directional five-tuple groups were not unique connections or people. See `PCAP_TR.md` for the historical baseline and current extensions.

@@ -1,0 +1,19 @@
+{
+  "schema": "k957-real-memory-suite-check/1",
+  "result": "passed",
+  "scope": "Actual installed Volatility discovery and invalid-image/missing-symbol failures; no positive kernel-object accuracy claim",
+  "source_sha256": "265b94b0c47d619b6ffd67eb9b00b2c903f5bbb6b1ee4fe9f6e65be1c9610b50",
+  "image_sha256": "8ba8fefc5c37eae6a609ebf3b6c6f7e775c4bb72dc8eab1ec390a3ede1541473",
+  "image_bytes": 4146,
+  "tool": "/tmp/k957-native-reference-venv/bin/vol",
+  "tool_executable_sha256": "03c0e10247f4425670d0677d0a9227d49207ec73bd86351dcac9f887e863758c",
+  "plugin_attempts": 60,
+  "failed_plugins": 58,
+  "unavailable_plugins": [
+    "linux.vmayarascan",
+    "yarascan"
+  ],
+  "duration_seconds": 42.841,
+  "source_unchanged": true,
+  "all_output_hashes_checked": true
+}

@@ -1,8 +1,77 @@
 {
+  "coverage": [
+    {
+      "schema": "k957-coverage/1",
+      "stage": "inventory",
+      "unit": "objects",
+      "status": "complete",
+      "eligible": 2,
+      "emitted": 2,
+      "omitted": 0,
+      "total_known": true
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "parser",
+      "format": "CSV",
+      "unit": "records",
+      "status": "partial",
+      "eligible": 2,
+      "emitted": 1,
+      "omitted": 1,
+      "total_known": true
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "parser",
+      "format": "JSONL",
+      "unit": "records",
+      "status": "partial",
+      "eligible": 2,
+      "emitted": 1,
+      "omitted": 1,
+      "total_known": true
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "findings",
+      "unit": "findings",
+      "status": "complete",
+      "eligible": 0,
+      "emitted": 0,
+      "omitted": 0,
+      "total_known": true,
+      "limit": 10000
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "acquisition_metadata",
+      "unit": "objects",
+      "status": "partial",
+      "eligible": 2,
+      "emitted": 0,
+      "omitted": 2,
+      "total_known": true,
+      "reasons": {
+        "other": 2
+      }
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "correlation_references",
+      "unit": "references",
+      "status": "complete",
+      "eligible": 6,
+      "emitted": 6,
+      "omitted": 0,
+      "total_known": true,
+      "limit": 200
+    }
+  ],
   "schema": "k957-shared-report/1",
-  "version": "0.9.0",
-  "id": "a7607c1ddc5c4a933e23def2e7aa15b5",
-  "created": "2026-09-28T09:28:42.114511394Z",
+  "version": "0.15.0",
+  "id": "6649d4c87797a610e6096f0b09150ae6",
+  "created": "2026-10-01T18:14:14.111849646Z",
   "policy": {
     "keep": [
       "timestamps"
@@ -15,7 +84,7 @@
   "operator": "[ACTORS-000001]",
   "collection_status": "complete",
   "source_issue_count": 0,
-  "source_note_count": 5,
+  "source_note_count": 7,
   "items": [
     {
       "id": "E000001",
@@ -199,10 +268,10 @@
     }
   ],
   "notes": [
-    "Bu çıktı maskelenmiş türev rapordur; özgün delil, analist kararı veya imzalı devir kaydı yerine kullanılamaz.",
-    "Alıntılar, olay açıklamaları, kural içerikleri, notlar, hata metinleri, kapsam, imzalar, hashler ve özgün kimlikler çıkarıldı. Ayrıntılı sınırlamalar özgün raporda bulunur.",
-    "Takma değerler yalnızca bu raporda tutarlıdır; geri eşleme tablosu verilmez. Sayılar, dosya boyutları, ilişkiler, satır/byte konumları ve sıralama korunur; anonimlik garantisi yoktur.",
-    "Açık bırakılan metin alanlarında bilinen maskeli değerler ve ek literal ifadeler büyük/küçük harf duyarsız değiştirilir. Alternatif yazımlar, kodlamalar veya bilinmeyen kişisel bilgiler otomatik tespit edilmez.",
-    "Paylaşmadan önce raporu inceleyin. Rapordaki oluşturma zamanı bu türev rapora aittir; kaynak zamanları yalnızca timestamps açık bırakılmışsa gösterilir."
+    "This is a masked derived report; it cannot replace original evidence, examiner decisions or signed custody records.",
+    "Quotations, event descriptions, rule contents, notes, error messages, scope, signatures, hashes and original identifiers were omitted. Detailed limitations remain in the original report.",
+    "Aliases are consistent only within this report; no reverse mapping is provided. Counts, file sizes, relationships, line/byte positions and ordering are retained; anonymity is not guaranteed.",
+    "Known masked values and additional literal expressions are replaced case-insensitively in retained text fields. Alternative spellings, encodings and unknown personal information are not detected automatically.",
+    "Inspect the report before sharing. Its creation time belongs to this derived report; source times appear only when timestamps are explicitly retained."
   ]
 }

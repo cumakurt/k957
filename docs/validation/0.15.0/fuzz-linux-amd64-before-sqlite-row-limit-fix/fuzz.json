@@ -1,0 +1,173 @@
+{
+  "schema": "k957-fuzz/1",
+  "source_sha256": "68656e371ab1d1b2b6f3f9ad6778107fb4efa7c3a5d6222b0cc713613aa5231a",
+  "target": "linux/amd64",
+  "started": "2026-10-01T07:02:47.849585+00:00",
+  "result": "passed",
+  "steps": [
+    {
+      "name": "FuzzRules",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzRules$",
+        "-fuzztime=10s",
+        "-fuzzminimizetime=1s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "log": "FuzzRules.log",
+      "exit_code": 0,
+      "executions": 38971,
+      "duration_seconds": 10.647
+    },
+    {
+      "name": "FuzzEnvelope",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzEnvelope$",
+        "-fuzztime=10s",
+        "-fuzzminimizetime=1s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "log": "FuzzEnvelope.log",
+      "exit_code": 0,
+      "executions": 143983,
+      "duration_seconds": 10.797
+    },
+    {
+      "name": "FuzzStructuredLogs",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzStructuredLogs$",
+        "-fuzztime=10s",
+        "-fuzzminimizetime=1s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "log": "FuzzStructuredLogs.log",
+      "exit_code": 0,
+      "executions": 99796,
+      "duration_seconds": 10.966
+    },
+    {
+      "name": "FuzzPCAP",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzPCAP$",
+        "-fuzztime=10s",
+        "-fuzzminimizetime=1s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "log": "FuzzPCAP.log",
+      "exit_code": 0,
+      "executions": 143949,
+      "duration_seconds": 10.876
+    },
+    {
+      "name": "FuzzPCAPNG",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzPCAPNG$",
+        "-fuzztime=10s",
+        "-fuzzminimizetime=1s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "log": "FuzzPCAPNG.log",
+      "exit_code": 0,
+      "executions": 239083,
+      "duration_seconds": 10.795
+    },
+    {
+      "name": "FuzzWindowsXML",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzWindowsXML$",
+        "-fuzztime=10s",
+        "-fuzzminimizetime=1s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "log": "FuzzWindowsXML.log",
+      "exit_code": 0,
+      "executions": 46380,
+      "duration_seconds": 10.807
+    },
+    {
+      "name": "FuzzRegistry",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzRegistry$",
+        "-fuzztime=10s",
+        "-fuzzminimizetime=1s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "log": "FuzzRegistry.log",
+      "exit_code": 0,
+      "executions": 40265,
+      "duration_seconds": 11.302
+    },
+    {
+      "name": "FuzzBinaryPlist",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzBinaryPlist$",
+        "-fuzztime=10s",
+        "-fuzzminimizetime=1s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "log": "FuzzBinaryPlist.log",
+      "exit_code": 0,
+      "executions": 105759,
+      "duration_seconds": 11.018
+    },
+    {
+      "name": "FuzzExternalJSON",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzExternalJSON$",
+        "-fuzztime=10s",
+        "-fuzzminimizetime=1s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "log": "FuzzExternalJSON.log",
+      "exit_code": 0,
+      "executions": 86902,
+      "duration_seconds": 10.866
+    }
+  ],
+  "source_unchanged": true,
+  "finished": "2026-10-01T07:04:25.952099+00:00"
+}

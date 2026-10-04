@@ -1,0 +1,8 @@
+fuzz: elapsed: 0s, gathering baseline coverage: 0/101 completed
+fuzz: elapsed: 1s, gathering baseline coverage: 101/101 completed, now fuzzing with 2 workers
+fuzz: elapsed: 3s, execs: 15475 (5157/sec), new interesting: 2 (total: 103)
+fuzz: elapsed: 6s, execs: 62156 (15562/sec), new interesting: 3 (total: 104)
+fuzz: elapsed: 9s, execs: 100914 (12918/sec), new interesting: 4 (total: 105)
+fuzz: elapsed: 10s, execs: 112905 (11621/sec), new interesting: 4 (total: 105)
+PASS
+ok  	k957/internal/core	10.051s

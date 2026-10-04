@@ -1,0 +1,1 @@
+PASS: full suite, >32 MiB output, >100k rows, >64 KiB diagnostics, partial failure, no automatic timeout, unchanged source

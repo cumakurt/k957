@@ -2,10 +2,12 @@ package core
 
 import (
 	"archive/zip"
+	"bytes"
+	"context"
 	"crypto/ed25519"
+	"crypto/rand"
 	"crypto/sha256"
 	"encoding/hex"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
@@ -14,14 +16,37 @@ import (
 )
 
 type Package struct {
-	ManifestSHA256 string
-	Zip            *zip.ReadCloser
-	Manifest       Manifest
-	Files          map[string]*zip.File
-	Signature      string
+	VerifiedPrefixes map[string][]byte
+	ManifestSHA256   string
+	Zip              *zip.ReadCloser
+	Manifest         Manifest
+	Files            map[string]*zip.File
+	Signature        string
+	stagingDirectory string
 }
 
-func Open(path, publicKey string) (p *Package, err error) {
+// Close releases the ZIP and any collection-owned immutable staging copy.
+// Ordinary Open/OpenContext callers may continue using Zip.Close as before.
+func (p *Package) Close() error {
+	err := p.Zip.Close()
+	if p.stagingDirectory != "" {
+		if cleanupErr := os.RemoveAll(p.stagingDirectory); err == nil {
+			err = cleanupErr
+		}
+		p.stagingDirectory = ""
+	}
+	return err
+}
+
+func Open(path, publicKey string) (*Package, error) {
+	return OpenContext(context.Background(), path, publicKey)
+}
+
+// OpenContext verifies package bytes and observes cancellation during hashing.
+func OpenContext(ctx context.Context, path, publicKey string) (p *Package, err error) {
+	if e := ctx.Err(); e != nil {
+		return nil, e
+	}
 	z, e := zip.OpenReader(path)
 	if e != nil {
 		return nil, e
@@ -31,7 +56,7 @@ func Open(path, publicKey string) (p *Package, err error) {
 			z.Close()
 		}
 	}()
-	p = &Package{Zip: z, Files: map[string]*zip.File{}, Signature: "unsigned"}
+	p = &Package{Zip: z, Files: map[string]*zip.File{}, VerifiedPrefixes: map[string][]byte{}, Signature: "unsigned"}
 	if len(z.File) > 100002 {
 		return nil, errors.New("too many entries")
 	}
@@ -45,20 +70,14 @@ func Open(path, publicKey string) (p *Package, err error) {
 	if !ok {
 		return nil, errors.New("missing manifest")
 	}
-	b, e := readEntry(mf, 16<<20)
+	b, e := readEntry(mf, manifestLimit)
 	if e != nil {
 		return nil, e
 	}
 	digest := sha256.Sum256(b)
 	p.ManifestSHA256 = hex.EncodeToString(digest[:])
-	dec := json.NewDecoder(strings.NewReader(string(b)))
-	dec.DisallowUnknownFields()
-	if e = dec.Decode(&p.Manifest); e != nil {
-		return nil, e
-	}
-	var extra any
-	if dec.Decode(&extra) != io.EOF {
-		return nil, errors.New("trailing manifest data")
+	if e = custodyJSON(b, &p.Manifest); e != nil {
+		return nil, fmt.Errorf("manifest: %w", e)
 	}
 	m := p.Manifest
 	if (m.Schema != Schema && m.Schema != ResumeSchema) || m.ID == "" || m.Case == "" {
@@ -108,6 +127,9 @@ func Open(path, publicKey string) (p *Package, err error) {
 	ids := map[string]bool{}
 	var total int64
 	for _, it := range m.Items {
+		if e := ctx.Err(); e != nil {
+			return nil, e
+		}
 		if it.ID == "" || ids[it.ID] || seen[it.Object] || it.Object != "objects/"+it.ID || strings.ContainsAny(it.ID, "/\\.") {
 			return nil, errors.New("invalid or duplicate object id")
 		}
@@ -129,12 +151,13 @@ func Open(path, publicKey string) (p *Package, err error) {
 			return nil, e
 		}
 		h := sha256.New()
+		prefix := &verifiedPrefixWriter{}
 		var n int64
 		if m.Schema == ResumeSchema {
 			for _, part := range it.Parts {
 				ph := sha256.New()
 				var pn int64
-				pn, e = io.Copy(io.MultiWriter(h, ph), io.LimitReader(r, part.Size))
+				pn, e = io.Copy(io.MultiWriter(h, ph, prefix), io.LimitReader(contextReader{ctx, r}, part.Size))
 				n += pn
 				if e != nil {
 					break
@@ -159,7 +182,7 @@ func Open(path, publicKey string) (p *Package, err error) {
 				r.Close()
 				return nil, errors.New("version 1 object cannot contain parts")
 			}
-			n, e = io.Copy(h, io.LimitReader(r, it.Size+1))
+			n, e = io.Copy(io.MultiWriter(h, prefix), io.LimitReader(contextReader{ctx, r}, it.Size+1))
 		}
 		r.Close()
 		if e != nil {
@@ -168,13 +191,41 @@ func Open(path, publicKey string) (p *Package, err error) {
 		if n != it.Size || hex.EncodeToString(h.Sum(nil)) != it.SHA256 {
 			return nil, fmt.Errorf("integrity failure: %s", it.ID)
 		}
+		p.VerifiedPrefixes[it.Object] = prefix.bytes
 	}
 	if len(seen) != len(p.Files) {
 		return nil, errors.New("unlisted zip entries")
 	}
 	return p, nil
 }
+
+type verifiedPrefixWriter struct{ bytes []byte }
+
+func (w *verifiedPrefixWriter) Write(body []byte) (int, error) {
+	if remaining := identityPrefix - len(w.bytes); remaining > 0 {
+		w.bytes = append(w.bytes, body[:min(len(body), remaining)]...)
+	}
+	return len(body), nil
+}
+
+func readVerifiedEntryContext(ctx context.Context, file *zip.File, item Item, limit int64) ([]byte, error) {
+	body, err := readEntryContext(ctx, file, limit)
+	if err != nil {
+		return nil, err
+	}
+	if int64(len(body)) != item.Size || digestBytes(body) != item.SHA256 {
+		return nil, errors.New("examination input differs from verified object SHA-256")
+	}
+	return body, nil
+}
 func readEntry(f *zip.File, limit int64) ([]byte, error) {
+	return readEntryContext(context.Background(), f, limit)
+}
+
+func readEntryContext(ctx context.Context, f *zip.File, limit int64) ([]byte, error) {
+	if e := ctx.Err(); e != nil {
+		return nil, e
+	}
 	if f.UncompressedSize64 > uint64(limit) {
 		return nil, errors.New("entry too large")
 	}
@@ -183,7 +234,7 @@ func readEntry(f *zip.File, limit int64) ([]byte, error) {
 		return nil, e
 	}
 	defer r.Close()
-	b, e := io.ReadAll(io.LimitReader(r, limit+1))
+	b, e := io.ReadAll(io.LimitReader(contextReader{ctx, r}, limit+1))
 	if int64(len(b)) > limit {
 		return nil, errors.New("entry too large")
 	}
@@ -194,7 +245,11 @@ func decodePrivate(b []byte) (ed25519.PrivateKey, error) {
 	if e != nil || len(v) != ed25519.PrivateKeySize {
 		return nil, errors.New("invalid private key")
 	}
-	return ed25519.PrivateKey(v), nil
+	key := ed25519.PrivateKey(v)
+	if !bytes.Equal(key, ed25519.NewKeyFromSeed(key.Seed())) {
+		return nil, errors.New("inconsistent Ed25519 private key")
+	}
+	return key, nil
 }
 func loadPublic(path string) (ed25519.PublicKey, error) {
 	b, e := ReadLimited(path, 4096)
@@ -208,7 +263,7 @@ func loadPublic(path string) (ed25519.PublicKey, error) {
 	return ed25519.PublicKey(v), nil
 }
 func Keygen(prefix string) error {
-	pub, priv, e := ed25519.GenerateKey(nil)
+	pub, priv, e := ed25519.GenerateKey(rand.Reader)
 	if e != nil {
 		return e
 	}

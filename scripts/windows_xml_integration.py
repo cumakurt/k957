@@ -7,11 +7,11 @@ import pathlib
 import subprocess
 import tempfile
 import xml.etree.ElementTree as ET
-from test_support import default_binary
+from test_support import default_binary, report_text
 
 exe = str(default_binary())
 namespace = 'http://schemas.microsoft.com/win/2004/08/events/event'
-event = f'''<Event xmlns="{namespace}"><System><Provider Name="=PrivateProvider957" Guid="PrivateGUID957"/><EventID Qualifiers="32768">4624</EventID><Version>0</Version><Level>4</Level><TimeCreated SystemTime="2026-09-29T14:02:03.1234567+03:00"/><EventRecordID>18446744073709551615</EventRecordID><Channel>PrivateChannel957</Channel><Computer>PrivateHost957.</Computer><Security UserID="S-1-5-21-987654321"/></System><EventData><Data Name="Repeated">PrivateData957</Data><Data Name="Repeated">İstanbul 😀</Data></EventData><RenderingInfo><Message>&lt;script&gt;PrivateMessage957&lt;/script&gt;</Message></RenderingInfo><UserData><Ignored>PrivateIgnored957</Ignored></UserData></Event>'''
+event = f'''<Event xmlns="{namespace}"><System><Provider Name="=PrivateProvider957" Guid="PrivateGUID957"/><EventID Qualifiers="32768">4624</EventID><Version>0</Version><Level>4</Level><TimeCreated SystemTime="2026-09-29T14:02:03.1234567+03:00"/><EventRecordID>18446744073709551615</EventRecordID><Channel>PrivateChannel957</Channel><Computer>PrivateHost957.</Computer><Security UserID="S-1-5-21-987654321"/></System><EventData><Data Name="Repeated">PrivateData957</Data><Data Name="Repeated">Café 😀</Data></EventData><RenderingInfo><Message>&lt;script&gt;PrivateMessage957&lt;/script&gt;</Message></RenderingInfo><UserData><Ignored>PrivateIgnored957</Ignored></UserData></Event>'''
 # A separate XML implementation provides the field oracle. It is used only on
 # these fixed synthetic fixtures, never on untrusted evidence.
 parsed = ET.fromstring(event)
@@ -29,7 +29,7 @@ with tempfile.TemporaryDirectory() as directory:
         ('utf16le.XML', 'utf-16le', b'\xff\xfe', 'UTF-16'),
         ('utf16be.xml', 'utf-16be', b'\xfe\xff', 'UTF-16BE'),
     ]:
-        prefix = f'<?xml version="1.0" encoding="{declaration}"?>\n<Events>\n<!--' + '😀ö' * 1100 + '-->\n'
+        prefix = f'<?xml version="1.0" encoding="{declaration}"?>\n<Events>\n<!--' + '😀é' * 1100 + '-->\n'
         raw = bom + (prefix + event + '\n</Events>').encode(encoding)
         (root / name).write_bytes(raw)
         contents[name] = raw
@@ -44,7 +44,7 @@ with tempfile.TemporaryDirectory() as directory:
     (root / 'peer.jsonl').write_text(json.dumps({'timestamp': '2026-09-29T11:02:03Z',
         'user': 'S-1-5-21-987654321', 'host': 'privatehost957'}), encoding='utf-8')
     rules = p / 'rules.json'
-    rules.write_text(json.dumps([{'id': 'unicode', 'contains': 'İstanbul'}]), encoding='utf-8')
+    rules.write_text(json.dumps([{'id': 'unicode', 'contains': 'Café'}]), encoding='utf-8')
 
     def run(*args):
         return subprocess.run([exe, *map(str, args)], check=True, capture_output=True, text=True, encoding='utf-8')
@@ -79,7 +79,8 @@ with tempfile.TemporaryDirectory() as directory:
     assert summaries['fragments.xml']['parsed'] == 1 and summaries['fragments.xml']['skipped'] == 1
     assert summaries['truncated.xml']['parsed'] == 1 and summaries['truncated.xml']['skipped'] == 1
     assert summaries['truncated.xml']['error'] and summaries['doctype.xml']['error']
-    assert 'native.evtx' not in summaries
+    assert summaries['native.evtx']['format'] == 'EVTX'
+    assert summaries['native.evtx']['error'] and summaries['native.evtx']['parsed'] == 0
     assert len(analysis['correlations']) == 2
     assert all(c['sources'] == 6 and c['events'] == 6 for c in analysis['correlations'])
     found_sources = {pathlib.Path(f['source']).name for f in analysis['findings']}
@@ -91,18 +92,19 @@ with tempfile.TemporaryDirectory() as directory:
     assert all(json.loads(row['event_data_json']) == expected_data for row in rows)
     html = (report / 'report.html').read_text(encoding='utf-8')
     assert '&lt;script&gt;PrivateMessage957&lt;/script&gt;' in html and '<script>PrivateMessage957' not in html
-    assert 'Windows olay XML kayıtları' in html and 'unsupported_timestamp: 1' in html
+    assert 'Windows event XML records' in html and 'unsupported_timestamp: 1' in html
 
     shared_dir = p / 'shared'
     run('share', '--in', package, '--rules', rules, '--out', shared_dir)
     secrets = ['PrivateProvider957', 'PrivateGUID957', 'PrivateChannel957', 'PrivateData957',
-               'İstanbul', 'PrivateMessage957', 'PrivateIgnored957', '18446744073709551615',
+               'Café', 'PrivateMessage957', 'PrivateIgnored957', '18446744073709551615',
                'privatehost957', 'S-1-5-21-987654321']
     for artifact in shared_dir.iterdir():
-        text = artifact.read_text(encoding='utf-8')
+        text = report_text(artifact)
+        if text is None: continue
         assert all(secret not in text for secret in secrets), artifact.name
     shared = json.loads((shared_dir / 'shared.json').read_text(encoding='utf-8'))
     assert sum(e['type'] == 'windows_event' for e in shared['timeline']) == 5
     assert hashlib.sha256(package.read_bytes()).hexdigest() == digest
     assert all((root / name).read_bytes() == raw for name, raw in contents.items())
-    print('PASS: UTF-8/UTF-16 LE/BE; independent XML field oracle; original encoded byte offsets; uint64 record IDs; UTC/host/SID correlations; semantic skips and truncated-prefix recovery; DTD rejection; native EVTX excluded; Unicode rules; CSV/HTML escaping; all shared artifacts omit private context; evidence unchanged')
+    print('PASS: UTF-8/UTF-16 LE/BE; independent XML oracle; byte offsets; uint64 IDs; UTC/host/SID correlations; semantic skips; DTD rejection; invalid EVTX rejected by native worker; Unicode rules; CSV/HTML escaping; masked private context; evidence unchanged')

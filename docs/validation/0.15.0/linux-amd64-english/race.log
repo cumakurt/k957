@@ -1,0 +1,5 @@
+# ./...
+pattern ./...: open dist/output: permission denied
+FAIL	./... [setup failed]
+ok  	k957/cmd/k957	1.563s
+FAIL

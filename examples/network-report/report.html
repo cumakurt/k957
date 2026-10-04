@@ -1,20 +1,282 @@
-<!doctype html><html lang="tr"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>k957 · PCAP-DEMO</title><style>
-:root{color-scheme:dark}body{font:15px system-ui;background:#0a1220;color:#dce6f4;margin:0}main{max-width:1200px;margin:auto;padding:40px}header{border-bottom:1px solid #334155;padding-bottom:24px}h1{font-size:44px;margin:0;color:#62e3b7}h2{margin-top:38px}small{color:#9cacc2}.grid{display:flex;gap:16px;flex-wrap:wrap}.card{padding:20px;background:#142236;border:1px solid #293d56;border-radius:12px;flex:1}b{color:#62e3b7}table{border-collapse:collapse;width:100%;background:#111e30}td,th{text-align:left;border-bottom:1px solid #304158;padding:10px;vertical-align:top;overflow-wrap:anywhere}code{white-space:pre-wrap;overflow-wrap:anywhere}.scroll{overflow:auto;max-height:600px}input{padding:12px;background:#17273d;border:1px solid #536b88;color:white;width:90%;margin:18px 0}a{color:#62e3b7}.note{padding:14px;border-left:3px solid #e6b566;background:#242434}section{margin:24px 0}@media print{:root{color-scheme:light}body{background:white;color:black}main{padding:0}h1,b,a{color:#125640}.card,table,.note{background:white;color:black}.scroll{max-height:none;overflow:visible}input{display:none}tr{break-inside:avoid}}
-</style><main><header><small>DİJİTAL DELİL İNCELEME · v0.9.0</small><h1>k957 Analyze</h1><p>Vaka: <strong>PCAP-DEMO</strong> · 04ce55db14bc · linux/amd64</p><small>Analiz: ba3e3f2b08fb4c70ffc464bb5d27d158 · 2026-09-28 09:28:42.183027382 &#43;0000 UTC</small></header>
-<section class="grid"><div class="card">Delil<br><b>4</b></div><div class="card">Kural eşleşmesi<br><b>0</b></div><div class="card">Toplama sorunu<br><b>0</b></div><div class="card">Durum<br><b>complete</b></div></section>
-<p class="note">SHA-256 bütünlük kontrolü başarılı. İmza: unsigned. Bütünlük doğrulaması, kaynak verinin gerçekliğini tek başına kanıtlamaz. Bulgular analist incelemesi gerektirir.</p>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>k957 examination · PCAP-DEMO</title>
+<style>
+:root{color-scheme:light;--ink:#202d2c;--muted:#5b645c;--line:#daded4;--paper:#fffef9;--wash:#f2f3ec;--accent:#46605b;--accent-2:#46605b;--critical:#873f35;--warn:#9b682e;--ok:#46605b;--memory:#46605b;--violet:#46605b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.65 system-ui,sans-serif}main{max-width:1120px;margin:auto;padding:56px 64px 90px;counter-reset:folio}header{padding-bottom:20px;border-bottom:1px solid var(--ink)}.kicker,header>small{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:650}h1{margin:22px 0 0;font:400 3rem/1.12 Georgia,Palatino,serif;max-width:23em;overflow-wrap:anywhere}.lead{font:400 1.18rem/1.65 Georgia,Palatino,serif;max-width:46em}.meta,.muted,small{color:var(--muted)}.facts,.grid{list-style:none;display:flex;flex-wrap:wrap;gap:0;margin:28px 0 0;padding:0}.fact,.card{padding:12px 24px 8px 0;flex:1;min-width:145px;border:0;background:transparent;font-size:12px;color:var(--muted)}.fact span,.card b{display:block;font:400 2.1rem/1.2 Georgia,serif;color:var(--ink)}.fact small{display:block}.fact+.fact,.card+.card{padding-left:24px;border-left:1px solid var(--line)}nav{display:flex;flex-wrap:wrap;gap:8px 22px;margin:0 0 32px;padding:14px 0;border-bottom:1px solid var(--line)}nav a{font-size:12px;font-weight:600;text-decoration:none}h2{counter-increment:folio;margin:48px 0 18px;font:400 1.55rem/1.3 Georgia,serif;border-bottom:1px solid var(--line);padding-bottom:12px}h2:before{content:counter(folio,decimal-leading-zero) " / ";font:500 11px system-ui;color:var(--warn);letter-spacing:.08em;margin-right:12px}h3{margin:24px 0 10px;font-size:14px;font-weight:650}p,li{overflow-wrap:anywhere}.ok{color:var(--ok);font-weight:650}.warn{color:var(--warn);font-weight:650}.critical{color:var(--critical);font-weight:650}dl{display:grid;grid-template-columns:minmax(140px,220px) 1fr;margin:18px 0}dt,dd{margin:0;padding:9px 0;border-bottom:1px solid var(--line)}dt{color:var(--muted);padding-right:20px;font-size:12px}dd{overflow-wrap:anywhere}table{border-collapse:collapse;width:100%;margin:16px 0;font-size:12px}th,td{text-align:left;vertical-align:top;border-bottom:1px solid var(--line);padding:10px 12px 10px 0;overflow-wrap:anywhere}th{font-size:10px;font-weight:650;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--ink)}tr:hover td{background:var(--wash)}code,.mono{font:12px/1.65 ui-monospace,monospace;overflow-wrap:anywhere}code{white-space:pre-wrap}.note,.notice{padding:14px 18px;border-left:2px solid var(--warn);background:var(--wash);margin:20px 0;font-size:13px}.group{padding:20px 0;border-bottom:1px solid var(--line)}.group header{display:flex;justify-content:space-between;gap:24px;border:0;padding:0}.tag,.pill{display:inline-block;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:1px 7px;border:1px solid var(--line);color:var(--muted)}.pill-confirmed{color:var(--ok)}.pill-needs-review{color:var(--warn)}.pill-rejected{color:var(--critical)}a{color:var(--accent);text-underline-offset:3px}label{display:block;margin-top:22px;font-size:12px;color:var(--muted)}input,select,button{font:inherit;background:var(--paper);color:var(--ink);border:1px solid var(--line);padding:8px 12px;border-radius:0}input[type=search]{width:min(100%,430px);margin:8px 0}button{cursor:pointer;font-size:12px}button:disabled{opacity:.45;cursor:default}input:focus,button:focus,a:focus{outline:2px solid var(--accent);outline-offset:3px}.pager{display:flex;gap:12px;align-items:center;margin:12px 0;font-size:12px;color:var(--muted)}footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--ink);font-size:12px;color:var(--muted)}.figure-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px}figure{margin:0}figcaption{font-size:12px;font-weight:650;margin-bottom:14px}.bar-row{display:grid;grid-template-columns:minmax(95px,1fr) 2fr 36px;gap:14px;align-items:center;font-size:11px;margin:9px 0}.bar-track{height:4px;background:var(--wash)}.bar-fill{display:block;height:4px;background:var(--accent)}.figure-note{font-size:11px;color:var(--muted);margin:18px 0}.table-wrap{overflow:auto}.reading-edition{font-size:12px;margin-top:18px}
+@media(max-width:720px){main{padding:28px 22px 60px}h1{font-size:2.2rem}.figure-grid{grid-template-columns:1fr}.group header{display:block}dl{grid-template-columns:120px 1fr}.fact{min-width:120px}.table-wrap{overflow:auto}}
+@page{size:A4;margin:18mm 16mm}@media print{nav,label,.pager,button,input,.reading-edition{display:none}body{background:white;font-size:10pt}main{max-width:none;padding:0}h1{font-size:28pt}h2{break-after:avoid;margin-top:24pt}h3{break-after:avoid}th{display:table-cell}thead{display:table-header-group}tr{break-inside:avoid}table{font-size:8pt}.group,.note,figure{break-inside:avoid}.figure-grid{display:block}.bar-fill{print-color-adjust:exact}.table-wrap{overflow:visible}a{color:inherit;text-decoration:none}tr:hover td{background:none}details{display:block}details>*{display:block}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<p class="kicker">k957 examination report · version 0.15.0</p>
+<h1>PCAP-DEMO</h1>
+<p class="lead">Synthetic network and log examples in this directory only collected 4 files from MacBookPro (linux/amd64). No memory image was included in this analysis. Rule and hash-set checks recorded 0 findings; 0 have no analyst decision.</p>
+<p class="meta">Analysis eea41540e55790042e8acf4da4a61905 · written 2026-10-01T18:14:13Z · host MacBookPro</p>
+<ul class="facts">
+<li class="fact fact-files"><span>4</span> files acquired</li>
+<li class="fact fact-findings"><span>0</span> rule matches<small>0 unreviewed</small></li>
+<li class="fact fact-ok"><span>0</span> collection issues</li>
+<li class="fact fact-time"><span>15</span> timeline rows</li>
 
-<h2>İnceleme kapsamı</h2><p>Yalnızca bu dizindeki sentetik ağ ve log örnekleri</p><p>Operatör: Demo · Toplama: 2026-09-28 09:28:42.179334595 &#43;0000 UTC – 2026-09-28 09:28:42.179875617 &#43;0000 UTC</p>
-<input id="search" placeholder="Tablolarda kaynak, delil kimliği veya bulgu ara…" aria-label="Rapor tablolarında ara">
-<h2>Bulgular</h2><div class="scroll"><table><thead><tr><th>Kural</th><th>Kaynak</th><th>Eşleşme</th><th>Değerlendirme</th></tr></thead><tbody><tr><td colspan="4">Eşleşme yok. Bu sonuç olay yaşanmadığını göstermez.</td></tr></tbody></table></div>
+</ul>
+<p class="reading-edition"><a href="report.pdf">PDF reading edition</a> · <a href="documents.json">Document coverage</a> · <a href="analysis.json">Full analysis record</a></p>
+</header>
+<nav aria-label="Report sections">
+<a href="#overview">Overview</a>
+<a href="#examined">Examined</a>
+<a href="#findings">Findings</a>
+<a href="#activity">Activity</a>
+<a href="#memory">Memory</a>
+<a href="#timeline">Timeline</a>
+<a href="#inventory">Inventory</a>
+<a href="#limits">Limits</a>
+</nav>
+
+<section id="overview"><h2>Examination overview</h2>
+<p>0 confirmed · 0 requiring further review · 0 unreviewed · 0 rejected. Review state records examiner decisions; automatic matches do not establish compromise.</p>
+<div class="figure-grid"><figure><figcaption>Finding review states · number of findings</figcaption><div class="bar-row"><span>Confirmed</span><span class="bar-track"><span class="bar-fill" style="width:0%"></span></span><span>0</span></div><div class="bar-row"><span>Unreviewed</span><span class="bar-track"><span class="bar-fill" style="width:0%"></span></span><span>0</span></div><div class="bar-row"><span>Needs review</span><span class="bar-track"><span class="bar-fill" style="width:0%"></span></span><span>0</span></div><div class="bar-row"><span>Rejected</span><span class="bar-track"><span class="bar-fill" style="width:0%"></span></span><span>0</span></div><p class="figure-note">Source: this analysis and its applied review ledger. Bar widths are proportions of the finding total.</p></figure>
+<figure><figcaption>Recorded event distribution · UTC interval / rows</figcaption><div class="bar-row"><span>2020-09-13 12:26</span><span class="bar-track"><span class="bar-fill" style="width:87%"></span></span><span>7</span></div><div class="bar-row"><span>2021-03-16 14:31</span><span class="bar-track"><span class="bar-fill" style="width:0%"></span></span><span>0</span></div><div class="bar-row"><span>2021-09-16 16:35</span><span class="bar-track"><span class="bar-fill" style="width:0%"></span></span><span>0</span></div><div class="bar-row"><span>2022-03-19 18:40</span><span class="bar-track"><span class="bar-fill" style="width:0%"></span></span><span>0</span></div><div class="bar-row"><span>2022-09-19 20:45</span><span class="bar-track"><span class="bar-fill" style="width:0%"></span></span><span>0</span></div><div class="bar-row"><span>2023-03-22 22:49</span><span class="bar-track"><span class="bar-fill" style="width:0%"></span></span><span>0</span></div><div class="bar-row"><span>2023-09-23 00:54</span><span class="bar-track"><span class="bar-fill" style="width:0%"></span></span><span>0</span></div><div class="bar-row"><span>2024-03-25 02:59</span><span class="bar-track"><span class="bar-fill" style="width:0%"></span></span><span>0</span></div><div class="bar-row"><span>2024-09-25 05:03</span><span class="bar-track"><span class="bar-fill" style="width:0%"></span></span><span>0</span></div><div class="bar-row"><span>2025-03-28 07:08</span><span class="bar-track"><span class="bar-fill" style="width:0%"></span></span><span>0</span></div><div class="bar-row"><span>2025-09-28 09:12</span><span class="bar-track"><span class="bar-fill" style="width:0%"></span></span><span>0</span></div><div class="bar-row"><span>2026-03-31 11:17</span><span class="bar-track"><span class="bar-fill" style="width:100%"></span></span><span>8</span></div><p class="figure-note">15 dated rows, across equal intervals from the first to last source timestamp. Bar widths are relative to the busiest interval. Acquisition timestamps may be present; density is not severity.</p></figure></div>
+<p class="muted">The documented review order is <a href="review-queue.json">review-queue.json</a>. Portable timeline rows are <a href="timeline.jsonl">timeline.jsonl</a>; observed hashes and IP addresses are in the adjacent text exports.</p>
+</section>
 
 
-<h2>PCAP kapsamı</h2><p class="note">Yalnızca paket başlıkları incelendi. Akışlar yönlü 5'li anahtara göre gruplanır; tamamlanmış bağlantı veya kişi atfı değildir. Fragmentler yeniden birleştirilmez, checksum doğrulanmaz. Sayaçlar yalnızca okunabilen kayıtları kapsar.</p><div class="scroll"><table><thead><tr><th>Delil / Biçim</th><th>Kayıt / Ayrıştırılan / Atlanan</th><th>Eksik yakalama / Akış dışı</th><th>Atlama nedenleri / Sınır / Hata</th></tr></thead><tbody><tr><td>E000001 / PCAP<br>big / nanoseconds / link 101</td><td>1 / 1 / 0</td><td>0 / 0</td><td>false<br></td></tr><tr><td>E000003 / PCAP<br>little / microseconds / link 1</td><td>9 / 5 / 4</td><td>1 / 0</td><td>fragment: 1<br>invalid_ip_length: 1<br>invalid_timestamp: 1<br>unsupported_link_protocol: 1<br>false<br></td></tr><tr><td>E000004 / PCAPNG<br> /  / link 0</td><td>0 / 0 / 0</td><td>0 / 0</td><td>false<br>PCAPNG is not supported in this version</td></tr></tbody></table></div>
-<h2>Yönlü ağ akışları</h2><div class="scroll"><table><thead><tr><th>Delil / Protokol</th><th>Kaynak → Hedef</th><th>Paket / Yakalanan / Bildirilen bayt</th><th>İlk / Son</th><th>Paket referansları</th></tr></thead><tbody><tr><td>E000001 / UDP</td><td>192.0.2.77:40000 → 198.51.100.8:53</td><td>1 / 49 / 49</td><td>2020-09-13 12:26:40.123456789 &#43;0000 UTC<br>2020-09-13 12:26:40.123456789 &#43;0000 UTC</td><td>Paket 1, byte 24<br></td></tr><tr><td>E000003 / UDP</td><td>192.0.2.77:40000 → 198.51.100.8:53</td><td>2 / 142 / 142</td><td>2020-09-13 12:26:40.123456 &#43;0000 UTC<br>2020-09-13 12:26:41.123456 &#43;0000 UTC</td><td>Paket 1, byte 24<br>Paket 2, byte 111<br></td></tr><tr><td>E000003 / UDP</td><td>198.51.100.8:53 → 192.0.2.77:40000</td><td>1 / 63 / 63</td><td>2020-09-13 12:26:42.123456 &#43;0000 UTC<br>2020-09-13 12:26:42.123456 &#43;0000 UTC</td><td>Paket 3, byte 198<br></td></tr><tr><td>E000003 / TCP</td><td>[2001:db8::77]:50000 → [2001:db8::88]:443</td><td>1 / 82 / 82</td><td>2020-09-13 12:26:43.123456 &#43;0000 UTC<br>2020-09-13 12:26:43.123456 &#43;0000 UTC</td><td>Paket 4, byte 277<br></td></tr><tr><td>E000003 / TCP</td><td>192.0.2.77:40000 → 198.51.100.8:443</td><td>1 / 54 / 75</td><td>2020-09-13 12:26:46.123456 &#43;0000 UTC<br>2020-09-13 12:26:46.123456 &#43;0000 UTC</td><td>Paket 7, byte 512<br></td></tr></tbody></table></div>
-<h2>Ayrıştırma kapsamı</h2><div class="scroll"><table><thead><tr><th>Delil / Biçim</th><th>Okunan / Olay / Atlanan</th><th>Sınır / Hata</th></tr></thead><tbody><tr><td>E000001 / PCAP</td><td>1 / 1 / 0</td><td>false<br></td></tr><tr><td>E000002 / JSONL</td><td>1 / 1 / 0</td><td>false<br></td></tr><tr><td>E000003 / PCAP</td><td>9 / 5 / 4</td><td>false<br></td></tr><tr><td>E000004 / PCAPNG</td><td>0 / 0 / 0</td><td>false<br>PCAPNG is not supported in this version</td></tr></tbody></table></div>
-<h2>Farklı delillerde ortak varlıklar</h2><p class="note">Aynı değer en az iki delil nesnesinde bulundu. Bu, bağımsız iki kaynak veya aynı kişi/cihaz olduğunu kanıtlamaz. NAT, paylaşılan hesaplar ve kopya loglar değerlendirilmelidir.</p><div class="scroll"><table><thead><tr><th>Tür / Değer</th><th>Olay / Delil sayısı</th><th>İlk / Son zaman</th><th>Kaynak kayıtları</th></tr></thead><tbody><tr><td>ip<br>192.0.2.77</td><td>6 / 3</td><td>2020-09-13 12:26:40 &#43;0000 UTC<br>2020-09-13 12:26:46.123456 &#43;0000 UTC</td><td><a href="#E000002">E000002</a>:1  (source_ip)<br><a href="#E000003">E000003</a>:0 paket 1 (source_ip)<br><a href="#E000001">E000001</a>:0 paket 1 (source_ip)<br><a href="#E000003">E000003</a>:0 paket 2 (source_ip)<br><a href="#E000003">E000003</a>:0 paket 3 (destination_ip)<br><a href="#E000003">E000003</a>:0 paket 7 (source_ip)<br></td></tr><tr><td>ip<br>198.51.100.8</td><td>5 / 2</td><td>2020-09-13 12:26:40.123456 &#43;0000 UTC<br>2020-09-13 12:26:46.123456 &#43;0000 UTC</td><td><a href="#E000003">E000003</a>:0 paket 1 (destination_ip)<br><a href="#E000001">E000001</a>:0 paket 1 (destination_ip)<br><a href="#E000003">E000003</a>:0 paket 2 (destination_ip)<br><a href="#E000003">E000003</a>:0 paket 3 (source_ip)<br><a href="#E000003">E000003</a>:0 paket 7 (destination_ip)<br></td></tr></tbody></table></div>
-<h2>Zaman çizelgesi · UTC</h2><div class="scroll"><table><thead><tr><th>Zaman</th><th>Olay</th><th>Delil</th><th>Kaynak</th></tr></thead><tbody><tr><td>2020-09-13 12:26:40 &#43;0000 UTC</td><td>log_timestamp</td><td><a href="#E000002">E000002</a></td><td>/workspace/scratch/4de4f0c723af/k957/examples/network-source/observer.jsonl<br>Satır 1  · synthetic observer<br> ·  · 192.0.2.77 → </td></tr><tr><td>2020-09-13 12:26:40.123456 &#43;0000 UTC</td><td>pcap_packet</td><td><a href="#E000003">E000003</a></td><td>/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap<br>Satır 0 · Paket 1 / byte 24 · UDP 40000 → 53 · <br> ·  · 192.0.2.77 → 198.51.100.8</td></tr><tr><td>2020-09-13 12:26:40.123456789 &#43;0000 UTC</td><td>pcap_packet</td><td><a href="#E000001">E000001</a></td><td>/workspace/scratch/4de4f0c723af/k957/examples/network-source/big-nano.bin<br>Satır 0 · Paket 1 / byte 24 · UDP 40000 → 53 · <br> ·  · 192.0.2.77 → 198.51.100.8</td></tr><tr><td>2020-09-13 12:26:41.123456 &#43;0000 UTC</td><td>pcap_packet</td><td><a href="#E000003">E000003</a></td><td>/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap<br>Satır 0 · Paket 2 / byte 111 · UDP 40000 → 53 · <br> ·  · 192.0.2.77 → 198.51.100.8</td></tr><tr><td>2020-09-13 12:26:42.123456 &#43;0000 UTC</td><td>pcap_packet</td><td><a href="#E000003">E000003</a></td><td>/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap<br>Satır 0 · Paket 3 / byte 198 · UDP 53 → 40000 · <br> ·  · 198.51.100.8 → 192.0.2.77</td></tr><tr><td>2020-09-13 12:26:43.123456 &#43;0000 UTC</td><td>pcap_packet</td><td><a href="#E000003">E000003</a></td><td>/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap<br>Satır 0 · Paket 4 / byte 277 · TCP 50000 → 443 · <br> ·  · 2001:db8::77 → 2001:db8::88</td></tr><tr><td>2020-09-13 12:26:46.123456 &#43;0000 UTC</td><td>pcap_packet</td><td><a href="#E000003">E000003</a></td><td>/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap<br>Satır 0 · Paket 7 / byte 512 · TCP 40000 → 443 · <br> ·  · 192.0.2.77 → 198.51.100.8</td></tr><tr><td>2026-09-28 09:28:42.153861523 &#43;0000 UTC</td><td>file_modified</td><td><a href="#E000003">E000003</a></td><td>/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap<br>Satır 0  · <br> ·  ·  → </td></tr><tr><td>2026-09-28 09:28:42.153902363 &#43;0000 UTC</td><td>file_modified</td><td><a href="#E000001">E000001</a></td><td>/workspace/scratch/4de4f0c723af/k957/examples/network-source/big-nano.bin<br>Satır 0  · <br> ·  ·  → </td></tr><tr><td>2026-09-28 09:28:42.153924986 &#43;0000 UTC</td><td>file_modified</td><td><a href="#E000004">E000004</a></td><td>/workspace/scratch/4de4f0c723af/k957/examples/network-source/unsupported.pcapng<br>Satır 0  · <br> ·  ·  → </td></tr><tr><td>2026-09-28 09:28:42.153946217 &#43;0000 UTC</td><td>file_modified</td><td><a href="#E000002">E000002</a></td><td>/workspace/scratch/4de4f0c723af/k957/examples/network-source/observer.jsonl<br>Satır 0  · <br> ·  ·  → </td></tr><tr><td>2026-09-28 09:28:42.179462442 &#43;0000 UTC</td><td>collected</td><td><a href="#E000001">E000001</a></td><td>/workspace/scratch/4de4f0c723af/k957/examples/network-source/big-nano.bin<br>Satır 0  · <br> ·  ·  → </td></tr><tr><td>2026-09-28 09:28:42.179780778 &#43;0000 UTC</td><td>collected</td><td><a href="#E000002">E000002</a></td><td>/workspace/scratch/4de4f0c723af/k957/examples/network-source/observer.jsonl<br>Satır 0  · <br> ·  ·  → </td></tr><tr><td>2026-09-28 09:28:42.179820697 &#43;0000 UTC</td><td>collected</td><td><a href="#E000003">E000003</a></td><td>/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap<br>Satır 0  · <br> ·  ·  → </td></tr><tr><td>2026-09-28 09:28:42.179871952 &#43;0000 UTC</td><td>collected</td><td><a href="#E000004">E000004</a></td><td>/workspace/scratch/4de4f0c723af/k957/examples/network-source/unsupported.pcapng<br>Satır 0  · <br> ·  ·  → </td></tr></tbody></table></div>
-<h2>Delil envanteri</h2><div class="scroll"><table><thead><tr><th>Kimlik / Kaynak</th><th>Bayt</th><th>SHA-256</th><th>Tür / Değişim</th></tr></thead><tbody><tr id="E000001"><td>E000001<br>/workspace/scratch/4de4f0c723af/k957/examples/network-source/big-nano.bin</td><td>89</td><td><code>e014546513ae18d13bd5a1882325036393047d111fa87ca513d29b3fb3a47642</code></td><td>file / false</td></tr><tr id="E000002"><td>E000002<br>/workspace/scratch/4de4f0c723af/k957/examples/network-source/observer.jsonl</td><td>90</td><td><code>292215af3845718b2f5410bf33ce17cbd05aa210e8b8887ee03d5a2e52f58c50</code></td><td>file / false</td></tr><tr id="E000003"><td>E000003<br>/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap</td><td>748</td><td><code>0911c04c3abfb98f200f23194877aea335ef7cd068f7201612702b629a00c004</code></td><td>file / false</td></tr><tr id="E000004"><td>E000004<br>/workspace/scratch/4de4f0c723af/k957/examples/network-source/unsupported.pcapng</td><td>4</td><td><code>531d04aaf63e526de83a4f74863b20df18e916bd7d0bf67cef890f4e063ed777</code></td><td>file / false</td></tr></tbody></table></div>
-<h2>Toplama eksikleri</h2><p>Kaydedilmiş toplama hatası yok; yalnızca seçilen kapsam için geçerlidir.</p>
-<h2>Sınırlamalar ve yöntem</h2><p>Timeline includes file metadata, explicit RFC3339/JSONL timestamps and supported PCAP packet timestamps; these are not proof of execution or user attribution.</p><p>Rules are literal matches, not malware verdicts. Every finding requires analyst review.</p><p>Text scanning covers UTF-8 files up to 8 MiB each, 128 MiB total; classic PCAP is parsed separately; other binary formats are inventoried, not parsed.</p><p>Clock offsets are not measured. Timestamps reflect the source host clock converted to UTC.</p><p>PCAP: classic v2.4 Ethernet/raw-IP TCP/UDP headers only. No capture, payload inspection, checksums, reassembly, DNS resolution or session reconstruction. Directional five-tuples group all matching packets within one evidence object; MAC/VLAN identity is not part of the grouping; retransmissions and repeated sessions are not deduplicated. Byte counters are recorded frame sizes, not application traffic. Each capture is limited to 64 MiB and 20,000 records, 256 MiB total, shared 50,000 log-event/capture-record budget, 10,000 flows total and 20 references per flow. See capture summaries for omissions; IP addresses do not identify people.</p><p>Correlations are shared field values across at least two evidence objects, not independent-source corroboration or identity attribution. NAT, shared accounts and duplicate logs can produce matches. User names are case-sensitive; host names lowercased; IPs canonicalized. No network enrichment is performed.</p><p>Ham delil değiştirilmeden incelendi. Rapordan orijinal kayıtları doğrulamak için delil kimliği, kaynak yolu ve SHA-256 kullanılmalıdır. HTML tarayıcının yazdır işleviyle PDF olarak kaydedilebilir.</p>
-<footer><small>k957 · Kaynakları izlenebilir inceleme · Otomatik rapor, nihai uzman görüşü değildir.</small></footer></main><script>document.getElementById('search').addEventListener('input',function(){const q=this.value.toLocaleLowerCase();document.querySelectorAll('tbody tr').forEach(r=>{r.hidden=!r.textContent.toLocaleLowerCase().includes(q)})})</script></html>
+
+<section id="examined">
+<h2>What was examined</h2>
+<dl>
+<dt>Scope</dt><dd>Synthetic network and log examples in this directory only</dd>
+<dt>Host</dt><dd>MacBookPro · linux/amd64</dd>
+<dt>Operator</dt><dd>Demo</dd>
+<dt>Collection window</dt><dd>2026-10-01T13:22:11Z – 2026-10-01T13:22:11Z (0s)</dd>
+<dt>Collection status</dt><dd><span class="ok">complete</span></dd>
+<dt>Finding coverage</dt><dd>No finding truncation recorded</dd>
+<dt>Signature</dt><dd>unsigned</dd>
+<dt>Evidence digest</dt><dd class="mono">437b2b835e89517219337b56181efa02fc7ace87dd35a73ded0c2c3f60591268</dd>
+
+<dt>Files acquired</dt><dd>4</dd>
+<dt>Collection issues</dt><dd>None recorded for the selected scope.</dd>
+</dl>
+<h3>Time range</h3>
+<p>15 rows (6 pcap_packet, 4 collected, 4 file_modified, 1 log_timestamp). Earliest and latest source timestamps: 2020-09-13T12:26:40Z – 2026-10-01T13:22:11Z. These are host-clock values converted to UTC, not one incident window.</p>
+<h3>Examination coverage</h3>
+<p class="muted">When the total is unknown, eligible counts are observed inputs and omitted counts are lower bounds.</p>
+<table><thead><tr><th>Stage</th><th>Format</th><th>Unit</th><th>Status</th><th>Eligible</th><th>Emitted</th><th>Omitted</th><th>Total known</th></tr></thead><tbody>
+<tr><td>inventory</td><td></td><td>objects</td><td>complete</td><td>4</td><td>4</td><td>0</td><td>true</td></tr><tr><td>parser</td><td>JSONL</td><td>records</td><td>complete</td><td>1</td><td>1</td><td>0</td><td>true</td></tr><tr><td>parser</td><td>PCAP</td><td>records</td><td>partial</td><td>10</td><td>6</td><td>4</td><td>true</td></tr><tr><td>parser</td><td>PCAPNG</td><td>records</td><td>partial</td><td>0</td><td>0</td><td>0</td><td>false</td></tr><tr><td>findings</td><td></td><td>findings</td><td>complete</td><td>0</td><td>0</td><td>0</td><td>true</td></tr><tr><td>acquisition_metadata</td><td></td><td>objects</td><td>complete</td><td>4</td><td>4</td><td>0</td><td>true</td></tr><tr><td>network_protocols</td><td></td><td>observations</td><td>partial</td><td>0</td><td>0</td><td>0</td><td>false</td></tr><tr><td>network_protocols</td><td></td><td>observations</td><td>partial</td><td>0</td><td>0</td><td>0</td><td>false</td></tr><tr><td>network_protocols</td><td></td><td>observations</td><td>complete</td><td>0</td><td>0</td><td>0</td><td>true</td></tr><tr><td>correlation_references</td><td></td><td>references</td><td>complete</td><td>11</td><td>11</td><td>0</td><td>true</td></tr>
+</tbody></table>
+<p class="muted">The collection window is the interval recorded while this package was acquired. Timeline rows use timestamps found in the sources. A match in a log is not proof that a person performed the action.</p>
+</section>
+
+<section id="findings">
+<h2>Review candidates</h2>
+<p>Rows come from literal rules, exact hashes or structured event predicates. Decisions are recorded separately. 0 of 0 findings are unreviewed. Matches that also appear in a memory image are listed before high-volume phrases. Volume is not severity.</p>
+<p>No literal matches were recorded. That does not mean the activity did not occur.</p>
+<label for="finding-search">Search matches by rule, source, evidence id or excerpt</label>
+<input id="finding-search" type="search" autocomplete="off">
+<div class="pager"><button type="button" id="finding-prev">Previous</button><span id="finding-page"></span><button type="button" id="finding-next">Next</button></div>
+<table>
+<thead><tr><th>Rule</th><th>Source</th><th>Excerpt</th><th>Review</th></tr></thead>
+<tbody id="finding-rows"></tbody>
+</table>
+<p class="muted">The full table, including every excerpt, is findings.csv next to this file.</p>
+</section>
+
+
+
+<section id="activity">
+<h2>Interpreted activity</h2>
+<p class="note plain">These rows are readings of collected text: SSH, sudo, cron, shell history, account creation, Windows events, Prefetch names and persistence commands. They are not findings and they do not identify a person.</p>
+<table>
+<thead><tr><th>Platform</th><th>Action</th><th>Rows</th></tr></thead>
+<tbody><tr><td colspan="3">No interpreted activity in this package.</td></tr></tbody>
+</table>
+
+
+</section>
+
+
+
+<section id="timeline">
+<h2>Order of recorded events</h2>
+<p>15 rows (6 pcap_packet, 4 collected, 4 file_modified, 1 log_timestamp). Earliest and latest source timestamps: 2020-09-13T12:26:40Z – 2026-10-01T13:22:11Z. These are host-clock values converted to UTC, not one incident window.</p>
+<table>
+<thead><tr><th>Event type</th><th>Rows</th></tr></thead>
+<tbody><tr><td>pcap_packet</td><td>6</td></tr><tr><td>collected</td><td>4</td></tr><tr><td>file_modified</td><td>4</td></tr><tr><td>log_timestamp</td><td>1</td></tr></tbody>
+</table>
+<p class="muted">The ordered table is timeline.csv. It is not repeated here. File modification times and log timestamps are source values. Rows typed “collected” mark when this acquisition read the file.</p>
+</section>
+
+<section id="inventory">
+<h2>Evidence inventory</h2>
+<p>4 acquired objects. SHA-256 below is the hash recorded for that object. Compare it with the evidence package before relying on a row.</p>
+
+<table>
+<thead><tr><th>Detected type</th><th>Objects</th></tr></thead>
+<tbody><tr><td>application/vnd.tcpdump.pcap</td><td>2</td></tr><tr><td>application/octet-stream</td><td>1</td></tr><tr><td>application/x-pcapng</td><td>1</td></tr></tbody>
+</table>
+<p class="muted">Types come from the first 560 bytes. This is not a format parser. No extension/signature disagreement was recorded.</p>
+
+
+<label for="inventory-search">Search inventory by id, path or hash</label>
+<input id="inventory-search" type="search" autocomplete="off">
+<div class="pager"><button type="button" id="inventory-prev">Previous</button><span id="inventory-page"></span><button type="button" id="inventory-next">Next</button></div>
+<table>
+<thead><tr><th>Identity</th><th>Bytes</th><th>SHA-256</th><th>Kind</th></tr></thead>
+<tbody id="inventory-rows"></tbody>
+</table>
+<p class="muted">filetypes.csv and bodyfile.txt sit beside this report. bodyfile.txt has mtime only.</p>
+</section>
+
+<p class="muted">No examiner hash set was applied to this analysis.</p>
+
+
+<section id="links">
+<h2>Values seen in more than one object</h2>
+<p class="muted">The same value occurred in at least two evidence objects. That does not prove two independent sources, or that they belong to the same person or device.</p>
+<table>
+<thead><tr><th>Kind</th><th>Value</th><th>Events</th><th>Sources</th><th>First / last UTC</th></tr></thead>
+<tbody><tr><td>ip</td><td><code>192.0.2.77</code></td><td>6</td><td>3</td><td>2020-09-13T12:26:40Z<br>2020-09-13T12:26:46Z</td></tr><tr><td>ip</td><td><code>198.51.100.8</code></td><td>5</td><td>2</td><td>2020-09-13T12:26:40Z<br>2020-09-13T12:26:46Z</td></tr></tbody>
+</table>
+</section>
+
+
+
+
+
+<section id="captures">
+<h2>Packet capture coverage</h2>
+<p class="muted">Only packet headers were examined. Flows are directional 5-tuples, not completed connections and not attribution.</p>
+<table>
+<thead><tr><th>Evidence</th><th>Format</th><th>Records / parsed / skipped</th></tr></thead>
+<tbody><tr><td>E000001</td><td>PCAP</td><td>1 / 1 / 0</td></tr><tr><td>E000003</td><td>PCAP</td><td>9 / 5 / 4</td></tr><tr><td>E000004</td><td>PCAPNG</td><td>0 / 0 / 0<br>truncated pcapng block header at byte 0</td></tr></tbody>
+</table>
+</section>
+
+
+<section><h2>Network sessions and application metadata</h2><p>TCP streams retain only a bounded contiguous prefix. Conflicting overlaps are excluded from application interpretation. No TLS decryption, IP fragment reassembly, HTTP body or provider enrichment is performed. Checksum failures may reflect offload. Refer to network-protocols.csv and analysis.json for metadata and packet references.</p><h3>E000001</h3><p>0 TCP sessions · 0 application observations · limit reached: false</p><div class="table-wrap"><table><thead><tr><th>Session</th><th>Endpoints</th><th>Packets / bytes</th><th>Omissions</th></tr></thead><tbody></tbody></table></div><h3>E000003</h3><p>2 TCP sessions · 0 application observations · limit reached: false</p><div class="table-wrap"><table><thead><tr><th>Session</th><th>Endpoints</th><th>Packets / bytes</th><th>Omissions</th></tr></thead><tbody><tr><td>E000003-S1</td><td>[2001:db8::77]:50000 ↔ [2001:db8::88]:443</td><td>1 / 0</td><td>Gaps: false; overlap conflict: false; limited: false; references omitted: false</td></tr><tr><td>E000003-S2</td><td>192.0.2.77:40000 ↔ 198.51.100.8:443</td><td>1 / 0</td><td>Gaps: true; overlap conflict: false; limited: false; references omitted: false</td></tr></tbody></table></div><h3>E000004</h3><p>0 TCP sessions · 0 application observations · limit reached: false</p><div class="table-wrap"><table><thead><tr><th>Session</th><th>Endpoints</th><th>Packets / bytes</th><th>Omissions</th></tr></thead><tbody></tbody></table></div></section>
+
+<section id="network">
+<h2>Directed network flows</h2>
+<table>
+<thead><tr><th>Evidence</th><th>Flow</th><th>Packets</th><th>First / last UTC</th></tr></thead>
+<tbody><tr><td>E000001<br>UDP</td><td>192.0.2.77:40000 → 198.51.100.8:53</td><td>1</td><td>2020-09-13T12:26:40Z<br>2020-09-13T12:26:40Z</td></tr><tr><td>E000003<br>UDP</td><td>192.0.2.77:40000 → 198.51.100.8:53</td><td>2</td><td>2020-09-13T12:26:40Z<br>2020-09-13T12:26:41Z</td></tr><tr><td>E000003<br>UDP</td><td>198.51.100.8:53 → 192.0.2.77:40000</td><td>1</td><td>2020-09-13T12:26:42Z<br>2020-09-13T12:26:42Z</td></tr><tr><td>E000003<br>TCP</td><td>[2001:db8::77]:50000 → [2001:db8::88]:443</td><td>1</td><td>2020-09-13T12:26:43Z<br>2020-09-13T12:26:43Z</td></tr><tr><td>E000003<br>TCP</td><td>192.0.2.77:40000 → 198.51.100.8:443</td><td>1</td><td>2020-09-13T12:26:46Z<br>2020-09-13T12:26:46Z</td></tr></tbody>
+</table>
+</section>
+
+
+
+
+
+
+
+
+<section id="limits">
+<h2>What this examination does not establish</h2>
+
+
+
+
+<details><summary>Per-object parser coverage and omissions</summary>
+<table><thead><tr><th>Evidence</th><th>Parser</th><th>Rows / parsed / skipped</th><th>Limits and errors</th></tr></thead><tbody>
+<tr><td>E000001</td><td>PCAP</td><td>1 / 1 / 0</td><td></td></tr><tr><td>E000002</td><td>JSONL</td><td>1 / 1 / 0</td><td></td></tr><tr><td>E000003</td><td>PCAP</td><td>9 / 5 / 4</td><td></td></tr><tr><td>E000004</td><td>PCAPNG</td><td>0 / 0 / 0</td><td>truncated pcapng block header at byte 0</td></tr>
+</tbody></table></details>
+
+<ul>
+<li>Literal matches and activity rows are not verified findings and are not attribution.</li>
+<li>Clock offset was not measured. Timestamps follow the source host clock, shown in UTC.</li>
+<li>No per-file skip notes were recorded.</li>
+<li>Parse coverage: 2 PCAP; 1 JSONL; 1 PCAPNG; per-file rows remain in analysis.json.</li>
+</ul>
+
+<p>Timeline includes file metadata, explicit log/XML timestamps and supported PCAP packet timestamps; these are not proof of execution or user attribution.</p><p>Literal, SHA-256 and structured event rules produce review candidates. Every finding requires analyst review.</p><p>Text scanning covers supported UTF-8/XML records up to 8 MiB per file and 128 MiB total. Separate bounded workers interpret selected SQLite/WAL browser visits, EVTX system metadata, clean Registry key/value projections and binary launchd plists. CloudTrail exports and PCAP/PCAPNG have separate bounded parsers; unsupported binary formats remain inventory entries.</p><p>Clock offsets are not measured. Timestamps reflect the source host clock converted to UTC.</p><p>File types are magic-byte hints from the first 560 bytes. An extension mismatch is recorded, not treated as a finding. bodyfile.txt exports mtime only; atime, ctime, crtime, uid, gid and MD5 are zero because SHA-256 is authoritative.</p><p>Activity rows interpret SSH, sudo, cron, account creation, shell and PowerShell history, Windows security events, Prefetch names and persistence commands. They are triage readings, not findings and not proof of attribution.</p><p>Acquisition method: logical-live-files; origin: raw_file_bytes</p><p>Files are read individually. Metadata change detection is not an atomic filesystem or multi-file snapshot.</p><p>Filesystem device identifiers do not prove physical-device separation.</p><p>SQLite main/sidecar copies may describe different transaction states. Use explicit sqlite-acquire for a separately identified logical backup.</p><p>PCAP v2.4 and PCAPNG: Ethernet/raw-IP/Linux SLL/SLL2 TCP/UDP headers plus selected DNS, initial HTTP headers and TLS ClientHello metadata. PCAPNG Enhanced Packet Blocks are analyzed; untimed Simple Packet Blocks and obsolete Packet Blocks are counted and skipped. Other blocks are counted as ignored. Binary/sub-nanosecond timestamps are floored to nanoseconds. Interface names, comments and decryption secrets are not exported. No live capture, IP fragment reassembly, external DNS lookup or TLS decryption. Bounded TCP session candidates/reassembly and selected protocol projections retain packet references and explicit gap/overlap policies. Complete IPv4/TCP/UDP checksums are checked; invalid_or_offloaded is not a malicious verdict. Directional five-tuples group all matching packets within one evidence object and PCAPNG section/interface; MAC/VLAN/SLL2 operating-system interface identity is not part of the grouping; directional flow totals retain repeated packets; separate session candidates apply SYN, idle, RST and FIN boundaries. Byte counters are recorded frame sizes, not application traffic. Each capture is limited to 64 MiB and 20,000 records, 256 MiB total, shared 50,000 log-event/capture-record budget, 10,000 flows total and 20 references per flow. PCAPNG also has limits of 100,000 blocks, 256 sections and 1,024 interfaces per file. See capture summaries for omissions; IP addresses do not identify people.</p><p>Correlations are shared field values across at least two evidence objects, not independent-source corroboration or identity attribution. NAT, shared accounts and duplicate logs can produce matches. User names are case-sensitive; host names lowercased; IPs canonicalized. No network enrichment is performed.</p>
+<p>No collection issue was recorded. That statement covers only the selected scope.</p>
+</section>
+
+<footer>
+<p>k957 · traceable examination · this document is not a final expert opinion. Confirm a row against the evidence id, source path and SHA-256 before relying on it.</p>
+</footer>
+</main>
+<script>
+window.k957Report = {findings: [], inventory: [{"ID":"E000001","Source":"/depo/cuma/projelerim/k957/examples/network-source/big-nano.bin","Kind":"file","SHA256":"e014546513ae18d13bd5a1882325036393047d111fa87ca513d29b3fb3a47642","Size":89,"Changed":false},{"ID":"E000002","Source":"/depo/cuma/projelerim/k957/examples/network-source/observer.jsonl","Kind":"file","SHA256":"292215af3845718b2f5410bf33ce17cbd05aa210e8b8887ee03d5a2e52f58c50","Size":90,"Changed":false},{"ID":"E000003","Source":"/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap","Kind":"file","SHA256":"0911c04c3abfb98f200f23194877aea335ef7cd068f7201612702b629a00c004","Size":748,"Changed":false},{"ID":"E000004","Source":"/depo/cuma/projelerim/k957/examples/network-source/unsupported.pcapng","Kind":"file","SHA256":"531d04aaf63e526de83a4f74863b20df18e916bd7d0bf67cef890f4e063ed777","Size":4,"Changed":false}]};
+(function(){
+function read(name){var rows=window.k957Report&&window.k957Report[name];return Array.isArray(rows)?rows:[]}
+function cell(text){var td=document.createElement("td");td.textContent=text==null?"":String(text);return td}
+function page(rows,query,pageNo,size){
+  var q=(query||"").toLocaleLowerCase();
+  var matched=rows.filter(function(row){return !q||JSON.stringify(row).toLocaleLowerCase().indexOf(q)>=0});
+  var pages=Math.max(1,Math.ceil(matched.length/size));
+  if(pageNo>=pages)pageNo=pages-1;
+  if(pageNo<0)pageNo=0;
+  return {rows:matched.slice(pageNo*size,pageNo*size+size),page:pageNo,pages:pages,total:matched.length};
+}
+var renderInventory=function(){};
+function bind(prefix,rows,draw){
+  var q=document.getElementById(prefix+"-search");
+  var label=document.getElementById(prefix+"-page");
+  var body=document.getElementById(prefix+"-rows");
+  var state=0;
+  function render(printing){
+    var view=printing?{rows:rows,page:0,pages:1,total:rows.length}:page(rows,q&&q.value,state,25);
+    if(!printing)state=view.page;
+    body.textContent="";
+    view.rows.forEach(function(row){draw(body,row)});
+    label.textContent=(view.total?state+1:0)+" / "+view.pages+" · "+view.total;
+  }
+  window.addEventListener("beforeprint",function(){render(true)});
+  window.addEventListener("afterprint",function(){render(false)});
+  if(q)q.addEventListener("input",function(){state=0;render()});
+  document.getElementById(prefix+"-prev").addEventListener("click",function(){state--;render()});
+  document.getElementById(prefix+"-next").addEventListener("click",function(){state++;render()});
+  render();
+  return function(query){if(q){q.value=query}state=0;render();document.getElementById("inventory").scrollIntoView()};
+}
+bind("finding",read("findings"),function(body,row){
+  var tr=document.createElement("tr");
+  tr.appendChild(cell(row.Rule));
+  var src=document.createElement("td");
+  var a=document.createElement("a");
+  a.href="#inventory";
+  a.textContent=row.Evidence||"";
+  a.addEventListener("click",function(ev){ev.preventDefault();renderInventory(row.Evidence||"")});
+  src.appendChild(a);
+  src.appendChild(document.createTextNode(" "+(row.Source||"")+(row.Line?" · line "+row.Line:"")));
+  tr.appendChild(src);
+  tr.appendChild(cell(row.Excerpt));
+  var review=document.createElement("td");
+  var pill=document.createElement("span");
+  pill.className="pill pill-"+(row.Review||"");
+  pill.textContent=row.Review||"";
+  review.appendChild(pill);
+  tr.appendChild(review);
+  body.appendChild(tr);
+});
+renderInventory=bind("inventory",read("inventory"),function(body,row){
+  var tr=document.createElement("tr");
+  tr.id="inv-"+row.ID;
+  var id=document.createElement("td");
+  id.appendChild(document.createTextNode(row.ID||""));
+  id.appendChild(document.createElement("br"));
+  id.appendChild(document.createTextNode(row.Source||""));
+  tr.appendChild(id);
+  tr.appendChild(cell(row.Size));
+  var hash=cell(row.SHA256);
+  hash.className="mono";
+  tr.appendChild(hash);
+  tr.appendChild(cell((row.Kind||"")+(row.Changed?" · changed during acquisition":"")));
+  body.appendChild(tr);
+});
+document.querySelectorAll('a[href^="#inv-"]').forEach(function(link){
+  link.addEventListener("click",function(ev){
+    ev.preventDefault();
+    renderInventory(link.getAttribute("href").slice(5));
+  });
+});
+})();
+</script>
+</body>
+</html>

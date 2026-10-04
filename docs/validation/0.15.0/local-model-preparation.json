@@ -1,0 +1,22 @@
+{
+  "schema": "k957-model-preparation/1",
+  "tool": "Ollama",
+  "version": "0.33.3",
+  "executable_sha256": "7deaad14177b824d8fcff7136d4418c0111d2db35fa872a5071fa8db5b8db527",
+  "endpoint": "http://127.0.0.1:19570",
+  "model": "qwen2.5:0.5b",
+  "model_digest": "a8b0c51577010a279d933d14c2a8ab4b268079d44c5c8830c0a93900f1827c67",
+  "model_cache": "/tmp/k957-local-models",
+  "download": "Explicit test setup pull, separate from product inference; synthetic data only",
+  "runtime_settings": {
+    "OLLAMA_NO_CLOUD": "1",
+    "OLLAMA_NUM_PARALLEL": "1",
+    "OLLAMA_MAX_LOADED_MODELS": "1"
+  },
+  "network_assurance": "Cloud features disabled by configuration; complete OS egress isolation not attested",
+  "sources": [
+    "https://ollama.com/library/qwen2.5:0.5b",
+    "https://docs.ollama.com/faq#how-do-i-disable-ollama-cloud"
+  ],
+  "lifecycle": "Temporary synthetic-test daemon stopped after final validation; model cache is separate from release files."
+}

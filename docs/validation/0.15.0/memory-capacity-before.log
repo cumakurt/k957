@@ -1,0 +1,5 @@
+--- FAIL: TestVerifiedMemoryScanWithNoStagingCapacity (0.00s)
+    memory_verified_unix_test.go:31: analysis unnecessarily requires image-sized staging space insufficient private staging space including 64 MiB reserve
+FAIL
+FAIL	k957/internal/core	0.007s
+FAIL

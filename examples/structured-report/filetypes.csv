@@ -1,0 +1,3 @@
+evidence_id,source,media_type,description,matched_by,extension_mismatch
+E000001,/workspace/scratch/4de4f0c723af/k957/examples/structured-source/access.csv,application/octet-stream,no recognized signature,none,false
+E000002,/workspace/scratch/4de4f0c723af/k957/examples/structured-source/audit.jsonl,application/octet-stream,no recognized signature,none,false

@@ -1,106 +1,96 @@
-# İmzalı muhafaza ve devir kayıtları — v0.7.0
+# Signed custody and transfer records — v0.7.0
 
-`custody` komutu, doğrulanmış bir k957 delil paketi için imzalı beyan geçmişi oluşturur. Her işlem yeni bir JSON dosyasına yazılır; önceki dosya ve delil değiştirilmez. Her olayın kendi Ed25519 imzası korunur. `custody-verify` tüm imzaları, kişi/anahtar eşleşmelerini, işlem sırasını ve delil bağını yeniden kontrol eder.
+`custody` creates signed declaration history for a verified evidence package. Each operation writes a new JSON file without modifying prior history or evidence. Every event retains its own Ed25519 signature. `custody-verify` checks all signatures, actor/key mappings, operation order and evidence bindings. The historical filename is retained; this document is in English.
 
-Bu kayıtlar dijital beyanlardır. Fiziksel teslimi, gerçek kişi kimliğini, hukuki yetkiyi veya güvenilir zaman damgasını kanıtlamaz. Dosya tabanlı özel anahtarlar, harici güven listesinin doğru hazırlanması ve son kayıt özetinin bağımsız saklanması gerekir.
+These are digital declarations, not proof of physical handover, real identity, legal authorization or trusted time. File-based private keys, independently prepared trust policy and independently retained current heads are required.
 
-## Güven listesi
+## Trust list
 
-Her kişi kendi özel anahtarını kullanır. Mevcut `keygen` komutu anahtar çiftini oluşturur:
+Each actor uses a private key:
 
 ```sh
-k957 keygen --out /guvenli/alice
-k957 keygen --out /guvenli/bob
+k957 keygen --out /secure/alice
+k957 keygen --out /secure/bob
 ```
 
-Yetkili yönetici, açık anahtarları ayrı bir kanaldan doğrulayıp `trust.json` dosyasına ekler. Örnekteki yer tutucular yerine ilgili `.pub` dosyasının **64 karakterlik küçük harfli hex içeriği** yazılır:
+An administrator verifies public keys independently and places each `.pub` file's **64-character lowercase hexadecimal content** in `trust.json`:
 
 ```json
-{
-  "schema": "k957-custody-trust/1",
-  "keys": [
-    {"actor": "Alice", "public_key": "ALICE_PUB_ICERIGI"},
-    {"actor": "Bob", "public_key": "BOB_PUB_ICERIGI"}
-  ]
-}
+{"schema":"k957-custody-trust/1","keys":[
+  {"actor":"Alice","public_key":"ALICE_PUBLIC_KEY_HEX"},
+  {"actor":"Bob","public_key":"BOB_PUBLIC_KEY_HEX"}
+]}
 ```
 
-`actor` büyük/küçük harfe duyarlıdır; başında/sonunda boşluk olamaz. Aynı açık anahtar birden fazla kayıtta kullanılamaz. Geçmişteki tüm imzacıların kişi/anahtar eşleşmeleri verilen listede bulunmalıdır. Güven listesi delilden bağımsız yönetilir; pakete eklenmiş herhangi bir liste otomatik güvenilir değildir. Bu sürüm sertifika otoritesi, anahtar iptal servisi veya tarihsel yetki politikası uygulamaz.
+Actor names are case-sensitive and cannot have surrounding whitespace. One key identifies one actor. All historical signer mappings must appear in the external trust policy; an embedded list is not automatically trusted. The original v0.7 scope had no certificate authority, revocation service or historical authorization policy. Current lifecycle/witness extensions are documented in [EXAMINATION_WORKFLOWS.md](EXAMINATION_WORKFLOWS.md).
 
-## İşlem sırası
+## Operation order
 
-| İşlem | İmzalayan | Etkisi |
-|---|---|---|
-| register | İlk sorumlu | Yalnızca ilk kayıt; sorumluyu belirler |
-| transfer | Mevcut sorumlu | `--to` kişisine teslim isteği açar; sorumlu henüz değişmez |
-| accept | Bekleyen teslimin alıcısı | Teslimi kabul eder; sorumluyu değiştirir |
-| cancel | Mevcut sorumlu | Bekleyen teslimi iptal eder |
-| note | Mevcut sorumlu | Bekleyen teslim yokken açıklama ekler |
+- `register`: initial holder signs the first event and establishes custody.
+- `transfer`: current holder requests transfer to `--to`; custody does not yet change.
+- `accept`: pending recipient signs acceptance and becomes the holder.
+- `cancel`: current holder cancels the pending request.
+- `note`: current holder adds a declaration when no request is pending.
 
-Bekleyen teslim varken yeni transfer veya note eklenemez; accept/cancel gerekir. Bir kayıtta yalnızca bir mevcut sorumlu modellenir; eşzamanlı çoğaltılmış nüshalar, grup sorumluluğu ve çift onaylı imha iş akışı yoktur.
-
-İlk kayıt:
+A pending transfer must be accepted/cancelled before another transfer/note. The model has one current holder, rather than concurrent copies, group custody or two-person destruction approval.
 
 ```sh
-k957 custody --in /delil/vaka.k957 --trust /guvenli/trust.json \
-  --action register --actor Alice --location "Delil dolabı A" \
-  --note "Doğrulanmış paket kayda alındı" \
-  --sign-key /guvenli/alice.key --out /kayit/custody-001.json
+k957 custody --in /evidence/case.k957 --trust /secure/trust.json \
+  --action register --actor Alice --location "Evidence cabinet A" \
+  --note "Verified package registered" --sign-key /secure/alice.key \
+  --out /records/custody-001.json
 ```
 
-Komut JSON çıktısında `head` döndürür. Bu 64 karakterlik özeti bağımsız bir vaka kaydında saklayın. Sonraki örneklerde `ONCEKI_HEAD` yerine önceki işlemin bağımsız kayıttan alınan head değeri yazılır:
+Retain the returned 64-character `head` independently. Substitute that independently retained value for `PREVIOUS_HEAD`:
 
 ```sh
-k957 custody --in /delil/vaka.k957 --trust /guvenli/trust.json \
-  --previous /kayit/custody-001.json --expected-head ONCEKI_HEAD \
-  --action transfer --actor Alice --to Bob --location "Laboratuvar kabul" \
-  --note "İnceleme için teslim isteği" --sign-key /guvenli/alice.key \
-  --out /kayit/custody-002.json
+k957 custody --in /evidence/case.k957 --trust /secure/trust.json \
+  --previous /records/custody-001.json --expected-head PREVIOUS_HEAD \
+  --action transfer --actor Alice --to Bob --location "Laboratory intake" \
+  --note "Requested examination transfer" --sign-key /secure/alice.key \
+  --out /records/custody-002.json
 ```
 
-Teslim alan Bob kendi güvenilir ortamında paketi ve önceki kaydı doğrular, sonra kendi özel anahtarıyla kabul eder. Buradaki `ONCEKI_HEAD`, custody-002 için saklanan head değeridir:
+Bob verifies the package/history in a trusted environment and signs acceptance. Here `PREVIOUS_HEAD` means custody-002's independently retained head:
 
 ```sh
-k957 custody --in /delil/vaka.k957 --trust /guvenli/trust.json \
-  --previous /kayit/custody-002.json --expected-head ONCEKI_HEAD \
-  --action accept --actor Bob --location "İnceleme istasyonu B" \
-  --note "Paket kontrol edilerek teslim alındı" --sign-key /guvenli/bob.key \
-  --out /kayit/custody-003.json
+k957 custody --in /evidence/case.k957 --trust /secure/trust.json \
+  --previous /records/custody-002.json --expected-head PREVIOUS_HEAD \
+  --action accept --actor Bob --location "Examination station B" \
+  --note "Package checked and received" --sign-key /secure/bob.key \
+  --out /records/custody-003.json
 ```
 
-`--at` isteğe bağlı RFC3339 olay zamanıdır; örneğin `2026-09-28T08:00:00+03:00`. Verilmezse kayıt anı kullanılır. Olay zamanı kayıt anından ileri, önceki olay/kayıt zamanları ise sonraki kayıtların zamanlarından ileri olamaz. Yanlış veya geriye giden sistem saati işlemin reddedilmesine neden olabilir. Saatler kullanıcı/yerel sistem beyanıdır; TSA/NTP doğrulaması yapılmaz.
+Optional `--at` supplies an RFC3339 declaration time, such as `2026-09-28T08:00:00+03:00`; otherwise recording time is used. Declared times cannot exceed recording time and history times cannot move backwards. An incorrect local clock can reject an operation. Times remain local/user declarations without TSA/NTP verification.
 
-## Doğrulama ve rapor
+## Verify and report
 
-`SON_HEAD` yerine custody-003 için bağımsız saklanan değeri kullanın:
+Substitute custody-003's independently retained head for `FINAL_HEAD`:
 
 ```sh
-k957 custody-verify --in /delil/vaka.k957 \
-  --ledger /kayit/custody-003.json --trust /guvenli/trust.json \
-  --expected-head SON_HEAD
-
-k957 analyze --in /delil/vaka.k957 --out /rapor/vaka-001 \
-  --custody /kayit/custody-003.json --custody-trust /guvenli/trust.json \
-  --custody-head SON_HEAD
+k957 custody-verify --in /evidence/case.k957 \
+  --ledger /records/custody-003.json --trust /secure/trust.json \
+  --expected-head FINAL_HEAD
+k957 analyze --in /evidence/case.k957 --out /reports/case-001 \
+  --custody /records/custody-003.json --custody-trust /secure/trust.json \
+  --custody-head FINAL_HEAD
 ```
 
-Delil paketi imzalıysa ve kökeni de doğrulanacaksa bu komutlara ayrıca `--trusted-key /guvenli/edinim.pub` eklenir. Bu anahtar delil imzasını doğrular; devir imzacılarının güven listesi ayrı bir girdidir.
+Optional `--trusted-key /secure/acquisition.pub` authenticates evidence separately from custody actors. Verification JSON reports decoded history, `current_holder`, optional `pending_to`, `head` and trust digest. HTML, `analysis.json` and `custody.csv` project the same history with HTML escaping/CSV formula protection. Retain original custody JSON and trust policy for verification.
 
-JSON doğrulama sonucu kayıtların çözülmüş içeriğini, `current_holder`, varsa `pending_to`, `head` ve kullanılan güven listesinin özetini gösterir. Rapor HTML bölümü, `analysis.json` içindeki custody alanı ve `custody.csv` aynı geçmişi içerir. CSV alanlarında formül başlangıçları etkisizleştirilir; HTML içerikleri escape edilir. Rapor geçmişi yeniden doğrulamak için özgün custody JSON ve güven listesi de saklanmalıdır.
+Without an expected head, an older valid signed prefix may be accepted. A hash chain alone cannot reveal removed tail events or another branch. Reading the expected head from the same file being verified is not independent verification. No centralized/distributed consensus service is provided.
 
-`--expected-head` / `--custody-head` verilmezse geçerli imzalı eski bir sürüm de kabul edilir. Tek başına hash zinciri, son olayların kaldırıldığını veya başka bir dalın varlığını ispatlayamaz. Beklenen head değerini doğrulanacak aynı dosyadan okumak bağımsız kontrol sağlamaz. Paylaşımlı merkezi kayıt/dağıtık uzlaşma yoktur.
+## Evidence binding and limits
 
-## Delil bağı ve sınırlar
+- All package objects and manifest hashes are verified first. History binds case, package ID and **SHA-256 of exact manifest bytes**, rather than the complete ZIP bytes. Repackaging identical manifest/objects may retain the same evidence binding.
+- Commands require a plaintext `.k957`; unseal encrypted output in an authorized analysis environment first.
+- Custody JSON/reports are unencrypted and expose actors, locations and notes. Base64 is not encryption; manage permissions separately.
+- Bounds: 10,000 events/32 MiB ledger, 1,000 keys/1 MiB trust file, 256-byte actor, 1,024-byte location and 16,000-byte note. Lowercase field names, unknown/duplicate keys, nesting and signature encodings are checked.
+- Existing files are never overwritten. Interrupted writes can leave a partial new file; verify before use and retain prior revisions.
+- Custody format is independent of analyzer version and supports v1/v2 evidence. Checkpoints remain bound to the collector version; examiner reviews retain their analyzer basis.
 
-- Önce paketteki bütün nesneler ve manifest hash'leri doğrulanır. Kayıtlar vaka, paket kimliği ve **manifestin tam byte SHA-256 özeti** ile bağlanır. ZIP dosyasının tamamının byte hash'i bu alan değildir. Aynı manifest ve nesneleri koruyan ZIP yeniden paketleme, aynı delil bağına sahip olabilir.
-- `.k957` düz paket gerekir. Şifreli toplama çıktısı önce yetkili analiz ortamında `unseal` ile açılır; custody komutları şifreli zarfı doğrudan işlemez.
-- Devir JSON ve raporlar şifrelenmez; kişi, konum ve notlar okunabilir. Uygun erişim izinleriyle saklayın. Base64 alanı şifreleme değildir.
-- En fazla 10.000 olay ve 32 MiB kayıt dosyası; en fazla 1.000 anahtar ve 1 MiB güven listesi. Kişi 256, konum 1.024, not 16.000 byte ile sınırlıdır. Küçük harfli alan adları, bilinmeyen alanlar, yinelenen JSON anahtarları, aşırı iç içelik ve yanlış imza kodlamaları kontrol edilir.
-- Mevcut hedefin üzerine yazılmaz. Yazma kesintisinde yarım yeni dosya kalabilir; doğrulamadan kullanmayın. Önceki sürümü saklayın.
-- Yeni kayıt formatı analiz sürümüne bağlı değildir; v1/v2 delil paketleriyle kullanılır. Açık edinim checkpoint'leri yine oluşturuldukları k957 sürümüyle tamamlanmalıdır. Analist `review` kayıtlarının sürüm bağı devam eder.
+## Independent format verification
 
-## Formatın bağımsız doğrulanması
+`payload_base64` contains exact signed JSON bytes. Decode it without JSON reserialization. Signature input is `k957/custody/signature/v1` + a zero byte + payload. Event head is SHA-256 of `k957/custody/head/v1` + zero byte + 32-byte public key + 64-byte signature + payload. `previous` links the earlier head (empty initially). `signer_sha256` hashes the 32 raw public-key bytes.
 
-`payload_base64`, imzalanan JSON'un tam byte dizisini taşır. Yeniden JSON serileştirmesi yapılmadan Base64 çözülür. İmza girdisi `k957/custody/signature/v1` metni + sıfır byte + payload'dır. Her olayın head değeri, `k957/custody/head/v1` metni + sıfır byte + 32 byte açık anahtar + 64 byte imza + payload dizisinin SHA-256 özetidir. Claim içindeki `previous`, önceki olayın head değeridir. İlk olayda boştur. `signer_sha256`, açık anahtarın 32 ham byte'ının SHA-256 özetidir.
-
-`scripts/custody_integration.py`, Python cryptography ile iki farklı imzacının imzalarını, domain ayrımını, hash zincirini ve rapor sonuçlarını bağımsız doğrular. Test çıktıları `docs/TEST_REPORT.md` ve `docs/integration-output.txt` içindedir.
+`scripts/custody_integration.py` independently checks two signers, domain separation, chain and reports with Python cryptography. Historical results are retained in [TEST_REPORT.md](TEST_REPORT.md); current receipts are in [IMPLEMENTATION_PROGRESS.md](IMPLEMENTATION_PROGRESS.md).

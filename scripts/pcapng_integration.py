@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Independently build PCAPNG sections and verify CLI provenance and redaction."""
-from test_support import default_binary
+from test_support import default_binary, report_text
 import argparse
 import csv
 import datetime
@@ -137,7 +137,7 @@ with tempfile.TemporaryDirectory(prefix='k957-pcapng-') as directory:
         with (root / 'report' / name).open(encoding="utf-8") as file:
             rows = list(csv.DictReader(file))
         assert any(row['section'] == '2' and row['interface_id'] == '0' for row in rows)
-    assert 'Bölüm 2 / Arayüz 0' in (root / 'report/report.html').read_text(encoding="utf-8")
+    assert 'Section 2 / Interface 0' in (root / 'report/report.html').read_text(encoding="utf-8")
     run('share', '--in', package, '--out', root / 'shared')
     shared = json.loads((root / 'shared/shared.json').read_text(encoding="utf-8"))
     assert len(shared['network_flows']) == 6
@@ -145,7 +145,8 @@ with tempfile.TemporaryDirectory(prefix='k957-pcapng-') as directory:
     assert all(c['interface_count'] == 4 and c['ignored_blocks'] == 1 for c in shared['capture_summaries'])
     for report in ('report', 'shared'):
         for file in (root / report).iterdir():
-            contents = file.read_text(encoding="utf-8")
+            contents = report_text(file)
+            if contents is None: continue
             for value in ('INTERFACE_NAME_NOT_EXPORTED', 'PACKET_COMMENT_NOT_EXPORTED',
                           'PAYLOAD_NOT_EXPORTED', 'SECRET_METADATA_NOT_EXPORTED'):
                 assert value not in contents, (file.name, value)

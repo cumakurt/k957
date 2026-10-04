@@ -3,11 +3,11 @@
   "keys": [
     {
       "actor": "Alice",
-      "public_key": "8e7f32bf7bf4d56dc8b081a1e5e5a7245697660f7b1e12d38e1e5b413efadacd"
+      "public_key": "eac8adbef206567700d453ac5cf4cfd70fcc1d9c93fc0aa23edadd43783ae17f"
     },
     {
       "actor": "Bob",
-      "public_key": "246e43a3385f38124578102286463f8846b3ae7272c8c2362bebefca79ddbf6c"
+      "public_key": "be0dc699c5da3a5aad33352f2f0f2e89ce3e293ac80738d58f37a63cfcb4f4b3"
     }
   ]
 }

@@ -1,0 +1,12 @@
+dist/k957-linux-amd64: elf static check passed (0 platform libraries)
+Built static dist/k957-linux-amd64
+dist/k957-linux-arm64: elf static check passed (0 platform libraries)
+Built static dist/k957-linux-arm64
+dist/k957-windows-amd64.exe: pe static check passed (1 platform libraries)
+Built static dist/k957-windows-amd64.exe
+dist/k957-windows-arm64.exe: pe static check passed (1 platform libraries)
+Built static dist/k957-windows-arm64.exe
+dist/k957-darwin-amd64: mach-o static check passed (4 platform libraries)
+Built static dist/k957-darwin-amd64
+dist/k957-darwin-arm64: mach-o static check passed (4 platform libraries)
+Built static dist/k957-darwin-arm64

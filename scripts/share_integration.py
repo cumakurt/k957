@@ -6,6 +6,7 @@ import hashlib
 import json
 import pathlib
 import subprocess
+import shutil
 import tempfile
 
 base = pathlib.Path(__file__).resolve().parents[1]
@@ -53,9 +54,15 @@ with tempfile.TemporaryDirectory() as directory:
                'PrivateLocation927', 'PrivateCustodyNote927', '2008-02-03', original['evidence_digest'],
                original['findings'][0]['id'], head, (p / 'actor.pub').read_text(encoding="utf-8").strip()]
     files = list((p / 'shared').iterdir())
-    assert len(files) == 8
+    assert len(files) == 10
     for file in files:
-        data = file.read_text(encoding="utf-8")
+        if file.suffix == '.pdf':
+            tool = shutil.which('pdftotext')
+            if not tool:
+                raise RuntimeError('PDF sharing privacy verification requires pdftotext')
+            data = subprocess.run([tool, '-enc', 'UTF-8', str(file), '-'], capture_output=True, text=True, encoding='utf-8', check=True).stdout
+        else:
+            data = file.read_text(encoding="utf-8")
         assert all(secret not in data for secret in secrets), file.name
     shared = json.loads((p / 'shared/shared.json').read_text(encoding="utf-8"))
     assert shared['schema'] == 'k957-shared-report/1'
@@ -87,4 +94,4 @@ with tempfile.TemporaryDirectory() as directory:
         '--analyst', actor, '--note', 'Must fail', '--out', p / 'bad-review.json', code=1)
     assert not (p / 'bad-review.json').exists()
     assert all(hashlib.sha256(path.read_bytes()).hexdigest() == digest for path, digest in hashes.items())
-    print('PASS: all 8 artifacts scanned for 18 sensitive values; signed reviews/custody projected safely; counts and aliases preserved; explicit keep policy; tampered history/ambiguous policy/authoritative reuse rejected; source package/history/analysis unchanged')
+    print('PASS: all 10 artifacts scanned, including independently extracted PDF text for 18 sensitive values; signed reviews/custody projected safely; counts and aliases preserved; explicit keep policy; tampered history/ambiguous policy/authoritative reuse rejected; source package/history/analysis unchanged')

@@ -22,7 +22,9 @@ func TestCLIWorkflow(t *testing.T) {
 	}
 }
 func TestCLIErrors(t *testing.T) {
-	for _, args := range [][]string{{"unknown"}, {"keygen"}, {"encryption-key"}, {"collect"}, {"verify", "--in", "missing"}, {"analyze", "--in", "missing"}, {"collect", "--bad-flag"}} {
+	// No-argument collect deliberately starts live full acquisition. Exercise
+	// invalid explicit options here so error tests never collect the test host.
+	for _, args := range [][]string{{"unknown"}, {"keygen"}, {"encryption-key"}, {"collect", "--out", filepath.Join(t.TempDir(), "invalid.k957")}, {"verify", "--in", "missing"}, {"analyze", "--in", "missing"}, {"collect", "--bad-flag"}} {
 		if e := run(args); e == nil {
 			t.Fatalf("expected error: %v", args)
 		}
@@ -97,6 +99,39 @@ func TestCLIEncryptedCollection(t *testing.T) {
 	}
 	if e := run([]string{"verify", "--in", plain}); e != nil {
 		t.Fatal(e)
+	}
+}
+
+func TestCLIFullMode(t *testing.T) {
+	d := t.TempDir()
+	t.Chdir(d)
+	src := filepath.Join(d, "src")
+	if e := os.Mkdir(src, 0700); e != nil {
+		t.Fatal(e)
+	}
+	if e := os.WriteFile(filepath.Join(src, "auth.log"), []byte("2026-09-29T00:00:00Z failed password for root\n"), 0600); e != nil {
+		t.Fatal(e)
+	}
+	if e := run([]string{"collect", "-h"}); e != nil {
+		t.Fatal(e)
+	}
+	if e := run([]string{"verify"}); e == nil {
+		t.Fatal("expected missing store")
+	}
+	if e := run([]string{"analyze"}); e == nil {
+		t.Fatal("expected missing store")
+	}
+	if e := run([]string{"collect", "--full", "--root", src, "--output-dir", "output", "--system=false", "--artifacts=false", "--memory=false", "--case", "T", "--operator", "T", "--scope", "T"}); e != nil {
+		t.Fatal(e)
+	}
+	if e := run([]string{"verify"}); e != nil {
+		t.Fatal(e)
+	}
+	if e := run([]string{"analyze"}); e != nil {
+		t.Fatal(e)
+	}
+	if e := run([]string{"verify", "--in", "missing", "--store", "output"}); e == nil {
+		t.Fatal("expected mutual exclusion")
 	}
 }
 

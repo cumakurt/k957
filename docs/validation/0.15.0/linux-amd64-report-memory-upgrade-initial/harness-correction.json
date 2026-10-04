@@ -1,0 +1,12 @@
+{
+  "schema": "k957-validation-correction/1",
+  "scope": "Test harness only; source assertions unchanged",
+  "reason": "Three report privacy tests assumed every report file was UTF-8 text. Default PDF adds binary files.",
+  "correction": "Extract PDF with independent pdftotext; retain existing payload/metadata/privacy assertions.",
+  "affected": [
+    "pcap_integration",
+    "pcapng_integration",
+    "windows_xml_integration"
+  ],
+  "focused_repeat": "All three passed with default PDF extraction."
+}

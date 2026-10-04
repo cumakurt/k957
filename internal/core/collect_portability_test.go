@@ -13,12 +13,12 @@ import (
 // the source identity check.
 func TestCollectNestedUnicodePaths(t *testing.T) {
 	d := t.TempDir()
-	root := filepath.Join(d, "Source with spaces", "İnceleme")
+	root := filepath.Join(d, "Source with spaces", "Café")
 	if err := os.MkdirAll(filepath.Join(root, "nested"), 0700); err != nil {
 		t.Fatal(err)
 	}
 	files := map[string][]byte{
-		"olay günlüğü.jsonl":                     []byte("2026-09-28T12:00:00Z synthetic event\n"),
+		"event café.jsonl":                       []byte("2026-09-28T12:00:00Z synthetic event\n"),
 		filepath.Join("nested", "MixedCase.bin"): {0, 1, 2, 3, 255},
 		"empty":                                  {},
 	}

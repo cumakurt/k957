@@ -1,0 +1,12 @@
+k957 collect  [###---------------------]   14%  estimating  prepare  1/1  /tmp/k957-source-scale-jx4mn3cq/store/MacBookPro/20261001T073329Z
+k957 collect  [o-----------------------]  estimating  files  1  31 B  /tmp/k957-source-scale-jx4mn3cq/source/000/object-000000.bin
+k957 collect  [---------------------o--]  estimating  files  31726  960.5 KiB  /tmp/k957-source-scale-jx4mn3cq/source/031/object-031725.bin
+k957 collect  [-----o------------------]  estimating  files  81798  2.4 MiB  /tmp/k957-source-scale-jx4mn3cq/source/081/object-081797.bin
+k957 collect  [#####################---]   86%  est. 1s  package  100000/100000  3.0 MiB  /tmp/k957-source-scale-jx4mn3cq/store/MacBookPro/20261001T073329Z/e...
+k957 collect  [#####################---]   86%  est. 1s  seal  0/1  collection record
+k957 collect  [########################]  100%  5s  seal  1/1  /tmp/k957-source-scale-jx4mn3cq/store/MacBookPro/20261001T073329Z
+k957 collect  finished  5s  [########################]  100%  5s  1/1  /tmp/k957-source-scale-jx4mn3cq/store/MacBookPro/20261001T073329Z
+collection: /tmp/k957-source-scale-jx4mn3cq/store/MacBookPro/20261001T073329Z
+signing fingerprint: 63bbb7dd611220d0287171e13e2bfafe6cba07da8666e9a4acfe2d4f75b62d6e
+private signing key was discarded; record the fingerprint independently
+k957: partial collection saved at /tmp/k957-source-scale-jx4mn3cq/store/MacBookPro/20261001T073329Z; review collection.json

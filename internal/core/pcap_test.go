@@ -317,7 +317,7 @@ func TestPCAPAnalysisCorrelationAndShare(t *testing.T) {
 		t.Fatal("missing network export")
 	}
 	html, _ := os.ReadFile(filepath.Join(out, "report.html"))
-	if !strings.Contains(string(html), "Yönlü ağ akışları") {
+	if !strings.Contains(string(html), "Directed network flows") {
 		t.Fatal("missing network section")
 	}
 }

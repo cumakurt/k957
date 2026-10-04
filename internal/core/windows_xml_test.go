@@ -14,7 +14,7 @@ import (
 	"unicode/utf16"
 )
 
-const testWindowsEvent = `<Event xmlns="http://schemas.microsoft.com/win/2004/08/events/event"><System><Provider Name="ProviderSecret" Guid="GUIDSecret" EventSourceName="LegacySecret"/><EventID Qualifiers="65535">4624</EventID><Version>0</Version><Level>4</Level><TimeCreated SystemTime="2026-09-29T14:02:03.1234567+03:00"/><EventRecordID>18446744073709551615</EventRecordID><Channel>ChannelSecret</Channel><Computer>HOST.</Computer><Security UserID="S-1-5-21-123"/></System><EventData><Data Name="Repeated">DataSecret</Data><Data Name="Repeated">İstanbul 😀</Data><Data>unnamed</Data></EventData><RenderingInfo><Message>&lt;script&gt;MessageSecret&lt;/script&gt;</Message></RenderingInfo></Event>`
+const testWindowsEvent = `<Event xmlns="http://schemas.microsoft.com/win/2004/08/events/event"><System><Provider Name="ProviderSecret" Guid="GUIDSecret" EventSourceName="LegacySecret"/><EventID Qualifiers="65535">4624</EventID><Version>0</Version><Level>4</Level><TimeCreated SystemTime="2026-09-29T14:02:03.1234567+03:00"/><EventRecordID>18446744073709551615</EventRecordID><Channel>ChannelSecret</Channel><Computer>HOST.</Computer><Security UserID="S-1-5-21-123"/></System><EventData><Data Name="Repeated">DataSecret</Data><Data Name="Repeated">Café 😀</Data><Data>unnamed</Data></EventData><RenderingInfo><Message>&lt;script&gt;MessageSecret&lt;/script&gt;</Message></RenderingInfo></Event>`
 
 func windowsUTF16(s string, order binary.ByteOrder) []byte {
 	units := utf16.Encode([]rune(s))
@@ -27,7 +27,7 @@ func windowsUTF16(s string, order binary.ByteOrder) []byte {
 }
 
 func TestWindowsXMLMetadataAndEncodings(t *testing.T) {
-	prefix := "<?xml version=\"1.0\"?>\n<Events>\n<!--" + strings.Repeat("😀ö", 1100) + "-->\n"
+	prefix := "<?xml version=\"1.0\"?>\n<Events>\n<!--" + strings.Repeat("😀é", 1100) + "-->\n"
 	prefix = strings.ReplaceAll(prefix, "\n", "\r\n")
 	suffix := "\r\n</Events>"
 	for name, encode := range map[string]func(string) []byte{
@@ -53,7 +53,7 @@ func TestWindowsXMLMetadataAndEncodings(t *testing.T) {
 			if w.Provider != "ProviderSecret" || w.ProviderGUID != "GUIDSecret" || w.EventSource != "LegacySecret" || w.EventID != 4624 || *w.Qualifiers != 65535 || w.RecordID != "18446744073709551615" || *w.Version != 0 || *w.Level != 4 || w.Channel != "ChannelSecret" {
 				t.Fatalf("metadata: %+v", w)
 			}
-			if len(w.Data) != 3 || w.Data[0].Name != w.Data[1].Name || w.Data[1].Value != "İstanbul 😀" || w.Data[2].Name != "" || e.Detail != "<script>MessageSecret</script>" || w.PayloadOmitted || w.MessageTruncated {
+			if len(w.Data) != 3 || w.Data[0].Name != w.Data[1].Name || w.Data[1].Value != "Café 😀" || w.Data[2].Name != "" || e.Detail != "<script>MessageSecret</script>" || w.PayloadOmitted || w.MessageTruncated {
 				t.Fatalf("payload: %+v", w)
 			}
 			if string(decoded) != prefix+testWindowsEvent+suffix {
@@ -195,7 +195,7 @@ func TestWindowsXMLInvalidEncodingsAndDeclarations(t *testing.T) {
 }
 
 func TestWindowsXMLPayloadAndMessageLimits(t *testing.T) {
-	raw := strings.Replace(testWindowsEvent, "&lt;script&gt;MessageSecret&lt;/script&gt;", strings.Repeat("ö", 401), 1)
+	raw := strings.Replace(testWindowsEvent, "&lt;script&gt;MessageSecret&lt;/script&gt;", strings.Repeat("é", 401), 1)
 	raw = strings.Replace(raw, "</EventData>", "<Binary>0011</Binary><ComplexData><Unknown/></ComplexData></EventData><UserData>"+testWindowsEvent+"</UserData>", 1)
 	ev, s, _ := parseWindowsXML([]byte(raw), Item{}, 20)
 	if len(ev) != 1 || s.Parsed != 1 || !ev[0].Windows.PayloadOmitted || !ev[0].Windows.MessageTruncated || len([]rune(ev[0].Detail)) != 400 {
@@ -220,7 +220,7 @@ func TestWindowsXMLAnalysisExportAndShare(t *testing.T) {
 		t.Fatal(err)
 	}
 	defer p.Zip.Close()
-	a := Analyze(p, []Rule{{ID: "unicode", Contains: "İstanbul"}})
+	a := Analyze(p, []Rule{{ID: "unicode", Contains: "Café"}})
 	ev := windowsEvents(a.Timeline)
 	if len(ev) != 1 || len(a.Correlations) != 2 || len(a.Findings) != 1 {
 		t.Fatalf("events=%d correlations=%d findings=%d", len(ev), len(a.Correlations), len(a.Findings))
@@ -252,7 +252,7 @@ func TestWindowsXMLAnalysisExportAndShare(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if !bytes.Contains(html, []byte("Windows olay XML kayıtları")) || bytes.Contains(html, []byte("<script>MessageSecret")) || !bytes.Contains(html, []byte("&lt;script&gt;MessageSecret")) {
+	if !bytes.Contains(html, []byte("Windows event XML records")) || bytes.Contains(html, []byte("<script>MessageSecret")) || !bytes.Contains(html, []byte("&lt;script&gt;MessageSecret")) {
 		t.Fatal("HTML missing/unsafe")
 	}
 	before := JSON(a)
@@ -262,7 +262,7 @@ func TestWindowsXMLAnalysisExportAndShare(t *testing.T) {
 			t.Fatal(err)
 		}
 		encoded := JSON(shared)
-		for _, secret := range []string{"ProviderSecret", "GUIDSecret", "LegacySecret", "ChannelSecret", "DataSecret", "MessageSecret", "18446744073709551615", "İstanbul"} {
+		for _, secret := range []string{"ProviderSecret", "GUIDSecret", "LegacySecret", "ChannelSecret", "DataSecret", "MessageSecret", "18446744073709551615", "Café"} {
 			if bytes.Contains(encoded, []byte(secret)) {
 				t.Fatalf("shared context leak %s", secret)
 			}
@@ -283,7 +283,7 @@ func TestWindowsXMLAnalysisExportAndShare(t *testing.T) {
 		t.Fatal("empty Windows CSV created")
 	}
 	html, _ = os.ReadFile(filepath.Join(out, "report.html"))
-	if bytes.Contains(html, []byte("Windows olay XML kayıtları")) {
+	if bytes.Contains(html, []byte("Windows event XML records")) {
 		t.Fatal("empty Windows section rendered")
 	}
 }

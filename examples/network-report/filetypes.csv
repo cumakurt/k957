@@ -1,0 +1,5 @@
+evidence_id,source,media_type,description,matched_by,extension_mismatch
+E000001,/depo/cuma/projelerim/k957/examples/network-source/big-nano.bin,application/vnd.tcpdump.pcap,classic PCAP capture,magic,false
+E000002,/depo/cuma/projelerim/k957/examples/network-source/observer.jsonl,application/octet-stream,no recognized signature,none,false
+E000003,/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap,application/vnd.tcpdump.pcap,classic PCAP capture,magic,false
+E000004,/depo/cuma/projelerim/k957/examples/network-source/unsupported.pcapng,application/x-pcapng,PCAPNG capture,magic,false

@@ -170,12 +170,12 @@ func planPreflight(ctx context.Context, o Options, work string, encrypted, resum
 		add("EMPTY_SELECTION", "warning", "No eligible regular files were found")
 	}
 	// Conservative working allowance; explicitly not a proven bound.
-	r.EstimatedOutput = r.EligibleBytes + r.EligibleBytes/100 + int64(r.EligibleFiles)*1024 + (16 << 20)
+	r.EstimatedOutput = r.EligibleBytes + r.EligibleBytes/100 + int64(r.EligibleFiles)*1024 + manifestLimit
 	if encrypted {
 		r.EstimatedOutput += ((r.EstimatedOutput+chunkSize-1)/chunkSize+1)*20 + 16
 	}
 	if work != "" {
-		r.EstimatedWork = r.RemainingBytes + r.RemainingBytes/10 + (r.RemainingParts+int64(r.EligibleFiles-r.CompletedFiles))*4096 + (64 << 20)
+		r.EstimatedWork = r.RemainingBytes + r.RemainingBytes/10 + (r.RemainingParts+int64(r.EligibleFiles-r.CompletedFiles))*4096 + 2*checkpointLimit
 		if encrypted {
 			r.EstimatedWork += r.RemainingParts*stageOverhead + 2*stageOverhead
 		}
@@ -198,7 +198,7 @@ func planPreflight(ctx context.Context, o Options, work string, encrypted, resum
 		if resume {
 			// Existing work/chunks may be mount points on different filesystems.
 			// Probe each actual destination instead of the staging parent.
-			metadata := int64(64 << 20)
+			metadata := int64(2 * checkpointLimit)
 			if encrypted {
 				metadata += 2 * stageOverhead
 			}

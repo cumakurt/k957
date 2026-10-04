@@ -1,16 +1,16 @@
-time_utc,event_type,evidence_id,source,line,original_time,detail,user,host,source_ip,destination_ip,byte_offset,packet,protocol,source_port,destination_port,captured_length,original_length,tcp_flags
-2020-09-13T12:26:40Z,log_timestamp,E000002,/workspace/scratch/4de4f0c723af/k957/examples/network-source/observer.jsonl,1,2020-09-13T12:26:40Z,synthetic observer,,,192.0.2.77,,0,0,,0,0,0,0,0
-2020-09-13T12:26:40.123456Z,pcap_packet,E000003,/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap,0,,,,,192.0.2.77,198.51.100.8,24,1,UDP,40000,53,71,71,0
-2020-09-13T12:26:40.123456789Z,pcap_packet,E000001,/workspace/scratch/4de4f0c723af/k957/examples/network-source/big-nano.bin,0,,,,,192.0.2.77,198.51.100.8,24,1,UDP,40000,53,49,49,0
-2020-09-13T12:26:41.123456Z,pcap_packet,E000003,/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap,0,,,,,192.0.2.77,198.51.100.8,111,2,UDP,40000,53,71,71,0
-2020-09-13T12:26:42.123456Z,pcap_packet,E000003,/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap,0,,,,,198.51.100.8,192.0.2.77,198,3,UDP,53,40000,63,63,0
-2020-09-13T12:26:43.123456Z,pcap_packet,E000003,/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap,0,,,,,2001:db8::77,2001:db8::88,277,4,TCP,50000,443,82,82,2
-2020-09-13T12:26:46.123456Z,pcap_packet,E000003,/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap,0,,,,,192.0.2.77,198.51.100.8,512,7,TCP,40000,443,54,75,2
-2026-09-28T09:28:42.153861523Z,file_modified,E000003,/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap,0,,,,,,,0,0,,0,0,0,0,0
-2026-09-28T09:28:42.153902363Z,file_modified,E000001,/workspace/scratch/4de4f0c723af/k957/examples/network-source/big-nano.bin,0,,,,,,,0,0,,0,0,0,0,0
-2026-09-28T09:28:42.153924986Z,file_modified,E000004,/workspace/scratch/4de4f0c723af/k957/examples/network-source/unsupported.pcapng,0,,,,,,,0,0,,0,0,0,0,0
-2026-09-28T09:28:42.153946217Z,file_modified,E000002,/workspace/scratch/4de4f0c723af/k957/examples/network-source/observer.jsonl,0,,,,,,,0,0,,0,0,0,0,0
-2026-09-28T09:28:42.179462442Z,collected,E000001,/workspace/scratch/4de4f0c723af/k957/examples/network-source/big-nano.bin,0,,,,,,,0,0,,0,0,0,0,0
-2026-09-28T09:28:42.179780778Z,collected,E000002,/workspace/scratch/4de4f0c723af/k957/examples/network-source/observer.jsonl,0,,,,,,,0,0,,0,0,0,0,0
-2026-09-28T09:28:42.179820697Z,collected,E000003,/workspace/scratch/4de4f0c723af/k957/examples/network-source/traffic.pcap,0,,,,,,,0,0,,0,0,0,0,0
-2026-09-28T09:28:42.179871952Z,collected,E000004,/workspace/scratch/4de4f0c723af/k957/examples/network-source/unsupported.pcapng,0,,,,,,,0,0,,0,0,0,0,0
+time_utc,event_type,evidence_id,source,line,original_time,detail,user,host,source_ip,destination_ip,byte_offset,packet,protocol,source_port,destination_port,captured_length,original_length,tcp_flags,section,interface_id
+2020-09-13T12:26:40Z,log_timestamp,E000002,/depo/cuma/projelerim/k957/examples/network-source/observer.jsonl,1,2020-09-13T12:26:40Z,synthetic observer,,,192.0.2.77,,0,0,,0,0,0,0,0,0,0
+2020-09-13T12:26:40.123456Z,pcap_packet,E000003,/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap,0,,,,,192.0.2.77,198.51.100.8,24,1,UDP,40000,53,71,71,0,0,0
+2020-09-13T12:26:40.123456789Z,pcap_packet,E000001,/depo/cuma/projelerim/k957/examples/network-source/big-nano.bin,0,,,,,192.0.2.77,198.51.100.8,24,1,UDP,40000,53,49,49,0,0,0
+2020-09-13T12:26:41.123456Z,pcap_packet,E000003,/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap,0,,,,,192.0.2.77,198.51.100.8,111,2,UDP,40000,53,71,71,0,0,0
+2020-09-13T12:26:42.123456Z,pcap_packet,E000003,/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap,0,,,,,198.51.100.8,192.0.2.77,198,3,UDP,53,40000,63,63,0,0,0
+2020-09-13T12:26:43.123456Z,pcap_packet,E000003,/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap,0,,,,,2001:db8::77,2001:db8::88,277,4,TCP,50000,443,82,82,2,0,0
+2020-09-13T12:26:46.123456Z,pcap_packet,E000003,/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap,0,,,,,192.0.2.77,198.51.100.8,512,7,TCP,40000,443,54,75,2,0,0
+2026-09-28T09:58:42Z,file_modified,E000001,/depo/cuma/projelerim/k957/examples/network-source/big-nano.bin,0,,,,,,,0,0,,0,0,0,0,0,0,0
+2026-09-28T09:58:42Z,file_modified,E000002,/depo/cuma/projelerim/k957/examples/network-source/observer.jsonl,0,,,,,,,0,0,,0,0,0,0,0,0,0
+2026-09-28T09:58:42Z,file_modified,E000003,/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap,0,,,,,,,0,0,,0,0,0,0,0,0,0
+2026-09-28T09:58:42Z,file_modified,E000004,/depo/cuma/projelerim/k957/examples/network-source/unsupported.pcapng,0,,,,,,,0,0,,0,0,0,0,0,0,0
+2026-10-01T13:22:11.720664659Z,collected,E000001,/depo/cuma/projelerim/k957/examples/network-source/big-nano.bin,0,,,,,,,0,0,,0,0,0,0,0,0,0
+2026-10-01T13:22:11.721123585Z,collected,E000002,/depo/cuma/projelerim/k957/examples/network-source/observer.jsonl,0,,,,,,,0,0,,0,0,0,0,0,0,0
+2026-10-01T13:22:11.721344174Z,collected,E000003,/depo/cuma/projelerim/k957/examples/network-source/traffic.pcap,0,,,,,,,0,0,,0,0,0,0,0,0,0
+2026-10-01T13:22:11.721741617Z,collected,E000004,/depo/cuma/projelerim/k957/examples/network-source/unsupported.pcapng,0,,,,,,,0,0,,0,0,0,0,0,0,0

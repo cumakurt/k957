@@ -1,0 +1,25 @@
+k957 case  [########################]  100%  0s  case  1/1  /tmp/k957-source-scale-cjffn81w/store/MacBookPro/20261001T132436Z
+k957 case  [------------------------]    0%  estimating  examine  1/100000  /tmp/k957-source-scale-cjffn81w/source/000/object-000000.bin
+k957 case  [#-----------------------]    5%  est. 2m22s  examine  5000/100000  /tmp/k957-source-scale-cjffn81w/source/004/object-004999.bin
+k957 case  [##----------------------]   10%  est. 1m08s  examine  10000/100000  /tmp/k957-source-scale-cjffn81w/source/009/object-009999.bin
+k957 case  [####--------------------]   15%  est. 43s  examine  15000/100000  /tmp/k957-source-scale-cjffn81w/source/014/object-014999.bin
+k957 case  [#####-------------------]   20%  est. 31s  examine  20000/100000  /tmp/k957-source-scale-cjffn81w/source/019/object-019999.bin
+k957 case  [######------------------]   25%  est. 23s  examine  25000/100000  /tmp/k957-source-scale-cjffn81w/source/024/object-024999.bin
+k957 case  [#######-----------------]   30%  est. 18s  examine  30000/100000  /tmp/k957-source-scale-cjffn81w/source/029/object-029999.bin
+k957 case  [########----------------]   35%  est. 15s  examine  35000/100000  /tmp/k957-source-scale-cjffn81w/source/034/object-034999.bin
+k957 case  [##########--------------]   40%  est. 12s  examine  40000/100000  /tmp/k957-source-scale-cjffn81w/source/039/object-039999.bin
+k957 case  [###########-------------]   45%  est. 10s  examine  45000/100000  /tmp/k957-source-scale-cjffn81w/source/044/object-044999.bin
+k957 case  [############------------]   50%  est. 8s  examine  50000/100000  /tmp/k957-source-scale-cjffn81w/source/049/object-049999.bin
+k957 case  [#############-----------]   55%  est. 7s  examine  55000/100000  /tmp/k957-source-scale-cjffn81w/source/054/object-054999.bin
+k957 case  [##############----------]   60%  est. 5s  examine  60000/100000  /tmp/k957-source-scale-cjffn81w/source/059/object-059999.bin
+k957 case  [################--------]   65%  est. 4s  examine  65000/100000  /tmp/k957-source-scale-cjffn81w/source/064/object-064999.bin
+k957 case  [#################-------]   70%  est. 4s  examine  70000/100000  /tmp/k957-source-scale-cjffn81w/source/069/object-069999.bin
+k957 case  [##################------]   75%  est. 3s  examine  75000/100000  /tmp/k957-source-scale-cjffn81w/source/074/object-074999.bin
+k957 case  [###################-----]   80%  est. 2s  examine  80000/100000  /tmp/k957-source-scale-cjffn81w/source/079/object-079999.bin
+k957 case  [####################----]   85%  est. 1s  examine  85000/100000  /tmp/k957-source-scale-cjffn81w/source/084/object-084999.bin
+k957 case  [######################--]   90%  est. 1s  examine  90000/100000  /tmp/k957-source-scale-cjffn81w/source/089/object-089999.bin
+k957 case  [#######################-]   95%  est. 0s  examine  95000/100000  /tmp/k957-source-scale-cjffn81w/source/094/object-094999.bin
+k957 case  [########################]  100%  9s  examine  100000/100000  /tmp/k957-source-scale-cjffn81w/source/099/object-099999.bin
+k957 case  [########################]  100%  11s  case  1/1  /tmp/k957-source-scale-cjffn81w/source/000/object-000000.bin
+k957 case  finished  15s  [########################]  100%  15s  1/1  /tmp/k957-source-scale-cjffn81w/source/099/object-099999.bin
+Case: /tmp/k957-source-scale-cjffn81w/case/report.html

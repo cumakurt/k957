@@ -1,10 +1,80 @@
 {
+  "coverage": [
+    {
+      "schema": "k957-coverage/1",
+      "stage": "inventory",
+      "unit": "objects",
+      "status": "complete",
+      "eligible": 2,
+      "emitted": 2,
+      "omitted": 0,
+      "total_known": true
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "parser",
+      "format": "JSONL",
+      "unit": "records",
+      "status": "complete",
+      "eligible": 2,
+      "emitted": 2,
+      "omitted": 0,
+      "total_known": true
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "parser",
+      "format": "text/RFC3339",
+      "unit": "records",
+      "status": "complete",
+      "eligible": 3,
+      "emitted": 3,
+      "omitted": 0,
+      "total_known": true
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "findings",
+      "unit": "findings",
+      "status": "complete",
+      "eligible": 2,
+      "emitted": 2,
+      "omitted": 0,
+      "total_known": true,
+      "limit": 10000
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "acquisition_metadata",
+      "unit": "objects",
+      "status": "partial",
+      "eligible": 2,
+      "emitted": 0,
+      "omitted": 2,
+      "total_known": true,
+      "reasons": {
+        "metadata_omitted": 2
+      }
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "correlation_references",
+      "unit": "references",
+      "status": "complete",
+      "eligible": 0,
+      "emitted": 0,
+      "omitted": 0,
+      "total_known": true,
+      "limit": 200
+    }
+  ],
   "custody": {
     "evidence_digest": "d406672966c93f05ddfb95d462e5635ef0e492b540296c6e1e26817fa81a8d20",
-    "head": "7706e83c0cfb5864bd3f46f639338c2a2a4f524d2852b8d4dcfd1839b1f573ef",
+    "head": "cd3e9104459d1a53c66aeae00393ba26d53bc96e79c567e2dcb3fa3badf4bf66",
     "current_holder": "Bob",
     "trust": "all event signatures verified against supplied actor/key trust list",
-    "trust_digest": "4bbea7f372699d2695b42fa356d6d5527ee9868845860f29b8a615c6ea07249f",
+    "trust_digest": "13ef035029b3f23e8424fe78a0fb2d666d270abecc11de6e4f94dc3611cb6f53",
+    "time_assurance": "Declared recorded_at values only; no independent trusted timestamp. External trust policy controls key intervals/revocation. A compromised signer can backdate assertions.",
     "events": [
       {
         "schema": "k957-custody-event/1",
@@ -16,12 +86,12 @@
         "actor": "Alice",
         "from": "",
         "to": "Alice",
-        "location": "Sentetik laboratuvar",
-        "note": "Gösterim kaydı; fiziksel teslim beyanı değildir.",
-        "occurred_at": "2026-09-28T03:02:09.737856245Z",
-        "recorded_at": "2026-09-28T03:02:09.737856245Z",
+        "location": "Synthetic laboratory",
+        "note": "Demonstration record; not a physical transfer declaration.",
+        "occurred_at": "2026-10-01T18:14:13.929078513Z",
+        "recorded_at": "2026-10-01T18:14:13.929078513Z",
         "previous": "",
-        "signer_sha256": "f459e2b950e15f2ed8bc1fcacefe26ac2a96963fe12bb46e2ce87b87536a2807"
+        "signer_sha256": "7ff9a775f0fd71e9355d967412aa7fc1faa87eeea0721f70e40a81ee7b9a737c"
       },
       {
         "schema": "k957-custody-event/1",
@@ -33,12 +103,12 @@
         "actor": "Alice",
         "from": "Alice",
         "to": "Bob",
-        "location": "Sentetik laboratuvar",
-        "note": "Gösterim kaydı; fiziksel teslim beyanı değildir.",
-        "occurred_at": "2026-09-28T03:02:09.742270333Z",
-        "recorded_at": "2026-09-28T03:02:09.742270333Z",
-        "previous": "5d5e495360b7e9de4f5c80ede2717d54044dee2739477b6f7962bcc9f69b5a16",
-        "signer_sha256": "f459e2b950e15f2ed8bc1fcacefe26ac2a96963fe12bb46e2ce87b87536a2807"
+        "location": "Synthetic laboratory",
+        "note": "Demonstration record; not a physical transfer declaration.",
+        "occurred_at": "2026-10-01T18:14:13.946124682Z",
+        "recorded_at": "2026-10-01T18:14:13.946124682Z",
+        "previous": "56a94ccd106a96a95b46a275ba52e1426d83a12cab7e69632c12349e2a0908aa",
+        "signer_sha256": "7ff9a775f0fd71e9355d967412aa7fc1faa87eeea0721f70e40a81ee7b9a737c"
       },
       {
         "schema": "k957-custody-event/1",
@@ -50,12 +120,12 @@
         "actor": "Bob",
         "from": "Alice",
         "to": "Bob",
-        "location": "Sentetik laboratuvar",
-        "note": "Gösterim kaydı; fiziksel teslim beyanı değildir.",
-        "occurred_at": "2026-09-28T03:02:09.74636705Z",
-        "recorded_at": "2026-09-28T03:02:09.74636705Z",
-        "previous": "5f2e1e8e7953d8fb3f515e04e61cfd5a4b71c1df9b78934278865d769d23b5a8",
-        "signer_sha256": "c45dd98139b0e9f1287b8ff7d6ec4e1c56aaac9645461c0c59c1719244ea50ab"
+        "location": "Synthetic laboratory",
+        "note": "Demonstration record; not a physical transfer declaration.",
+        "occurred_at": "2026-10-01T18:14:13.962666101Z",
+        "recorded_at": "2026-10-01T18:14:13.962666101Z",
+        "previous": "ab0d27578061c5000b1fd1afa14ae3b2b8790d7be467120efb24afe719c72798",
+        "signer_sha256": "35c919ba0e9dfbc0cdfdc5321b0e4a39ad379267fc72959ff81db6b3c2c6a0e6"
       }
     ]
   },
@@ -78,9 +148,9 @@
     }
   ],
   "evidence_digest": "d406672966c93f05ddfb95d462e5635ef0e492b540296c6e1e26817fa81a8d20",
-  "version": "0.9.0",
-  "run": "fa563ff00b6fcbd34e40e411eb70dd3c",
-  "created": "2026-09-28T09:28:42.101003388Z",
+  "version": "0.15.0",
+  "run": "d712c94aac1a69c147834b56dded0f3c",
+  "created": "2026-10-01T18:14:13.98530007Z",
   "signature": "unsigned",
   "manifest": {
     "schema": "k957-evidence/1",
@@ -135,6 +205,22 @@
       "description": "Demo: review PowerShell reference; not a malware verdict",
       "contains": "powershell",
       "sha256": ""
+    }
+  ],
+  "file_types": [
+    {
+      "evidence": "E000001",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log",
+      "media_type": "application/octet-stream",
+      "description": "no recognized signature",
+      "matched_by": "none"
+    },
+    {
+      "evidence": "E000002",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/events.jsonl",
+      "media_type": "application/octet-stream",
+      "description": "no recognized signature",
+      "matched_by": "none"
     }
   ],
   "findings": [
@@ -234,10 +320,12 @@
     }
   ],
   "notes": [
-    "Timeline includes file metadata, explicit RFC3339/JSONL timestamps and supported PCAP packet timestamps; these are not proof of execution or user attribution.",
-    "Rules are literal matches, not malware verdicts. Every finding requires analyst review.",
-    "Text scanning covers UTF-8 files up to 8 MiB each, 128 MiB total; classic PCAP is parsed separately; other binary formats are inventoried, not parsed.",
+    "Timeline includes file metadata, explicit log/XML timestamps and supported PCAP packet timestamps; these are not proof of execution or user attribution.",
+    "Literal, SHA-256 and structured event rules produce review candidates. Every finding requires analyst review.",
+    "Text scanning covers supported UTF-8/XML records up to 8 MiB per file and 128 MiB total. Separate bounded workers interpret selected SQLite/WAL browser visits, EVTX system metadata, clean Registry key/value projections and binary launchd plists. CloudTrail exports and PCAP/PCAPNG have separate bounded parsers; unsupported binary formats remain inventory entries.",
     "Clock offsets are not measured. Timestamps reflect the source host clock converted to UTC.",
+    "File types are magic-byte hints from the first 560 bytes. An extension mismatch is recorded, not treated as a finding. bodyfile.txt exports mtime only; atime, ctime, crtime, uid, gid and MD5 are zero because SHA-256 is authoritative.",
+    "Activity rows interpret SSH, sudo, cron, account creation, shell and PowerShell history, Windows security events, Prefetch names and persistence commands. They are triage readings, not findings and not proof of attribution.",
     "Correlations are shared field values across at least two evidence objects, not independent-source corroboration or identity attribution. NAT, shared accounts and duplicate logs can produce matches. User names are case-sensitive; host names lowercased; IPs canonicalized. No network enrichment is performed.",
     "3 signed custody declarations verified against the supplied actor/key trust list. This is not proof of physical possession, civil identity or trusted time. Trust list provenance must be established outside this package. An independently retained expected head is needed to detect rollback or divergent histories."
   ]

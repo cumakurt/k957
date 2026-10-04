@@ -1,0 +1,56 @@
+{
+  "source_sha256": "014179e7c5aaf6e07abc0aa5b4dbdbd6aae02a0f4d255d8e91ca17952fd9f822",
+  "target": "windows/amd64",
+  "steps": [
+    {
+      "name": "go-version",
+      "exit_code": 0,
+      "status": "passed",
+      "seconds": 0.052
+    },
+    {
+      "name": "native-build",
+      "exit_code": 0,
+      "status": "passed",
+      "seconds": 50.958
+    },
+    {
+      "name": "vet",
+      "exit_code": 0,
+      "status": "passed",
+      "seconds": 9.861
+    },
+    {
+      "name": "units-coverage",
+      "exit_code": 0,
+      "status": "passed",
+      "seconds": 52.396
+    },
+    {
+      "name": "coverage",
+      "exit_code": 0,
+      "status": "passed",
+      "seconds": 0.679
+    },
+    {
+      "name": "case-index-performance",
+      "exit_code": 0,
+      "status": "passed",
+      "seconds": 27.238
+    },
+    {
+      "name": "core-race",
+      "exit_code": 0,
+      "status": "passed",
+      "seconds": 83.609
+    },
+    {
+      "name": "cli-race",
+      "exit_code": 0,
+      "status": "passed",
+      "seconds": 7.575
+    }
+  ],
+  "scope": "Native Go checks; race executables are cross compiled and executed on native Windows.",
+  "result": "passed"
+}

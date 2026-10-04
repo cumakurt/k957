@@ -6,7 +6,6 @@ import (
 	"crypto/ed25519"
 	"crypto/sha256"
 	"encoding/hex"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
@@ -26,14 +25,16 @@ type WorkFile struct {
 	Complete     bool  `json:"complete"`
 }
 type WorkState struct {
-	Encryption string     `json:"encryption,omitempty"`
-	Schema     string     `json:"schema"`
-	Root       string     `json:"root"`
-	MaxFile    int64      `json:"max_file"`
-	MaxTotal   int64      `json:"max_total"`
-	MaxFiles   int        `json:"max_files"`
-	Manifest   Manifest   `json:"manifest"`
-	Files      []WorkFile `json:"files"`
+	metadataAttributes  int64
+	metadataInitialized bool
+	Encryption          string     `json:"encryption,omitempty"`
+	Schema              string     `json:"schema"`
+	Root                string     `json:"root"`
+	MaxFile             int64      `json:"max_file"`
+	MaxTotal            int64      `json:"max_total"`
+	MaxFiles            int        `json:"max_files"`
+	Manifest            Manifest   `json:"manifest"`
+	Files               []WorkFile `json:"files"`
 }
 
 // CollectResumable preserves acquired chunks in a trusted staging directory.
@@ -42,8 +43,8 @@ func CollectResumable(ctx context.Context, o Options, work string, resume bool) 
 	return collectResumable(ctx, o, work, resume, nil)
 }
 func collectResumable(ctx context.Context, o Options, work string, resume bool, afterCommit func()) (m Manifest, err error) {
-	if o.Root == "" || o.Case == "" || o.Operator == "" || o.Scope == "" || o.Out == "" || work == "" || o.System {
-		return m, errors.New("resumable collection requires root, work, out, case, operator, scope; system is not supported")
+	if o.Root == "" || o.Case == "" || o.Operator == "" || o.Scope == "" || o.Out == "" || work == "" || o.System || len(o.Paths) > 0 {
+		return m, errors.New("resumable collection requires root, work, out, case, operator, scope; system and additional paths are not supported")
 	}
 	if o.MaxFile <= 0 || o.MaxFile > 64<<30 || o.MaxTotal <= 0 || o.MaxTotal > 1<<40 || o.MaxFiles <= 0 || o.MaxFiles > 100000 {
 		return m, errors.New("invalid limits")
@@ -195,6 +196,7 @@ func collectResumable(ctx context.Context, o Options, work string, resume bool, 
 		if e = ctx.Err(); e != nil {
 			return m, e
 		}
+		ReportProgress(ctx, Progress{Phase: "files", Detail: state.Files[i].Item.Source, Step: i + 1, Steps: len(state.Files)})
 		wf := &state.Files[i]
 		if e = validateParts(ctx, work, wf.Item, c); e != nil {
 			return m, e
@@ -215,6 +217,7 @@ func collectResumable(ctx context.Context, o Options, work string, resume bool, 
 	state.Manifest.Epochs[last].Finished = state.Manifest.Finished
 	state.Manifest.Epochs[last].Outcome = "completed"
 	m = state.Manifest
+	ReportProgress(ctx, Progress{Phase: "package", Detail: out, Step: len(m.Items), Steps: len(m.Items)})
 	if e = exportWork(ctx, work, out, m, key, c); e != nil {
 		return m, e
 	}
@@ -248,6 +251,9 @@ func regularDirectory(path string) error {
 func planWork(ctx context.Context, root string, o Options) (s WorkState, err error) {
 	host, _ := os.Hostname()
 	s = WorkState{Schema: workSchema, Root: root, MaxFile: o.MaxFile, MaxTotal: o.MaxTotal, MaxFiles: o.MaxFiles, Manifest: Manifest{Schema: ResumeSchema, Version: Version, ID: ID(), Case: o.Case, Operator: o.Operator, Scope: o.Scope, Host: host, OS: runtime.GOOS, Arch: runtime.GOARCH, Started: time.Now().UTC(), Status: "complete", InventoryFrozen: true, Issues: []Issue{}, Items: []Item{}}, Files: []WorkFile{}}
+	s.Manifest.Acquisition = liveFileGuarantees()
+	s.Manifest.Acquisition.Method = "logical-resumable-files"
+	s.Manifest.Acquisition.Notes = append(s.Manifest.Acquisition.Notes, "Parts can originate from multiple invocation epochs. Metadata is sampled when that file is first opened for acquisition; its epoch is recorded separately from part epochs.")
 	var total int64
 	issue := func(path, msg string) {
 		s.Manifest.Status = "partial"
@@ -284,17 +290,21 @@ func planWork(ctx context.Context, root string, o Options) (s WorkState, err err
 		id := fmt.Sprintf("E%06d", len(s.Files)+1)
 		s.Files = append(s.Files, WorkFile{ExpectedSize: st.Size(), Item: Item{ID: id, Source: path, Object: "objects/" + id, Kind: "file", Modified: st.ModTime().UTC(), Mode: st.Mode().String()}})
 		total += st.Size()
+		ReportProgress(ctx, Progress{Phase: "inventory", Detail: path, Step: len(s.Files), Bytes: total})
 		return nil
 	})
 	return
 }
 func saveWork(work string, s WorkState, cs ...*workCrypto) error {
 	c := chooseCrypto(cs)
-	b := JSON(s)
-	if len(b) > 32<<20 {
-		return errors.New("checkpoint exceeds 32 MiB limit")
+	b, e := MarshalJSON(s)
+	if e != nil {
+		return fmt.Errorf("checkpoint cannot be encoded: %w", e)
 	}
-	b, e := c.seal("state", b)
+	if len(b) > checkpointLimit {
+		return errors.New("checkpoint exceeds 256 MiB limit")
+	}
+	b, e = c.seal("state", b)
 	if e != nil {
 		return e
 	}
@@ -349,7 +359,7 @@ func readWork(work string, s *WorkState, cs ...*workCrypto) error {
 	if !st.Mode().IsRegular() {
 		return errors.New("checkpoint must be regular file")
 	}
-	b, e := ReadLimited(path, (32<<20)+stageOverhead)
+	b, e := ReadLimited(path, checkpointLimit+stageOverhead)
 	if e != nil {
 		return e
 	}
@@ -357,17 +367,11 @@ func readWork(work string, s *WorkState, cs ...*workCrypto) error {
 	if e != nil {
 		return e
 	}
-	if len(b) > 32<<20 {
+	if len(b) > checkpointLimit {
 		return errors.New("checkpoint exceeds size limit")
 	}
-	dec := json.NewDecoder(strings.NewReader(string(b)))
-	dec.DisallowUnknownFields()
-	if e = dec.Decode(s); e != nil {
+	if e = custodyJSON(b, s); e != nil {
 		return e
-	}
-	var extra any
-	if dec.Decode(&extra) != io.EOF {
-		return errors.New("trailing checkpoint content")
 	}
 	if (c == nil && s.Encryption != "") || (c != nil && s.Encryption != stageMode) {
 		return errors.New("invalid checkpoint encryption metadata")
@@ -541,6 +545,18 @@ func acquireFile(ctx context.Context, work string, s *WorkState, index int, epoc
 	if !os.SameFile(st, opened) {
 		return errors.New("source identity changed")
 	}
+	if !s.metadataInitialized {
+		for _, entry := range s.Files {
+			if entry.Item.Metadata != nil && len(entry.Item.Metadata.Attributes) > 0 {
+				s.metadataAttributes += int64(len(JSON(entry.Item.Metadata.Attributes)))
+			}
+		}
+		s.metadataInitialized = true
+	}
+	if it.Metadata == nil {
+		it.Metadata = sampledFileMetadata(f, opened, epoch)
+		boundMetadataAttributes(it.Metadata, &s.metadataAttributes)
+	}
 	h := sha256.New()
 	var offset int64
 	// Re-read the saved prefix from source; matching metadata alone is insufficient.
@@ -673,9 +689,9 @@ func writeWorkZIP(ctx context.Context, work string, output io.Writer, m Manifest
 			return errors.New("staged file hash mismatch")
 		}
 	}
-	b := JSON(m)
-	if len(b) > 16<<20 {
-		return errors.New("manifest exceeds package limit")
+	b, e := marshalManifest(m)
+	if e != nil {
+		return fmt.Errorf("manifest cannot be encoded: %w", e)
 	}
 	w, e := z.Create("manifest.json")
 	if e != nil {

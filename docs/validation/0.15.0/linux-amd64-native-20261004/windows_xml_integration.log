@@ -1,0 +1,1 @@
+PASS: UTF-8/UTF-16 LE/BE; independent XML oracle; byte offsets; uint64 IDs; UTC/host/SID correlations; semantic skips; DTD rejection; invalid EVTX rejected by native worker; Unicode rules; CSV/HTML escaping; masked private context; evidence unchanged

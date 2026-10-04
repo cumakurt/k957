@@ -1,71 +1,69 @@
-# k957 0.5.0 — Toplama sırasında şifreleme
+# k957 0.5.0 — Encryption during collection
 
-Yeni `collect --work ... --encryption-key ...` modu çalışma checkpoint'ini, delil parçalarını ve final paketi şifreli yazar. Final ZIP akışı şifreleme katmanına doğrudan aktarılır; uygulama ara bir düz ZIP dosyası oluşturmaz. Bayrak verilmezse önceki düz toplama davranışı sürer.
+`collect --work ... --encryption-key ...` encrypts the checkpoint, evidence chunks and final package. The final ZIP streams directly into the encryption layer without a temporary plaintext ZIP. Without the flag, plaintext collection remains available. The historical filename is retained for existing links; this document is in English.
 
-## Kullanım
+## Usage
 
-Anahtarı güvenilir ortamda, kaynak ve çalışma dizinlerinin dışında oluşturun:
-
-```sh
-k957 encryption-key --out /guvenli/VAKA-005.key
-k957 collect --root /kaynak \
-  --work /harici/VAKA-005-work --out /harici/VAKA-005.k957.enc \
-  --case VAKA-005 --operator Analist --scope "Onaylı klasör" \
-  --encryption-key /guvenli/VAKA-005.key
-```
-
-Edinim imzası da isteniyorsa bağımsız `--sign-key /guvenli/analist.key` eklenebilir. Şifreleme ve imza farklı amaçlarla kullanılır. Şifreli toplama şu anda yalnızca `--work` kullanan mantıksal dosya toplamasında çalışır; `--system` ve tek geçişli toplama desteklenmez. Uygun olmayan seçenekler sessizce yok sayılmaz, hata döner.
-
-Kesintiden sonra aynı kaynak/kapsam/limitler ve **aynı anahtarla** komuta `--resume` ekleyin. Mevcut stale lock prosedürü `RESUME_TR.md` içindedir; çalışan toplayıcının kilidini kaldırmayın.
-
-Durum kontrolü:
+Create a key in trusted storage outside the source/work trees:
 
 ```sh
-k957 work-status --work /harici/VAKA-005-work \
-  --encryption-key /guvenli/VAKA-005.key --verify-parts
+k957 encryption-key --out /secure/CASE-005.key
+k957 collect --root /source \
+  --work /external/CASE-005-work --out /external/CASE-005.k957.enc \
+  --case CASE-005 --operator Examiner --scope "Authorized directory" \
+  --encryption-key /secure/CASE-005.key
 ```
 
-Normal toplama komutu yalnızca şifreli durum, nesne ve hata sayılarını yazdırır; tam manifesti stdout'a dökmez. `work-status` açıkça istendiğinde çözülen vaka/kaynak metadata'sını terminale yazdırır. Bu çıktıyı nereye yönlendirdiğinizi kontrol edin. Hata mesajlarında kaynak yolları bulunabilir; işletim sistemi komut satırlarını kaydedebilir.
+An independent `--sign-key /secure/examiner.key` can sign acquisition. Signing and encryption serve different purposes. Encrypted collection requires resumable logical-file collection with `--work`; single-pass and `--system` modes are rejected rather than silently ignored.
 
-Analiz ortamında açma ve doğrulama:
+After interruption, add `--resume` with the same source, scope, limits and **same key**. Follow the stale-lock procedure in [RESUME_TR.md](RESUME_TR.md); never remove an active collector's lock.
 
 ```sh
-k957 unseal --in /harici/VAKA-005.k957.enc \
-  --out /guvenli-analiz/VAKA-005.k957 --key /guvenli/VAKA-005.key
-k957 verify --in /guvenli-analiz/VAKA-005.k957
-k957 analyze --in /guvenli-analiz/VAKA-005.k957 --out /guvenli-analiz/rapor
+k957 work-status --work /external/CASE-005-work \
+  --encryption-key /secure/CASE-005.key --verify-parts
 ```
 
-İmzalı edinimde `verify`/`analyze` için ayrıca `--trusted-key` kullanın. `unseal` bilinçli olarak düz paket oluşturur; analiz ve raporlar bu sürümde otomatik şifrelenmez. Şifreli analiz birimi kullanabilirsiniz. Doğrudan `.enc` üzerinde analiz desteği henüz yoktur.
+Normal encrypted collection prints status/object/issue counts without the full manifest. Explicit `work-status` exposes decrypted case/source metadata; choose output destinations carefully. Errors may include paths and operating systems may record command lines.
 
-## Neler korunuyor?
+Unseal and verify in the analysis environment:
 
-- `state.enc`: vaka bilgisi, kaynak yolları, orijinal hash'ler, parça aralıkları ve edinim dönemlerini içeren checkpoint'in şifreli hali.
-- `chunks/`: 8 MiB'lık parçaların şifreli halleri. Dosya adları orijinal SHA-256 yerine anahtarlı HMAC değerleridir.
-- Geçici checkpoint/parça dosyaları da yazılmadan önce bellekte şifrelenir.
-- Final çıktı: mevcut `K957ENC1` akış zarfı. Var olan `unseal` komutuyla açılır; içinde standart v2 delil paketi bulunur.
-- Yanlış anahtar veya değiştirilmiş ciphertext doğrulamada reddedilir. Şifreli/düz çalışma modu mevcut çalışma üzerinde değiştirilemez.
+```sh
+k957 unseal --in /external/CASE-005.k957.enc \
+  --out /secure-analysis/CASE-005.k957 --key /secure/CASE-005.key
+k957 verify --in /secure-analysis/CASE-005.k957
+k957 analyze --in /secure-analysis/CASE-005.k957 --out /secure-analysis/report
+```
 
-`active.lock` şifrelenmez; süreç numarası ve başlangıç zamanı içerir. Dizin yapısı, dosya sayısı, boyutlar, filesystem zamanları ve aynı anahtarla aynı parçanın tekrar kullanılması gibi metadata tamamen gizlenmez. Her vaka için yeni rastgele anahtar üretin.
+Use `--trusted-key` for signed acquisition. `unseal` intentionally creates plaintext; analysis/reports are not automatically encrypted. Use an encrypted analysis volume if required. Direct analysis of `.enc` files is not supported.
 
-## Kriptografik biçim
+## Protected material
 
-Anahtar dosyası önceki sürümle uyumlu 32 byte rastgele anahtarın hex metnidir; parola değildir. HMAC-SHA256 ile iki ayrı amaç anahtarı türetilir:
+- `state.enc` encrypts case details, source paths, original hashes, part ranges and epochs.
+- `chunks/` stores encrypted 8 MiB parts; keyed HMAC names replace plaintext SHA-256 filenames.
+- Temporary checkpoint/chunk contents are encrypted in memory before writing.
+- The final `K957ENC1` envelope unseals into a standard v2 package.
+- Wrong keys and modified ciphertext are rejected; staging encryption mode cannot change in place.
 
-- `k957/stage/aead/v1`: staged blob AES-256-GCM anahtarı.
-- `k957/stage/name/v1`: parça dosya adları için HMAC anahtarı.
+`active.lock` remains plaintext with PID/start time. Directory structure, counts, sizes, filesystem timestamps and repeated chunk use under one key remain observable. Generate a fresh random key for every case.
 
-Blob: `K957STG1` (8 byte), rastgele 12 byte nonce, ciphertext ve 16 byte GCM tag. AAD, checkpoint için `aes256-gcm-stage/1:state`, parça için `aes256-gcm-stage/1:chunk:<orijinal-sha256-hex>` olur. Bu ayrım parça/checkpoint yer değiştirmesini reddeder. Her yeni blob yazımında yeni nonce üretilir. Final taşıma zarfı mevcut master anahtar/akış biçimini kullanır; staged blob anahtarından ayrıdır.
+## Cryptographic format
 
-## Sınırlar ve işletim
+The key file contains a 32-byte random key as hexadecimal text, compatible with earlier transport encryption; it is not a password. HMAC-SHA256 derives purpose-separated keys:
 
-- Anahtarı kaybederseniz kurtarma mekanizması yoktur. Anahtarı delille aynı USB'de taşımayın; kaynak/çalışma ağacında anahtar yolu kullanımı engellenir.
-- Anahtar bu sürümde dosyadan okunur. Donanım anahtarı, parola KDF'si, alıcı açık anahtarıyla şifreleme, anahtar kasası veya otomatik anahtar döndürme yoktur.
-- Kaynak sistemin RAM'i, swap/pagefile, crash dump veya ele geçirilmiş çekirdeği bu uygulamanın depolama şifrelemesiyle korunmaz. Bellek sıfırlama garantisi verilmez.
-- Doğrulanmış eski checkpoint'in geri konmasını veya tüm çalışma dizininin silinmesini önleyen dış zaman/sürüm otoritesi yoktur. AEAD değişiklikleri saptar; eksiksiz tarihçe ve geri alma koruması sağlamaz.
-- Kaynak klasör ve orijinal dosyalar yerlerinde kalır. Önceden düz toplanmış veriler otomatik şifrelenmez veya güvenli silinmez. Düz çalışmayı şifreli moda yerinde dönüştürmek reddedilir; yeni çalışma başlatılmalıdır.
-- Checkpoint ve dosya başına bellek sınırları korunur; AES-GCM sırasında ciphertext/bellek kopyaları nedeniyle tepe RAM kullanımı artar. 8 MiB parça belleğe alınır, tüm delil paketi alınmaz.
-- Disk dolması/çıktı hatası paket üretimini durdurur; tamamlanmamış yeni çıktı kaldırılmaya çalışılır, çalışma parçaları korunur. SIGKILL/güç kesintisinde yarım çıktı kalabilir; yeni çıktı adıyla devam edin.
-- Fiziksel USB/güç kesintisi ve Windows/macOS cihaz testleri yapılmadı. Test edilen süreç ölümü bunların eşdeğeri değildir.
-- Kriptografik bileşenler Go standart kütüphanesidir; bu özel paket/akış uygulaması bağımsız güvenlik denetiminden geçmedi ve sertifikalı ürün iddiası yoktur.
-- Önceki sürüm checkpoint'lerini oluşturan binary ile tamamlayın. Eski v1/v2 final delilleri yeni sürümle analiz edilebilir; analist değerlendirmeleri sürüm dayanağına bağlıdır.
+- `k957/stage/aead/v1`: staged-blob AES-256-GCM key.
+- `k957/stage/name/v1`: chunk-filename HMAC key.
+
+Blob layout: `K957STG1` (8 bytes), random 12-byte nonce, ciphertext and 16-byte GCM tag. AAD is `aes256-gcm-stage/1:state` for checkpoints or `aes256-gcm-stage/1:chunk:<original-sha256-hex>` for chunks. This prevents checkpoint/chunk substitution. New blobs use fresh nonces. Final transport uses the existing master-key/envelope format independently of the staging key.
+
+## Limits and operation
+
+- Lost keys cannot be recovered. Keep keys separately from evidence; source/work key paths are rejected.
+- Keys are read from files. Hardware keys, password KDFs, recipient-public-key encryption, key vaults and automatic rotation are not provided.
+- Storage encryption does not protect source RAM, swap/pagefiles, crash dumps or a compromised kernel. Memory zeroization is not guaranteed.
+- AEAD detects modifications but does not establish complete history or prevent restoration of an older valid checkpoint/deletion of the entire work directory. No external time/version authority is implied.
+- Original sources remain in place. Existing plaintext is not automatically encrypted or securely erased. In-place staging conversion is rejected; start a new work directory.
+- Checkpoint/file bounds still apply. AES-GCM copies increase peak memory; each 8 MiB part is buffered, rather than the entire package.
+- Disk/output failures stop export and attempt to remove the incomplete new package while preserving chunks. SIGKILL/power loss can leave partial output; resume with a new output name.
+- Physical USB/power and native Windows/macOS device checks remain untested. Process termination tests do not establish hardware behavior.
+- Cryptography uses Go's standard library; this custom format/stream implementation has no independent cryptographic audit or certification claim.
+- Complete old checkpoints with their producing binary. Earlier v1/v2 packages remain readable; reviews stay bound to their analyzer version.

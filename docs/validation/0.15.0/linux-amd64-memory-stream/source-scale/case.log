@@ -1,0 +1,26 @@
+k957 case  [########################]  100%  0s  case  1/1  /tmp/k957-source-scale-naimcn3c/store/MacBookPro/20261001T135427Z
+k957 case  [------------------------]    0%  estimating  examine  1/100000  /tmp/k957-source-scale-naimcn3c/source/000/object-000000.bin
+k957 case  [#-----------------------]    5%  est. 2m10s  examine  5000/100000  /tmp/k957-source-scale-naimcn3c/source/004/object-004999.bin
+k957 case  [##----------------------]   10%  est. 1m02s  examine  10000/100000  /tmp/k957-source-scale-naimcn3c/source/009/object-009999.bin
+k957 case  [####--------------------]   15%  est. 40s  examine  15000/100000  /tmp/k957-source-scale-naimcn3c/source/014/object-014999.bin
+k957 case  [#####-------------------]   20%  est. 28s  examine  20000/100000  /tmp/k957-source-scale-naimcn3c/source/019/object-019999.bin
+k957 case  [######------------------]   25%  est. 22s  examine  25000/100000  /tmp/k957-source-scale-naimcn3c/source/024/object-024999.bin
+k957 case  [#######-----------------]   30%  est. 17s  examine  30000/100000  /tmp/k957-source-scale-naimcn3c/source/029/object-029999.bin
+k957 case  [########----------------]   35%  est. 14s  examine  35000/100000  /tmp/k957-source-scale-naimcn3c/source/034/object-034999.bin
+k957 case  [##########--------------]   40%  est. 11s  examine  40000/100000  /tmp/k957-source-scale-naimcn3c/source/039/object-039999.bin
+k957 case  [###########-------------]   45%  est. 9s  examine  45000/100000  /tmp/k957-source-scale-naimcn3c/source/044/object-044999.bin
+k957 case  [############------------]   50%  est. 8s  examine  50000/100000  /tmp/k957-source-scale-naimcn3c/source/049/object-049999.bin
+k957 case  [#############-----------]   55%  est. 6s  examine  55000/100000  /tmp/k957-source-scale-naimcn3c/source/054/object-054999.bin
+k957 case  [##############----------]   60%  est. 5s  examine  60000/100000  /tmp/k957-source-scale-naimcn3c/source/059/object-059999.bin
+k957 case  [################--------]   65%  est. 4s  examine  65000/100000  /tmp/k957-source-scale-naimcn3c/source/064/object-064999.bin
+k957 case  [#################-------]   70%  est. 3s  examine  70000/100000  /tmp/k957-source-scale-naimcn3c/source/069/object-069999.bin
+k957 case  [##################------]   75%  est. 3s  examine  75000/100000  /tmp/k957-source-scale-naimcn3c/source/074/object-074999.bin
+k957 case  [###################-----]   80%  est. 2s  examine  80000/100000  /tmp/k957-source-scale-naimcn3c/source/079/object-079999.bin
+k957 case  [####################----]   85%  est. 1s  examine  85000/100000  /tmp/k957-source-scale-naimcn3c/source/084/object-084999.bin
+k957 case  [######################--]   90%  est. 1s  examine  90000/100000  /tmp/k957-source-scale-naimcn3c/source/089/object-089999.bin
+k957 case  [#######################-]   95%  est. 0s  examine  95000/100000  /tmp/k957-source-scale-naimcn3c/source/094/object-094999.bin
+k957 case  [########################]  100%  8s  examine  100000/100000  /tmp/k957-source-scale-naimcn3c/source/099/object-099999.bin
+k957 case  [########################]  100%  10s  case  1/1  /tmp/k957-source-scale-naimcn3c/source/000/object-000000.bin
+k957 case  [########################]  100%  12s  case  1/1  /tmp/k957-source-scale-naimcn3c/source/092/object-092855.bin
+k957 case  finished  14s  [########################]  100%  14s  1/1  /tmp/k957-source-scale-naimcn3c/source/099/object-099999.bin
+Case: /tmp/k957-source-scale-naimcn3c/case/report.html

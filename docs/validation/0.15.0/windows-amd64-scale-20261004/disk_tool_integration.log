@@ -1,0 +1,1 @@
+PASS: generated ext2 directory/deleted inode, exact recovery and unchanged image; no physical device assurance

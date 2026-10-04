@@ -1,75 +1,71 @@
-# k957 0.3.0 — Analist değerlendirmesi
+# k957 0.3.0 — Examiner review
 
-Yeni `review` komutu bir otomatik bulguya analist kararı ve gerekçe ekler. Ham delil paketi değiştirilmez; her güncelleme yeni bir JSON değerlendirme dosyasına yazılır. Raporun yeniden üretilmesi için delil yeniden doğrulanır ve analiz tekrar hesaplanır.
+`review` adds an examiner decision/reason to an automatic finding. Raw evidence stays unchanged; each update creates a new JSON review history. Applying reviews verifies evidence again and recomputes analysis. The historical filename is retained for existing links; this document is in English.
 
-## İş akışı
+## Workflow
 
-1. Delili analiz edin:
-
-```sh
-k957 analyze --in vaka.k957 --rules rules.json --out ilk-analiz
-```
-
-`ilk-analiz/analysis.json`, `findings.csv` veya HTML raporundaki `F-...` bulgu kimliğini kopyalayın. Kimlik aynı delil manifesti, kural kimliği, kaynak ve eşleşme konumunda tekrar üretilebilir. Analiz çalıştırma kimliği her çalıştırmada yenidir; bulgu kimliği bu nedenle değişmez.
-
-2. İlk değerlendirmeyi oluşturun:
+1. Analyze evidence:
 
 ```sh
-k957 review --analysis ilk-analiz/analysis.json \
-  --finding F-TAM_BULGU_KIMLIGI \
-  --decision needs-review --analyst "Analist A" \
-  --note "Kaynak kayıt ve kullanıcı bağlamı incelenecek." \
-  --out degerlendirme-v1.json
+k957 analyze --in case.k957 --rules rules.json --out initial-analysis
 ```
 
-Kararlar: `confirmed` (bulgu analistçe doğrulandı), `rejected` (bulgu değerlendirmede reddedildi), `needs-review` (ek inceleme gerekli). Bunlar suçluluk, fail kimliği veya kesin kötü amaçlılık hükmü değildir. Analist adı ve gerekçe zorunludur. Analist adı 256, gerekçe 16.000 byte ile sınırlıdır.
+Copy the `F-...` finding ID from `analysis.json`, `findings.csv` or HTML. It is reproducible for the same manifest, rule, source and match position. New analysis run IDs do not change finding identity.
 
-3. Eski dosyayı koruyarak sonraki kararı ekleyin:
+2. Create a first review:
 
 ```sh
-k957 review --analysis ilk-analiz/analysis.json \
-  --previous degerlendirme-v1.json \
-  --finding F-TAM_BULGU_KIMLIGI \
-  --decision rejected --analyst "Analist B" \
-  --note "Sentetik test verisi olduğu doğrulandı." \
-  --out degerlendirme-v2.json
+k957 review --analysis initial-analysis/analysis.json \
+  --finding F-COMPLETE_FINDING_ID --decision needs-review \
+  --analyst "Examiner A" --note "Inspect the source record and user context." \
+  --out review-v1.json
 ```
 
-4. Değerlendirmeyi rapora uygulayın:
+Decisions are `confirmed`, `rejected` or `needs-review`. They do not establish guilt, attribution or definitive maliciousness. Examiner/reason are required, bounded at 256 and 16,000 bytes respectively.
+
+3. Preserve the previous file and append a decision:
 
 ```sh
-k957 analyze --in vaka.k957 --rules rules.json \
-  --reviews degerlendirme-v2.json --out degerlendirilmis-rapor
+k957 review --analysis initial-analysis/analysis.json \
+  --previous review-v1.json --finding F-COMPLETE_FINDING_ID \
+  --decision rejected --analyst "Examiner B" \
+  --note "Confirmed as synthetic test data." --out review-v2.json
 ```
 
-Aynı delil manifesti, kurallar, sürüm ve otomatik bulgu sonuçları gereklidir. Uyuşmazlık varsa rapor üretilmez. Son karar bulgu tablosunda gösterilir; önceki kararlar geçmiş tablosunda kalır. Reddedilen bulgular silinmez. Tüm geçmiş `analysis.json` içinde korunur. `findings.csv` son karar, analist ve gerekçeyi içerir.
-
-## İmzalı değerlendirme
+4. Apply the review:
 
 ```sh
-k957 keygen --out analist-imza
-k957 review --analysis ilk-analiz/analysis.json \
-  --finding F-TAM_BULGU_KIMLIGI --decision confirmed \
-  --analyst "Analist A" --note "Kaynak kayıt kontrol edildi." \
-  --sign-key analist-imza.key --out imzali-v1.json
-k957 analyze --in vaka.k957 --rules rules.json \
-  --reviews imzali-v1.json --review-key analist-imza.pub \
-  --out imzali-rapor
+k957 analyze --in case.k957 --rules rules.json \
+  --reviews review-v2.json --out reviewed-report
 ```
 
-İmzalı geçmişe ekleme yapılırken `--previous-key` ile önceki imza doğrulanmalı ve `--sign-key` ile yeni sürüm imzalanmalıdır. İmzalı geçmişin sessizce imzasız devamına izin verilmez. Yeni imzalayan önceki imzalayandan farklı olabilir; önceki dosyaları koruyun.
+Evidence manifest, rules, analyzer version and automatic findings must match. A mismatch prevents report generation. Findings retain their latest decisions, including rejected findings; all earlier events remain in `analysis.json` and the history table. `findings.csv` contains the latest decision, examiner and reason.
 
-Delil imzası için `--trusted-key`, değerlendirme imzası için `--review-key` ayrı güven dayanaklarıdır. İmza mevcut olsa da güvenilir anahtar verilmemişse rapor doğrulanmış imza iddiasında bulunmaz.
+## Signed review
 
-## Güven ve sınırlar
+```sh
+k957 keygen --out examiner-sign
+k957 review --analysis initial-analysis/analysis.json \
+  --finding F-COMPLETE_FINDING_ID --decision confirmed \
+  --analyst "Examiner A" --note "Checked the source record." \
+  --sign-key examiner-sign.key --out signed-v1.json
+k957 analyze --in case.k957 --rules rules.json \
+  --reviews signed-v1.json --review-key examiner-sign.pub --out signed-report
+```
 
-- Girdi `analysis.json` bir delil doğrulama belgesi olarak kabul edilmez. Rapor uygulama aşamasında gerçek paket yeniden doğrulanır ve analiz tekrar hesaplanır.
-- Değerlendirme dayanağı; uygulama sürümü, delil manifestinin SHA-256'sı, kurallar ve otomatik bulguların kanonik özetidir. Analiz çalıştırma zamanı/kimliği bu özete dahil değildir.
-- Olaylar sıralı hash zinciri oluşturur. İmzasız zincir kimlik doğrulaması sağlamaz; dosyayı değiştirebilen biri zinciri yeniden hesaplayabilir.
-- Ed25519 imzası yeni sürümün tamamını onaylar; bir kullanıcı hesabı, RBAC veya her önceki analistin ayrı kimlik kanıtı değildir. Analist isimleri serbest metindir. Anahtar sahipliği ve güveni kurum tarafından yönetilmelidir.
-- Önceki dosyayı silme, valid eski sürüme geri dönme veya paralel iki dal üretme merkezi bir kayıt sistemi olmadan engellenmez. Geçmişin eksiksizliği veya güvenilir zaman damgası garantisi yoktur. Önceki sürümleri harici denetim kaydında saklayın.
-- En fazla 10.000 değerlendirme olayı ve 32 MiB değerlendirme dosyası desteklenir. `LoadAnalysis` sınırı 128 MiB'dır; çok büyük analizler değerlendirme akışına sığmayabilir.
-- HTML içerikleri escape edilir; CSV'de formül başlangıçları etkisizleştirilir. Görsel tarayıcı/erişilebilirlik testi yapılmadı.
-- Bu sürüm CLI iş akışıdır; rapor tarayıcıdan düzenlenmez. Vaka sunucusu, eşzamanlı çok kullanıcı, rol yönetimi ve bağımsız ikinci onay zorunluluğu henüz yoktur.
-- 0.1/0.2 analiz JSON'ları için kimlik migrasyonu yoktur; delil paketi 0.3 ile yeniden analiz edilmelidir. v1/v2 delil okuma desteği korunur.
-- Aktif 0.2 checkpoint'i 0.3 ile devam ettirilemez: edinimi 0.2 binary'siyle tamamlayın, final paketi 0.3 ile analiz edin. Eski checkpoint'i elle düzenlemeyin.
+Appending signed history requires `--previous-key` to verify the prior signature and `--sign-key` for the new revision. Silent continuation as unsigned history is rejected. Signers may change; preserve prior files.
+
+`--trusted-key` authenticates evidence; `--review-key` authenticates review history. A present signature without a trusted key is not reported as authenticated.
+
+## Trust and limits
+
+- Input `analysis.json` is not proof of evidence integrity. Applying reviews reopens/verifies actual evidence and recomputes findings.
+- Review basis binds analyzer version, manifest SHA-256, rules and canonical automatic findings; run time/ID are excluded.
+- Events form an ordered hash chain. An unsigned chain does not authenticate its author; an editor can recompute it.
+- Ed25519 attests the complete new revision, not an application account, RBAC policy or each previous examiner's identity. Names are free text; organizations manage key ownership/trust.
+- Deletion, rollback to valid old history or parallel branches require external retention/version controls. Complete history and trusted timestamps are not guaranteed; retain earlier signed revisions independently.
+- Bounds are 10,000 review events and 32 MiB history; `LoadAnalysis` has a separate 128 MiB ceiling.
+- HTML is escaped and CSV formula prefixes are neutralized. This does not establish browser/accessibility validation.
+- Decisions use a CLI workflow; reports are not edited in the browser. Multi-user role/concurrency/mandatory independent second approval are not implemented. See [CASE.md](CASE.md) for the current read-only local viewer.
+- Earlier analysis/review formats are not automatically migrated; reanalyze earlier v1/v2 evidence with the current version for new review work.
+- Finish active older-version checkpoints with their original binary and analyze the final package separately. Never edit checkpoint version fields to force migration.

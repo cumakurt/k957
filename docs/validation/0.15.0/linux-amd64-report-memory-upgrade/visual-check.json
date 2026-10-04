@@ -1,0 +1,12 @@
+{
+  "schema": "k957-report-visual-check/1",
+  "scope": "Synthetic report; layout and print projection, not forensic accuracy",
+  "source_sha256": "265b94b0c47d619b6ffd67eb9b00b2c903f5bbb6b1ee4fe9f6e65be1c9610b50",
+  "result": "passed",
+  "browser": "Chromium headless",
+  "print_findings": 60,
+  "print_inventory": 60,
+  "filtered_state_restored": true,
+  "mobile_horizontal_overflow": false,
+  "page_errors": []
+}

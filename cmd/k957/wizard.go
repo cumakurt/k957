@@ -14,15 +14,15 @@ func wizard() error {
 		s, e := r.ReadString('\n')
 		return strings.TrimSpace(s), e
 	}
-	fmt.Println("k957 · Toplama / Analiz Sihirbazı")
-	mode, e := ask("1 = Delil topla, 2 = Paket analiz et")
+	fmt.Println("k957 · Collection / Analysis Wizard")
+	mode, e := ask("1 = Collect evidence, 2 = Analyze a package")
 	if e != nil {
 		return e
 	}
 	switch mode {
 	case "1":
 		args := []string{"collect"}
-		for _, v := range [][2]string{{"root", "Kaynak klasör"}, {"out", "Yeni çıktı paketi (.k957), kaynak dışında"}, {"case", "Vaka numarası"}, {"operator", "Operatör"}, {"scope", "Yetkilendirilmiş kapsam"}} {
+		for _, v := range [][2]string{{"root", "Source directory"}, {"out", "New output package (.k957), outside the source"}, {"case", "Case identifier"}, {"operator", "Operator"}, {"scope", "Authorized scope"}} {
 			s, e := ask(v[1])
 			if e != nil {
 				return e
@@ -31,15 +31,15 @@ func wizard() error {
 		}
 		return run(args)
 	case "2":
-		in, e := ask("Delil paketi (.k957)")
+		in, e := ask("Evidence package (.k957)")
 		if e != nil {
 			return e
 		}
-		out, e := ask("Yeni rapor klasörü")
+		out, e := ask("New report directory")
 		if e != nil {
 			return e
 		}
 		return run([]string{"analyze", "--in", in, "--out", out})
 	}
-	return fmt.Errorf("geçersiz seçim")
+	return fmt.Errorf("invalid selection")
 }

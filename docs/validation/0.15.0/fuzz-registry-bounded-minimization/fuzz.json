@@ -1,0 +1,29 @@
+{
+  "schema": "k957-fuzz/1",
+  "source_sha256": "68656e371ab1d1b2b6f3f9ad6778107fb4efa7c3a5d6222b0cc713613aa5231a",
+  "target": "linux/amd64",
+  "started": "2026-10-01T07:02:46.674202+00:00",
+  "result": "passed",
+  "steps": [
+    {
+      "name": "FuzzRegistry",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzRegistry$",
+        "-fuzztime=30s",
+        "-fuzzminimizetime=1s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "log": "FuzzRegistry.log",
+      "exit_code": 0,
+      "executions": 55012,
+      "duration_seconds": 31.628
+    }
+  ],
+  "source_unchanged": true,
+  "finished": "2026-10-01T07:03:18.327700+00:00"
+}

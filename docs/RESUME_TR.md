@@ -1,89 +1,86 @@
-# k957 0.2.0 — Kesintiye dayanıklı mantıksal toplama
+# k957 0.2.0 — Interruptible logical collection
 
-Update for 0.11.0: `preflight --resume` estimates remaining space from saved work; `collect --resume --check-space` gates collection with that plan. See [RESUME_PREFLIGHT.md](RESUME_PREFLIGHT.md). Earlier-version checkpoints still require their original binary.
+Update for 0.11.0: `preflight --resume` estimates remaining space from saved work; `collect --resume --check-space` gates collection with that plan. See [RESUME_PREFLIGHT.md](RESUME_PREFLIGHT.md). Earlier-version checkpoints still require their original binary. The historical filename is retained for existing links; this document is in English.
 
-Bu sürümün geliştirmesi, önceki yol haritasındaki checkpoint/devam ettirme adımıdır. `collect --work` yeni bir çalışma klasörüne 8 MiB parçalar kaydeder. `--resume` aynı envanter ve kapsam üzerinde devam eder. Eski `collect` akışı değişmez; `--work` verilmediyse 0.1.0'daki tek geçişli davranış sürer.
+`collect --work` saves 8 MiB chunks in a new work directory. `--resume` continues the frozen inventory/scope. Without `--work`, collection uses the single-pass workflow.
 
-## Kullanım
+## Usage
 
-İlk çalıştırma (üç ayrı yol, mevcut kaynak ve yeni çıktı/çalışma dizini):
-
-```sh
-k957 collect --root /kaynak \
-  --work /harici-disk/VAKA-002-work \
-  --out /harici-disk/VAKA-002.k957 \
-  --case VAKA-002 --operator Analist --scope "Onaylı klasör"
-```
-
-Kontrollü iptal (Ctrl+C) veya hata sonrası aynı komuta `--resume` ekleyin:
+Choose three distinct paths: an existing source, a new output and a new work directory:
 
 ```sh
-k957 collect --root /kaynak \
-  --work /harici-disk/VAKA-002-work \
-  --out /harici-disk/VAKA-002.k957 \
-  --case VAKA-002 --operator Analist --scope "Onaylı klasör" \
-  --resume
+k957 collect --root /source \
+  --work /external/CASE-002-work --out /external/CASE-002.k957 \
+  --case CASE-002 --operator Examiner --scope "Authorized directory"
 ```
 
-Durumu salt okunur olarak incelemek için:
+After controlled cancellation (Ctrl+C) or an error, add `--resume`:
 
 ```sh
-k957 work-status --work /harici-disk/VAKA-002-work --verify-parts
+k957 collect --root /source \
+  --work /external/CASE-002-work --out /external/CASE-002.k957 \
+  --case CASE-002 --operator Examiner --scope "Authorized directory" --resume
 ```
 
-Çıktı: planlanan dosya/bayt, tamamlanan dosya, alınan bayt/parça, parça doğrulama durumu, kilit varlığı ve edinim dönemleri. `--verify-parts` kullanılmazsa hash doğrulaması yapılmaz. Bu komut kaynak dosyaları doğrulamaz; yalnızca kaydedilmiş parçaları kontrol eder. Kilit varlığı çalışan süreç olduğunun kanıtı değildir.
+Read-only status inspection:
 
-Tamamlanan paket standart `verify` ve `analyze` komutlarıyla kullanılır. Opsiyonel `--sign-key` final paketi imzalar. İmza anahtarı çalışma veya kaynak ağacında bulunamaz. Aynı çalışmanın tamamlanmış verisinden başka bir paket üretmek için `--resume` ve yeni `--out` kullanılabilir; bu yeniden kaynak edinimi değildir.
+```sh
+k957 work-status --work /external/CASE-002-work --verify-parts
+```
 
-## Kaydedilen bilgiler
+Status includes planned files/bytes, completed files, acquired bytes/parts, part verification, lock presence and epochs. Without `--verify-parts`, content hashes are not checked. Status checks stored parts rather than source prefixes. Lock presence alone does not prove a process is running.
 
-- İlk çalıştırmada sabitlenen kaynak envanteri, boyut ve değiştirilme zamanı.
-- Her parça için byte başlangıcı, boyut, SHA-256, edinim dönemi kimliği ve alınma zamanı.
-- Her çalıştırma için başlangıç/bitiş, hostname, OS/mimari ve sonuç.
-- Dosyanın tamamı için SHA-256, toplam boyut ve tamamlanma zamanı.
-- Final pakette v2 şema; Analyze raporunda edinim dönemleri ve açık sınırlama notu.
+Use normal `verify`/`analyze` commands on the completed package. Optional `--sign-key` signs the final package; its key must be outside source/work trees. A completed work directory can export another package with `--resume` and a new `--out`; this reuses acquisition rather than reading the source again.
 
-Parça önce geçici dosyaya yazılır, `fsync` edilir ve hash adına taşınır. Checkpoint geçici dosyada hazırlanıp `fsync`/rename ile değiştirilir. Desteklendiğinde klasör senkronizasyonu da denenir. Parça kaydı tamamlanmadan checkpoint o parçayı referans almaz. Kayda girmemiş parça veya geçici dosyalar devam sırasında delil kabul edilmez.
+## Recorded information
 
-## Devam sırasında doğrulama
+- Frozen initial source inventory, sizes and modification times.
+- Per-part byte offset, size, SHA-256, acquisition epoch and time.
+- Per-run start/end, host, OS/architecture and outcome.
+- Complete-file SHA-256, size and completion time.
+- Final v2 schema, with epochs and explicit analysis limitations.
 
-1. Kapsam, kaynak kökü, vaka, operatör ve boyut/dosya limitleri ilk çalışmayla aynı olmalı.
-2. Kaydedilmiş parçalar yeniden SHA-256 ile doğrulanır; tamamlanmış dosyanın birleşik hash'i de kontrol edilir.
-3. Yarım dosyanın boyut ve zamanı ilk envanterle karşılaştırılır.
-4. Yarım dosyanın daha önce alınmış ön bölümü kaynaktan yeniden okunur; her parça hash'i karşılaştırılır. Sadece boyut/zaman eşitliğine güvenilmez.
-5. Sonraki parçalar yeni edinim dönemiyle kaydedilir.
-6. Final paket oluşturulurken parçalar tekrar doğrulanır; `verify` hem parça hem dosya hash'lerini denetler.
+A chunk is written to a temporary file, synced and renamed to its hash identity. Checkpoints use temporary write/sync/replacement; directory sync is attempted where supported. Checkpoints reference only committed chunks. Unreferenced chunks/temporary files are not accepted as acquired evidence during recovery.
 
-Kaynak değişmiş veya parça bozulmuşsa sessiz yeniden yazma yapılmaz. Mevcut çalışma korunur; hata açıklanır. Değişen kaynak için yeni çalışma diziniyle yeni edinim başlatın.
+## Resume verification
 
-## Donmuş envanter ve farklı zamanlar
+1. Scope, source root, case, operator and byte/file limits must match the original acquisition.
+2. Saved chunk hashes and completed-file combined hashes are checked.
+3. An incomplete source's size/mtime must match the frozen inventory.
+4. Its acquired prefix is reread and compared per chunk; matching metadata alone is insufficient.
+5. New parts record the new epoch.
+6. Export verifies chunks again; package verification checks both part and complete-file hashes.
 
-**Paket tek bir anlık görüntü değildir.** İlk çalıştırmadan sonra oluşturulan dosyalar dahil edilmez. Tamamlanmış dosyalar tekrar kaynak okuması yapılmadan saklanan parçalardan kullanılır; kaynak sonradan değişse veya silinse bile eski edinim korunur. Yarım dosyanın devamı için kaynak hâlâ erişilebilir olmalıdır. Ön bölüm yeniden okunması da canlı sistemde atomik snapshot garantisi vermez.
+Changed sources/corrupt chunks are rejected without silently rewriting saved work. Start a new work directory for a changed acquisition.
 
-Kapsam veya operatör değiştirilerek aynı çalışma sürdürülemez. Yeni kaynak edinimi gerekiyorsa yeni çalışma açın. Sistem anlık görüntüsü komutları bu moda dahil edilmedi: `--work --system` açık hata verir. Bunları ayrı `collect --system` edinimi olarak alın.
+## Frozen inventory and acquisition times
 
-## Ani süreç ölümü / stale lock
+**A resumable package is not a point-in-time snapshot.** Files created after initial inventory are excluded. Completed files reuse saved chunks even if their source later changes or disappears. Incomplete files still require an accessible matching source. Prefix rereading does not establish live-system snapshot consistency.
 
-Her yazan süreç `active.lock` oluşturur. Başka süreç aynı çalışmayı açamaz. Ctrl+C ve normal hata kapanışlarında kilit kaldırılmaya çalışılır. SIGKILL, güç kaybı veya fiziksel bağlantı kopması sonrasında kilit kalabilir.
+Changing scope/operator requires new work. `--work --system` is rejected; collect live-system snapshots separately.
 
-1. Hiçbir toplayıcının o çalışma dizinini kullanmadığını süreçlerden ve operatörlerden doğrulayın.
-2. Çalışmayı başka süreç kullanmıyorsa yalnızca ilgili `active.lock` dosyasını kaldırın. Çalışan bir sürecin kilidini silmeyin.
-3. `work-status --verify-parts` ile veriyi kontrol edin.
-4. `--resume` ile sürdürün. Önceki dönem `running` durumunda kalmışsa sonlanma saati uydurulmaz; `interrupted; end time unknown` olarak gösterilir.
+## Abrupt termination and stale locks
 
-Final ZIP yazılırken SIGKILL olmuşsa yarım çıktı ayrıca kalabilir. Çıktıyı kanıt olarak kabul etmeyin; `verify` uygulayın. Devam için farklı yeni bir `--out` adı seçebilirsiniz. Araç var olan çıktıyı ezmez.
+Each writer creates `active.lock`; another writer cannot open that work directory. Normal cancellation/error cleanup attempts to remove it. SIGKILL, power loss or disconnection can leave a stale lock.
 
-## Sınırlar
+1. Confirm with processes/operators that no collector uses the work directory.
+2. Remove only that `active.lock` after confirming it is stale; never remove a running collector's lock.
+3. Inspect `work-status --verify-parts`.
+4. Resume. An unfinished `running` epoch is marked `interrupted; end time unknown`; no end time is invented.
 
-- Varsayılan çalışma klasörü düz metin delil içerir. v0.5 ile `--encryption-key` seçeneği şifreli checkpoint/parçalar ve final çıktı ekler; ENCRYPTED_COLLECTION_TR.md dosyasına bakın. Mevcut `seal` ayrıca sonradan şifreleme için kullanılabilir.
-- Düz checkpoint ayrı imzalı değildir; şifreli modda AEAD bütünlük denetimi vardır. Çalışma dizini güvenilir depolamada tutulmalı ve yetkisiz değişiklikten korunmalıdır. Bir saldırganın hem state.json hem veriyi değiştirmesine karşı kimlik doğrulama garantisi yoktur.
-- Sufficient space is required for staging and the final package. Optional fresh/resume capacity preflight is available; physical source/output device separation is not verified.
-- Dizin fsync ve rename dayanıklılığı dosya sistemi/OS/donanıma bağlıdır; elektrik kesintisi veya bozuk USB donanımı garantisi verilmez.
-- 32 MiB checkpoint, 16 MiB final manifest, 1.000 edinim dönemi sınırı vardır. Çok fazla küçük dosya/parça metadata sınırına ulaşabilir.
-- İlk envanter oluşturulmadan kesilirse devam edilecek state.json bulunmayabilir; yeni çalışma dizini gerekir.
-- OS/mimari binary'leri derlenir; gerçek Windows/macOS USB testleri yapılmadı. Windows ACL ve macOS uygulama izinleri ayrıca yönetilmelidir.
-- Çalışma dosyaları otomatik silinmez. Final paketi doğrulayıp saklama politikasını uyguladıktan sonra operatör yönetir. Güvenli silme iddiası yoktur.
+SIGKILL during final ZIP writing can leave partial output. Do not treat it as evidence without verification. Resume into a new output name; existing outputs are never overwritten.
 
-## Uyumluluk
+## Limits
 
-0.2.0, v1 ve v2 delil paketlerini okur. `--work` paketleri `k957-evidence/2` kullanır. Eski 0.1.0 analiz binary'si v2 paketi açamaz. Checkpoint sürümü `k957-work/1` ve üretici uygulama sürümüyle bağlıdır; farklı uygulama sürümlerine otomatik checkpoint migrasyonu yoktur.
+- Plain staging contains plaintext evidence. `--encryption-key`, introduced in v0.5, encrypts checkpoints/chunks/final output; see [ENCRYPTED_COLLECTION_TR.md](ENCRYPTED_COLLECTION_TR.md). `seal` can separately encrypt an existing package.
+- Plain checkpoints are unsigned; encrypted checkpoints have AEAD integrity. Keep work in trusted storage. Plain mode does not authenticate an attacker-controlled combination of checkpoint and chunk contents.
+- Staging and final output both require space. Fresh/resume preflight is available; physical source/output separation is not verified.
+- Directory sync/replacement durability depends on the filesystem/OS/hardware; no power-loss or damaged-USB guarantee is provided.
+- Current bounds are 256 MiB checkpoint, 128 MiB final manifest and 1,000 epochs. Numerous small files/parts may reach metadata bounds.
+- Interruption before initial inventory is saved may leave no resumable state; use a new work directory.
+- Cross compilation does not establish native Windows/macOS USB behavior. Manage Windows ACLs and macOS application permissions separately.
+- Work files are not automatically deleted. After verifying the final package, apply your retention policy; secure erasure is not claimed.
+
+## Compatibility
+
+Evidence schemas v1/v2 remain readable. Resumable packages use `k957-evidence/2`; the original 0.1 reader cannot open v2. Checkpoints use `k957-work/1` and the producing application version; automatic migration between application versions is not provided.

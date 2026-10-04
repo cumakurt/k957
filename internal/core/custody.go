@@ -59,8 +59,9 @@ type CustodyIdentity struct {
 	PublicKey string `json:"public_key"`
 }
 type CustodyTrust struct {
-	Schema string            `json:"schema"`
-	Keys   []CustodyIdentity `json:"keys"`
+	Schema    string             `json:"schema"`
+	Keys      []CustodyIdentity  `json:"keys"`
+	Lifecycle []CustodyKeyPolicy `json:"lifecycle,omitempty"`
 }
 type CustodyRequest struct {
 	Action, Actor, To, Location, Note string
@@ -73,6 +74,7 @@ type CustodyStatus struct {
 	PendingTo      string         `json:"pending_to,omitempty"`
 	Trust          string         `json:"trust"`
 	TrustDigest    string         `json:"trust_digest"`
+	TimeAssurance  string         `json:"time_assurance"`
 	Events         []CustodyClaim `json:"events"`
 }
 
@@ -110,6 +112,9 @@ func custodyTrustMap(t CustodyTrust) (map[string]string, error) {
 			return nil, errors.New("duplicate custody key; one key must identify one actor")
 		}
 		keys[k.PublicKey] = k.Actor
+	}
+	if err := validateCustodyLifecycle(t, keys); err != nil {
+		return nil, err
 	}
 	return keys, nil
 }
@@ -260,6 +265,7 @@ func ValidateCustody(l CustodyLedger, evidenceDigest, evidenceID, caseID string,
 		return s, errors.New("invalid expected custody head")
 	}
 	s = CustodyStatus{EvidenceDigest: evidenceDigest, Trust: "all event signatures verified against supplied actor/key trust list", TrustDigest: digestJSON(t), Events: []CustodyClaim{}}
+	s.TimeAssurance = "Declared recorded_at values only; no independent trusted timestamp. External trust policy controls key intervals/revocation. A compromised signer can backdate assertions."
 	var lastOccurred, lastRecorded time.Time
 	for i, entry := range l.Events {
 		payload, e := base64.StdEncoding.Strict().DecodeString(entry.Payload)
@@ -283,6 +289,9 @@ func ValidateCustody(l CustodyLedger, evidenceDigest, evidenceID, caseID string,
 		}
 		if keys[entry.PublicKey] != c.Actor || !custodyText(c.Actor, 256, false) {
 			return s, errors.New("custody signer not trusted for this actor")
+		}
+		if err := custodyKeyAllowed(t, entry.PublicKey, c.RecordedAt); err != nil {
+			return s, err
 		}
 		if entry.Hash != custodyHead(pub, sig, payload) || !ed25519.Verify(pub, append([]byte(custodySignDomain), payload...), sig) {
 			return s, errors.New("custody signature or event hash mismatch")
@@ -362,7 +371,10 @@ func AddCustody(p *Package, previous *CustodyLedger, r CustodyRequest, signKey s
 		at = now
 	}
 	c := CustodyClaim{Schema: custodyClaimSchema, Case: l.Case, EvidenceID: l.EvidenceID, EvidenceDigest: l.EvidenceDigest, Sequence: len(l.Events) + 1, Action: r.Action, Actor: r.Actor, From: from, To: to, Location: r.Location, Note: r.Note, OccurredAt: at, RecordedAt: now, Previous: state.Head, Signer: custodySigner(pub)}
-	payload := JSON(c)
+	payload, err := MarshalJSON(c)
+	if err != nil {
+		return l, err
+	}
 	sig := ed25519.Sign(key, append([]byte(custodySignDomain), payload...))
 	l.Events = append(l.Events, CustodyEntry{Payload: base64.StdEncoding.EncodeToString(payload), PublicKey: hex.EncodeToString(pub), Signature: hex.EncodeToString(sig), Hash: custodyHead(pub, sig, payload)})
 	_, err = ValidateCustody(l, l.EvidenceDigest, l.EvidenceID, l.Case, t, "")

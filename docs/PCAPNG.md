@@ -18,7 +18,7 @@ k957 share --in /evidence/network.k957 --out /reports/network-shared
 
 Simple Packet Blocks (SPB) have no timestamps and are counted as `missing_timestamp`; no time is inferred. Obsolete Packet Blocks are counted as `obsolete_packet_block`. Their framing, interface and packet lengths are validated before counting. Nonzero FCS metadata and nonzero legacy timezone options are unsupported and cause packet skips. Unsupported link types affect only packets using that interface.
 
-Other block bodies, including names, statistics, custom metadata and decryption secrets, are not interpreted. Their outer framing is checked and they contribute to `ignored_blocks`. Interface names, comments, addresses, hardware strings and packet payloads are never copied into analysis reports. SLL hardware types with non-EtherType semantics (Netlink, radiotap and Frame Relay) are skipped.
+Other block bodies, including names, statistics, custom metadata and decryption secrets, are not interpreted. Their outer framing is checked and they contribute to `ignored_blocks`. Interface names, comments, hardware strings and raw packet payloads are not copied into analysis reports. Selected DNS/HTTP/TLS protocol fields may be projected with packet references. SLL hardware types with non-EtherType semantics (Netlink, radiotap and Frame Relay) are skipped.
 
 ## Provenance and output
 
@@ -42,7 +42,7 @@ Both block length copies, alignment, declared section boundaries, interface refe
 
 `parsed + skipped = records`. Structurally invalid or incomplete packet blocks do not increment `records`. `truncated_packets` counts valid records whose captured length is smaller than the original length; they may still contain complete transport headers. `ignored_blocks` is separate from skipped packet counts. Limits are reported through `limited` and `flow_omitted_packets`.
 
-This remains header analysis of existing files. Live capture, payload decoding, fragment reassembly, checksum validation, DNS lookup and connection reconstruction are not implemented.
+Bounded session candidates, TCP stream reconstruction, selected DNS/HTTP/TLS metadata and complete-packet checksum checks are now available. Live capture, IP fragment reassembly, external DNS lookup and TLS decryption remain unsupported. See [network limits](EXAMINATION_WORKFLOWS.md#network-sessions-and-protocol-metadata).
 
 ## Compatibility and validation
 

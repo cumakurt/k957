@@ -1,0 +1,7 @@
+goos: linux
+goarch: amd64
+pkg: k957/internal/core
+cpu: Intel(R) Core(TM) Ultra 9 285H
+BenchmarkCaseIndexMillion-16    	       1	16122093398 ns/op	         4.834 csv_seconds	       404.5 index_MiB	        10.14 insert_seconds	       981.5 last_page_ms	       162.0 negative_search_ms	         4.586 sampled_heap_MiB
+PASS
+ok  	k957/internal/core	16.221s

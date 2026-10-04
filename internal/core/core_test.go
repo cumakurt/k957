@@ -263,7 +263,7 @@ func TestManifestDuplicates(t *testing.T) {
 func TestSystemTimeout(t *testing.T) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Nanosecond)
 	defer cancel()
-	_, e := snapshot(ctx, source{Name: "missing", Command: "k957-nonexistent-command"})
+	_, _, e := snapshot(ctx, source{Name: "missing", Command: "k957-nonexistent-command"})
 	if e == nil {
 		t.Fatal("missing command succeeded")
 	}

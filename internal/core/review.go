@@ -4,10 +4,8 @@ import (
 	"crypto/ed25519"
 	"crypto/sha256"
 	"encoding/hex"
-	"encoding/json"
 	"errors"
 	"fmt"
-	"io"
 	"strings"
 	"time"
 )
@@ -35,6 +33,14 @@ type ReviewLedger struct {
 
 func digestJSON(v any) string { h := sha256.Sum256(JSON(v)); return hex.EncodeToString(h[:]) }
 func findingID(evidence string, f Finding) string {
+	if f.Event != nil {
+		return "F-" + digestJSON(struct {
+			Evidence, Rule, SourceID, Source string
+			Line                             int
+			Excerpt                          string
+			Event                            *EventReference
+		}{evidence, f.Rule, f.Evidence, f.Source, f.Line, f.Excerpt, f.Event})
+	}
 	return "F-" + digestJSON(struct {
 		Evidence, Rule, SourceID, Source string
 		Line                             int
@@ -60,16 +66,7 @@ func strictJSON(path string, limit int64, v any) error {
 	if e != nil {
 		return e
 	}
-	dec := json.NewDecoder(strings.NewReader(string(b)))
-	dec.DisallowUnknownFields()
-	if e = dec.Decode(v); e != nil {
-		return e
-	}
-	var extra any
-	if dec.Decode(&extra) != io.EOF {
-		return errors.New("trailing JSON")
-	}
-	return nil
+	return custodyJSON(b, v)
 }
 
 // Analysis is used to address findings, never as proof of package integrity.

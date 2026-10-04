@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\cmk\AppData\Local\Temp\k957-native-validation-20261002\repo-final\scripts\resume_integration.py", line 19, in <module>
+    state=json.loads((work/'state.json').read_text(encoding="utf-8"))
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "pathlib\_local.py", line 546, in read_text
+  File "pathlib\_abc.py", line 632, in read_text
+  File "pathlib\_local.py", line 537, in open
+PermissionError: [Errno 13] Permission denied: 'C:\\Users\\cmk\\AppData\\Local\\Temp\\tmp84cjif_b\\work\\state.json'

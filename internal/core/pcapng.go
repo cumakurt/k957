@@ -135,6 +135,10 @@ func pcapngTimestamp(ticks uint64, resolution uint8, offset int64) (time.Time, s
 }
 
 func parsePCAPNG(data []byte, it Item, recordBudget, flowBudget int) (events []Event, flows []NetworkFlow, s CaptureSummary) {
+	return parsePCAPNGWithInterpreter(data, it, recordBudget, flowBudget, nil)
+}
+
+func parsePCAPNGWithInterpreter(data []byte, it Item, recordBudget, flowBudget int, interpreter *captureInterpreter) (events []Event, flows []NetworkFlow, s CaptureSummary) {
 	events, flows = []Event{}, []NetworkFlow{}
 	s = newCaptureSummary(it)
 	s.Format, s.Resolution = "PCAPNG", "per-interface"
@@ -345,6 +349,9 @@ func parsePCAPNG(data []byte, it Item, recordBudget, flowBudget int) (events []E
 			s.Parsed++
 			ev := Event{CaptureContext: i.CaptureContext, Time: stamp, Type: "pcap_packet", Evidence: it.ID, Source: it.Source, SourceIP: h.src, DestinationIP: h.dst, ByteOffset: int64(pos), Packet: s.Records, Protocol: h.protocol, SourcePort: h.sport, DestinationPort: h.dport, CapturedLength: int64(captured), OriginalLength: int64(original), TCPFlags: h.tcpFlags}
 			events = append(events, ev)
+			if interpreter != nil {
+				interpreter.observe(h, ev, len(events)-1)
+			}
 			flows = appendCaptureFlow(flows, index, flowBudget, ev, &s)
 		default:
 			s.IgnoredBlocks++

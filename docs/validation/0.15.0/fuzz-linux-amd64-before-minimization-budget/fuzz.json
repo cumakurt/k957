@@ -1,0 +1,164 @@
+{
+  "schema": "k957-fuzz/1",
+  "source_sha256": "68656e371ab1d1b2b6f3f9ad6778107fb4efa7c3a5d6222b0cc713613aa5231a",
+  "target": "linux/amd64",
+  "started": "2026-10-01T06:54:09.613726+00:00",
+  "result": "passed",
+  "steps": [
+    {
+      "name": "FuzzRules",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzRules$",
+        "-fuzztime=10s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "log": "FuzzRules.log",
+      "exit_code": 0,
+      "executions": 11611,
+      "duration_seconds": 14.93
+    },
+    {
+      "name": "FuzzEnvelope",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzEnvelope$",
+        "-fuzztime=10s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "log": "FuzzEnvelope.log",
+      "exit_code": 0,
+      "executions": 147141,
+      "duration_seconds": 10.741
+    },
+    {
+      "name": "FuzzStructuredLogs",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzStructuredLogs$",
+        "-fuzztime=10s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "log": "FuzzStructuredLogs.log",
+      "exit_code": 0,
+      "executions": 154812,
+      "duration_seconds": 10.685
+    },
+    {
+      "name": "FuzzPCAP",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzPCAP$",
+        "-fuzztime=10s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "log": "FuzzPCAP.log",
+      "exit_code": 0,
+      "executions": 76731,
+      "duration_seconds": 11.608
+    },
+    {
+      "name": "FuzzPCAPNG",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzPCAPNG$",
+        "-fuzztime=10s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "log": "FuzzPCAPNG.log",
+      "exit_code": 0,
+      "executions": 219489,
+      "duration_seconds": 10.984
+    },
+    {
+      "name": "FuzzWindowsXML",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzWindowsXML$",
+        "-fuzztime=10s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "log": "FuzzWindowsXML.log",
+      "exit_code": 0,
+      "executions": 854,
+      "duration_seconds": 11.654
+    },
+    {
+      "name": "FuzzRegistry",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzRegistry$",
+        "-fuzztime=10s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "log": "FuzzRegistry.log",
+      "exit_code": 0,
+      "executions": 38,
+      "duration_seconds": 11.605
+    },
+    {
+      "name": "FuzzBinaryPlist",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzBinaryPlist$",
+        "-fuzztime=10s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "log": "FuzzBinaryPlist.log",
+      "exit_code": 0,
+      "executions": 38063,
+      "duration_seconds": 11.822
+    },
+    {
+      "name": "FuzzExternalJSON",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzExternalJSON$",
+        "-fuzztime=10s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "log": "FuzzExternalJSON.log",
+      "exit_code": 0,
+      "executions": 66978,
+      "duration_seconds": 10.825
+    }
+  ],
+  "source_unchanged": true,
+  "finished": "2026-10-01T06:55:54.495014+00:00"
+}

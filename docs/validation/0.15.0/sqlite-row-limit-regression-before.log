@@ -1,0 +1,5 @@
+--- FAIL: TestSQLiteBrowserInvalidRowsStillDiscloseQueryLimit (0.00s)
+    native_test.go:73: invalid records hid the bounded query's remaining rows: {SkipReasons:map[invalid_browser_record:3] Evidence:E1 Format:SQLite Rows:3 Parsed:0 Skipped:3 Limited:false Error:} <nil>
+FAIL
+FAIL	k957/internal/core	0.012s
+FAIL

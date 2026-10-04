@@ -1,6 +1,6 @@
 # Windows event XML exports (0.12.0)
 
-Analyze recognizes `.xml` filenames case-insensitively as candidates for a bounded Windows event export parser. This works on all compiled targets without Windows APIs. It does not parse binary EVTX, query live event logs, load provider/message DLLs or resolve SIDs. Existing evidence packages can be analyzed again without changing their bytes.
+Analyze recognizes `.xml` filenames case-insensitively as candidates for a bounded Windows event export parser. This works on all compiled targets without Windows APIs. This XML decoder does not parse binary EVTX, query live event logs, load provider/message DLLs or resolve SIDs. A separate bounded EVTX worker is available in 0.15.0; see EXAMINATION_WORKFLOWS.md. Existing evidence packages can be analyzed again without changing their bytes.
 
 ## Input and use
 
@@ -49,7 +49,7 @@ A semantic field failure skips that event and permits later events to be examine
 
 The separately typed shared report preserves event types and aggregate parser counts, applies existing host/user/path/time policies, and omits **all Windows-specific context**, Data fields, messages and raw parser errors. Even explicit keep policies do not copy that context. Sharing does not guarantee anonymity.
 
-Evidence schemas v1/v2 remain readable. Checkpoints and review histories are still bound to their producing version: finish existing work directories using the original binary, and retain old signed reviews with their original analysis. Create a new 0.12.0 analysis for new review work. Historical packaged 0.9.0 example reports are unchanged.
+Evidence schemas v1/v2 remain readable. Checkpoints and review histories are still bound to their producing version: finish existing work directories using the original binary, and retain old signed reviews with their original analysis. Create a new 0.14.0 analysis for new review work. Historical packaged 0.9.0 example reports are unchanged.
 
 ## Validation and primary references
 

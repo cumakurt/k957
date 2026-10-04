@@ -1,0 +1,1 @@
+PASS: independent PCAP records/offsets/byte counts/UTC, four directional flows plus raw-IP capture, IPv6 TCP extension, truncation and four skip reasons, truncated PCAPNG rejection, cross-log IP correlation, no payload findings, masked network exports, unchanged package

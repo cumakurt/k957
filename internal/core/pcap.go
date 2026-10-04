@@ -70,9 +70,13 @@ type CaptureSummary struct {
 	Error              string             `json:"error,omitempty"`
 }
 type packetHeader struct {
-	protocol, src, dst string
-	sport, dport       uint16
-	tcpFlags           uint8
+	protocol, src, dst            string
+	sport, dport                  uint16
+	tcpFlags                      uint8
+	sequence                      uint32
+	payload                       []byte
+	complete                      bool
+	ipChecksum, transportChecksum string
 }
 
 func captureMagic(b []byte) bool {
@@ -109,12 +113,16 @@ func newCaptureSummary(it Item) CaptureSummary {
 // parsePCAP dispatches PCAPNG and reads classic pcap v2.4. Record lengths are
 // checked before slicing. Captured payload is never exported or reassembled.
 func parsePCAP(data []byte, it Item, recordBudget, flowBudget int) (events []Event, flows []NetworkFlow, s CaptureSummary) {
+	return parsePCAPWithInterpreter(data, it, recordBudget, flowBudget, nil)
+}
+
+func parsePCAPWithInterpreter(data []byte, it Item, recordBudget, flowBudget int, interpreter *captureInterpreter) (events []Event, flows []NetworkFlow, s CaptureSummary) {
 	events = []Event{}
 	flows = []NetworkFlow{}
 	s = newCaptureSummary(it)
 	fail := func(message string) { s.Error = message }
 	if len(data) >= 4 && string(data[:4]) == "\x0a\x0d\x0d\x0a" {
-		return parsePCAPNG(data, it, recordBudget, flowBudget)
+		return parsePCAPNGWithInterpreter(data, it, recordBudget, flowBudget, interpreter)
 	}
 	if len(data) < 24 {
 		fail("truncated pcap file header")
@@ -221,6 +229,9 @@ func parsePCAP(data []byte, it Item, recordBudget, flowBudget int) (events []Eve
 		s.Parsed++
 		ev := Event{Time: stamp, Type: "pcap_packet", Evidence: it.ID, Source: it.Source, SourceIP: h.src, DestinationIP: h.dst, ByteOffset: int64(offset), Packet: s.Records, Protocol: h.protocol, SourcePort: h.sport, DestinationPort: h.dport, CapturedLength: int64(captured), OriginalLength: int64(original), TCPFlags: h.tcpFlags}
 		events = append(events, ev)
+		if interpreter != nil {
+			interpreter.observe(h, ev, len(events)-1)
+		}
 		flows = appendCaptureFlow(flows, index, flowBudget, ev, &s)
 	}
 	return
@@ -346,6 +357,7 @@ func decodeCapturePacket(b []byte, link uint32, original int64) (h packetHeader,
 		if len(b) < start {
 			return h, "short_ip_header"
 		}
+		h.ipChecksum = checksumStatus(b[:start])
 		if binary.BigEndian.Uint16(b[6:8])&0x3fff != 0 {
 			return h, "fragment"
 		}
@@ -408,6 +420,7 @@ func decodeCapturePacket(b []byte, link uint32, original int64) (h packetHeader,
 	}
 	transport := b[start:]
 	remaining := total - start
+	headerSize, transportSize := 0, remaining
 	switch next {
 	case 6:
 		if remaining < 20 {
@@ -425,6 +438,8 @@ func decodeCapturePacket(b []byte, link uint32, original int64) (h packetHeader,
 		}
 		h.protocol = "TCP"
 		h.tcpFlags = transport[13]
+		h.sequence = binary.BigEndian.Uint32(transport[4:8])
+		headerSize = size
 	case 17:
 		if remaining < 8 {
 			return h, "invalid_transport_length"
@@ -437,10 +452,22 @@ func decodeCapturePacket(b []byte, link uint32, original int64) (h packetHeader,
 			return h, "invalid_transport_length"
 		}
 		h.protocol = "UDP"
+		headerSize = 8
+		transportSize = size
 	default:
 		return h, "unsupported_ip_protocol"
 	}
 	h.sport = binary.BigEndian.Uint16(transport[:2])
 	h.dport = binary.BigEndian.Uint16(transport[2:4])
+	h.complete = len(transport) >= transportSize
+	h.payload = transport[headerSize:min(len(transport), transportSize)]
+	h.transportChecksum = "unknown_truncated"
+	if h.complete {
+		if next == 17 && binary.BigEndian.Uint16(transport[6:8]) == 0 && version == 4 {
+			h.transportChecksum = "absent"
+		} else {
+			h.transportChecksum = transportChecksumStatus(version, h.src, h.dst, next, transport[:transportSize])
+		}
+	}
 	return h, ""
 }

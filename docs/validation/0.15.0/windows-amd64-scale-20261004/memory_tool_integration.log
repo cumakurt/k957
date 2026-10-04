@@ -1,0 +1,1 @@
+PASS: actual Volatility rejects invalid image/missing symbols with retained failure; valid-image accuracy untested

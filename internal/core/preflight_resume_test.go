@@ -143,7 +143,7 @@ func TestResumePreflightMountedStagingBudgets(t *testing.T) {
 		if b.Reserve != 321 || len(b.Roles) != 1 {
 			t.Fatal(b)
 		}
-		if b.Filesystem == "metadata" && b.Estimated != 64<<20 {
+		if b.Filesystem == "metadata" && b.Estimated != 2*checkpointLimit {
 			t.Fatal(b)
 		}
 		sum += b.Required
@@ -176,7 +176,7 @@ func TestResumePreflightCompletedFrozenInventory(t *testing.T) {
 	}
 	o.Out += "-new"
 	r, err := planPreflight(context.Background(), o, work, false, true, 0, probe)
-	if err != nil || r.Outcome != "pass" || r.EligibleFiles != 1 || r.CompletedFiles != 1 || r.AcquiredBytes != r.EligibleBytes || r.RemainingBytes != 0 || r.RemainingParts != 0 || r.EstimatedWork != 64<<20 || r.EstimatedOutput < r.EligibleBytes {
+	if err != nil || r.Outcome != "pass" || r.EligibleFiles != 1 || r.CompletedFiles != 1 || r.AcquiredBytes != r.EligibleBytes || r.RemainingBytes != 0 || r.RemainingParts != 0 || r.EstimatedWork != 2*checkpointLimit || r.EstimatedOutput < r.EligibleBytes {
 		t.Fatalf("completed work must need metadata + full output space: %+v %v", r, err)
 	}
 	if _, err := CollectResumable(context.Background(), o, work, true); err != nil {

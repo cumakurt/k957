@@ -1,0 +1,775 @@
+=== RUN   TestMetadataAggregateLimitIsExplicit
+--- PASS: TestMetadataAggregateLimitIsExplicit (0.00s)
+=== RUN   TestJSONEncodingFailureIsReported
+--- PASS: TestJSONEncodingFailureIsReported (0.00s)
+=== RUN   TestActivityInterpretation
+--- PASS: TestActivityInterpretation (0.02s)
+=== RUN   TestAnalyzeActivityPackage
+--- PASS: TestAnalyzeActivityPackage (0.07s)
+=== RUN   TestAdaptiveExecutableAcquisitionProvenance
+--- PASS: TestAdaptiveExecutableAcquisitionProvenance (0.26s)
+=== RUN   TestAdaptiveExcludesOutputAndUnavailablePaths
+--- PASS: TestAdaptiveExcludesOutputAndUnavailablePaths (0.00s)
+=== RUN   TestPlatformArtifactPaths
+--- PASS: TestPlatformArtifactPaths (0.00s)
+=== RUN   TestBrowserHistoryDiscovery
+--- PASS: TestBrowserHistoryDiscovery (0.00s)
+=== RUN   TestAssistantExactReferencesAndSignedReview
+--- PASS: TestAssistantExactReferencesAndSignedReview (0.10s)
+=== RUN   TestAssistantAttackAndDisclosureCorpus
+--- PASS: TestAssistantAttackAndDisclosureCorpus (0.04s)
+=== RUN   TestCaseExportsPreserveRowsAndChronologicalTies
+--- PASS: TestCaseExportsPreserveRowsAndChronologicalTies (0.07s)
+=== RUN   TestCaseExportCancellationAndFailedOutputCleanup
+--- PASS: TestCaseExportCancellationAndFailedOutputCleanup (0.02s)
+=== RUN   TestCaseIndexScopePagesAndLiteralSearch
+--- PASS: TestCaseIndexScopePagesAndLiteralSearch (0.03s)
+=== RUN   TestCaseIndexLimitIsDisclosed
+--- PASS: TestCaseIndexLimitIsDisclosed (0.02s)
+=== RUN   TestSignedSelectionKeepsReferenceAndRejectsTamper
+--- PASS: TestSignedSelectionKeepsReferenceAndRejectsTamper (0.12s)
+=== RUN   TestTemporalScopeCorrectionsAndPolicyValidation
+--- PASS: TestTemporalScopeCorrectionsAndPolicyValidation (0.03s)
+=== RUN   TestCaseDossier
+--- PASS: TestCaseDossier (0.39s)
+=== RUN   TestCheckpointReaderAllowsReplacement
+=== RUN   TestCheckpointReaderAllowsReplacement/plain
+=== RUN   TestCheckpointReaderAllowsReplacement/encrypted
+--- PASS: TestCheckpointReaderAllowsReplacement (0.16s)
+    --- PASS: TestCheckpointReaderAllowsReplacement/plain (0.08s)
+    --- PASS: TestCheckpointReaderAllowsReplacement/encrypted (0.08s)
+=== RUN   TestCheckpointBlockedReplacementPreservesPrevious
+--- PASS: TestCheckpointBlockedReplacementPreservesPrevious (1.01s)
+=== RUN   TestCloudTrailRawImportAndReferences
+--- PASS: TestCloudTrailRawImportAndReferences (0.03s)
+=== RUN   TestCloudTrailCorruptionLimitsAndDuplicates
+--- PASS: TestCloudTrailCorruptionLimitsAndDuplicates (0.02s)
+=== RUN   TestCollectNestedUnicodePaths
+--- PASS: TestCollectNestedUnicodePaths (0.02s)
+=== RUN   TestCollectionExaminationKeepsVerifiedRecordAndSigner
+--- PASS: TestCollectionExaminationKeepsVerifiedRecordAndSigner (0.12s)
+=== RUN   TestCollectAnalyze
+--- PASS: TestCollectAnalyze (0.15s)
+=== RUN   TestTampering
+=== RUN   TestTampering/objects/E000001
+=== RUN   TestTampering/manifest.json
+=== RUN   TestTampering/manifest.sig
+--- PASS: TestTampering (0.05s)
+    --- PASS: TestTampering/objects/E000001 (0.02s)
+    --- PASS: TestTampering/manifest.json (0.01s)
+    --- PASS: TestTampering/manifest.sig (0.01s)
+=== RUN   TestWrongKey
+--- PASS: TestWrongKey (0.04s)
+=== RUN   TestUnsignedTrust
+--- PASS: TestUnsignedTrust (0.02s)
+=== RUN   TestLimitsAndSymlink
+--- PASS: TestLimitsAndSymlink (0.01s)
+=== RUN   TestOutputProtection
+--- PASS: TestOutputProtection (0.00s)
+=== RUN   TestCancelled
+--- PASS: TestCancelled (0.00s)
+=== RUN   TestEnvelope
+=== RUN   TestEnvelope/A
+=== RUN   TestEnvelope/B
+=== RUN   TestEnvelope/\u008d
+=== RUN   TestEnvelope/\u0099
+--- PASS: TestEnvelope (0.01s)
+    --- PASS: TestEnvelope/A (0.00s)
+    --- PASS: TestEnvelope/B (0.00s)
+    --- PASS: TestEnvelope/\u008d (0.01s)
+    --- PASS: TestEnvelope/\u0099 (0.01s)
+=== RUN   TestDecryptCleanup
+--- PASS: TestDecryptCleanup (0.01s)
+=== RUN   TestRulesAndCSV
+--- PASS: TestRulesAndCSV (0.01s)
+=== RUN   TestManifestDuplicates
+--- PASS: TestManifestDuplicates (0.02s)
+=== RUN   TestSystemTimeout
+--- PASS: TestSystemTimeout (0.00s)
+=== RUN   TestTextBudgetAndBinary
+--- PASS: TestTextBudgetAndBinary (0.01s)
+=== RUN   TestLogTimestamp
+--- PASS: TestLogTimestamp (0.00s)
+=== RUN   TestPrivateKeyExcluded
+--- PASS: TestPrivateKeyExcluded (0.01s)
+=== RUN   TestModelAndVolumeEdges
+--- PASS: TestModelAndVolumeEdges (0.01s)
+=== RUN   TestCryptoEdges
+--- PASS: TestCryptoEdges (0.01s)
+=== RUN   TestProfileSystemAndOperator
+--- PASS: TestProfileSystemAndOperator (0.00s)
+=== RUN   TestMemoryEdges
+--- PASS: TestMemoryEdges (0.09s)
+=== RUN   TestCollectBranches
+--- PASS: TestCollectBranches (0.03s)
+=== RUN   TestResumeAndWorkEdges
+--- PASS: TestResumeAndWorkEdges (0.01s)
+=== RUN   TestLogsCorrelateAndExports
+--- PASS: TestLogsCorrelateAndExports (0.03s)
+=== RUN   TestMemoryScanBranches
+--- PASS: TestMemoryScanBranches (0.04s)
+=== RUN   TestEasyRemainingBranches
+--- PASS: TestEasyRemainingBranches (0.02s)
+=== RUN   TestMemoryScanKeepsIndexesOnBinaryData
+--- PASS: TestMemoryScanKeepsIndexesOnBinaryData (0.00s)
+=== RUN   TestCheckpointValidation
+--- PASS: TestCheckpointValidation (0.08s)
+=== RUN   TestResumableEarlyErrors
+--- PASS: TestResumableEarlyErrors (0.01s)
+=== RUN   TestStoreVerificationEdges
+--- PASS: TestStoreVerificationEdges (0.13s)
+=== RUN   TestVerifyProgressStartsAtZero
+--- PASS: TestVerifyProgressStartsAtZero (0.05s)
+=== RUN   TestAnalyzeProgressStartsAtZero
+--- PASS: TestAnalyzeProgressStartsAtZero (0.08s)
+=== RUN   TestCoverageUnknownTotalsAndSafeSharing
+--- PASS: TestCoverageUnknownTotalsAndSafeSharing (0.00s)
+=== RUN   TestCoverageKnownBoundary
+--- PASS: TestCoverageKnownBoundary (0.00s)
+=== RUN   TestStreamingCSVFailureAndExclusiveOutput
+--- PASS: TestStreamingCSVFailureAndExclusiveOutput (0.01s)
+=== RUN   TestCustodyHistoricalRevocationRotationAndAnchor
+--- PASS: TestCustodyHistoricalRevocationRotationAndAnchor (0.09s)
+=== RUN   TestCustodyHandoverAndPreservedSignatures
+--- PASS: TestCustodyHandoverAndPreservedSignatures (0.09s)
+=== RUN   TestCustodyCancellationAndTransitionRejections
+--- PASS: TestCustodyCancellationAndTransitionRejections (0.06s)
+=== RUN   TestCustodyTrustAndExpectedHead
+--- PASS: TestCustodyTrustAndExpectedHead (0.05s)
+=== RUN   TestCustodyTamperAndBinding
+=== RUN   TestCustodyTamperAndBinding/case
+=== RUN   TestCustodyTamperAndBinding/evidence
+=== RUN   TestCustodyTamperAndBinding/missing
+=== RUN   TestCustodyTamperAndBinding/repeat
+=== RUN   TestCustodyTamperAndBinding/hash
+=== RUN   TestCustodyTamperAndBinding/rehashed-note
+=== RUN   TestCustodyTamperAndBinding/digest
+=== RUN   TestCustodyTamperAndBinding/order
+=== RUN   TestCustodyTamperAndBinding/signature
+=== RUN   TestCustodyTamperAndBinding/base64
+=== RUN   TestCustodyTamperAndBinding/sequence
+=== RUN   TestCustodyTamperAndBinding/binding
+=== RUN   TestCustodyTamperAndBinding/future
+=== RUN   TestCustodyTamperAndBinding/empty-location
+=== RUN   TestCustodyTamperAndBinding/previous
+=== RUN   TestCustodyTamperAndBinding/actor
+=== RUN   TestCustodyTamperAndBinding/from
+--- PASS: TestCustodyTamperAndBinding (0.05s)
+    --- PASS: TestCustodyTamperAndBinding/case (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/evidence (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/missing (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/repeat (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/hash (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/rehashed-note (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/digest (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/order (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/signature (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/base64 (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/sequence (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/binding (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/future (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/empty-location (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/previous (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/actor (0.00s)
+    --- PASS: TestCustodyTamperAndBinding/from (0.00s)
+=== RUN   TestCustodyTimeLimitsAndKeyConsistency
+--- PASS: TestCustodyTimeLimitsAndKeyConsistency (0.05s)
+=== RUN   TestCustodyJSONAndTrustLoading
+--- PASS: TestCustodyJSONAndTrustLoading (0.08s)
+=== RUN   TestCustodyReportEscapesNotes
+--- PASS: TestCustodyReportEscapesNotes (0.15s)
+=== RUN   TestDeveloperCredits
+--- PASS: TestDeveloperCredits (0.00s)
+=== RUN   TestStructuredRulesReferencesAndEvaluation
+--- PASS: TestStructuredRulesReferencesAndEvaluation (0.00s)
+=== RUN   TestStructuredRuleFindingLimitRetainsCounts
+--- PASS: TestStructuredRuleFindingLimitRetainsCounts (0.00s)
+=== RUN   TestExternalJSONRejectsAmbiguity
+--- PASS: TestExternalJSONRejectsAmbiguity (0.00s)
+=== RUN   TestImageStagingAndSymbolBoundaries
+--- PASS: TestImageStagingAndSymbolBoundaries (0.01s)
+=== RUN   TestReadErrorReaderKeepsPrefix
+--- PASS: TestReadErrorReaderKeepsPrefix (0.00s)
+=== RUN   TestSnapshotFileKeepsPrefix
+--- PASS: TestSnapshotFileKeepsPrefix (0.02s)
+=== RUN   TestAdditionalPathsAndSkip
+--- PASS: TestAdditionalPathsAndSkip (0.01s)
+=== RUN   TestIOMemAndPlan
+--- PASS: TestIOMemAndPlan (0.00s)
+=== RUN   TestSyntheticLimeAcquisition
+--- PASS: TestSyntheticLimeAcquisition (0.10s)
+=== RUN   TestUnreadableMemoryPage
+--- PASS: TestUnreadableMemoryPage (0.02s)
+=== RUN   TestExternalMemoryTool
+    full_test.go:187: sh is required
+--- SKIP: TestExternalMemoryTool (0.00s)
+=== RUN   TestFullCollectionVerifyAnalyzeAndTamper
+--- PASS: TestFullCollectionVerifyAnalyzeAndTamper (0.31s)
+=== RUN   TestSanitizeHost
+--- PASS: TestSanitizeHost (0.00s)
+=== RUN   TestIdentifyHeader
+--- PASS: TestIdentifyHeader (0.00s)
+=== RUN   TestHashSetAndApply
+--- PASS: TestHashSetAndApply (0.03s)
+=== RUN   TestAcceptedCollectionVersion
+--- PASS: TestAcceptedCollectionVersion (0.00s)
+=== RUN   TestCollectorFingerprintFailure
+--- PASS: TestCollectorFingerprintFailure (0.00s)
+=== RUN   TestOfflineIndicatorsExactReferencesAndNoVerdicts
+--- PASS: TestOfflineIndicatorsExactReferencesAndNoVerdicts (0.02s)
+=== RUN   TestExplicitAttackLayerMappings
+--- PASS: TestExplicitAttackLayerMappings (0.02s)
+=== RUN   TestSignedManifestAboveLegacyReaderLimit
+--- PASS: TestSignedManifestAboveLegacyReaderLimit (1.00s)
+=== RUN   TestManifestEncodingPreservesSignedBytes
+--- PASS: TestManifestEncodingPreservesSignedBytes (0.00s)
+=== RUN   TestManifestEncodingBoundsAndWriteErrors
+--- PASS: TestManifestEncodingBoundsAndWriteErrors (0.00s)
+=== RUN   TestMemoryObservationsAreSymbolFreeReadings
+--- PASS: TestMemoryObservationsAreSymbolFreeReadings (0.00s)
+=== RUN   TestMemoryObservationSurvivesChunkBoundary
+--- PASS: TestMemoryObservationSurvivesChunkBoundary (0.00s)
+=== RUN   TestMemoryObservationEdgesWithoutCountCaps
+--- PASS: TestMemoryObservationEdgesWithoutCountCaps (0.00s)
+=== RUN   TestVerifiedMemoryScanRejectsInvalidInput
+--- PASS: TestVerifiedMemoryScanRejectsInvalidInput (0.01s)
+=== RUN   TestVerifiedMemoryScanWithoutTemporaryStorage
+=== RUN   TestVerifiedMemoryScanWithoutTemporaryStorage/raw
+=== RUN   TestVerifiedMemoryScanWithoutTemporaryStorage/lime
+--- PASS: TestVerifiedMemoryScanWithoutTemporaryStorage (0.02s)
+    --- PASS: TestVerifiedMemoryScanWithoutTemporaryStorage/raw (0.01s)
+    --- PASS: TestVerifiedMemoryScanWithoutTemporaryStorage/lime (0.01s)
+=== RUN   TestVerifiedMemoryScanRejectsChangedBytesAndCancellation
+=== RUN   TestVerifiedMemoryScanRejectsChangedBytesAndCancellation/mutate
+=== RUN   TestVerifiedMemoryScanRejectsChangedBytesAndCancellation/cancel
+=== RUN   TestVerifiedMemoryScanRejectsChangedBytesAndCancellation/replace
+--- PASS: TestVerifiedMemoryScanRejectsChangedBytesAndCancellation (0.60s)
+    --- PASS: TestVerifiedMemoryScanRejectsChangedBytesAndCancellation/mutate (0.25s)
+    --- PASS: TestVerifiedMemoryScanRejectsChangedBytesAndCancellation/cancel (0.12s)
+    --- PASS: TestVerifiedMemoryScanRejectsChangedBytesAndCancellation/replace (0.23s)
+=== RUN   TestMemoryOnlyStoreAndCaseWithoutTemporaryStorage
+--- PASS: TestMemoryOnlyStoreAndCaseWithoutTemporaryStorage (0.32s)
+=== RUN   TestNativeCaseExactFilters
+--- PASS: TestNativeCaseExactFilters (0.03s)
+=== RUN   TestUSNVersionsAndPartialInput
+--- PASS: TestUSNVersionsAndPartialInput (0.03s)
+=== RUN   TestNativeBinaryLaunchdProjectionAndBounds
+--- PASS: TestNativeBinaryLaunchdProjectionAndBounds (0.01s)
+=== RUN   TestBinaryLaunchdDisclosesUnsupportedKnownStringProperties
+--- PASS: TestBinaryLaunchdDisclosesUnsupportedKnownStringProperties (0.01s)
+=== RUN   TestBinaryPlistRejectsCyclesAndExpandedDAG
+--- PASS: TestBinaryPlistRejectsCyclesAndExpandedDAG (0.00s)
+=== RUN   TestRegistryReferencesPrecisionAndBounds
+--- PASS: TestRegistryReferencesPrecisionAndBounds (0.01s)
+=== RUN   TestRegistryIndexCyclesAndUnicode
+--- PASS: TestRegistryIndexCyclesAndUnicode (0.00s)
+=== RUN   TestSQLiteBrowserRecordIdentityAndReadOnly
+--- PASS: TestSQLiteBrowserRecordIdentityAndReadOnly (0.01s)
+=== RUN   TestSQLiteBrowserInvalidRowsStillDiscloseQueryLimit
+--- PASS: TestSQLiteBrowserInvalidRowsStillDiscloseQueryLimit (0.01s)
+=== RUN   TestEVTXReferenceAndCorruption
+--- PASS: TestEVTXReferenceAndCorruption (0.01s)
+=== RUN   TestTCPReassemblyOrderReuseOverlapAndLimits
+--- PASS: TestTCPReassemblyOrderReuseOverlapAndLimits (0.00s)
+=== RUN   TestDNSCompressionChecksumAndMalformedPointers
+--- PASS: TestDNSCompressionChecksumAndMalformedPointers (0.00s)
+=== RUN   TestTLSClientHelloMetadataAndHTTPAmbiguity
+--- PASS: TestTLSClientHelloMetadataAndHTTPAmbiguity (0.00s)
+=== RUN   TestPCAPEndianResolutionOffsetsAndFlows
+--- PASS: TestPCAPEndianResolutionOffsetsAndFlows (0.00s)
+=== RUN   TestPCAPRawIPv6VLANAndExtensions
+--- PASS: TestPCAPRawIPv6VLANAndExtensions (0.00s)
+=== RUN   TestPCAPMalformedFragmentAndUnsupported
+--- PASS: TestPCAPMalformedFragmentAndUnsupported (0.00s)
+=== RUN   TestPCAPTruncationBudgetsAndDirection
+--- PASS: TestPCAPTruncationBudgetsAndDirection (0.00s)
+=== RUN   TestPCAPAnalysisCorrelationAndShare
+--- PASS: TestPCAPAnalysisCorrelationAndShare (0.25s)
+=== RUN   TestNetworkEndpointIPv6
+--- PASS: TestNetworkEndpointIPv6 (0.00s)
+=== RUN   TestPCAPNGSectionsInterfacesAndProvenance
+--- PASS: TestPCAPNGSectionsInterfacesAndProvenance (0.00s)
+=== RUN   TestCaptureLinuxCookedLinks
+--- PASS: TestCaptureLinuxCookedLinks (0.00s)
+=== RUN   TestPCAPNGTimestampPrecisionAndRange
+--- PASS: TestPCAPNGTimestampPrecisionAndRange (0.00s)
+=== RUN   TestPCAPNGMalformedFraming
+=== RUN   TestPCAPNGMalformedFraming/negative_section_length
+=== RUN   TestPCAPNGMalformedFraming/interface
+=== RUN   TestPCAPNGMalformedFraming/snaplen
+=== RUN   TestPCAPNGMalformedFraming/truncated
+=== RUN   TestPCAPNGMalformedFraming/minor_version
+=== RUN   TestPCAPNGMalformedFraming/section_too_long
+=== RUN   TestPCAPNGMalformedFraming/section_too_short
+=== RUN   TestPCAPNGMalformedFraming/section_crossing
+=== RUN   TestPCAPNGMalformedFraming/original_length
+=== RUN   TestPCAPNGMalformedFraming/byte_order
+=== RUN   TestPCAPNGMalformedFraming/footer
+=== RUN   TestPCAPNGMalformedFraming/reserved
+=== RUN   TestPCAPNGMalformedFraming/length
+=== RUN   TestPCAPNGMalformedFraming/trailing_bytes
+=== RUN   TestPCAPNGMalformedFraming/short_block
+=== RUN   TestPCAPNGMalformedFraming/huge_block
+=== RUN   TestPCAPNGMalformedFraming/no_interface_in_new_section
+=== RUN   TestPCAPNGMalformedFraming/version
+=== RUN   TestPCAPNGMalformedFraming/unaligned_block
+--- PASS: TestPCAPNGMalformedFraming (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/negative_section_length (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/interface (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/snaplen (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/truncated (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/minor_version (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/section_too_long (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/section_too_short (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/section_crossing (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/original_length (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/byte_order (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/footer (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/reserved (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/length (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/trailing_bytes (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/short_block (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/huge_block (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/no_interface_in_new_section (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/version (0.00s)
+    --- PASS: TestPCAPNGMalformedFraming/unaligned_block (0.00s)
+=== RUN   TestPCAPNGSkippedPacketsAndMetadata
+--- PASS: TestPCAPNGSkippedPacketsAndMetadata (0.00s)
+=== RUN   TestPCAPNGBudgetsAndTruncatedPrefix
+--- PASS: TestPCAPNGBudgetsAndTruncatedPrefix (0.02s)
+=== RUN   TestPersistenceParsers
+--- PASS: TestPersistenceParsers (0.00s)
+=== RUN   TestAnalyzePersistencePackage
+--- PASS: TestAnalyzePersistencePackage (0.06s)
+=== RUN   TestResumePreflightRemainingBudget
+=== RUN   TestResumePreflightRemainingBudget/plain
+=== RUN   TestResumePreflightRemainingBudget/encrypted
+--- PASS: TestResumePreflightRemainingBudget (0.19s)
+    --- PASS: TestResumePreflightRemainingBudget/plain (0.09s)
+    --- PASS: TestResumePreflightRemainingBudget/encrypted (0.10s)
+=== RUN   TestResumePreflightMountedStagingBudgets
+--- PASS: TestResumePreflightMountedStagingBudgets (0.08s)
+=== RUN   TestResumePreflightCompletedFrozenInventory
+--- PASS: TestResumePreflightCompletedFrozenInventory (0.30s)
+=== RUN   TestResumePreflightRejectsInvalidState
+=== RUN   TestResumePreflightRejectsInvalidState/lock
+=== RUN   TestResumePreflightRejectsInvalidState/source-missing
+=== RUN   TestResumePreflightRejectsInvalidState/source-size
+=== RUN   TestResumePreflightRejectsInvalidState/source-time
+=== RUN   TestResumePreflightRejectsInvalidState/chunk-missing
+=== RUN   TestResumePreflightRejectsInvalidState/chunk-size
+=== RUN   TestResumePreflightRejectsInvalidState/chunk-directory
+=== RUN   TestResumePreflightRejectsInvalidState/root
+=== RUN   TestResumePreflightRejectsInvalidState/limits
+=== RUN   TestResumePreflightRejectsInvalidState/case
+=== RUN   TestResumePreflightRejectsInvalidState/operator
+=== RUN   TestResumePreflightRejectsInvalidState/scope
+=== RUN   TestResumePreflightRejectsInvalidState/existing-output
+=== RUN   TestResumePreflightRejectsInvalidState/epochs
+--- PASS: TestResumePreflightRejectsInvalidState (1.37s)
+    --- PASS: TestResumePreflightRejectsInvalidState/lock (0.11s)
+    --- PASS: TestResumePreflightRejectsInvalidState/source-missing (0.11s)
+    --- PASS: TestResumePreflightRejectsInvalidState/source-size (0.09s)
+    --- PASS: TestResumePreflightRejectsInvalidState/source-time (0.08s)
+    --- PASS: TestResumePreflightRejectsInvalidState/chunk-missing (0.09s)
+    --- PASS: TestResumePreflightRejectsInvalidState/chunk-size (0.07s)
+    --- PASS: TestResumePreflightRejectsInvalidState/chunk-directory (0.07s)
+    --- PASS: TestResumePreflightRejectsInvalidState/root (0.09s)
+    --- PASS: TestResumePreflightRejectsInvalidState/limits (0.12s)
+    --- PASS: TestResumePreflightRejectsInvalidState/case (0.10s)
+    --- PASS: TestResumePreflightRejectsInvalidState/operator (0.10s)
+    --- PASS: TestResumePreflightRejectsInvalidState/scope (0.11s)
+    --- PASS: TestResumePreflightRejectsInvalidState/existing-output (0.10s)
+    --- PASS: TestResumePreflightRejectsInvalidState/epochs (0.12s)
+=== RUN   TestResumePreflightAuthenticationAndCancellation
+--- PASS: TestResumePreflightAuthenticationAndCancellation (0.12s)
+=== RUN   TestResumePreflightDoesNotReplaceIntegrityVerification
+--- PASS: TestResumePreflightDoesNotReplaceIntegrityVerification (0.12s)
+=== RUN   TestPreflightCombinedBudget
+--- PASS: TestPreflightCombinedBudget (0.02s)
+=== RUN   TestPreflightSeparateVolumes
+--- PASS: TestPreflightSeparateVolumes (0.00s)
+=== RUN   TestPreflightUncertainProbes
+=== RUN   TestPreflightUncertainProbes/sourceerror
+=== RUN   TestPreflightUncertainProbes/sourceempty
+=== RUN   TestPreflightUncertainProbes/sourcenegative
+=== RUN   TestPreflightUncertainProbes/targeterror
+=== RUN   TestPreflightUncertainProbes/targetempty
+=== RUN   TestPreflightUncertainProbes/targetnegative
+--- PASS: TestPreflightUncertainProbes (0.02s)
+    --- PASS: TestPreflightUncertainProbes/sourceerror (0.00s)
+    --- PASS: TestPreflightUncertainProbes/sourceempty (0.00s)
+    --- PASS: TestPreflightUncertainProbes/sourcenegative (0.01s)
+    --- PASS: TestPreflightUncertainProbes/targeterror (0.00s)
+    --- PASS: TestPreflightUncertainProbes/targetempty (0.00s)
+    --- PASS: TestPreflightUncertainProbes/targetnegative (0.00s)
+=== RUN   TestPreflightSourceWarningAndEncryption
+--- PASS: TestPreflightSourceWarningAndEncryption (0.00s)
+=== RUN   TestPreflightOverlapAndExisting
+=== RUN   TestPreflightOverlapAndExisting/output-in-source
+=== RUN   TestPreflightOverlapAndExisting/work-in-source
+=== RUN   TestPreflightOverlapAndExisting/source-in-work
+=== RUN   TestPreflightOverlapAndExisting/work-equals-output
+=== RUN   TestPreflightOverlapAndExisting/existing-output
+=== RUN   TestPreflightOverlapAndExisting/existing-work
+--- PASS: TestPreflightOverlapAndExisting (0.03s)
+    --- PASS: TestPreflightOverlapAndExisting/output-in-source (0.00s)
+    --- PASS: TestPreflightOverlapAndExisting/work-in-source (0.00s)
+    --- PASS: TestPreflightOverlapAndExisting/source-in-work (0.00s)
+    --- PASS: TestPreflightOverlapAndExisting/work-equals-output (0.00s)
+    --- PASS: TestPreflightOverlapAndExisting/existing-output (0.01s)
+    --- PASS: TestPreflightOverlapAndExisting/existing-work (0.00s)
+=== RUN   TestPreflightBudgetsAndCancellation
+=== RUN   TestPreflightBudgetsAndCancellation/file
+=== RUN   TestPreflightBudgetsAndCancellation/total
+=== RUN   TestPreflightBudgetsAndCancellation/count
+=== RUN   TestPreflightBudgetsAndCancellation/empty
+--- PASS: TestPreflightBudgetsAndCancellation (0.01s)
+    --- PASS: TestPreflightBudgetsAndCancellation/file (0.00s)
+    --- PASS: TestPreflightBudgetsAndCancellation/total (0.00s)
+    --- PASS: TestPreflightBudgetsAndCancellation/count (0.00s)
+    --- PASS: TestPreflightBudgetsAndCancellation/empty (0.00s)
+=== RUN   TestPreflightInvalidInput
+=== RUN   TestPreflightInvalidInput/root
+=== RUN   TestPreflightInvalidInput/output
+=== RUN   TestPreflightInvalidInput/system
+=== RUN   TestPreflightInvalidInput/limit
+=== RUN   TestPreflightInvalidInput/reserve
+=== RUN   TestPreflightInvalidInput/missing-root
+=== RUN   TestPreflightInvalidInput/file-root
+=== RUN   TestPreflightInvalidInput/missing-parent
+--- PASS: TestPreflightInvalidInput (0.02s)
+    --- PASS: TestPreflightInvalidInput/root (0.00s)
+    --- PASS: TestPreflightInvalidInput/output (0.00s)
+    --- PASS: TestPreflightInvalidInput/system (0.00s)
+    --- PASS: TestPreflightInvalidInput/limit (0.00s)
+    --- PASS: TestPreflightInvalidInput/reserve (0.00s)
+    --- PASS: TestPreflightInvalidInput/missing-root (0.00s)
+    --- PASS: TestPreflightInvalidInput/file-root (0.00s)
+    --- PASS: TestPreflightInvalidInput/missing-parent (0.00s)
+=== RUN   TestNativeVolumeProbe
+--- PASS: TestNativeVolumeProbe (0.00s)
+=== RUN   TestProgressReporter
+--- PASS: TestProgressReporter (0.00s)
+=== RUN   TestFindingCapPreservesRemainingEvidence
+--- PASS: TestFindingCapPreservesRemainingEvidence (0.89s)
+=== RUN   TestAnalysisCancellationCannotPublish
+--- PASS: TestAnalysisCancellationCannotPublish (0.02s)
+=== RUN   TestStrictEvidenceAndRuleJSON
+--- PASS: TestStrictEvidenceAndRuleJSON (0.03s)
+=== RUN   TestSystemdDeclarativeUserAndCommandReset
+--- PASS: TestSystemdDeclarativeUserAndCommandReset (0.00s)
+=== RUN   TestHashSetNoMatchAndFindingCoverage
+--- PASS: TestHashSetNoMatchAndFindingCoverage (0.02s)
+=== RUN   TestCollectionRejectsExternalEvidenceAndSymlinkArtifact
+--- PASS: TestCollectionRejectsExternalEvidenceAndSymlinkArtifact (0.02s)
+=== RUN   TestUnparsedObjectCoverageIsVisible
+--- PASS: TestUnparsedObjectCoverageIsVisible (0.08s)
+=== RUN   TestPersistenceXMLPreservesFragmentedValues
+--- PASS: TestPersistenceXMLPreservesFragmentedValues (0.00s)
+=== RUN   TestCaseTimelineOrdersFractionalSeconds
+--- PASS: TestCaseTimelineOrdersFractionalSeconds (0.23s)
+=== RUN   TestFailedCollectionSignatureIsNeverReportedVerified
+--- PASS: TestFailedCollectionSignatureIsNeverReportedVerified (0.15s)
+=== RUN   TestReportRetainsPCAPNGContextAndErrors
+--- PASS: TestReportRetainsPCAPNGContextAndErrors (0.00s)
+=== RUN   TestRecheckFullCollectionTrustAndBinding
+=== RUN   TestRecheckFullCollectionTrustAndBinding/logical
+=== RUN   TestRecheckFullCollectionTrustAndBinding/memory-only
+--- PASS: TestRecheckFullCollectionTrustAndBinding (0.86s)
+    --- PASS: TestRecheckFullCollectionTrustAndBinding/logical (0.46s)
+    --- PASS: TestRecheckFullCollectionTrustAndBinding/memory-only (0.40s)
+=== RUN   TestRecheckPartialCollectionReport
+--- PASS: TestRecheckPartialCollectionReport (0.25s)
+=== RUN   TestRecheckMalformedRecordCannotClaimAuthentication
+--- PASS: TestRecheckMalformedRecordCannotClaimAuthentication (0.00s)
+=== RUN   TestRecheckCaseCancellationRemovesPartialOutput
+--- PASS: TestRecheckCaseCancellationRemovesPartialOutput (0.16s)
+=== RUN   TestRecheckDuplicateReviewAndCheckpointKeys
+--- PASS: TestRecheckDuplicateReviewAndCheckpointKeys (0.08s)
+=== RUN   TestRecheckTaskNamespaceSeparation
+--- PASS: TestRecheckTaskNamespaceSeparation (0.00s)
+=== RUN   TestRecheckCancellationWithoutByteEstimate
+--- PASS: TestRecheckCancellationWithoutByteEstimate (0.01s)
+=== RUN   TestNativeDocumentsReferencesUnicodeAndLimits
+--- PASS: TestNativeDocumentsReferencesUnicodeAndLimits (0.11s)
+=== RUN   TestDocumentCancellationDoesNotPublish
+--- PASS: TestDocumentCancellationDoesNotPublish (0.00s)
+=== RUN   TestDocumentTextAndNotesAreBounded
+--- PASS: TestDocumentTextAndNotesAreBounded (0.02s)
+=== RUN   TestReportDocumentGroupsEscapesAndLimits
+--- PASS: TestReportDocumentGroupsEscapesAndLimits (0.00s)
+=== RUN   TestRewriteExaminationReport
+    report_html_test.go:86: 
+--- SKIP: TestRewriteExaminationReport (0.00s)
+=== RUN   TestCompleteMemoryResultsBeyondOldCaps
+--- PASS: TestCompleteMemoryResultsBeyondOldCaps (0.22s)
+=== RUN   TestMemoryStringsReconstructLongASCIIAndUTF16
+--- PASS: TestMemoryStringsReconstructLongASCIIAndUTF16 (0.03s)
+=== RUN   TestMemoryWorkspaceFailuresAndCancellation
+--- PASS: TestMemoryWorkspaceFailuresAndCancellation (0.00s)
+=== RUN   TestNativeDefaultPDFAndPortableReferences
+--- PASS: TestNativeDefaultPDFAndPortableReferences (0.07s)
+=== RUN   TestMemoryJSONCountsBeyondOldRowLimit
+--- PASS: TestMemoryJSONCountsBeyondOldRowLimit (0.52s)
+=== RUN   TestMemoryURLSegmentsAcrossTinyWindows
+--- PASS: TestMemoryURLSegmentsAcrossTinyWindows (0.19s)
+=== RUN   TestMemoryPluginOptionsAndPlatformDiscovery
+--- PASS: TestMemoryPluginOptionsAndPlatformDiscovery (0.01s)
+=== RUN   TestMemoryKernelExportRejectsChangedOrUnrecordedReceipts
+--- PASS: TestMemoryKernelExportRejectsChangedOrUnrecordedReceipts (0.01s)
+=== RUN   TestMemoryUnavailableModulesRemainExplicit
+--- PASS: TestMemoryUnavailableModulesRemainExplicit (0.01s)
+=== RUN   TestReportSealTrustChangesAndUnexpectedFiles
+--- PASS: TestReportSealTrustChangesAndUnexpectedFiles (0.05s)
+=== RUN   TestReportSealRejectsUnsafePathsAndCancelledHashing
+--- PASS: TestReportSealRejectsUnsafePathsAndCancelledHashing (0.00s)
+=== RUN   TestResumeAcrossEpochs
+--- PASS: TestResumeAcrossEpochs (0.29s)
+=== RUN   TestResumePrefixMutationSameMetadata
+--- PASS: TestResumePrefixMutationSameMetadata (0.11s)
+=== RUN   TestResumeCorruptedChunk
+--- PASS: TestResumeCorruptedChunk (0.10s)
+=== RUN   TestResumeMetadataChange
+--- PASS: TestResumeMetadataChange (0.10s)
+=== RUN   TestResumeOptionBindingAndLock
+--- PASS: TestResumeOptionBindingAndLock (0.08s)
+=== RUN   TestResumeCompletedReuseAndFrozenInventory
+--- PASS: TestResumeCompletedReuseAndFrozenInventory (0.27s)
+=== RUN   TestResumeEmptyFileAndSkippedSources
+--- PASS: TestResumeEmptyFileAndSkippedSources (0.02s)
+=== RUN   TestResumePartManifestTamper
+--- PASS: TestResumePartManifestTamper (0.23s)
+=== RUN   TestResumePathIsolation
+--- PASS: TestResumePathIsolation (0.03s)
+=== RUN   TestResumeCheckpointPathEscape
+--- PASS: TestResumeCheckpointPathEscape (0.07s)
+=== RUN   TestInspectWork
+--- PASS: TestInspectWork (0.09s)
+=== RUN   TestRejectSystemResumable
+--- PASS: TestRejectSystemResumable (0.02s)
+=== RUN   TestReviewStableIDsAndHistory
+--- PASS: TestReviewStableIDsAndHistory (0.07s)
+=== RUN   TestReviewSignatureAndTamper
+--- PASS: TestReviewSignatureAndTamper (0.04s)
+=== RUN   TestReviewBasisMismatch
+--- PASS: TestReviewBasisMismatch (0.02s)
+=== RUN   TestReviewValidationAndEscaping
+--- PASS: TestReviewValidationAndEscaping (0.10s)
+=== RUN   TestReviewReanalysisStable
+--- PASS: TestReviewReanalysisStable (0.01s)
+=== RUN   TestRuleCorpusAccuracyAndInvalidLabels
+--- PASS: TestRuleCorpusAccuracyAndInvalidLabels (0.00s)
+=== RUN   TestSharedReportEnglishPresentation
+--- PASS: TestSharedReportEnglishPresentation (0.06s)
+=== RUN   TestShareDefaultNoSensitiveValuesOrSourceMutation
+--- PASS: TestShareDefaultNoSensitiveValuesOrSourceMutation (0.13s)
+=== RUN   TestShareSelectiveKeepAndCrossFieldRedaction
+--- PASS: TestShareSelectiveKeepAndCrossFieldRedaction (0.02s)
+=== RUN   TestShareLiteralLongestAndEscaping
+--- PASS: TestShareLiteralLongestAndEscaping (0.06s)
+=== RUN   TestSharePolicyAndExportFailures
+--- PASS: TestSharePolicyAndExportFailures (0.04s)
+=== RUN   TestShareMatchingBudgetAndEnumProjection
+--- PASS: TestShareMatchingBudgetAndEnumProjection (0.01s)
+=== RUN   TestNormalizeSnapshotTextKeepsUTF8
+--- PASS: TestNormalizeSnapshotTextKeepsUTF8 (0.00s)
+=== RUN   TestWindowsSnapshotCodePageRoundTrip
+--- PASS: TestWindowsSnapshotCodePageRoundTrip (0.00s)
+=== RUN   TestSQLiteFileURLPreservesAbsolutePath
+--- PASS: TestSQLiteFileURLPreservesAbsolutePath (0.00s)
+=== RUN   TestEncryptedResumeAndSignedOutput
+--- PASS: TestEncryptedResumeAndSignedOutput (0.29s)
+=== RUN   TestEncryptedWrongKeyAndMode
+--- PASS: TestEncryptedWrongKeyAndMode (0.10s)
+=== RUN   TestEncryptedTampering
+--- PASS: TestEncryptedTampering (0.12s)
+=== RUN   TestStageDomainSeparation
+--- PASS: TestStageDomainSeparation (0.01s)
+=== RUN   TestEncryptionKeyIsolation
+--- PASS: TestEncryptionKeyIsolation (0.05s)
+=== RUN   TestEncryptedPipelineWriteFailure
+--- PASS: TestEncryptedPipelineWriteFailure (0.22s)
+=== RUN   TestPlainWorkCannotConvertInPlace
+--- PASS: TestPlainWorkCannotConvertInPlace (0.03s)
+=== RUN   TestStructuredCSVMultiline
+--- PASS: TestStructuredCSVMultiline (0.00s)
+=== RUN   TestStructuredRejectedRecords
+--- PASS: TestStructuredRejectedRecords (0.00s)
+=== RUN   TestStructuredCSVHeadersAndErrors
+--- PASS: TestStructuredCSVHeadersAndErrors (0.00s)
+=== RUN   TestStructuredOffsetsAndLimits
+--- PASS: TestStructuredOffsetsAndLimits (0.00s)
+=== RUN   TestCorrelationSemantics
+--- PASS: TestCorrelationSemantics (0.00s)
+=== RUN   TestCorrelationReferenceLimit
+--- PASS: TestCorrelationReferenceLimit (0.00s)
+=== RUN   TestStructuredEndToEnd
+--- PASS: TestStructuredEndToEnd (0.08s)
+=== RUN   TestExaminationRechecksSHAInsteadOfOnlyZIPCRC
+--- PASS: TestExaminationRechecksSHAInsteadOfOnlyZIPCRC (0.00s)
+=== RUN   TestFileClassificationUsesVerifiedPrefixSnapshot
+--- PASS: TestFileClassificationUsesVerifiedPrefixSnapshot (0.00s)
+=== RUN   TestWindowsXMLMetadataAndEncodings
+=== RUN   TestWindowsXMLMetadataAndEncodings/utf8
+=== RUN   TestWindowsXMLMetadataAndEncodings/utf8bom
+=== RUN   TestWindowsXMLMetadataAndEncodings/utf16le
+=== RUN   TestWindowsXMLMetadataAndEncodings/utf16be
+--- PASS: TestWindowsXMLMetadataAndEncodings (0.00s)
+    --- PASS: TestWindowsXMLMetadataAndEncodings/utf8 (0.00s)
+    --- PASS: TestWindowsXMLMetadataAndEncodings/utf8bom (0.00s)
+    --- PASS: TestWindowsXMLMetadataAndEncodings/utf16le (0.00s)
+    --- PASS: TestWindowsXMLMetadataAndEncodings/utf16be (0.00s)
+=== RUN   TestWindowsXMLSemanticRejectionsContinue
+=== RUN   TestWindowsXMLSemanticRejectionsContinue/invalid_system/<System>text
+=== RUN   TestWindowsXMLSemanticRejectionsContinue/invalid_event_id/<EventID>65536</EventID>
+=== RUN   TestWindowsXMLSemanticRejectionsContinue/invalid_qualifiers/Qualifiers="65536"
+=== RUN   TestWindowsXMLSemanticRejectionsContinue/invalid_record_id/18446744073709551616
+=== RUN   TestWindowsXMLSemanticRejectionsContinue/invalid_record_id/
+=== RUN   TestWindowsXMLSemanticRejectionsContinue/invalid_level_or_version/<Level>256</Level>
+=== RUN   TestWindowsXMLSemanticRejectionsContinue/invalid_level_or_version/<Version/>
+=== RUN   TestWindowsXMLSemanticRejectionsContinue/unsupported_timestamp/2026-09-29T14:02:03
+=== RUN   TestWindowsXMLSemanticRejectionsContinue/unsupported_timestamp/2026-09-29T14:02:03.1234567891Z
+=== RUN   TestWindowsXMLSemanticRejectionsContinue/unsupported_timestamp/2026-09-29T14:02:03+24:00
+=== RUN   TestWindowsXMLSemanticRejectionsContinue/unsupported_timestamp/<TimeCreated_RawTime=""_
+=== RUN   TestWindowsXMLSemanticRejectionsContinue/invalid_host_or_user_length/<Computer/>
+=== RUN   TestWindowsXMLSemanticRejectionsContinue/ambiguous_system_field/<Computer>a</Computer><Computer>b</Computer>
+=== RUN   TestWindowsXMLSemanticRejectionsContinue/ambiguous_system_field/<Level><Other>4</Other></Level>
+=== RUN   TestWindowsXMLSemanticRejectionsContinue/ambiguous_security/<Security/><Security/>
+=== RUN   TestWindowsXMLSemanticRejectionsContinue/ambiguous_event_data/<EventData/><EventData>
+=== RUN   TestWindowsXMLSemanticRejectionsContinue/unsupported_event_data/<Nested/>
+=== RUN   TestWindowsXMLSemanticRejectionsContinue/ambiguous_rendering_info/<RenderingInfo/><RenderingInfo>
+=== RUN   TestWindowsXMLSemanticRejectionsContinue/ambiguous_message/</Message><Message>second</Message>
+=== RUN   TestWindowsXMLSemanticRejectionsContinue/unexpected_event_text/unexpected<System>
+=== RUN   TestWindowsXMLSemanticRejectionsContinue/invalid_event_data/<EventData>unexpected
+=== RUN   TestWindowsXMLSemanticRejectionsContinue/unsupported_event_data/<Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data>
+--- PASS: TestWindowsXMLSemanticRejectionsContinue (0.00s)
+    --- PASS: TestWindowsXMLSemanticRejectionsContinue/invalid_system/<System>text (0.00s)
+    --- PASS: TestWindowsXMLSemanticRejectionsContinue/invalid_event_id/<EventID>65536</EventID> (0.00s)
+    --- PASS: TestWindowsXMLSemanticRejectionsContinue/invalid_qualifiers/Qualifiers="65536" (0.00s)
+    --- PASS: TestWindowsXMLSemanticRejectionsContinue/invalid_record_id/18446744073709551616 (0.00s)
+    --- PASS: TestWindowsXMLSemanticRejectionsContinue/invalid_record_id/ (0.00s)
+    --- PASS: TestWindowsXMLSemanticRejectionsContinue/invalid_level_or_version/<Level>256</Level> (0.00s)
+    --- PASS: TestWindowsXMLSemanticRejectionsContinue/invalid_level_or_version/<Version/> (0.00s)
+    --- PASS: TestWindowsXMLSemanticRejectionsContinue/unsupported_timestamp/2026-09-29T14:02:03 (0.00s)
+    --- PASS: TestWindowsXMLSemanticRejectionsContinue/unsupported_timestamp/2026-09-29T14:02:03.1234567891Z (0.00s)
+    --- PASS: TestWindowsXMLSemanticRejectionsContinue/unsupported_timestamp/2026-09-29T14:02:03+24:00 (0.00s)
+    --- PASS: TestWindowsXMLSemanticRejectionsContinue/unsupported_timestamp/<TimeCreated_RawTime=""_ (0.00s)
+    --- PASS: TestWindowsXMLSemanticRejectionsContinue/invalid_host_or_user_length/<Computer/> (0.00s)
+    --- PASS: TestWindowsXMLSemanticRejectionsContinue/ambiguous_system_field/<Computer>a</Computer><Computer>b</Computer> (0.00s)
+    --- PASS: TestWindowsXMLSemanticRejectionsContinue/ambiguous_system_field/<Level><Other>4</Other></Level> (0.00s)
+    --- PASS: TestWindowsXMLSemanticRejectionsContinue/ambiguous_security/<Security/><Security/> (0.00s)
+    --- PASS: TestWindowsXMLSemanticRejectionsContinue/ambiguous_event_data/<EventData/><EventData> (0.00s)
+    --- PASS: TestWindowsXMLSemanticRejectionsContinue/unsupported_event_data/<Nested/> (0.00s)
+    --- PASS: TestWindowsXMLSemanticRejectionsContinue/ambiguous_rendering_info/<RenderingInfo/><RenderingInfo> (0.00s)
+    --- PASS: TestWindowsXMLSemanticRejectionsContinue/ambiguous_message/</Message><Message>second</Message> (0.00s)
+    --- PASS: TestWindowsXMLSemanticRejectionsContinue/unexpected_event_text/unexpected<System> (0.00s)
+    --- PASS: TestWindowsXMLSemanticRejectionsContinue/invalid_event_data/<EventData>unexpected (0.00s)
+    --- PASS: TestWindowsXMLSemanticRejectionsContinue/unsupported_event_data/<Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data><Data>x</Data> (0.00s)
+=== RUN   TestWindowsXMLStructureAndResourceBounds
+=== RUN   TestWindowsXMLStructureAndResourceBounds/wrong_namespace
+=== RUN   TestWindowsXMLStructureAndResourceBounds/unrelated_root
+=== RUN   TestWindowsXMLStructureAndResourceBounds/doctype
+=== RUN   TestWindowsXMLStructureAndResourceBounds/custom_entity
+=== RUN   TestWindowsXMLStructureAndResourceBounds/processing_instruction
+=== RUN   TestWindowsXMLStructureAndResourceBounds/duplicate_attribute
+=== RUN   TestWindowsXMLStructureAndResourceBounds/text_limit
+=== RUN   TestWindowsXMLStructureAndResourceBounds/attribute_limit
+=== RUN   TestWindowsXMLStructureAndResourceBounds/attribute_count
+=== RUN   TestWindowsXMLStructureAndResourceBounds/depth
+=== RUN   TestWindowsXMLStructureAndResourceBounds/nodes
+=== RUN   TestWindowsXMLStructureAndResourceBounds/record_bytes
+=== RUN   TestWindowsXMLStructureAndResourceBounds/file_bytes
+=== RUN   TestWindowsXMLStructureAndResourceBounds/tokens
+--- PASS: TestWindowsXMLStructureAndResourceBounds (0.06s)
+    --- PASS: TestWindowsXMLStructureAndResourceBounds/wrong_namespace (0.00s)
+    --- PASS: TestWindowsXMLStructureAndResourceBounds/unrelated_root (0.00s)
+    --- PASS: TestWindowsXMLStructureAndResourceBounds/doctype (0.00s)
+    --- PASS: TestWindowsXMLStructureAndResourceBounds/custom_entity (0.00s)
+    --- PASS: TestWindowsXMLStructureAndResourceBounds/processing_instruction (0.00s)
+    --- PASS: TestWindowsXMLStructureAndResourceBounds/duplicate_attribute (0.00s)
+    --- PASS: TestWindowsXMLStructureAndResourceBounds/text_limit (0.00s)
+    --- PASS: TestWindowsXMLStructureAndResourceBounds/attribute_limit (0.00s)
+    --- PASS: TestWindowsXMLStructureAndResourceBounds/attribute_count (0.00s)
+    --- PASS: TestWindowsXMLStructureAndResourceBounds/depth (0.00s)
+    --- PASS: TestWindowsXMLStructureAndResourceBounds/nodes (0.00s)
+    --- PASS: TestWindowsXMLStructureAndResourceBounds/record_bytes (0.00s)
+    --- PASS: TestWindowsXMLStructureAndResourceBounds/file_bytes (0.00s)
+    --- PASS: TestWindowsXMLStructureAndResourceBounds/tokens (0.01s)
+=== RUN   TestWindowsXMLInvalidEncodingsAndDeclarations
+--- PASS: TestWindowsXMLInvalidEncodingsAndDeclarations (0.00s)
+=== RUN   TestWindowsXMLPayloadAndMessageLimits
+--- PASS: TestWindowsXMLPayloadAndMessageLimits (0.00s)
+=== RUN   TestWindowsXMLAnalysisExportAndShare
+--- PASS: TestWindowsXMLAnalysisExportAndShare (0.24s)
+=== RUN   FuzzRules
+=== RUN   FuzzRules/seed#0
+--- PASS: FuzzRules (0.01s)
+    --- PASS: FuzzRules/seed#0 (0.01s)
+=== RUN   FuzzEnvelope
+=== RUN   FuzzEnvelope/seed#0
+--- PASS: FuzzEnvelope (0.00s)
+    --- PASS: FuzzEnvelope/seed#0 (0.00s)
+=== RUN   FuzzRegistry
+=== RUN   FuzzRegistry/seed#0
+=== RUN   FuzzRegistry/seed#1
+=== RUN   FuzzRegistry/seed#2
+--- PASS: FuzzRegistry (0.01s)
+    --- PASS: FuzzRegistry/seed#0 (0.00s)
+    --- PASS: FuzzRegistry/seed#1 (0.00s)
+    --- PASS: FuzzRegistry/seed#2 (0.00s)
+=== RUN   FuzzBinaryPlist
+=== RUN   FuzzBinaryPlist/seed#0
+=== RUN   FuzzBinaryPlist/seed#1
+--- PASS: FuzzBinaryPlist (0.01s)
+    --- PASS: FuzzBinaryPlist/seed#0 (0.01s)
+    --- PASS: FuzzBinaryPlist/seed#1 (0.01s)
+=== RUN   FuzzExternalJSON
+=== RUN   FuzzExternalJSON/seed#0
+=== RUN   FuzzExternalJSON/seed#1
+=== RUN   FuzzExternalJSON/seed#2
+=== RUN   FuzzExternalJSON/seed#3
+--- PASS: FuzzExternalJSON (0.00s)
+    --- PASS: FuzzExternalJSON/seed#0 (0.00s)
+    --- PASS: FuzzExternalJSON/seed#1 (0.00s)
+    --- PASS: FuzzExternalJSON/seed#2 (0.00s)
+    --- PASS: FuzzExternalJSON/seed#3 (0.00s)
+=== RUN   FuzzPCAP
+=== RUN   FuzzPCAP/seed#0
+=== RUN   FuzzPCAP/seed#1
+=== RUN   FuzzPCAP/seed#2
+--- PASS: FuzzPCAP (0.00s)
+    --- PASS: FuzzPCAP/seed#0 (0.00s)
+    --- PASS: FuzzPCAP/seed#1 (0.00s)
+    --- PASS: FuzzPCAP/seed#2 (0.00s)
+=== RUN   FuzzPCAPNG
+=== RUN   FuzzPCAPNG/seed#0
+=== RUN   FuzzPCAPNG/seed#1
+=== RUN   FuzzPCAPNG/seed#2
+=== RUN   FuzzPCAPNG/seed#3
+--- PASS: FuzzPCAPNG (0.00s)
+    --- PASS: FuzzPCAPNG/seed#0 (0.00s)
+    --- PASS: FuzzPCAPNG/seed#1 (0.00s)
+    --- PASS: FuzzPCAPNG/seed#2 (0.00s)
+    --- PASS: FuzzPCAPNG/seed#3 (0.00s)
+=== RUN   FuzzStructuredLogs
+=== RUN   FuzzStructuredLogs/seed#0
+=== RUN   FuzzStructuredLogs/seed#1
+--- PASS: FuzzStructuredLogs (0.00s)
+    --- PASS: FuzzStructuredLogs/seed#0 (0.00s)
+    --- PASS: FuzzStructuredLogs/seed#1 (0.00s)
+=== RUN   FuzzWindowsXML
+=== RUN   FuzzWindowsXML/seed#0
+=== RUN   FuzzWindowsXML/seed#1
+=== RUN   FuzzWindowsXML/seed#2
+=== RUN   FuzzWindowsXML/seed#3
+=== RUN   FuzzWindowsXML/seed#4
+=== RUN   FuzzWindowsXML/seed#5
+--- PASS: FuzzWindowsXML (0.00s)
+    --- PASS: FuzzWindowsXML/seed#0 (0.00s)
+    --- PASS: FuzzWindowsXML/seed#1 (0.00s)
+    --- PASS: FuzzWindowsXML/seed#2 (0.00s)
+    --- PASS: FuzzWindowsXML/seed#3 (0.00s)
+    --- PASS: FuzzWindowsXML/seed#4 (0.00s)
+    --- PASS: FuzzWindowsXML/seed#5 (0.00s)
+PASS

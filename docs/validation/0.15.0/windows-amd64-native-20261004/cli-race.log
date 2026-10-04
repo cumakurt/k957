@@ -1,0 +1,361 @@
+=== RUN   TestCaseViewerAuthorityTokenAndOrigin
+--- PASS: TestCaseViewerAuthorityTokenAndOrigin (0.00s)
+=== RUN   TestMainAndWizard
+--- PASS: TestMainAndWizard (0.04s)
+=== RUN   TestCLIFlagAndStoreEdges
+--- PASS: TestCLIFlagAndStoreEdges (0.25s)
+=== RUN   TestCLICustodyWorkflow
+k957 collect  [o-----------------------]  estimating  files  1  9 B  C:\Users\cmk\AppData\Local\Temp\TestCLICustodyWorkflow980422430\001\source\data
+k957 collect  [########################]  100%  0s  package  1/1  9 B  C:\Users\cmk\AppData\Local\Temp\TestCLICustodyWorkflow980422430\001\evidence.k957
+k957 collect  finished  0s  [########################]  100%  0s  1/1  9 B  C:\Users\cmk\AppData\Local\Temp\TestCLICustodyWorkflow980422430\001\evidence.k957
+{"acquisition":{"method":"logical-live-files","origin":"raw_file_bytes","filesystem_snapshot":false,"multi_file_atomic":false,"sqlite_transaction_consistent":false,"notes":["Files are read individually. Metadata change detection is not an atomic filesystem or multi-file snapshot.","Filesystem device identifiers do not prove physical-device separation.","SQLite main/sidecar copies may describe different transaction states. Use explicit sqlite-acquire for a separately identified logical backup."]},"schema":"k957-evidence/1","version":"0.15.0","id":"4187ac96da90f07c811e93479a4f4947","case":"T","operator":"T","scope":"Synthetic","host":"MacBookPro3","os":"windows","arch":"amd64","started":"2026-10-02T14:03:26.3643051Z","finished":"2026-10-02T14:03:26.3663115Z","status":"complete","items":[{"metadata":{"sampled":"2026-10-02T14:03:26.3663115Z","status":"partial","device":"volume_serial:1619145656","inode":"35184372089090318","links":1,"accessed":"2026-10-02T14:03:26.3643051Z","created":"2026-10-02T14:03:26.3643051Z","attributes":[{"name":"windows.security_descriptor_sddl","value_base64":"TzpCQUc6Uy0xLTUtMjEtMTMwOTk2MTQwLTI3OTQ4OTc3NDgtMzIwMzQ3MjEzMy01MTNEOihBO0lEO0ZBOzs7U1kpKEE7SUQ7RkE7OztCQSkoQTtJRDtGQTs7O1MtMS01LTIxLTEzMDk5NjE0MC0yNzk0ODk3NzQ4LTMyMDM0NzIxMzMtMTAwMSk="}],"omissions":["alternate_stream_bytes_not_collected","sacl_not_requested"]},"id":"E000001","source":"C:\\Users\\cmk\\AppData\\Local\\Temp\\TestCLICustodyWorkflow980422430\\001\\source\\data","object":"objects/E000001","kind":"file","size":9,"sha256":"b3cc0475bb78a5026098858e9889acf666d31062d513d303314eca31d36e72f2","modified":"2026-10-02T14:03:26.3643051Z","collected":"2026-10-02T14:03:26.3663115Z","mode":"-rw-rw-rw-","changed_during_acquisition":false}],"issues":[]}
+{"events":1,"head":"2ec37fccb04e646e4fc6f7e61a7f5cf257091ba75f78c622753aefde39519233","out":"C:\\Users\\cmk\\AppData\\Local\\Temp\\TestCLICustodyWorkflow980422430\\001\\register.json"}
+{"events":2,"head":"64e46f85f481eb4c930bb209d8356b3a7062690fea40f932d2739312f68cf60b","out":"C:\\Users\\cmk\\AppData\\Local\\Temp\\TestCLICustodyWorkflow980422430\\001\\transfer.json"}
+{"events":3,"head":"27eadc03e183a227d55309a91f9609ab0352b3bb0dc12aa355e4d9b3f0cdfd6e","out":"C:\\Users\\cmk\\AppData\\Local\\Temp\\TestCLICustodyWorkflow980422430\\001\\accept.json"}
+{"evidence_digest":"f47e9014fc6fcd1a4be44319794e3e62a07cf36de9c3178fdea52aa8c1aae6bb","head":"27eadc03e183a227d55309a91f9609ab0352b3bb0dc12aa355e4d9b3f0cdfd6e","current_holder":"Bob","trust":"all event signatures verified against supplied actor/key trust list","trust_digest":"377e641fa0e5260771a322bc946c33259a5795938ac6d094e559075e43c98cf7","time_assurance":"Declared recorded_at values only; no independent trusted timestamp. External trust policy controls key intervals/revocation. A compromised signer can backdate assertions.","events":[{"schema":"k957-custody-event/1","case":"T","evidence_id":"4187ac96da90f07c811e93479a4f4947","evidence_digest":"f47e9014fc6fcd1a4be44319794e3e62a07cf36de9c3178fdea52aa8c1aae6bb","sequence":1,"action":"register","actor":"Alice","from":"","to":"Alice","location":"Lab","note":"Synthetic","occurred_at":"2026-10-02T14:03:26.4073744Z","recorded_at":"2026-10-02T14:03:26.4073744Z","previous":"","signer_sha256":"f1a5f6e7e0fc0f366472397b05e3c9c8f91d2c90132c61c7a2a57af5ed268b69"},{"schema":"k957-custody-event/1","case":"T","evidence_id":"4187ac96da90f07c811e93479a4f4947","evidence_digest":"f47e9014fc6fcd1a4be44319794e3e62a07cf36de9c3178fdea52aa8c1aae6bb","sequence":2,"action":"transfer","actor":"Alice","from":"Alice","to":"Bob","location":"Lab","note":"Synthetic","occurred_at":"2026-10-02T14:03:26.4161968Z","recorded_at":"2026-10-02T14:03:26.4161968Z","previous":"2ec37fccb04e646e4fc6f7e61a7f5cf257091ba75f78c622753aefde39519233","signer_sha256":"f1a5f6e7e0fc0f366472397b05e3c9c8f91d2c90132c61c7a2a57af5ed268b69"},{"schema":"k957-custody-event/1","case":"T","evidence_id":"4187ac96da90f07c811e93479a4f4947","evidence_digest":"f47e9014fc6fcd1a4be44319794e3e62a07cf36de9c3178fdea52aa8c1aae6bb","sequence":3,"action":"accept","actor":"Bob","from":"Alice","to":"Bob","location":"Lab","note":"Synthetic","occurred_at":"2026-10-02T14:03:26.4640254Z","recorded_at":"2026-10-02T14:03:26.4640254Z","previous":"64e46f85f481eb4c930bb209d8356b3a7062690fea40f932d2739312f68cf60b","signer_sha256":"429bd3cbdbc5e69f5d804fa8266eb1d0696d7bccf475ec687f681f1adf037d8d"}]}
+k957 analyze  [------------------------]    0%  estimating  examine  0/1  C:\Users\cmk\AppData\Local\Temp\TestCLICustodyWorkflow980422430\001\evidence.k957
+k957 analyze  [###################-----]   80%  estimating  examine  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLICustodyWorkflow980422430\001\source\data
+k957 analyze  [###################-----]   80%  estimating  report  0/1  C:\Users\cmk\AppData\Local\Temp\TestCLICustodyWorkflow980422430\001\report
+k957 analyze  [########################]  100%  0s  report  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLICustodyWorkflow980422430\001\report
+k957 analyze  finished  0s  [########################]  100%  0s  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLICustodyWorkflow980422430\001\report
+Report: C:\Users\cmk\AppData\Local\Temp\TestCLICustodyWorkflow980422430\001\report/report.html
+PDF: C:\Users\cmk\AppData\Local\Temp\TestCLICustodyWorkflow980422430\001\report/report.pdf
+flag provided but not defined: -bad
+Usage of custody:
+  -action string
+    	register, transfer, accept, cancel or note
+  -actor string
+    	exact actor identifier in trust list
+  -anchor string
+    	externally retained signed custody head; custody-verify
+  -anchor-key string
+    	required external witness public key for --anchor
+  -at string
+    	declared RFC3339 event time; defaults to now
+  -expected-head string
+    	independently retained previous/current custody head
+  -in string
+    	verified plaintext .k957 evidence package
+  -location string
+    	declared storage/handover location
+  -note string
+    	required reason or observation
+  -out string
+    	new custody ledger JSON
+  -previous string
+    	previous custody ledger; omitted for register
+  -sign-key string
+    	required actor Ed25519 private key
+  -to string
+    	recipient for transfer only
+  -trust string
+    	required external actor/public-key trust JSON
+  -trusted-key string
+    	trusted evidence package signing key
+k957 analyze  [------------------------]    0%  estimating  examine  0/1  C:\Users\cmk\AppData\Local\Temp\TestCLICustodyWorkflow980422430\001\evidence.k957
+k957 analyze  [###################-----]   80%  estimating  examine  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLICustodyWorkflow980422430\001\source\data
+k957 verify  [------------------------]    0%  estimating  verify  0/1  C:\Users\cmk\AppData\Local\Temp\TestCLICustodyWorkflow980422430\001\evidence.k957
+--- PASS: TestCLICustodyWorkflow (0.46s)
+=== RUN   TestHashSetFindingCanBeReviewedOnReanalysis
+k957 analyze  [------------------------]    0%  estimating  examine  0/1  C:\Users\cmk\AppData\Local\Temp\TestHashSetFindingCanBeReviewedOnReanalysis32592452...
+k957 analyze  [###################-----]   80%  estimating  examine  1/1  C:\Users\cmk\AppData\Local\Temp\TestHashSetFindingCanBeReviewedOnReanalysis32592452...
+k957 analyze  [###################-----]   80%  estimating  report  0/1  C:\Users\cmk\AppData\Local\Temp\TestHashSetFindingCanBeReviewedOnReanalysis325924528...
+k957 analyze  [########################]  100%  0s  report  1/1  C:\Users\cmk\AppData\Local\Temp\TestHashSetFindingCanBeReviewedOnReanalysis3259245289\001\re...
+k957 analyze  finished  0s  [########################]  100%  0s  1/1  C:\Users\cmk\AppData\Local\Temp\TestHashSetFindingCanBeReviewedOnReanalysis3259245289\...
+Report: C:\Users\cmk\AppData\Local\Temp\TestHashSetFindingCanBeReviewedOnReanalysis3259245289\001\report/report.html
+PDF: C:\Users\cmk\AppData\Local\Temp\TestHashSetFindingCanBeReviewedOnReanalysis3259245289\001\report/report.pdf
+k957 analyze  [------------------------]    0%  estimating  examine  0/1  C:\Users\cmk\AppData\Local\Temp\TestHashSetFindingCanBeReviewedOnReanalysis32592452...
+k957 analyze  [###################-----]   80%  estimating  examine  1/1  C:\Users\cmk\AppData\Local\Temp\TestHashSetFindingCanBeReviewedOnReanalysis32592452...
+k957 analyze  [###################-----]   80%  estimating  report  0/1  C:\Users\cmk\AppData\Local\Temp\TestHashSetFindingCanBeReviewedOnReanalysis325924528...
+k957 analyze  [########################]  100%  0s  report  1/1  C:\Users\cmk\AppData\Local\Temp\TestHashSetFindingCanBeReviewedOnReanalysis3259245289\001\re...
+k957 analyze  finished  0s  [########################]  100%  0s  1/1  C:\Users\cmk\AppData\Local\Temp\TestHashSetFindingCanBeReviewedOnReanalysis3259245289\...
+Report: C:\Users\cmk\AppData\Local\Temp\TestHashSetFindingCanBeReviewedOnReanalysis3259245289\001\reviewed/report.html
+PDF: C:\Users\cmk\AppData\Local\Temp\TestHashSetFindingCanBeReviewedOnReanalysis3259245289\001\reviewed/report.pdf
+--- PASS: TestHashSetFindingCanBeReviewedOnReanalysis (0.61s)
+=== RUN   TestStopOnInterrupt
+--- PASS: TestStopOnInterrupt (0.00s)
+=== RUN   TestCLIWorkflow
+k957 0.15.0
+k957 0.15.0 — offline forensic triage, verification and examination
+License: GNU AGPL-3.0-or-later. https://www.gnu.org/licenses/agpl-3.0.html
+Commands:
+  wizard           interactive English collection / analysis assistant
+  preflight        inspect inventory and estimated destination space without writing
+  collect          collect files; with no arguments, run a full triage into ./output
+  source-import    collect selected offline CloudTrail JSON/gzip exports with provenance
+  sqlite-acquire   collect a separate transaction-consistent logical SQLite backup
+  work-status      inspect resumable acquisition progress and verify parts
+  verify           verify one package, or every collection under ./output
+  analyze          report one package, or every collection under ./output
+  case             examine every collection under ./output as one dossier
+  case-query       search scoped events, findings, reviews and inventory
+  case-assistant   select cited quotations and proposals with an explicit local model
+  assistant-review record a separate signed examiner decision on an assistant proposal
+  case-correlate   derive scoped temporal candidates with explicit clock estimates
+  case-bookmark    save a signed investigation note and an explicitly covered query page
+  case-serve       open a token-protected read-only loopback examiner UI
+  rules-evaluate   retain true/false positive/negative counts for a labelled corpus
+  report-seal      sign every derived report file and its source bindings
+  report-verify    verify a report bundle with optional external signer trust
+  report-documents generate native PDF/DOCX with source references and coverage
+  disk-examine     examine a verified private raw-image copy using Sleuth Kit
+  disk-recover     recover an explicitly scoped inode using Sleuth Kit
+  memory-examine   enumerate kernel objects with recorded offline Volatility tools
+  share            export a separate masked HTML/JSON/CSV report
+  review           append an analyst decision to a new review ledger
+  custody          append a signed custody declaration to a new ledger
+  custody-anchor   sign a custody head for independent external retention
+  custody-verify   verify every custody signature, actor, transition and head
+  keygen           create Ed25519 .key/.pub signing key pair
+  encryption-key   generate a random AES-256 transport key
+  seal / unseal    encrypt/decrypt files in authenticated streaming frames
+  version          show release version
+  build-info       show compiler, target, pinned modules and source identity
+Use k957 <command> -h for flags. Flag help exits 0. All explicit outputs must be new paths.
+collect, preflight, verify, analyze, case and share write a live progress summary to stderr. It shows the phase, the current item, a percent when the amount of work is known, and an estimated remaining time. That summary is not stored as evidence. JSON results stay on stdout.
+Ctrl+C stops the process immediately from any command or phase and exits 130. It does not finish the current file, seal a partial collection, or wait for a child command.
+On a terminal, full collect, verify, analyze and case print a grouped summary. The complete collect record stays in collection.json. Piped stdout still receives JSON.
+Examples:
+  k957 collect
+  k957 verify
+  k957 analyze
+  k957 case
+  k957 collect --root ./evidence --out ./case.k957 --case CASE-1 --operator Analyst --scope "Approved directory"
+  k957 analyze --in ./case.k957 --out ./report --rules ./examples/rules.json
+k957 collect  [o-----------------------]  estimating  files  1  26 B  C:\Users\cmk\AppData\Local\Temp\TestCLIWorkflow1058172525\001\src\log.txt
+k957 collect  [########################]  100%  0s  package  1/1  26 B  C:\Users\cmk\AppData\Local\Temp\TestCLIWorkflow1058172525\001\evidence.k957
+k957 collect  finished  0s  [########################]  100%  0s  1/1  26 B  C:\Users\cmk\AppData\Local\Temp\TestCLIWorkflow1058172525\001\evidence.k957
+{"acquisition":{"method":"logical-live-files","origin":"raw_file_bytes","filesystem_snapshot":false,"multi_file_atomic":false,"sqlite_transaction_consistent":false,"notes":["Files are read individually. Metadata change detection is not an atomic filesystem or multi-file snapshot.","Filesystem device identifiers do not prove physical-device separation.","SQLite main/sidecar copies may describe different transaction states. Use explicit sqlite-acquire for a separately identified logical backup."]},"schema":"k957-evidence/1","version":"0.15.0","id":"06fb4f2fa24fd88d9a86aa1298076306","case":"T","operator":"T","scope":"Test","host":"MacBookPro3","os":"windows","arch":"amd64","started":"2026-10-02T14:03:27.4600977Z","finished":"2026-10-02T14:03:27.4640234Z","status":"complete","items":[{"metadata":{"sampled":"2026-10-02T14:03:27.461803Z","status":"partial","device":"volume_serial:1619145656","inode":"35747322042511630","links":1,"accessed":"2026-10-02T14:03:27.4346271Z","created":"2026-10-02T14:03:27.4346271Z","attributes":[{"name":"windows.security_descriptor_sddl","value_base64":"TzpCQUc6Uy0xLTUtMjEtMTMwOTk2MTQwLTI3OTQ4OTc3NDgtMzIwMzQ3MjEzMy01MTNEOihBO0lEO0ZBOzs7U1kpKEE7SUQ7RkE7OztCQSkoQTtJRDtGQTs7O1MtMS01LTIxLTEzMDk5NjE0MC0yNzk0ODk3NzQ4LTMyMDM0NzIxMzMtMTAwMSk="}],"omissions":["alternate_stream_bytes_not_collected","sacl_not_requested"]},"id":"E000001","source":"C:\\Users\\cmk\\AppData\\Local\\Temp\\TestCLIWorkflow1058172525\\001\\src\\log.txt","object":"objects/E000001","kind":"file","size":26,"sha256":"630c8c824f7dd4d7b5f114a453453fbe515339de7f2a9f56ec672c28f1e3101d","modified":"2026-10-02T14:03:27.4346271Z","collected":"2026-10-02T14:03:27.4629517Z","mode":"-rw-rw-rw-","changed_during_acquisition":false}],"issues":[]}
+k957 verify  [------------------------]    0%  estimating  verify  0/1  C:\Users\cmk\AppData\Local\Temp\TestCLIWorkflow1058172525\001\evidence.k957
+k957 verify  [########################]  100%  0s  verify  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIWorkflow1058172525\001\evidence.k957
+k957 verify  finished  0s  [########################]  100%  0s  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIWorkflow1058172525\001\evidence.k957
+{"collection_status":"complete","integrity":"verified","issues":[],"items":1,"signature":"verified against supplied trusted key"}
+k957 analyze  [------------------------]    0%  estimating  examine  0/1  C:\Users\cmk\AppData\Local\Temp\TestCLIWorkflow1058172525\001\evidence.k957
+k957 analyze  [###################-----]   80%  estimating  examine  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIWorkflow1058172525\001\src\log.txt
+k957 analyze  [###################-----]   80%  estimating  report  0/1  C:\Users\cmk\AppData\Local\Temp\TestCLIWorkflow1058172525\001\report
+k957 analyze  [########################]  100%  0s  report  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIWorkflow1058172525\001\report
+k957 analyze  finished  0s  [########################]  100%  0s  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIWorkflow1058172525\001\report
+Report: C:\Users\cmk\AppData\Local\Temp\TestCLIWorkflow1058172525\001\report/report.html
+PDF: C:\Users\cmk\AppData\Local\Temp\TestCLIWorkflow1058172525\001\report/report.pdf
+k957 verify  [------------------------]    0%  estimating  verify  0/1  C:\Users\cmk\AppData\Local\Temp\TestCLIWorkflow1058172525\001\evidence.k957.restored
+k957 verify  [########################]  100%  0s  verify  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIWorkflow1058172525\001\evidence.k957.restored
+k957 verify  finished  0s  [########################]  100%  0s  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIWorkflow1058172525\001\evidence.k957.restored
+{"collection_status":"complete","integrity":"verified","issues":[],"items":1,"signature":"present, not authenticated"}
+--- PASS: TestCLIWorkflow (0.35s)
+=== RUN   TestCLIErrors
+k957 verify  [------------------------]    0%  estimating  verify  0/1  missing
+k957 analyze  [------------------------]    0%  estimating  examine  0/1  missing
+flag provided but not defined: -bad-flag
+Usage of collect:
+  -case string
+    	case identifier
+  -check-space
+    	run preflight before a fresh or resumed logical acquisition
+  -encryption-key string
+    	encrypt staging and final output; requires --work
+  -max-file int
+    	maximum bytes per source (default 268435456)
+  -max-files int
+    	maximum source count (default 10000)
+  -max-total int
+    	maximum acquired bytes (default 2147483648)
+  -operator string
+    	operator name
+  -out string
+    	new .k957 package outside source tree
+  -reserve int
+    	space reserve used by --check-space (default 268435456)
+  -resume
+    	resume an existing --work with identical scope and limits
+  -root string
+    	directory to collect recursively
+  -scope string
+    	authorized collection scope
+  -sign-key string
+    	optional Ed25519 private key file
+  -system
+    	opt-in live system snapshots
+  -timeout duration
+    	collection deadline (default 30m0s)
+  -work string
+    	resumable staging directory outside source/output (logical files only)
+--- PASS: TestCLIErrors (0.00s)
+=== RUN   TestCLIResumable
+k957 collect  [o-----------------------]  estimating  inventory  1  25 B  C:\Users\cmk\AppData\Local\Temp\TestCLIResumable3907731347\001\source\log
+k957 collect  [######################--]   90%  estimating  files  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIResumable3907731347\001\source\log
+k957 collect  [########################]  100%  0s  package  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIResumable3907731347\001\one
+k957 collect  finished  0s  [########################]  100%  0s  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIResumable3907731347\001\one
+{"acquisition":{"method":"logical-resumable-files","origin":"raw_file_bytes","filesystem_snapshot":false,"multi_file_atomic":false,"sqlite_transaction_consistent":false,"notes":["Files are read individually. Metadata change detection is not an atomic filesystem or multi-file snapshot.","Filesystem device identifiers do not prove physical-device separation.","SQLite main/sidecar copies may describe different transaction states. Use explicit sqlite-acquire for a separately identified logical backup.","Parts can originate from multiple invocation epochs. Metadata is sampled when that file is first opened for acquisition; its epoch is recorded separately from part epochs."]},"epochs":[{"host":"MacBookPro3","os":"windows","arch":"amd64","id":"bb827e4abc7592850546c3d2c809b00a","started":"2026-10-02T14:03:27.7995687Z","finished":"2026-10-02T14:03:27.8160232Z","outcome":"completed"}],"inventory_frozen":true,"schema":"k957-evidence/2","version":"0.15.0","id":"cf6607fba40cd226e1b1f26be42befb1","case":"T","operator":"T","scope":"T","host":"MacBookPro3","os":"windows","arch":"amd64","started":"2026-10-02T14:03:27.7957042Z","finished":"2026-10-02T14:03:27.8160232Z","status":"complete","items":[{"metadata":{"sampled":"2026-10-02T14:03:27.8067362Z","epoch":"bb827e4abc7592850546c3d2c809b00a","status":"partial","device":"volume_serial:1619145656","inode":"36028797019222286","links":1,"accessed":"2026-10-02T14:03:27.7900928Z","created":"2026-10-02T14:03:27.7895175Z","attributes":[{"name":"windows.security_descriptor_sddl","value_base64":"TzpCQUc6Uy0xLTUtMjEtMTMwOTk2MTQwLTI3OTQ4OTc3NDgtMzIwMzQ3MjEzMy01MTNEOihBO0lEO0ZBOzs7U1kpKEE7SUQ7RkE7OztCQSkoQTtJRDtGQTs7O1MtMS01LTIxLTEzMDk5NjE0MC0yNzk0ODk3NzQ4LTMyMDM0NzIxMzMtMTAwMSk="}],"omissions":["alternate_stream_bytes_not_collected","sacl_not_requested"]},"parts":[{"offset":0,"size":25,"sha256":"c336aa26da7d3b7993d2e378f0d1edb3064bcf1dff98f12cc662f5821fce3b6c","epoch":"bb827e4abc7592850546c3d2c809b00a","acquired":"2026-10-02T14:03:27.8099372Z"}],"id":"E000001","source":"C:\\Users\\cmk\\AppData\\Local\\Temp\\TestCLIResumable3907731347\\001\\source\\log","object":"objects/E000001","kind":"file","size":25,"sha256":"c336aa26da7d3b7993d2e378f0d1edb3064bcf1dff98f12cc662f5821fce3b6c","modified":"2026-10-02T14:03:27.7900928Z","collected":"2026-10-02T14:03:27.8133599Z","mode":"-rw-rw-rw-","changed_during_acquisition":false}],"issues":[]}
+{"encrypted":false,"case":"T","source":"C:\\Users\\cmk\\AppData\\Local\\Temp\\TestCLIResumable3907731347\\001\\source","files":1,"completed_files":1,"acquired_bytes":25,"planned_bytes":25,"parts":1,"parts_verified":true,"lock_present":false,"epochs":[{"host":"MacBookPro3","os":"windows","arch":"amd64","id":"bb827e4abc7592850546c3d2c809b00a","started":"2026-10-02T14:03:27.7995687Z","finished":"2026-10-02T14:03:27.8160232Z","outcome":"completed"}]}
+k957 collect  [######################--]   90%  estimating  files  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIResumable3907731347\001\source\log
+k957 collect  [########################]  100%  0s  package  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIResumable3907731347\001\two
+k957 collect  finished  0s  [########################]  100%  0s  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIResumable3907731347\001\two
+{"acquisition":{"method":"logical-resumable-files","origin":"raw_file_bytes","filesystem_snapshot":false,"multi_file_atomic":false,"sqlite_transaction_consistent":false,"notes":["Files are read individually. Metadata change detection is not an atomic filesystem or multi-file snapshot.","Filesystem device identifiers do not prove physical-device separation.","SQLite main/sidecar copies may describe different transaction states. Use explicit sqlite-acquire for a separately identified logical backup.","Parts can originate from multiple invocation epochs. Metadata is sampled when that file is first opened for acquisition; its epoch is recorded separately from part epochs."]},"epochs":[{"host":"MacBookPro3","os":"windows","arch":"amd64","id":"bb827e4abc7592850546c3d2c809b00a","started":"2026-10-02T14:03:27.7995687Z","finished":"2026-10-02T14:03:27.8160232Z","outcome":"completed"},{"host":"MacBookPro3","os":"windows","arch":"amd64","id":"488f94440f1da8b8d6c67af84f191ec5","started":"2026-10-02T14:03:27.8500133Z","finished":"2026-10-02T14:03:27.8545269Z","outcome":"completed"}],"inventory_frozen":true,"schema":"k957-evidence/2","version":"0.15.0","id":"cf6607fba40cd226e1b1f26be42befb1","case":"T","operator":"T","scope":"T","host":"MacBookPro3","os":"windows","arch":"amd64","started":"2026-10-02T14:03:27.7957042Z","finished":"2026-10-02T14:03:27.8545269Z","status":"complete","items":[{"metadata":{"sampled":"2026-10-02T14:03:27.8067362Z","epoch":"bb827e4abc7592850546c3d2c809b00a","status":"partial","device":"volume_serial:1619145656","inode":"36028797019222286","links":1,"accessed":"2026-10-02T14:03:27.7900928Z","created":"2026-10-02T14:03:27.7895175Z","attributes":[{"name":"windows.security_descriptor_sddl","value_base64":"TzpCQUc6Uy0xLTUtMjEtMTMwOTk2MTQwLTI3OTQ4OTc3NDgtMzIwMzQ3MjEzMy01MTNEOihBO0lEO0ZBOzs7U1kpKEE7SUQ7RkE7OztCQSkoQTtJRDtGQTs7O1MtMS01LTIxLTEzMDk5NjE0MC0yNzk0ODk3NzQ4LTMyMDM0NzIxMzMtMTAwMSk="}],"omissions":["alternate_stream_bytes_not_collected","sacl_not_requested"]},"parts":[{"offset":0,"size":25,"sha256":"c336aa26da7d3b7993d2e378f0d1edb3064bcf1dff98f12cc662f5821fce3b6c","epoch":"bb827e4abc7592850546c3d2c809b00a","acquired":"2026-10-02T14:03:27.8099372Z"}],"id":"E000001","source":"C:\\Users\\cmk\\AppData\\Local\\Temp\\TestCLIResumable3907731347\\001\\source\\log","object":"objects/E000001","kind":"file","size":25,"sha256":"c336aa26da7d3b7993d2e378f0d1edb3064bcf1dff98f12cc662f5821fce3b6c","modified":"2026-10-02T14:03:27.7900928Z","collected":"2026-10-02T14:03:27.8133599Z","mode":"-rw-rw-rw-","changed_during_acquisition":false}],"issues":[]}
+--- PASS: TestCLIResumable (0.08s)
+=== RUN   TestCLIReview
+k957 collect  [o-----------------------]  estimating  files  1  15 B  C:\Users\cmk\AppData\Local\Temp\TestCLIReview676707876\001\src\log
+k957 collect  [########################]  100%  0s  package  1/1  15 B  C:\Users\cmk\AppData\Local\Temp\TestCLIReview676707876\001\case
+k957 collect  finished  0s  [########################]  100%  0s  1/1  15 B  C:\Users\cmk\AppData\Local\Temp\TestCLIReview676707876\001\case
+{"acquisition":{"method":"logical-live-files","origin":"raw_file_bytes","filesystem_snapshot":false,"multi_file_atomic":false,"sqlite_transaction_consistent":false,"notes":["Files are read individually. Metadata change detection is not an atomic filesystem or multi-file snapshot.","Filesystem device identifiers do not prove physical-device separation.","SQLite main/sidecar copies may describe different transaction states. Use explicit sqlite-acquire for a separately identified logical backup."]},"schema":"k957-evidence/1","version":"0.15.0","id":"2beeec97fdc8f6f607a4bf3c59d4a229","case":"T","operator":"T","scope":"T","host":"MacBookPro3","os":"windows","arch":"amd64","started":"2026-10-02T14:03:27.8689231Z","finished":"2026-10-02T14:03:27.8795474Z","status":"complete","items":[{"metadata":{"sampled":"2026-10-02T14:03:27.876613Z","status":"partial","device":"volume_serial:1619145656","inode":"36310271995932942","links":1,"accessed":"2026-10-02T14:03:27.8674179Z","created":"2026-10-02T14:03:27.8668562Z","attributes":[{"name":"windows.security_descriptor_sddl","value_base64":"TzpCQUc6Uy0xLTUtMjEtMTMwOTk2MTQwLTI3OTQ4OTc3NDgtMzIwMzQ3MjEzMy01MTNEOihBO0lEO0ZBOzs7U1kpKEE7SUQ7RkE7OztCQSkoQTtJRDtGQTs7O1MtMS01LTIxLTEzMDk5NjE0MC0yNzk0ODk3NzQ4LTMyMDM0NzIxMzMtMTAwMSk="}],"omissions":["alternate_stream_bytes_not_collected","sacl_not_requested"]},"id":"E000001","source":"C:\\Users\\cmk\\AppData\\Local\\Temp\\TestCLIReview676707876\\001\\src\\log","object":"objects/E000001","kind":"file","size":15,"sha256":"324cc7150489f06ae9479a79beffef1c5aec4146a2dc4f610d2cb20a900da07e","modified":"2026-10-02T14:03:27.8674179Z","collected":"2026-10-02T14:03:27.8795474Z","mode":"-rw-rw-rw-","changed_during_acquisition":false}],"issues":[]}
+k957 analyze  [------------------------]    0%  estimating  examine  0/1  C:\Users\cmk\AppData\Local\Temp\TestCLIReview676707876\001\case
+k957 analyze  [###################-----]   80%  estimating  examine  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIReview676707876\001\src\log
+k957 analyze  [###################-----]   80%  estimating  report  0/1  C:\Users\cmk\AppData\Local\Temp\TestCLIReview676707876\001\report
+k957 analyze  [########################]  100%  0s  report  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIReview676707876\001\report
+k957 analyze  finished  0s  [########################]  100%  0s  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIReview676707876\001\report
+Report: C:\Users\cmk\AppData\Local\Temp\TestCLIReview676707876\001\report/report.html
+PDF: C:\Users\cmk\AppData\Local\Temp\TestCLIReview676707876\001\report/report.pdf
+k957 analyze  [------------------------]    0%  estimating  examine  0/1  C:\Users\cmk\AppData\Local\Temp\TestCLIReview676707876\001\case
+k957 analyze  [###################-----]   80%  estimating  examine  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIReview676707876\001\src\log
+k957 analyze  [###################-----]   80%  estimating  report  0/1  C:\Users\cmk\AppData\Local\Temp\TestCLIReview676707876\001\reviewed
+k957 analyze  [########################]  100%  0s  report  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIReview676707876\001\reviewed
+k957 analyze  finished  0s  [########################]  100%  0s  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIReview676707876\001\reviewed
+Report: C:\Users\cmk\AppData\Local\Temp\TestCLIReview676707876\001\reviewed/report.html
+PDF: C:\Users\cmk\AppData\Local\Temp\TestCLIReview676707876\001\reviewed/report.pdf
+--- PASS: TestCLIReview (0.45s)
+=== RUN   TestCLIEncryptedCollection
+k957 collect  [o-----------------------]  estimating  inventory  1  15 B  C:\Users\cmk\AppData\Local\Temp\TestCLIEncryptedCollection90302221\001\src\file
+k957 collect  [######################--]   90%  estimating  files  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIEncryptedCollection90302221\001\src\file
+k957 collect  [########################]  100%  0s  package  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIEncryptedCollection90302221\001\encrypted
+k957 collect  finished  0s  [########################]  100%  0s  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIEncryptedCollection90302221\001\encrypted
+{"encrypted":true,"issues":0,"items":1,"status":"complete"}
+{"encrypted":true,"case":"T","source":"C:\\Users\\cmk\\AppData\\Local\\Temp\\TestCLIEncryptedCollection90302221\\001\\src","files":1,"completed_files":1,"acquired_bytes":15,"planned_bytes":15,"parts":1,"parts_verified":true,"lock_present":false,"epochs":[{"host":"MacBookPro3","os":"windows","arch":"amd64","id":"0cdb883de5d52de9f3cc4bc0c3c24a16","started":"2026-10-02T14:03:28.3411074Z","finished":"2026-10-02T14:03:28.363138Z","outcome":"completed"}]}
+k957 verify  [------------------------]    0%  estimating  verify  0/1  C:\Users\cmk\AppData\Local\Temp\TestCLIEncryptedCollection90302221\001\plain
+k957 verify  [########################]  100%  0s  verify  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIEncryptedCollection90302221\001\plain
+k957 verify  finished  0s  [########################]  100%  0s  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIEncryptedCollection90302221\001\plain
+{"collection_status":"complete","integrity":"verified","issues":[],"items":1,"signature":"unsigned"}
+--- PASS: TestCLIEncryptedCollection (0.11s)
+=== RUN   TestCLIFullMode
+Usage of collect:
+  -case string
+    	case identifier
+  -check-space
+    	run preflight before a fresh or resumed logical acquisition
+  -encryption-key string
+    	encrypt staging and final output; requires --work
+  -max-file int
+    	maximum bytes per source (default 268435456)
+  -max-files int
+    	maximum source count (default 10000)
+  -max-total int
+    	maximum acquired bytes (default 2147483648)
+  -operator string
+    	operator name
+  -out string
+    	new .k957 package outside source tree
+  -reserve int
+    	space reserve used by --check-space (default 268435456)
+  -resume
+    	resume an existing --work with identical scope and limits
+  -root string
+    	directory to collect recursively
+  -scope string
+    	authorized collection scope
+  -sign-key string
+    	optional Ed25519 private key file
+  -system
+    	opt-in live system snapshots
+  -timeout duration
+    	collection deadline (default 30m0s)
+  -work string
+    	resumable staging directory outside source/output (logical files only)
+k957 collect  [###---------------------]   14%  estimating  prepare  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIFullMode528821328\001\output\MacBookPro3\202...
+k957 collect  [o-----------------------]  estimating  files  1  46 B  C:\Users\cmk\AppData\Local\Temp\TestCLIFullMode528821328\001\src\auth.log
+k957 collect  [#####################---]   86%  estimating  package  1/1  46 B  C:\Users\cmk\AppData\Local\Temp\TestCLIFullMode528821328\001\output\MacBookPr...
+k957 collect  [#####################---]   86%  estimating  seal  0/1  collection record
+k957 collect  [########################]  100%  0s  seal  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIFullMode528821328\001\output\MacBookPro3\20261002T140328Z
+k957 collect  finished  0s  [########################]  100%  0s  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIFullMode528821328\001\output\MacBookPro3\202610...
+collection: C:\Users\cmk\AppData\Local\Temp\TestCLIFullMode528821328\001\output\MacBookPro3\20261002T140328Z
+signing fingerprint: 40c1f5b50caed1f303efb6c3d1c038a6ce2c2411780d98202a74d70f614ff344
+private signing key was discarded; record the fingerprint independently
+{"schema":"k957-collection/1","version":"0.15.0","id":"83a2db54c4869de6e116f92d78712be3","case":"T","operator":"T","scope":"T","host":"MacBookPro3","os":"windows","arch":"amd64","started":"2026-10-02T14:03:28.4343189Z","finished":"2026-10-02T14:03:28.5133881Z","status":"complete","privileged":true,"full":true,"generated_key":true,"directory":"C:\\Users\\cmk\\AppData\\Local\\Temp\\TestCLIFullMode528821328\\001\\output\\MacBookPro3\\20261002T140328Z","public_key":"595a0169be4d721494f6b1486e68471d1bc8a7a85918e30fe3dc016e14337eee","fingerprint":"40c1f5b50caed1f303efb6c3d1c038a6ce2c2411780d98202a74d70f614ff344","collector_sha256":"625ba22d39e2be9b73dc83d2e9d285bd94dc2226fca3efc10d1732a2ce235997","evidence":"evidence.k957","artifacts":[{"name":"signing.pub","kind":"signing-key","size":65,"sha256":"11fae2ae0c515d563c386e2afbcf936c1fff2d55b8d1b6c3ecc7365343631195","sha1":"a231ad0d274ebc950cb43907ac8f5e8121bce350","md5":"99e8763c00d47e2a451a8ae97c959d45"},{"name":"evidence.k957","kind":"evidence","size":1588,"sha256":"4476ad737ed73cfa97426cceeb3867c74adfb00061e6e0d2cf58cb0fb13abe4d","sha1":"a1cccab8c1e0ea888e2c663ddbba021360c7d89a","md5":"4a3d2237a11e25247b63d7fc8787c379"}],"absent":[],"issues":[],"notes":["Full mode follows RFC 3227 order of volatility: physical memory, then live system state, then filesystem artifacts.","The Ed25519 signature in collection.sig covers the exact collection.json bytes. SHA256SUMS is a coreutils-compatible hash list and excludes itself and the derived reports/ directory.","A generated signing key proves this record and the evidence package match each other. It is not an external trust anchor; record the fingerprint independently.","collector_sha256 is the SHA-256 of the k957 executable that wrote this record. Compare it with a copy of the tool obtained independently."]}
+k957 verify  [------------------------]    0%  estimating  verify  read workload 0 B / 5.3 KiB  C:\Users\cmk\AppData\Local\Temp\TestCLIFullMode528821328\001\...
+k957 verify  [#######-----------------]   30%  estimating  verify  read workload 1.6 KiB / 5.3 KiB  evidence.k957
+k957 verify  [################--------]   68%  estimating  verify  read workload 3.6 KiB / 5.3 KiB  collection.json
+k957 verify  [########################]   99%  estimating  verify  read workload 5.2 KiB / 5.3 KiB  evidence.k957
+k957 verify  [########################]  100%  0s  verify  read workload 5.3 KiB / 5.3 KiB  signing.pub
+k957 verify  finished  0s  [########################]  100%  0s  read workload 5.3 KiB  signing.pub
+{"root":"output","collections":[{"directory":"C:\\Users\\cmk\\AppData\\Local\\Temp\\TestCLIFullMode528821328\\001\\output\\MacBookPro3\\20261002T140328Z","status":"verified","signature":"verified against embedded key; not an external trust anchor","collection_status":"complete","evidence":"evidence.k957"}],"verified":1,"failed":0}
+k957 analyze  [------------------------]    0%  estimating  analyze  read workload 0 B / 5.3 KiB  C:\Users\cmk\AppData\Local\Temp\TestCLIFullMode528821328\00...
+k957 analyze  [#######-----------------]   30%  estimating  analyze  read workload 1.6 KiB / 5.3 KiB  evidence.k957
+k957 analyze  [################--------]   68%  estimating  analyze  read workload 3.6 KiB / 5.3 KiB  collection.json
+k957 analyze  [########################]   99%  estimating  analyze  read workload 5.2 KiB / 5.3 KiB  evidence.k957
+k957 analyze  [########################]  100%  0s  analyze  read workload 5.3 KiB / 5.3 KiB  signing.pub
+k957 analyze  [########################]  100%  0s  examine  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIFullMode528821328\001\src\auth.log
+k957 analyze  finished  0s  [########################]  100%  0s  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIFullMode528821328\001\src\auth.log
+{"root":"output","collections":[{"directory":"C:\\Users\\cmk\\AppData\\Local\\Temp\\TestCLIFullMode528821328\\001\\output\\MacBookPro3\\20261002T140328Z","status":"analyzed","report":"C:\\Users\\cmk\\AppData\\Local\\Temp\\TestCLIFullMode528821328\\001\\output\\MacBookPro3\\20261002T140328Z\\reports\\20261002T140328Z","findings":1}],"analyzed":1,"failed":0}
+Report: C:\Users\cmk\AppData\Local\Temp\TestCLIFullMode528821328\001\output\MacBookPro3\20261002T140328Z\reports\20261002T140328Z/report.html
+--- PASS: TestCLIFullMode (0.44s)
+=== RUN   TestCLIPreflight
+k957 preflight  [o-----------------------]  estimating  inventory  1  7 B  C:\Users\cmk\AppData\Local\Temp\TestCLIPreflight2817139783\001\src\file
+k957 preflight  finished  0s  [########################]  100%  0s  1  7 B  C:\Users\cmk\AppData\Local\Temp\TestCLIPreflight2817139783\001\src\file
+{"version":"0.15.0","time":"2026-10-02T14:03:28.8714117Z","root":"C:\\Users\\cmk\\AppData\\Local\\Temp\\TestCLIPreflight2817139783\\001\\src","output":"C:\\Users\\cmk\\AppData\\Local\\Temp\\TestCLIPreflight2817139783\\001\\src\\must-not-exist","work":"C:\\Users\\cmk\\AppData\\Local\\Temp\\TestCLIPreflight2817139783\\001\\work","encrypted":false,"resume":false,"eligible_files":1,"eligible_bytes":7,"completed_files":0,"acquired_bytes":0,"remaining_bytes":7,"remaining_parts":1,"planned_parts":1,"estimated_output_bytes":134218759,"estimated_work_bytes":536879111,"outcome":"blocked","checks":[{"code":"OUTPUT_IN_SOURCE","status":"blocked","message":"Output is inside the source tree"},{"code":"SOURCE_AND_TARGET_SAME_FILESYSTEM","status":"warning","message":"output shares the source filesystem"},{"code":"SOURCE_AND_TARGET_SAME_FILESYSTEM","status":"warning","message":"work shares the source filesystem"}],"inventory_issues":[],"storage":[{"filesystem":"\\\\?\\Volume{55aeada9-623b-4cc2-a8d8-8c4b120d3a63}\\","roles":["output","work"],"available_bytes":47658287104,"estimated_additional_bytes":671097870,"reserve_bytes":268435456,"estimated_with_reserve_bytes":939533326,"enough_at_check_time":true}],"notes":["Read-only metadata inventory; evidence contents, permissions to read every file, write access, signing keys and live system commands are not validated.","Estimates are planning allowances, not worst-case guarantees. Filesystem allocation units, quotas, snapshots, concurrent writers, changing sources and compression affect actual space. No capacity is reserved.","Filesystem identity does not prove physical-device separation. Different partitions may share the same physical disk.","Encryption keys are not read or validated for fresh acquisition estimates."]}
+k957 collect  [o-----------------------]  estimating  inventory  1  7 B  C:\Users\cmk\AppData\Local\Temp\TestCLIPreflight2817139783\001\src\file
+flag provided but not defined: -bad-flag
+Usage of preflight:
+  -encrypted
+    	estimate encrypted resumable mode; does not read a key
+  -encryption-key string
+    	original key for an encrypted --resume checkpoint
+  -max-file int
+    	maximum bytes per source (default 268435456)
+  -max-files int
+    	maximum source count (default 10000)
+  -max-total int
+    	maximum acquired bytes (default 2147483648)
+  -out string
+    	planned new output package
+  -reserve int
+    	additional free-space reserve per target filesystem (default 268435456)
+  -resume
+    	estimate remaining space from an existing checkpoint; use original root and limits
+  -root string
+    	source directory
+  -work string
+    	staging directory (new, or existing with --resume)
+--- PASS: TestCLIPreflight (0.01s)
+=== RUN   TestFailedProgressAndReadWorkloadLabel
+--- PASS: TestFailedProgressAndReadWorkloadLabel (0.00s)
+=== RUN   TestProgressFractionAndDisplay
+--- PASS: TestProgressFractionAndDisplay (0.00s)
+=== RUN   TestCLIShareWorkflow
+k957 collect  [o-----------------------]  estimating  files  1  127 B  C:\Users\cmk\AppData\Local\Temp\TestCLIShareWorkflow1977809535\001\source\secret.jsonl
+k957 collect  [########################]  100%  0s  package  1/1  127 B  C:\Users\cmk\AppData\Local\Temp\TestCLIShareWorkflow1977809535\001\evidence.k957
+k957 collect  finished  0s  [########################]  100%  0s  1/1  127 B  C:\Users\cmk\AppData\Local\Temp\TestCLIShareWorkflow1977809535\001\evidence.k957
+{"acquisition":{"method":"logical-live-files","origin":"raw_file_bytes","filesystem_snapshot":false,"multi_file_atomic":false,"sqlite_transaction_consistent":false,"notes":["Files are read individually. Metadata change detection is not an atomic filesystem or multi-file snapshot.","Filesystem device identifiers do not prove physical-device separation.","SQLite main/sidecar copies may describe different transaction states. Use explicit sqlite-acquire for a separately identified logical backup."]},"schema":"k957-evidence/1","version":"0.15.0","id":"4159d3a184865d74c4448aca76d69310","case":"PrivateCaseX","operator":"PrivateActorX","scope":"PrivateScopeX","host":"MacBookPro3","os":"windows","arch":"amd64","started":"2026-10-02T14:03:28.8822622Z","finished":"2026-10-02T14:03:28.8846139Z","status":"complete","items":[{"metadata":{"sampled":"2026-10-02T14:03:28.8833057Z","status":"partial","device":"volume_serial:1619145656","inode":"37436171902775566","links":1,"accessed":"2026-10-02T14:03:28.8817451Z","created":"2026-10-02T14:03:28.881234Z","attributes":[{"name":"windows.security_descriptor_sddl","value_base64":"TzpCQUc6Uy0xLTUtMjEtMTMwOTk2MTQwLTI3OTQ4OTc3NDgtMzIwMzQ3MjEzMy01MTNEOihBO0lEO0ZBOzs7U1kpKEE7SUQ7RkE7OztCQSkoQTtJRDtGQTs7O1MtMS01LTIxLTEzMDk5NjE0MC0yNzk0ODk3NzQ4LTMyMDM0NzIxMzMtMTAwMSk="}],"omissions":["alternate_stream_bytes_not_collected","sacl_not_requested"]},"id":"E000001","source":"C:\\Users\\cmk\\AppData\\Local\\Temp\\TestCLIShareWorkflow1977809535\\001\\source\\secret.jsonl","object":"objects/E000001","kind":"file","size":127,"sha256":"d3ec6d3b78d16111bbc0cd2c27dab674267bdc03f478288d2682db2eadda287b","modified":"2026-10-02T14:03:28.8817451Z","collected":"2026-10-02T14:03:28.8840459Z","mode":"-rw-rw-rw-","changed_during_acquisition":false}],"issues":[]}
+k957 share  [------------------------]    0%  estimating  examine  0/1  C:\Users\cmk\AppData\Local\Temp\TestCLIShareWorkflow1977809535\001\evidence.k957
+k957 share  [###################-----]   80%  estimating  examine  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIShareWorkflow1977809535\001\source\secret.jsonl
+k957 share  [###################-----]   80%  estimating  export  0/1  C:\Users\cmk\AppData\Local\Temp\TestCLIShareWorkflow1977809535\001\shared
+k957 share  [########################]  100%  0s  export  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIShareWorkflow1977809535\001\shared
+k957 share  finished  0s  [########################]  100%  0s  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIShareWorkflow1977809535\001\shared
+Shared report: C:\Users\cmk\AppData\Local\Temp\TestCLIShareWorkflow1977809535\001\shared/report.html
+PDF: C:\Users\cmk\AppData\Local\Temp\TestCLIShareWorkflow1977809535\001\shared/report.pdf
+k957 share  [------------------------]    0%  estimating  examine  0/1  C:\Users\cmk\AppData\Local\Temp\TestCLIShareWorkflow1977809535\001\evidence.k957
+k957 share  [###################-----]   80%  estimating  examine  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIShareWorkflow1977809535\001\source\secret.jsonl
+k957 share  [###################-----]   80%  estimating  export  0/1  C:\Users\cmk\AppData\Local\Temp\TestCLIShareWorkflow1977809535\001\kept
+k957 share  [########################]  100%  0s  export  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIShareWorkflow1977809535\001\kept
+k957 share  finished  0s  [########################]  100%  0s  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIShareWorkflow1977809535\001\kept
+Shared report: C:\Users\cmk\AppData\Local\Temp\TestCLIShareWorkflow1977809535\001\kept/report.html
+PDF: C:\Users\cmk\AppData\Local\Temp\TestCLIShareWorkflow1977809535\001\kept/report.pdf
+k957 share  [------------------------]    0%  estimating  examine  0/1  C:\Users\cmk\AppData\Local\Temp\TestCLIShareWorkflow1977809535\001\evidence.k957
+k957 share  [###################-----]   80%  estimating  examine  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIShareWorkflow1977809535\001\source\secret.jsonl
+k957 share  [###################-----]   80%  estimating  export  0/1  C:\Users\cmk\AppData\Local\Temp\TestCLIShareWorkflow1977809535\001\shared
+k957 share  [------------------------]    0%  estimating  examine  0/1  C:\Users\cmk\AppData\Local\Temp\TestCLIShareWorkflow1977809535\001\evidence.k957
+k957 share  [###################-----]   80%  estimating  examine  1/1  C:\Users\cmk\AppData\Local\Temp\TestCLIShareWorkflow1977809535\001\source\secret.jsonl
+--- PASS: TestCLIShareWorkflow (0.30s)
+=== RUN   TestCasePipedOutputIsSingleJSONValue
+--- PASS: TestCasePipedOutputIsSingleJSONValue (0.01s)
+=== RUN   TestCollectionSummaryIsGrouped
+--- PASS: TestCollectionSummaryIsGrouped (0.00s)
+=== RUN   TestStoreSummariesAreGrouped
+--- PASS: TestStoreSummariesAreGrouped (0.00s)
+=== RUN   TestWindowsConsoleVirtualTerminalProcessing
+--- PASS: TestWindowsConsoleVirtualTerminalProcessing (0.01s)
+=== RUN   TestWizardEnglishPrompts
+=== RUN   TestWizardEnglishPrompts/collect
+=== RUN   TestWizardEnglishPrompts/analyze
+=== RUN   TestWizardEnglishPrompts/invalid
+--- PASS: TestWizardEnglishPrompts (0.02s)
+    --- PASS: TestWizardEnglishPrompts/collect (0.00s)
+    --- PASS: TestWizardEnglishPrompts/analyze (0.01s)
+    --- PASS: TestWizardEnglishPrompts/invalid (0.01s)
+PASS

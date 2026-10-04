@@ -1,0 +1,20 @@
+{
+  "schema": "k957-memory-suite-check/1",
+  "result": "passed",
+  "started": "2026-10-01T18:15:11.351498+00:00",
+  "duration_seconds": 46.856,
+  "source_sha256": "265b94b0c47d619b6ffd67eb9b00b2c903f5bbb6b1ee4fe9f6e65be1c9610b50",
+  "target": "linux/amd64",
+  "binary_sha256": "28e3e54dac100299d735050af93a10352b3e24c30023d7187018d2650458d061",
+  "dump_and_threads_enabled": true,
+  "staging_outside_system_tmp": true,
+  "image_bytes": 8589934593,
+  "image_sha256": "adffc08b0d532cb8d6c0f5ad6939f024953cd6c50df18101bdb24cafc59ba59b",
+  "tool_kind": "synthetic orchestration fixture; no kernel-object accuracy claim",
+  "plugin_attempts": 3,
+  "retained_partial_failure": true,
+  "largest_object_file_bytes": 39400789,
+  "largest_row_count": 100002,
+  "automatic_timeout_seconds": 0,
+  "source_unchanged": true
+}

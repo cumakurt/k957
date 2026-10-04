@@ -14,6 +14,8 @@ func runCustody(args []string) error {
 	in := f.String("in", "", "verified plaintext .k957 evidence package")
 	pub := f.String("trusted-key", "", "trusted evidence package signing key")
 	trustPath := f.String("trust", "", "required external actor/public-key trust JSON")
+	anchorPath := f.String("anchor", "", "externally retained signed custody head; custody-verify")
+	anchorKey := f.String("anchor-key", "", "required external witness public key for --anchor")
 	head := f.String("expected-head", "", "independently retained previous/current custody head")
 	var ledgerPath, previous, out, key, at string
 	var r core.CustodyRequest
@@ -30,7 +32,7 @@ func runCustody(args []string) error {
 	} else {
 		f.StringVar(&ledgerPath, "ledger", "", "custody ledger JSON to verify")
 	}
-	if e := f.Parse(args[1:]); e != nil {
+	if stop, e := parseFlags(f, args[1:]); stop || e != nil {
 		return e
 	}
 	if f.NArg() != 0 {
@@ -49,6 +51,20 @@ func runCustody(args []string) error {
 		l, e := core.LoadCustody(ledgerPath)
 		if e != nil {
 			return e
+		}
+		if *anchorPath != "" {
+			anchor, e := core.LoadCustodyAnchor(*anchorPath)
+			if e != nil {
+				return e
+			}
+			claim, e := core.VerifyCustodyAnchor(anchor, l, trust, *anchorKey)
+			if e != nil {
+				return e
+			}
+			if *head != "" && *head != claim.Head {
+				return fmt.Errorf("anchor and expected-head differ")
+			}
+			*head = claim.Head
 		}
 		status, e := core.ValidateCustody(l, p.ManifestSHA256, p.Manifest.ID, p.Manifest.Case, trust, *head)
 		if e != nil {
@@ -77,7 +93,7 @@ func runCustody(args []string) error {
 	if e != nil {
 		return e
 	}
-	if e = core.WriteNew(out, core.JSON(l)); e != nil {
+	if e = core.WriteJSONNew(out, l); e != nil {
 		return e
 	}
 	return json.NewEncoder(os.Stdout).Encode(map[string]any{"out": out, "events": len(l.Events), "head": l.Events[len(l.Events)-1].Hash})

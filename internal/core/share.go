@@ -111,29 +111,31 @@ type SharedParse struct {
 // A separate allowlisted projection: never serialize a modified Analysis or
 // Manifest. No raw notes, rules, signature payloads, hashes or reverse map leave.
 type SharedReport struct {
-	CaptureSummaries []SharedCaptureSummary `json:"capture_summaries,omitempty"`
-	NetworkFlows     []SharedNetworkFlow    `json:"network_flows,omitempty"`
-	Schema           string                 `json:"schema"`
-	Version          string                 `json:"version"`
-	ID               string                 `json:"id"`
-	Created          time.Time              `json:"created"`
-	Policy           SharedPolicySummary    `json:"policy"`
-	Case             string                 `json:"case"`
-	Host             string                 `json:"host"`
-	Operator         string                 `json:"operator"`
-	CollectionStatus string                 `json:"collection_status"`
-	SourceIssueCount int                    `json:"source_issue_count"`
-	SourceNoteCount  int                    `json:"source_note_count"`
-	Items            []SharedItem           `json:"items"`
-	Findings         []SharedFinding        `json:"findings"`
-	Timeline         []SharedEvent          `json:"timeline"`
-	Correlations     []SharedCorrelation    `json:"correlations"`
-	Reviews          []SharedReview         `json:"reviews"`
-	Custody          []SharedCustody        `json:"custody"`
-	CurrentHolder    string                 `json:"current_holder,omitempty"`
-	PendingTo        string                 `json:"pending_to,omitempty"`
-	ParseSummaries   []SharedParse          `json:"parse_summaries"`
-	Notes            []string               `json:"notes"`
+	Coverage          []Coverage             `json:"coverage,omitempty"`
+	FindingsTruncated bool                   `json:"findings_truncated,omitempty"`
+	CaptureSummaries  []SharedCaptureSummary `json:"capture_summaries,omitempty"`
+	NetworkFlows      []SharedNetworkFlow    `json:"network_flows,omitempty"`
+	Schema            string                 `json:"schema"`
+	Version           string                 `json:"version"`
+	ID                string                 `json:"id"`
+	Created           time.Time              `json:"created"`
+	Policy            SharedPolicySummary    `json:"policy"`
+	Case              string                 `json:"case"`
+	Host              string                 `json:"host"`
+	Operator          string                 `json:"operator"`
+	CollectionStatus  string                 `json:"collection_status"`
+	SourceIssueCount  int                    `json:"source_issue_count"`
+	SourceNoteCount   int                    `json:"source_note_count"`
+	Items             []SharedItem           `json:"items"`
+	Findings          []SharedFinding        `json:"findings"`
+	Timeline          []SharedEvent          `json:"timeline"`
+	Correlations      []SharedCorrelation    `json:"correlations"`
+	Reviews           []SharedReview         `json:"reviews"`
+	Custody           []SharedCustody        `json:"custody"`
+	CurrentHolder     string                 `json:"current_holder,omitempty"`
+	PendingTo         string                 `json:"pending_to,omitempty"`
+	ParseSummaries    []SharedParse          `json:"parse_summaries"`
+	Notes             []string               `json:"notes"`
 }
 
 func LoadSharePolicy(path string) (p SharePolicy, e error) {
@@ -310,7 +312,7 @@ func newShareMasker(a Analysis, p SharePolicy) (*shareMasker, error) {
 // BuildSharedReport accepts a fresh, verified analysis and retains only explicitly
 // selected fields. Its result is not a signed evidence or review input.
 func BuildSharedReport(a Analysis, p SharePolicy) (s SharedReport, err error) {
-	if a.Version != Version || !validHash(a.EvidenceDigest) {
+	if a.Canceled || a.Version != Version || !validHash(a.EvidenceDigest) {
 		return s, errors.New("current verified analysis required for sharing")
 	}
 	m, e := newShareMasker(a, p)
@@ -319,12 +321,12 @@ func BuildSharedReport(a Analysis, p SharePolicy) (s SharedReport, err error) {
 	}
 	keep := append([]string{}, p.Keep...)
 	sort.Strings(keep)
-	s = SharedReport{Schema: shareSchema, Version: Version, ID: ID(), Created: time.Now().UTC(), Policy: SharedPolicySummary{Keep: keep, LiteralCount: len(p.Literals), FreeTextOmitted: true}, Case: m.value("case", a.Manifest.Case), Host: m.value("hosts", a.Manifest.Host), Operator: m.value("actors", a.Manifest.Operator), CollectionStatus: shareEnum(a.Manifest.Status, "complete", "partial"), SourceIssueCount: len(a.Manifest.Issues), SourceNoteCount: len(a.Notes), Items: []SharedItem{}, Findings: []SharedFinding{}, Timeline: []SharedEvent{}, Correlations: []SharedCorrelation{}, Reviews: []SharedReview{}, Custody: []SharedCustody{}, ParseSummaries: []SharedParse{}, Notes: []string{
-		"Bu çıktı maskelenmiş türev rapordur; özgün delil, analist kararı veya imzalı devir kaydı yerine kullanılamaz.",
-		"Alıntılar, olay açıklamaları, kural içerikleri, notlar, hata metinleri, kapsam, imzalar, hashler ve özgün kimlikler çıkarıldı. Ayrıntılı sınırlamalar özgün raporda bulunur.",
-		"Takma değerler yalnızca bu raporda tutarlıdır; geri eşleme tablosu verilmez. Sayılar, dosya boyutları, ilişkiler, satır/byte konumları ve sıralama korunur; anonimlik garantisi yoktur.",
-		"Açık bırakılan metin alanlarında bilinen maskeli değerler ve ek literal ifadeler büyük/küçük harf duyarsız değiştirilir. Alternatif yazımlar, kodlamalar veya bilinmeyen kişisel bilgiler otomatik tespit edilmez.",
-		"Paylaşmadan önce raporu inceleyin. Rapordaki oluşturma zamanı bu türev rapora aittir; kaynak zamanları yalnızca timestamps açık bırakılmışsa gösterilir.",
+	s = SharedReport{FindingsTruncated: a.FindingsTruncated, Schema: shareSchema, Version: Version, ID: ID(), Created: time.Now().UTC(), Policy: SharedPolicySummary{Keep: keep, LiteralCount: len(p.Literals), FreeTextOmitted: true}, Case: m.value("case", a.Manifest.Case), Host: m.value("hosts", a.Manifest.Host), Operator: m.value("actors", a.Manifest.Operator), CollectionStatus: shareEnum(analysisCollectionStatus(a), "complete", "partial"), SourceIssueCount: len(a.Manifest.Issues) + len(a.CollectionIssues), SourceNoteCount: len(a.Notes), Items: []SharedItem{}, Findings: []SharedFinding{}, Timeline: []SharedEvent{}, Correlations: []SharedCorrelation{}, Reviews: []SharedReview{}, Custody: []SharedCustody{}, ParseSummaries: []SharedParse{}, Notes: []string{
+		"This is a masked derived report; it cannot replace original evidence, examiner decisions or signed custody records.",
+		"Quotations, event descriptions, rule contents, notes, error messages, scope, signatures, hashes and original identifiers were omitted. Detailed limitations remain in the original report.",
+		"Aliases are consistent only within this report; no reverse mapping is provided. Counts, file sizes, relationships, line/byte positions and ordering are retained; anonymity is not guaranteed.",
+		"Known masked values and additional literal expressions are replaced case-insensitively in retained text fields. Alternative spellings, encodings and unknown personal information are not detected automatically.",
+		"Inspect the report before sharing. Its creation time belongs to this derived report; source times appear only when timestamps are explicitly retained.",
 	}}
 	ids := map[string]string{}
 	for i, x := range a.Manifest.Items {
@@ -354,7 +356,7 @@ func BuildSharedReport(a Analysis, p SharePolicy) (s SharedReport, err error) {
 		s.Findings = append(s.Findings, SharedFinding{ID: fid, Rule: rule, Evidence: sourceID(x.Evidence), Source: m.value("paths", x.Source), Line: x.Line, Review: shareEnum(x.Review, "unreviewed", "confirmed", "rejected", "needs-review"), Reviewer: m.value("actors", x.Reviewer)})
 	}
 	for _, x := range a.Timeline {
-		s.Timeline = append(s.Timeline, SharedEvent{CaptureContext: x.CaptureContext, Packet: x.Packet, Protocol: shareNetworkProtocol(x.Protocol), SourcePort: x.SourcePort, DestinationPort: x.DestinationPort, CapturedLength: x.CapturedLength, OriginalLength: x.OriginalLength, TCPFlags: x.TCPFlags, Time: m.stamp(x.Time), Type: shareEnum(x.Type, "collected", "file_modified", "log_timestamp", "pcap_packet", "windows_event"), Evidence: sourceID(x.Evidence), Source: m.value("paths", x.Source), Line: x.Line, ByteOffset: x.ByteOffset, User: m.value("users", x.User), Host: m.value("hosts", x.Host), SourceIP: m.value("ips", x.SourceIP), DestinationIP: m.value("ips", x.DestinationIP)})
+		s.Timeline = append(s.Timeline, SharedEvent{CaptureContext: x.CaptureContext, Packet: x.Packet, Protocol: shareNetworkProtocol(x.Protocol), SourcePort: x.SourcePort, DestinationPort: x.DestinationPort, CapturedLength: x.CapturedLength, OriginalLength: x.OriginalLength, TCPFlags: x.TCPFlags, Time: m.stamp(x.Time), Type: shareEnum(x.Type, "collected", "file_modified", "log_timestamp", "pcap_packet", "windows_event", "usn_change"), Evidence: sourceID(x.Evidence), Source: m.value("paths", x.Source), Line: x.Line, ByteOffset: x.ByteOffset, User: m.value("users", x.User), Host: m.value("hosts", x.Host), SourceIP: m.value("ips", x.SourceIP), DestinationIP: m.value("ips", x.DestinationIP)})
 	}
 	for _, x := range a.Correlations {
 		kind := map[string]string{"user": "users", "host": "hosts", "ip": "ips"}[x.Kind]
@@ -382,8 +384,16 @@ func BuildSharedReport(a Analysis, p SharePolicy) (s SharedReport, err error) {
 		}
 	}
 	for _, x := range a.ParseSummaries {
-		s.ParseSummaries = append(s.ParseSummaries, SharedParse{Evidence: sourceID(x.Evidence), Format: shareEnum(x.Format, "CSV", "JSONL", "text/RFC3339", "PCAP", "PCAPNG", windowsXMLFormat), Rows: x.Rows, Parsed: x.Parsed, Skipped: x.Skipped, Limited: x.Limited, HasError: x.Error != ""})
+		s.ParseSummaries = append(s.ParseSummaries, SharedParse{Evidence: sourceID(x.Evidence), Format: shareEnum(x.Format, "CSV", "JSONL", "text/RFC3339", "PCAP", "PCAPNG", windowsXMLFormat, "unparsed", "memory", "WindowsPrefetch", "WindowsScheduledTask", "LaunchdPlist", "SystemdUnit"), Rows: x.Rows, Parsed: x.Parsed, Skipped: x.Skipped, Limited: x.Limited, HasError: x.Error != ""})
 	}
 	projectSharedNetwork(a, &s, m, sourceID)
+	s.Coverage = sharedCoverage(analysisCoverage(a))
 	return s, nil
+}
+
+func analysisCollectionStatus(a Analysis) string {
+	if a.CollectionStatus != "" {
+		return a.CollectionStatus
+	}
+	return a.Manifest.Status
 }

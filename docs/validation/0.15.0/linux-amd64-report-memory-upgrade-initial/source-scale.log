@@ -1,0 +1,4 @@
+RUN collect
+RUN verify
+RUN case
+PASSED: /depo/cuma/projelerim/k957/docs/validation/0.15.0/linux-amd64-report-memory-upgrade/source-scale

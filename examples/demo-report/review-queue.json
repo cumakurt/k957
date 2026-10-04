@@ -1,0 +1,22 @@
+{
+  "schema": "k957-review-queue/1",
+  "note": "Priority is a documented review order, not a threat probability or severity score. Volume does not affect rank.",
+  "rows": [
+    {
+      "finding_id": "F-c0773c4efbdeec10c3c7a1be6aa800997b8692e4858e1315cb8dedcad04aef22",
+      "priority": 4,
+      "basis": "Literal match; source context and analyst review required",
+      "evidence": "E000001",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log",
+      "review": "unreviewed"
+    },
+    {
+      "finding_id": "F-24cbd652be4963cfa765c1f4994e4d72829d44c026e562f46e040146ecd40b7a",
+      "priority": 4,
+      "basis": "Literal match; source context and analyst review required",
+      "evidence": "E000001",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log",
+      "review": "unreviewed"
+    }
+  ]
+}

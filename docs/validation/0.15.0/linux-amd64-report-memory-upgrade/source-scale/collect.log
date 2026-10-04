@@ -1,0 +1,11 @@
+k957 collect  [###---------------------]   14%  estimating  prepare  1/1  /tmp/k957-source-scale-gpshaf06/store/MacBookPro/20261001T181353Z
+k957 collect  [o-----------------------]  estimating  files  1  31 B  /tmp/k957-source-scale-gpshaf06/source/000/object-000000.bin
+k957 collect  [------------o-----------]  estimating  files  31093  941.3 KiB  /tmp/k957-source-scale-gpshaf06/source/031/object-031092.bin
+k957 collect  [-------------o----------]  estimating  files  77846  2.3 MiB  /tmp/k957-source-scale-gpshaf06/source/077/object-077845.bin
+k957 collect  [#####################---]   86%  est. 1s  package  100000/100000  3.0 MiB  /tmp/k957-source-scale-gpshaf06/store/MacBookPro/20261001T181353Z/e...
+k957 collect  [#####################---]   86%  est. 1s  seal  0/1  collection record
+k957 collect  [########################]  100%  7s  seal  1/1  /tmp/k957-source-scale-gpshaf06/store/MacBookPro/20261001T181353Z
+k957 collect  finished  7s  [########################]  100%  7s  1/1  /tmp/k957-source-scale-gpshaf06/store/MacBookPro/20261001T181353Z
+collection: /tmp/k957-source-scale-gpshaf06/store/MacBookPro/20261001T181353Z
+signing fingerprint: 5ab9ef8edd9c0f8afc302907390a0ec2c8a8b893a773443f1d94959417e6615d
+private signing key was discarded; record the fingerprint independently

@@ -1,8 +1,77 @@
 {
+  "coverage": [
+    {
+      "schema": "k957-coverage/1",
+      "stage": "inventory",
+      "unit": "objects",
+      "status": "complete",
+      "eligible": 2,
+      "emitted": 2,
+      "omitted": 0,
+      "total_known": true
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "parser",
+      "format": "JSONL",
+      "unit": "records",
+      "status": "complete",
+      "eligible": 2,
+      "emitted": 2,
+      "omitted": 0,
+      "total_known": true
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "parser",
+      "format": "text/RFC3339",
+      "unit": "records",
+      "status": "complete",
+      "eligible": 3,
+      "emitted": 3,
+      "omitted": 0,
+      "total_known": true
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "findings",
+      "unit": "findings",
+      "status": "complete",
+      "eligible": 2,
+      "emitted": 2,
+      "omitted": 0,
+      "total_known": true,
+      "limit": 10000
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "acquisition_metadata",
+      "unit": "objects",
+      "status": "partial",
+      "eligible": 2,
+      "emitted": 0,
+      "omitted": 2,
+      "total_known": true,
+      "reasons": {
+        "other": 2
+      }
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "correlation_references",
+      "unit": "references",
+      "status": "complete",
+      "eligible": 0,
+      "emitted": 0,
+      "omitted": 0,
+      "total_known": true,
+      "limit": 200
+    }
+  ],
   "schema": "k957-shared-report/1",
-  "version": "0.9.0",
-  "id": "0e10b197bd234f5f852743f2dfab68bc",
-  "created": "2026-09-28T09:28:42.11030224Z",
+  "version": "0.15.0",
+  "id": "8d4e96143299faf13a8302d8b8406755",
+  "created": "2026-10-01T18:14:14.072604962Z",
   "policy": {
     "keep": [],
     "literal_count": 0,
@@ -13,7 +82,7 @@
   "operator": "[ACTORS-000001]",
   "collection_status": "complete",
   "source_issue_count": 0,
-  "source_note_count": 7,
+  "source_note_count": 9,
   "items": [
     {
       "id": "E000001",
@@ -133,29 +202,29 @@
     {
       "sequence": 1,
       "action": "register",
-      "actor": "[ACTORS-000005]",
+      "actor": "[ACTORS-000003]",
       "from": "",
-      "to": "[ACTORS-000005]",
+      "to": "[ACTORS-000003]",
       "location": "[LOCATIONS-000001]"
     },
     {
       "sequence": 2,
       "action": "transfer",
-      "actor": "[ACTORS-000005]",
-      "from": "[ACTORS-000005]",
-      "to": "[ACTORS-000004]",
+      "actor": "[ACTORS-000003]",
+      "from": "[ACTORS-000003]",
+      "to": "[ACTORS-000002]",
       "location": "[LOCATIONS-000001]"
     },
     {
       "sequence": 3,
       "action": "accept",
-      "actor": "[ACTORS-000004]",
-      "from": "[ACTORS-000005]",
-      "to": "[ACTORS-000004]",
+      "actor": "[ACTORS-000002]",
+      "from": "[ACTORS-000003]",
+      "to": "[ACTORS-000002]",
       "location": "[LOCATIONS-000001]"
     }
   ],
-  "current_holder": "[ACTORS-000004]",
+  "current_holder": "[ACTORS-000002]",
   "parse_summaries": [
     {
       "evidence": "E000001",
@@ -177,10 +246,10 @@
     }
   ],
   "notes": [
-    "Bu çıktı maskelenmiş türev rapordur; özgün delil, analist kararı veya imzalı devir kaydı yerine kullanılamaz.",
-    "Alıntılar, olay açıklamaları, kural içerikleri, notlar, hata metinleri, kapsam, imzalar, hashler ve özgün kimlikler çıkarıldı. Ayrıntılı sınırlamalar özgün raporda bulunur.",
-    "Takma değerler yalnızca bu raporda tutarlıdır; geri eşleme tablosu verilmez. Sayılar, dosya boyutları, ilişkiler, satır/byte konumları ve sıralama korunur; anonimlik garantisi yoktur.",
-    "Açık bırakılan metin alanlarında bilinen maskeli değerler ve ek literal ifadeler büyük/küçük harf duyarsız değiştirilir. Alternatif yazımlar, kodlamalar veya bilinmeyen kişisel bilgiler otomatik tespit edilmez.",
-    "Paylaşmadan önce raporu inceleyin. Rapordaki oluşturma zamanı bu türev rapora aittir; kaynak zamanları yalnızca timestamps açık bırakılmışsa gösterilir."
+    "This is a masked derived report; it cannot replace original evidence, examiner decisions or signed custody records.",
+    "Quotations, event descriptions, rule contents, notes, error messages, scope, signatures, hashes and original identifiers were omitted. Detailed limitations remain in the original report.",
+    "Aliases are consistent only within this report; no reverse mapping is provided. Counts, file sizes, relationships, line/byte positions and ordering are retained; anonymity is not guaranteed.",
+    "Known masked values and additional literal expressions are replaced case-insensitively in retained text fields. Alternative spellings, encodings and unknown personal information are not detected automatically.",
+    "Inspect the report before sharing. Its creation time belongs to this derived report; source times appear only when timestamps are explicitly retained."
   ]
 }

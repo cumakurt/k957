@@ -1,89 +1,84 @@
-# Maskelenmiş paylaşım raporu — v0.8.0
+# Masked sharing report — v0.8.0
 
-`share`, doğrulanmış bir delil paketini yeniden analiz ederek **ayrı bir paylaşım raporu** üretir. Ham delili, özgün raporu, analist kararlarını veya devir kayıtlarını değiştirmez. HTML, JSON ve CSV aynı daraltılmış veri modelinden üretilir; özgün `analysis.json` üzerinde metin değiştirme yapılmaz.
+`share` reanalyzes verified evidence and produces a **separate sharing report**. It does not modify raw evidence, original analysis, examiner decisions or custody records. HTML/JSON/CSV use one restricted projection; the original `analysis.json` is not edited by text substitution. The historical filename is retained; this document is in English.
 
-## Varsayılan kullanım
+## Default usage
 
 ```sh
-k957 share --in /delil/vaka.k957 --out /paylasim/vaka-001 \
-  --rules /kurallar/rules.json --trusted-key /guvenli/edinim.pub
+k957 share --in /evidence/case.k957 --out /sharing/case-001 \
+  --rules /rules/rules.json --trusted-key /secure/acquisition.pub
 ```
 
-`--trusted-key` ve `--rules` isteğe bağlıdır. Delil nesnelerinin hash'leri her zaman doğrulanır; kaynak imzasının güvenilir anahtarla doğrulanması için `--trusted-key` gerekir. Şifreli zarf önce yetkili ortamda `unseal` ile açılmalıdır.
+Rules/trusted key are optional. Object hashes are always verified; an external trusted key authenticates acquisition. Unseal encrypted packages first in an authorized environment.
 
-Politika verilmezse vaka adı, kişi/kullanıcı, cihaz, IP, yol ve konumlar takma değerlerle gösterilir. Kaynak zamanları çıkarılır. Örneğin aynı kaynak yolu, bu raporun tüm tablolarında `[PATHS-000001]` olarak gösterilir. Bir kategori içindeki aynı değer aynı takma adı alır; farklı kategoriler arasında kişi/kimlik birleştirmesi yapılmaz.
+Without a policy, case names, users/actors, hosts, IPs, paths and locations receive aliases, and source times are omitted. A repeated path appears consistently as `[PATHS-000001]` within that report. Aliases are category-specific; they do not merge identities across categories.
 
-Her paylaşım raporu yeni bir kimlik alır. Delil, kural ve bulgu kimlikleri rapor içinde yeniden numaralandırılır. Özgün hashler, imzalar, paket/çalıştırma kimlikleri ve geri eşleme tablosu paylaşım dizinine yazılmaz. Bu nedenle paylaşım dosyası özgün delili bağımsız doğrulamak veya `review` komutuna dayanak olmak için kullanılamaz.
+Each report gets a new ID. Evidence, rules and findings receive local IDs. Original hashes, signatures, package/run identities and reverse mappings are omitted. Shared files cannot independently verify original evidence or serve as `review` input.
 
-## Açık bırakılacak alanları seçme
+## Explicitly retained fields
 
 ```json
-{
-  "schema": "k957-share-policy/1",
-  "keep": ["timestamps"],
-  "literals": ["Müşteri A", "GizliProje"]
-}
+{"schema":"k957-share-policy/1","keep":["timestamps"],"literals":["Customer A","PrivateProject"]}
 ```
 
 ```sh
-k957 share --in /delil/vaka.k957 --out /paylasim/vaka-002 \
-  --rules /kurallar/rules.json --policy /guvenli/paylasim.json
+k957 share --in /evidence/case.k957 --out /sharing/case-002 \
+  --rules /rules/rules.json --policy /secure/sharing.json
 ```
 
-| keep değeri | Açık bırakılması istenen alanlar |
-|---|---|
-| case | Vaka adı |
-| users | Yapılandırılmış kayıtlardaki kullanıcı alanları |
-| hosts | Toplama cihazı ve yapılandırılmış kayıtlardaki cihaz alanları |
-| ips | Ayrıştırılmış kaynak/hedef IP ve ilgili ortak değerler |
-| paths | Kaynak yolları ve kaynak referansları |
-| actors | Operatör, analist ve devir tarafları |
-| locations | Devir kayıtlarındaki konum |
-| timestamps | Yapılandırılmış kaynak, olay, değerlendirme ve devir zamanları |
+- `case`: case name.
+- `users`: structured-record user fields.
+- `hosts`: collector and structured-record hosts.
+- `ips`: parsed source/destination IPs and related correlations.
+- `paths`: source paths/references.
+- `actors`: operator, examiner and custody parties.
+- `locations`: custody locations.
+- `timestamps`: structured source/event/review/custody times.
 
-Boş `keep` tüm bu kategorileri maskeler/çıkarır. Seçenek adları küçük harflidir; bilinmeyen veya yinelenen seçenekler reddedilir.
+Empty `keep` masks/removes every category. Names are lowercase; unknown/duplicate selections are rejected.
 
-Açık bırakılan **metin alanlarında**, diğer maskeli kategorilerdeki bilinen değerler ve `literals` ifadeleri `[MASKED]` ile değiştirilir. Örneğin paths açık, users kapalıysa ayrıştırılmış kullanıcı adının kaynak yolunda geçen yazımı da temizlenir. Bir kullanıcı değeri aynı zamanda kapalı actors kategorisindeki bir değer ise users açık olsa bile maskelenir. Çakışmada daha uzun eşleşme kullanılır; büyük/küçük harf duyarsız Unicode basit harf eşleştirmesi uygulanır. Regex metakarakterleri özel anlam taşımaz. Unicode normalizasyonu, alternatif yazım, URL kodlama veya farklı IP gösterimlerini bulma yapılmaz.
+Retained **text fields** still replace known values from masked categories and additional `literals` with `[MASKED]`. Retaining paths while masking users also removes known usernames from those paths. A value retained as a user can still be masked because it matches a masked actor. Longer matches win. Matching uses case-insensitive Unicode simple folding; regex metacharacters are literal. Unicode normalization, alternative spellings, URL encoding and alternative IP representations are not automatically recognized.
 
-`literals` özgün haliyle rapora kopyalanmaz; yalnızca ifade sayısı gösterilir. İfadeler, açık bırakılan kaynak metinlerine uygulanır. Sabit arayüz metinleri, üretilen takma adlar ve sayısal alanlar taranmaz. Timestamps seçeneği yapılandırılmış zaman alanlarını etkiler; açık bırakılmış dosya adları içinde yer alan tarihleri otomatik tanımaz.
+Literal contents are omitted from reports; only their count is retained. They apply to retained source text, rather than fixed labels, generated aliases or numeric fields. Timestamp policy covers structured times, not dates embedded in retained filenames.
 
-## Her zaman çıkarılan içerikler
+## Always omitted
 
-Bu sürümde serbest metni koruma seçeneği yoktur. Bulgu alıntıları, olay açıklamaları, kural adları/içerikleri/açıklamaları, kaynak kapsamı, analist gerekçeleri, devir notları, hata ayrıntıları ve özgün yöntem notları aktarılmaz. Bir kategori açık bırakılsa da bu içerikler çıkarılır. Böylece ayrıştırılmamış metindeki bilinmeyen kişisel bilgiler rapora taşınmaz.
+There is no option to retain arbitrary free text. Finding quotations, event descriptions, rule names/content/descriptions, source scope, examiner reasons, custody notes, error details and original method notes are omitted even when a related category is retained. This prevents unparsed text from silently exposing unknown personal details.
 
-Dosya boyutları, kayıt/bulgu sayıları, toplama durumu ve sorun sayısı, ayrıştırma sayıları, satır/byte konumları, kaynaklar arası ortaklıklar, karar durumları ve olay sırası korunur. Bunlar yeniden kimliklendirmeye yardımcı olabilir. Ürün anonimlik garantisi vermez. Ayrıntılı yöntem ve eksiklik notları özgün raporda kalır; paylaşım raporu tek başına kapsamlı uzman değerlendirmesinin yerine geçmez.
+Sizes/counts, collection status/issue totals, parse counts, line/byte positions, relationships, decisions and ordering remain. They can assist reidentification; anonymity is not guaranteed. Original reports retain detailed methods/limitations. Sharing output alone does not replace a complete examination.
 
-## İmzalı değerlendirmeler ve devir geçmişi
+## Signed reviews and custody
 
 ```sh
-k957 share --in /delil/vaka.k957 --out /paylasim/vaka-003 \
-  --rules /kurallar/rules.json \
-  --reviews /kayit/reviews.json --review-key /guvenli/analist.pub \
-  --custody /kayit/custody.json --custody-trust /guvenli/trust.json \
-  --custody-head BAGIMSIZ_SAKLANAN_SON_OZET
+k957 share --in /evidence/case.k957 --out /sharing/case-003 \
+  --rules /rules/rules.json \
+  --reviews /records/reviews.json --review-key /secure/examiner.pub \
+  --custody /records/custody.json --custody-trust /secure/trust.json \
+  --custody-head INDEPENDENT_CURRENT_HEAD
 ```
 
-Önce özgün analiz tekrar üretilir; değerlendirme ve devir dosyaları mevcut doğrulama kurallarıyla kontrol edilir. Başarısız doğrulamada paylaşım dizini üretilmez. Ardından maskelenmiş karar/devir özeti alınır. Orijinal imzalar ve hash zinciri maskelenmiş içerik için geçerli sayılamayacağından paylaşım raporuna aktarılmaz. HTML bu çıktının imzalı delil veya devir kaydı olmadığını açıkça belirtir.
+Original analysis is recomputed and review/custody inputs are verified before projection. Failure prevents sharing output. Original signatures/chains cannot authenticate changed masked content and are not copied into it. HTML identifies the report as derived. Separate current report seals are documented in [EXAMINATION_WORKFLOWS.md](EXAMINATION_WORKFLOWS.md).
 
-## Çıktılar
+## Outputs
 
-- `report.html`: çevrimdışı açılan, aramalı Türkçe paylaşım raporu.
-- `shared.json`: `k957-shared-report/1` şemalı türev veri; `analysis.json` değildir.
+- `report.html`: searchable offline English sharing report.
+- `shared.json`: `k957-shared-report/1` projection, distinct from analysis JSON.
 - `evidence.csv`, `findings.csv`, `timeline.csv`, `correlations.csv`, `reviews.csv`.
-- `custody.csv`: devir olayları varsa oluşturulur.
+- `custody.csv` when custody events exist.
+- `network.csv` and `captures.csv` when their network projections exist.
 
-Dizine delil paketi, özgün rapor, kural/politika dosyası, açık/özel anahtar veya imza kaydı eklenmez. Tam proje ZIP'indeki örnek kaynaklar ve normal raporlar maskelenmemiş sentetik veriler de içerir. Gerçek bir paylaşım için yalnızca inceleyip onayladığınız **share çıktı dizinini** kullanın; kaynak dosyaları sonradan bu dizine eklemeyin.
+Evidence, original reports, rules/policies, keys and acquisition signatures are not copied into the sharing directory. Project examples include unmasked synthetic sources/reports. Share only the inspected **sharing output directory**; do not add original sources afterward.
 
-Var olan çıktı dizini üzerine yazılmaz. Oluşturma sırasında hata alınırsa yeni dizin kaldırılmaya çalışılır. Paylaşım çıktıları şifreli değildir; taşıma ve erişim izinleri ayrıca yönetilmelidir.
+Existing directories are rejected. Generation failures attempt to remove the new directory. Output is unencrypted; manage access/transport separately.
 
-## Kaynak sınırları ve doğrulama
+## Resource bounds and validation
 
-Politika dosyası en fazla 1 MiB; en fazla 100 literal ve literal başına 512 UTF-8 byte kabul edilir. Açık bırakılmış kaynak metinlerinde çapraz maskeleme için en fazla 20.000 benzersiz ifade ve toplam 1 MiB kaçış uygulanmış ifade metni kullanılır. Limit veya derleyici karmaşıklık sınırı aşılırsa rapor yazılmaz. Tamamen maskelenmiş varsayılan politika bu metin eşleştirme aşamasını gerektirmez.
+Policy bounds: 1 MiB, 100 literals, 512 UTF-8 bytes per literal. Cross-field replacement permits at most 20,000 unique patterns and 1 MiB escaped pattern text. Bounds/compiler complexity failure prevents output. Fully masked default policy does not require the retained-text matcher.
 
-Birim testleri tüm paylaşım dosyalarında özel değerlerin bulunmamasını, tutarlı takma değerleri, çapraz alan maskelemesini, uzun eşleşme önceliğini, HTML/CSV güvenliğini ve özgün analizin değişmemesini kontrol eder. `python3 scripts/share_integration.py`, imzalı analist/devir girdileriyle sekiz çıktı dosyasını tarar; özgün delil, analiz ve kayıtların byte hash'lerini karşılaştırır. Bilinen sentetik işaretlerin bulunmaması tüm gerçek dünya kişisel verilerinin otomatik tespit edildiği anlamına gelmez.
+Tests check private markers across all files, consistent aliases, cross-field masking, longer-match priority, HTML/CSV safety and unchanged original analysis. `scripts/share_integration.py` checks signed review/custody inputs and original byte hashes. Missing known synthetic markers does not establish automatic discovery of every real-world personal detail.
 
-Açık toplama checkpoint'lerini oluşturuldukları binary ile tamamlayın. v1/v2 final paketleri okunabilir. Analist review kayıtları analiz sürümüne bağlıdır; bu sürümle yeni analiz/değerlendirme üretilmelidir. Devir kayıtlarının formatı sürümden bağımsız kalır.
+Complete old checkpoints with their original binary. v1/v2 packages remain readable; reviews stay analyzer-version-bound, while custody format remains independent.
 
-## v0.9 PCAP alanları
+## Network projection
 
-Paylaşım raporuna maskelenmiş PCAP olayları, yönlü akışlar ve kapsam tabloları eklenir. `network.csv` ve `captures.csv` koşullu üretilir. IP/yollar kapalı, kaynak zamanları çıkarılmış olarak başlar. Portlar, TCP bayrakları, çerçeve uzunlukları, sayılar ve paket/byte referansları korunur. Ayrıntılar `PCAP_TR.md`.
+Masked packet events, directional flows and coverage retain protocol/ports/flags, frame lengths, counts and packet/byte positions. IPs/paths start masked and source timestamps omitted. The projection does not provide anonymity or complete network interpretation. See [PCAP_TR.md](PCAP_TR.md).

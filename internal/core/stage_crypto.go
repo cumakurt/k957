@@ -2,13 +2,13 @@ package core
 
 import (
 	"bytes"
-	"crypto/aes"
 	"crypto/cipher"
 	"crypto/hmac"
 	"crypto/rand"
 	"crypto/sha256"
 	"encoding/hex"
 	"errors"
+	"io"
 	"strings"
 )
 
@@ -41,16 +41,11 @@ func newWorkCrypto(path string) (*workCrypto, error) {
 		h.Write([]byte(label))
 		return h.Sum(nil)
 	}
-	block, e := aes.NewCipher(derive("k957/stage/aead/v1"))
+	a, e := buildAEAD(derive("k957/stage/aead/v1"))
 	if e != nil {
 		return nil, e
 	}
-	a, e := cipher.NewGCM(block)
-	if e != nil {
-		return nil, e
-	}
-	transportBlock, _ := aes.NewCipher(master)
-	transport, e := cipher.NewGCM(transportBlock)
+	transport, e := buildAEAD(master)
 	if e != nil {
 		return nil, e
 	}
@@ -81,7 +76,7 @@ func (c *workCrypto) seal(purpose string, b []byte) ([]byte, error) {
 		return b, nil
 	}
 	nonce := make([]byte, 12)
-	if _, e := rand.Read(nonce); e != nil {
+	if _, e := io.ReadFull(rand.Reader, nonce); e != nil {
 		return nil, e
 	}
 	out := append([]byte(stageMagic), nonce...)

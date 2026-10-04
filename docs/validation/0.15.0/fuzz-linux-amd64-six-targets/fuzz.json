@@ -1,0 +1,113 @@
+{
+  "schema": "k957-fuzz/1",
+  "source_sha256": "cc0bc0e9cad285888f0901518b956f768631536dbd22faa14c4cae3b6e6bb970",
+  "target": "linux/amd64",
+  "started": "2026-10-01T06:28:33.190027+00:00",
+  "steps": [
+    {
+      "name": "FuzzRules",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzRules$",
+        "-fuzztime=10s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "exit_code": 0,
+      "executions": 9324,
+      "duration_seconds": 11.838,
+      "log": "FuzzRules.log"
+    },
+    {
+      "name": "FuzzEnvelope",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzEnvelope$",
+        "-fuzztime=10s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "exit_code": 0,
+      "executions": 154172,
+      "duration_seconds": 10.78,
+      "log": "FuzzEnvelope.log"
+    },
+    {
+      "name": "FuzzStructuredLogs",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzStructuredLogs$",
+        "-fuzztime=10s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "exit_code": 0,
+      "executions": 120385,
+      "duration_seconds": 11.334,
+      "log": "FuzzStructuredLogs.log"
+    },
+    {
+      "name": "FuzzPCAP",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzPCAP$",
+        "-fuzztime=10s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "exit_code": 0,
+      "executions": 109421,
+      "duration_seconds": 11.697,
+      "log": "FuzzPCAP.log"
+    },
+    {
+      "name": "FuzzPCAPNG",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzPCAPNG$",
+        "-fuzztime=10s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "exit_code": 0,
+      "executions": 251341,
+      "duration_seconds": 11.185,
+      "log": "FuzzPCAPNG.log"
+    },
+    {
+      "name": "FuzzWindowsXML",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzWindowsXML$",
+        "-fuzztime=10s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "exit_code": 0,
+      "executions": 68410,
+      "duration_seconds": 11.751,
+      "log": "FuzzWindowsXML.log"
+    }
+  ],
+  "source_unchanged": true,
+  "result": "passed",
+  "finished": "2026-10-01T06:29:41.800952+00:00"
+}

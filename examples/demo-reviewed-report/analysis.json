@@ -1,4 +1,73 @@
 {
+  "coverage": [
+    {
+      "schema": "k957-coverage/1",
+      "stage": "inventory",
+      "unit": "objects",
+      "status": "complete",
+      "eligible": 2,
+      "emitted": 2,
+      "omitted": 0,
+      "total_known": true
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "parser",
+      "format": "JSONL",
+      "unit": "records",
+      "status": "complete",
+      "eligible": 2,
+      "emitted": 2,
+      "omitted": 0,
+      "total_known": true
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "parser",
+      "format": "text/RFC3339",
+      "unit": "records",
+      "status": "complete",
+      "eligible": 3,
+      "emitted": 3,
+      "omitted": 0,
+      "total_known": true
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "findings",
+      "unit": "findings",
+      "status": "complete",
+      "eligible": 2,
+      "emitted": 2,
+      "omitted": 0,
+      "total_known": true,
+      "limit": 10000
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "acquisition_metadata",
+      "unit": "objects",
+      "status": "partial",
+      "eligible": 2,
+      "emitted": 0,
+      "omitted": 2,
+      "total_known": true,
+      "reasons": {
+        "metadata_omitted": 2
+      }
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "correlation_references",
+      "unit": "references",
+      "status": "complete",
+      "eligible": 0,
+      "emitted": 0,
+      "omitted": 0,
+      "total_known": true,
+      "limit": 200
+    }
+  ],
   "parse_summaries": [
     {
       "evidence": "E000001",
@@ -17,34 +86,34 @@
       "limited": false
     }
   ],
-  "review_digest": "a5ab3b4c93455b388231ca51fdcbe6f4271e1cac2f6aac99199a04a87f32ff16",
+  "review_digest": "0fd8286504ea906b2fc276c0013fba7f340401a1ffd03fd306cab89b9cdb2b63",
   "evidence_digest": "d406672966c93f05ddfb95d462e5635ef0e492b540296c6e1e26817fa81a8d20",
   "review_history": [
     {
       "sequence": 1,
       "finding": "F-c0773c4efbdeec10c3c7a1be6aa800997b8692e4858e1315cb8dedcad04aef22",
       "decision": "needs-review",
-      "analyst": "Demo Analist A",
-      "note": "Sentetik örnek için ilk değerlendirme",
-      "created": "2026-09-28T09:28:42.08728907Z",
+      "analyst": "Alice",
+      "note": "Initial synthetic review",
+      "created": "2026-10-01T18:14:13.825381829Z",
       "previous": "",
-      "hash": "d9a9ea070a5db4feae5d8fa363c3747ad94e6595db714af95df28fa13963c43d"
+      "hash": "6a69e102efc4c137f290b551dec08f346f3b662cedccd906258e861de484bb67"
     },
     {
       "sequence": 2,
       "finding": "F-c0773c4efbdeec10c3c7a1be6aa800997b8692e4858e1315cb8dedcad04aef22",
       "decision": "rejected",
-      "analyst": "Demo Analist B",
-      "note": "Sentetik test verisi; gerçek olay tespiti değildir",
-      "created": "2026-09-28T09:28:42.092083967Z",
-      "previous": "d9a9ea070a5db4feae5d8fa363c3747ad94e6595db714af95df28fa13963c43d",
-      "hash": "d427f94589e5eb12ad2bba424469f571159fff8fede5eeb555543f7ac6647ec6"
+      "analyst": "Bob",
+      "note": "Synthetic test data; not a real incident finding.",
+      "created": "2026-10-01T18:14:13.840162137Z",
+      "previous": "6a69e102efc4c137f290b551dec08f346f3b662cedccd906258e861de484bb67",
+      "hash": "47b17acd54ad82504b53857da9e96ed3287ea3e7c6d3167e75bf525df07b7a52"
     }
   ],
   "review_signature": "verified against supplied trusted review key",
-  "version": "0.9.0",
-  "run": "01c841c3f09dedb3c255ea092ab6b730",
-  "created": "2026-09-28T09:28:42.096582033Z",
+  "version": "0.15.0",
+  "run": "a90499331e6833b3fbc5656baaf4c70d",
+  "created": "2026-10-01T18:14:13.850991976Z",
   "signature": "unsigned",
   "manifest": {
     "schema": "k957-evidence/1",
@@ -101,11 +170,27 @@
       "sha256": ""
     }
   ],
+  "file_types": [
+    {
+      "evidence": "E000001",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/auth.log",
+      "media_type": "application/octet-stream",
+      "description": "no recognized signature",
+      "matched_by": "none"
+    },
+    {
+      "evidence": "E000002",
+      "source": "/workspace/scratch/4de4f0c723af/k957/examples/demo-source/events.jsonl",
+      "media_type": "application/octet-stream",
+      "description": "no recognized signature",
+      "matched_by": "none"
+    }
+  ],
   "findings": [
     {
       "id": "F-c0773c4efbdeec10c3c7a1be6aa800997b8692e4858e1315cb8dedcad04aef22",
-      "reviewer": "Demo Analist B",
-      "review_note": "Sentetik test verisi; gerçek olay tespiti değildir",
+      "reviewer": "Bob",
+      "review_note": "Synthetic test data; not a real incident finding.",
       "rule": "DEMO-LOGIN-FAIL",
       "description": "Demo: review failed authentication text",
       "evidence": "E000001",
@@ -200,10 +285,12 @@
     }
   ],
   "notes": [
-    "Timeline includes file metadata, explicit RFC3339/JSONL timestamps and supported PCAP packet timestamps; these are not proof of execution or user attribution.",
-    "Rules are literal matches, not malware verdicts. Every finding requires analyst review.",
-    "Text scanning covers UTF-8 files up to 8 MiB each, 128 MiB total; classic PCAP is parsed separately; other binary formats are inventoried, not parsed.",
+    "Timeline includes file metadata, explicit log/XML timestamps and supported PCAP packet timestamps; these are not proof of execution or user attribution.",
+    "Literal, SHA-256 and structured event rules produce review candidates. Every finding requires analyst review.",
+    "Text scanning covers supported UTF-8/XML records up to 8 MiB per file and 128 MiB total. Separate bounded workers interpret selected SQLite/WAL browser visits, EVTX system metadata, clean Registry key/value projections and binary launchd plists. CloudTrail exports and PCAP/PCAPNG have separate bounded parsers; unsupported binary formats remain inventory entries.",
     "Clock offsets are not measured. Timestamps reflect the source host clock converted to UTC.",
+    "File types are magic-byte hints from the first 560 bytes. An extension mismatch is recorded, not treated as a finding. bodyfile.txt exports mtime only; atime, ctime, crtime, uid, gid and MD5 are zero because SHA-256 is authoritative.",
+    "Activity rows interpret SSH, sudo, cron, account creation, shell and PowerShell history, Windows security events, Prefetch names and persistence commands. They are triage readings, not findings and not proof of attribution.",
     "Correlations are shared field values across at least two evidence objects, not independent-source corroboration or identity attribution. NAT, shared accounts and duplicate logs can produce matches. User names are case-sensitive; host names lowercased; IPs canonicalized. No network enrichment is performed.",
     "2 analyst review events applied. Decisions express the analyst's assessment; a hash chain alone does not authenticate identity or prove history completeness."
   ]

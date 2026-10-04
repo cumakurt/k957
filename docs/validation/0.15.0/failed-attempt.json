@@ -1,0 +1,11 @@
+{
+  "schema": "k957-validation-attempt/1",
+  "result": "failed",
+  "target": "linux/amd64",
+  "source_sha256": "303f1c3749edc50806fe476e561271601a74ef962f81e1a3dd3b43d8ade2aac8",
+  "failed_steps": [
+    "windows_xml_integration"
+  ],
+  "error": "Source changed during validation; repeat against stable inputs",
+  "explanation": "An obsolete EVTX assertion failed. A stale no-argument collect error test created real host output under cmd/k957/output and changed the first overly broad source fingerprint. Both tests/source selection were corrected; raw failed logs and generated host output were retained privately under /tmp, excluded from release files."
+}

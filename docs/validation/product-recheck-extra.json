@@ -1,0 +1,298 @@
+{
+  "schema": "k957-product-recheck/1",
+  "date": "2026-09-30",
+  "go_version": "go version go1.26.8 linux/amd64",
+  "native_validation": {
+    "receipt": "product-recheck-linux-amd64.json",
+    "target": "linux/amd64",
+    "result": "passed",
+    "steps": 21,
+    "aggregate_statement_coverage_percent": 86.5,
+    "cli_statement_coverage_percent": 86.5,
+    "core_statement_coverage_percent": 86.5
+  },
+  "fuzz": {
+    "targets": [
+      {
+        "target": "FuzzEnvelope",
+        "passed": true,
+        "executions": 241249,
+        "requested_duration_seconds": 5
+      },
+      {
+        "target": "FuzzPCAP",
+        "passed": true,
+        "executions": 193184,
+        "requested_duration_seconds": 5
+      },
+      {
+        "target": "FuzzPCAPNG",
+        "passed": true,
+        "executions": 259874,
+        "requested_duration_seconds": 5
+      },
+      {
+        "target": "FuzzRules",
+        "passed": true,
+        "executions": 10242,
+        "requested_duration_seconds": 5
+      },
+      {
+        "target": "FuzzStructuredLogs",
+        "passed": true,
+        "executions": 81029,
+        "requested_duration_seconds": 5
+      },
+      {
+        "target": "FuzzWindowsXML",
+        "passed": true,
+        "executions": 13590,
+        "requested_duration_seconds": 5
+      }
+    ],
+    "total_executions": 799168,
+    "parallel_workers": 2,
+    "log_directory": "/tmp/k957-recheck-fuzz",
+    "scope_note": "Ran before the final unknown-size cancellation adjustment; parser implementations were unchanged by that adjustment."
+  },
+  "cross_platform_builds": {
+    "cgo_enabled": false,
+    "tags": [
+      "netgo",
+      "osusergo"
+    ],
+    "flags": [
+      "-trimpath",
+      "-buildvcs=false",
+      "-ldflags=-s -w -linkmode=internal"
+    ],
+    "artifacts": [
+      {
+        "target": "darwin/amd64",
+        "file": "/tmp/k957-recheck-platform-builds/k957-darwin-amd64",
+        "sha256": "b87f08d629235dd7622aee5d55880f3ae4de2bc5cc6f6c24ce6debb389673047",
+        "build_status": "passed",
+        "static_dependency_check": "passed",
+        "native_execution": false
+      },
+      {
+        "target": "darwin/arm64",
+        "file": "/tmp/k957-recheck-platform-builds/k957-darwin-arm64",
+        "sha256": "6f12bb4fd0d6cc112ec4bd523bd72edeec186ef15b837573c76013d50a10f906",
+        "build_status": "passed",
+        "static_dependency_check": "passed",
+        "native_execution": false
+      },
+      {
+        "target": "linux/amd64",
+        "file": "/tmp/k957-recheck-platform-builds/k957-linux-amd64",
+        "sha256": "6cf697b1e3a63d59ba8d706b9df3cffe61532f494397d257f6a8441e330a7003",
+        "build_status": "passed",
+        "static_dependency_check": "passed",
+        "native_execution": false
+      },
+      {
+        "target": "linux/arm64",
+        "file": "/tmp/k957-recheck-platform-builds/k957-linux-arm64",
+        "sha256": "42c5f03865718f295856ad12c3c4bbfa55d44f285a1b781ba443d5b9e4fbe34b",
+        "build_status": "passed",
+        "static_dependency_check": "passed",
+        "native_execution": false
+      },
+      {
+        "target": "windows/amd64",
+        "file": "/tmp/k957-recheck-platform-builds/k957-windows-amd64.exe",
+        "sha256": "67cf81d3d5be4e5d6f59befc9c52193b93056e4e53783828ba40838b13246cd8",
+        "build_status": "passed",
+        "static_dependency_check": "passed",
+        "native_execution": false
+      },
+      {
+        "target": "windows/arm64",
+        "file": "/tmp/k957-recheck-platform-builds/k957-windows-arm64.exe",
+        "sha256": "371f6ed2103921caa563fac5fe15edfa9fe357e25160de7ed02afa00ae444cb5",
+        "build_status": "passed",
+        "static_dependency_check": "passed",
+        "native_execution": false
+      }
+    ],
+    "scope_note": "Cross-compilation and static dependency inspection only; native execution was Linux AMD64 in the separate validation workflow."
+  },
+  "existing_distribution": {
+    "binary_checks": [
+      {
+        "file": "dist/k957-darwin-amd64",
+        "matches_listed_sha256": true
+      },
+      {
+        "file": "dist/k957-darwin-arm64",
+        "matches_listed_sha256": true
+      },
+      {
+        "file": "dist/k957-linux-amd64",
+        "matches_listed_sha256": true
+      },
+      {
+        "file": "dist/k957-linux-arm64",
+        "matches_listed_sha256": true
+      },
+      {
+        "file": "dist/k957-windows-amd64.exe",
+        "matches_listed_sha256": true
+      },
+      {
+        "file": "dist/k957-windows-arm64.exe",
+        "matches_listed_sha256": true
+      }
+    ],
+    "working_tree_mismatches": [
+      "README.md",
+      "README_TR.md",
+      "cmd/k957/main.go",
+      "internal/core/analyze.go",
+      "internal/core/collect.go",
+      "internal/core/resume.go",
+      "internal/core/review.go",
+      "internal/core/share.go",
+      "internal/core/share_export.go",
+      "internal/core/verify.go",
+      "scripts/pcapng_integration.py",
+      "scripts/resume_integration.py",
+      "scripts/windows_xml_integration.py",
+      "docs/CASE.md",
+      "internal/core/case.go",
+      "internal/core/hashset.go",
+      "internal/core/memory_scan.go",
+      "internal/core/platform_parse.go",
+      "internal/core/report_html.go",
+      "internal/core/report_template.go",
+      "internal/core/store.go"
+    ]
+  },
+  "source_snapshot": {
+    "digest_encoding": "Compact UTF-8 JSON of the sorted files mapping, separators comma and colon, with no trailing newline",
+    "sha256": "4c44410e693303845458667af17f6be75e590ba9d2628e128d32cab6c761e3b0",
+    "files": {
+      "cmd/k957/cover_cli_test.go": "821cab4039e3044c8745647eb9e10568f644ea23b5ea061d2bc0dc4dc637007a",
+      "cmd/k957/custody.go": "4fb44fb6563fa6ff19575f43d0d038dee6a96363637dee92bfc627918b4a554e",
+      "cmd/k957/custody_test.go": "449d934ef0ca1c86141a285905baf4666cfb8784130ee45ba15875fd4900165e",
+      "cmd/k957/full_cmd.go": "23f08448fad3a0fe7e5c72c8513a1364ecb2410ebecd14978325344db3290b78",
+      "cmd/k957/hashset_review_test.go": "0f44c5731064753df464974b80d57159dc5e8415f8b83c603900ceb84b014ea7",
+      "cmd/k957/interrupt.go": "69b4e7e32174e8f24894748729e4841ed89ace50e28dd89703825afe71766cd3",
+      "cmd/k957/interrupt_test.go": "350ff42b13d3f84c09ce1fcbc9deb45b34435395182b38810b42a684eb871d19",
+      "cmd/k957/interrupt_unix_test.go": "6bf7e2dc865e551d1eb58cfdf6799faf824731c57ddaa73e77621e6107b689a6",
+      "cmd/k957/main.go": "c253d76bb8ca1187524c7f7593a2ba7a7ea4043f03888fa3b4f8adf42c51a92a",
+      "cmd/k957/main_test.go": "6aec9027a9c0c491a430b41d71cfafa675eb9b50d507a1b6a07aa6774bf913f5",
+      "cmd/k957/progress.go": "4db6d2df4011a824f1f2b3436ad69891ff21452cedf2544d1812de45cbfd4509",
+      "cmd/k957/progress_test.go": "dd08764de0c47d9166f2b209ed730638a9ef33ef11503b21136f2ed33034328b",
+      "cmd/k957/share_test.go": "8772073e64b138964a1e6a0e306469d7559d21cf6d2f12e7482489dcae6d8c36",
+      "cmd/k957/summary.go": "83be72bb7d5f9607856241afbefb5472700a1eb85a54c8f0909e7cdcb82549d7",
+      "cmd/k957/summary_test.go": "e0159e316db9bcfb8f009ad1cbd8164c846f3f9078576ac41f4727c362465d7a",
+      "cmd/k957/wizard.go": "c5caa4ee77eb64dd48d135176094a5905b2c4e61a5a373ecb6257485b7204b2c",
+      "go.mod": "9dc012e2cf8ca2ce3886816825a65700adc9d9f2f924a525b47ba92a1ece3dd3",
+      "internal/core/activity.go": "224f75a16c3d010635ab815ce406452bbc73ed810728b079b3bbebc743e31b85",
+      "internal/core/activity_test.go": "8898effe3d343eab317d9727c368d63e73855c2d84f5c877f6a1db631b726d64",
+      "internal/core/analyze.go": "f1f086aadfd6f01fdbc31c85e11ed985f3ee67b304528b2cc8a640130da82a2e",
+      "internal/core/artifacts.go": "01f3f74000d5db5d15235dc2cc177ad6ca2f348020201b4c36c83dcf20ac04b9",
+      "internal/core/artifacts_test.go": "a837be0090ca54633deffe1ab9360d5670ae17364008965f9cf81846f53eac56",
+      "internal/core/bodyfile.go": "b4385b78eb61fdbcb21cfd25a454e1ec5aa4702b283097af2a5f9503497c89fc",
+      "internal/core/case.go": "64fa0670a091e906a786cbbc4ac6e32d76aa8b0a4ead662879975a3bd5495587",
+      "internal/core/case_test.go": "4d06fa5a8ea128fa4b665f8303e27e08f423a03dd608c05be1fe165d816a2ebf",
+      "internal/core/checkpoint_other.go": "4f426e1426530d3197b22e6e83e7bb511ada12a46978db011dec1be2cb8d3b9c",
+      "internal/core/checkpoint_test.go": "b6d03a61475b078907776ba6b1585d19fb1cfab855508fc2c295bfa3b0da3867",
+      "internal/core/checkpoint_windows.go": "4733f3cb1eac45e3706916d215ddf72bbeadd19848fbf434427c0e2436124325",
+      "internal/core/checkpoint_windows_test.go": "5a8d28ccd01b8841156ea9f4808abd0188de704a627cdd38439ac5192b9a8267",
+      "internal/core/collect.go": "0b221306297fdd9d92b4fc67b82f02afc2869dd0fe2c8e36b84b756c3db6b38f",
+      "internal/core/collect_portability_test.go": "c3b8e706f82ff2cc14ad80c927a9ed1d99c118dac5540a48b7780f07f71f59c3",
+      "internal/core/core_test.go": "e61fc5b7bd68b1b627734d4a2f490d310880156a0f563fdb9d9dcc059655e162",
+      "internal/core/correlate.go": "1116e13fcd23ce57f99dadc52c04627f4726542b80de6964c172fb16deab53d6",
+      "internal/core/cover_gaps_test.go": "eff1e89ea3e79b785462b67b1d368d2d3a9805eafc22f4018ac5d0b6b0410b1a",
+      "internal/core/cover_more_test.go": "4a5be990f7774df94132686cda82a4e47f79ab1c96cb70895c1aaba6b6b97966",
+      "internal/core/cover_resume_test.go": "dfa5433bbb6151d5c294af896238c65a0ab96e92e39a43ec939d76d444dba240",
+      "internal/core/cover_store_test.go": "fef2f01915f69fe0cbb5eca90d6cb7d4ae6b6ddf32fa7f7f38fafb7ffe448341",
+      "internal/core/crypto.go": "5d98ffdff6355f2bda1174a7a53147d9dc9d9b884ab05094c2f26903a00c7d0f",
+      "internal/core/custody.go": "18e757daaf7c4910bbe58d344fadea0c7ef593c991e3699ceb9bc06ae20047b8",
+      "internal/core/custody_export.go": "d515d759ce052844a9e23d0c47515a6dfa2e920623699414008444c17eeb9561",
+      "internal/core/custody_test.go": "689c1877d32738de0f0208a1cc30d125e2c15fee21c733e20e19c799214e42a1",
+      "internal/core/full.go": "e761d8db401a2e0ff67e77173988e1b28ce7468bed23bd6bdfcb796513219225",
+      "internal/core/full_test.go": "af5a1c882886ff087a59b855a70f341bc616568bee9cb234b2750e1fcc70ac9d",
+      "internal/core/hashset.go": "47622b09d2de706d18f51804a98b6422dacbcf14d5556214a3b616ae8348c8a1",
+      "internal/core/identify.go": "0df5087013d6d9586ab3b17368c228e36f85e25d6d2f120ae30dd9206eda25bc",
+      "internal/core/identify_test.go": "f5af4edddc216885e58b1a3a1259e28fcb41d8269de3586bf242177741e171c5",
+      "internal/core/logs.go": "2f7e2b2aef0627c242cdbfecd7848b75dd5b0633726fbd6944a157e0d7d4a782",
+      "internal/core/memory.go": "ed9dcbc66448543688420d525870b35eb4f0998b2f2ffda7955477c71d789fef",
+      "internal/core/memory_observe.go": "fffc47c652086f36705d780a50adb28010b4ef01680f97f8067099d8b3075675",
+      "internal/core/memory_observe_test.go": "eb2a420faa35a5988600eb8a1517f63b3bc9d6aedaaa94a64c2eb29011743887",
+      "internal/core/memory_scan.go": "bdafe54696d25ad379cc5cabbd94642417300c438702b5ed10624a5b0679438f",
+      "internal/core/model.go": "43466cba17acef8d65df1ccd074502c1eb6de955c71398b9587cbc838ce5d304",
+      "internal/core/pcap.go": "e6df8496c5256e2627c8afaf2e6e4ccecc801024ed5f30bb5fee610b88aa5a62",
+      "internal/core/pcap_export.go": "1de55874b97f335902de721f7e5ce8f8b729a813a1fa0509284c5413fc10d77c",
+      "internal/core/pcap_share.go": "720291ff65539d3bdb67a430ff1586468d5593db9e87e771cb880250f97e1294",
+      "internal/core/pcap_test.go": "90e41c60131820d07aa68245a06f1c40fe38eed067bd0dce33f42d4878f0cdd2",
+      "internal/core/pcapng.go": "be4f8008b975ec3c1f5c8e739f75a5f3ba9ada2d08f55e454f904619fcc77cf6",
+      "internal/core/pcapng_test.go": "8673150a10c2d143e8b27a2b45d183b3b740f5d1515e262342c3874a6ef89fe0",
+      "internal/core/platform_parse.go": "246c8d85bf227d75d14fb64d116cace3adc0a21b419747126d036cbd608f49f6",
+      "internal/core/platform_parse_test.go": "403e817ba05733c05321fd41cb0aee92d2a34baaf1c9c1e784d794a683c845af",
+      "internal/core/preflight.go": "d214a184ffe38fc988d1866cc6f47aa8527e9dc8023c5c4fc1e0b38c6ba7cdf6",
+      "internal/core/preflight_resume.go": "ca61bba24b28aba9521430d40fe38858f4e3aa8bf65f4a6eaeaf133996984446",
+      "internal/core/preflight_resume_test.go": "5179b0405bcfa539b0e2ba8b30dd1776a3113d549bdde75151df6412bc3b1970",
+      "internal/core/preflight_test.go": "a772f0f43e78ca42ab5e1ff04089c6ef8ae050740f43f4176e9d9b04d235df47",
+      "internal/core/privilege_other.go": "38480f4543b43dda3b03621301fd78ad96801a8043a6a8a4e410f3dc3d910802",
+      "internal/core/privilege_unix.go": "055b49f0295037edc8bf5cb5b6629ea822a5e173cd4825e03f020300b5921fd4",
+      "internal/core/privilege_windows.go": "5ab5a8f36c4255b609b55d138cafec7345c3b62fcc9bab7647a4b0f1acfdf3d4",
+      "internal/core/profile_darwin.go": "722e880745e0ff29f58fd7c71f1a9807d9eeb00df9e96501050f9164f63d4e5a",
+      "internal/core/profile_linux.go": "f1199fe1343a2a2bb14a5faf66d8a7ece04ec29a6726c948348989c181baad57",
+      "internal/core/profile_other.go": "ba5787265a70b545d85ef16e22caa5aa268184f2bd042fad2e156b5b0f9d0f7f",
+      "internal/core/profile_windows.go": "e2070b53dd67cf0a03d5b73f70ae5042733c808b00761f6373bfa0a1c860ce98",
+      "internal/core/progress.go": "ccc9f6e011c98bc230cf0e90e10c80c6ef32a04f35b007492ea74ff4e5defcda",
+      "internal/core/progress_test.go": "4fee54d77f502dc7464c92bd5f547bde6d4da0cac602b0227f338cb99b889b19",
+      "internal/core/quality_regression_test.go": "fdf1d9c5c4535c2e7c8eb50c808156ddc6795ad61b562c16a4277e9b33a21f55",
+      "internal/core/recheck_test.go": "0ecd4a090f9cfc3ec66600468227f8753a0d63f719e449abccffbc23e1152f5c",
+      "internal/core/report_html.go": "635fea70277f33c1900cd47f7372cbb22577dc31f9d2845dbd5935302e024d67",
+      "internal/core/report_html_test.go": "1fa6473ccb4c50c8d9efd591c3a5e03d1502ec2ddef9361ff45691f3101c8dcc",
+      "internal/core/report_template.go": "4d65b3040e0bf17dea0fe3f20422df5f6e2b389fdd9415251e8b448a31c12630",
+      "internal/core/resume.go": "c50e3bc3cb98e3da3b0dbbd3fc690e61d703ef41fd57fb97c16b238af8efa4c1",
+      "internal/core/resume_test.go": "c43f09e1a83fc0f5c961031bb17f89ce4210940d5279dbebe9fae5c7c7f49694",
+      "internal/core/review.go": "ce78d098a13df2307be2c45b56adb6cd647b1a83b5f2a68ce72d2b15ef6b9182",
+      "internal/core/review_test.go": "53bbd1272b07efbdb2b43b92c9b14caec09008d36dd4fb66e0c3a7b6e1e39c47",
+      "internal/core/share.go": "957603c0a57470cf12a79f8c1e0cb473db0d77381f975365ebea834cfd774eb7",
+      "internal/core/share_export.go": "c7c1c34c7f320f4c61a2a2d88e1eaf01bec817605c6fb2c9388e24665e103fae",
+      "internal/core/share_test.go": "7a394e2cc261b78693e15dacd98fc695ac903e7c99efc767278181bea374b9db",
+      "internal/core/stage_crypto.go": "ebffe38202ea6e56983d57d0c55c0027dc7378da6c8f74316fb2dd4002eb5749",
+      "internal/core/stage_crypto_test.go": "57dbf2bbc3a11939ed31ac2d53650b2240bf61b66a0fe40c9a7b49561157b9a4",
+      "internal/core/store.go": "ffb3467651b78697e59fa65685871c55df3e6bc694a2e7e8977aee89badab26d",
+      "internal/core/structured.go": "4391adc18df6f0c30dda0b39b5b087ed0d256da503050bf457e5ec5bc131aa89",
+      "internal/core/structured_test.go": "506091bb83d7f12d535ebeed1e04747f6e788e12cb685c34829ef9867f01cc7d",
+      "internal/core/system.go": "dc92270a1d84acaff8516765729d6e1d500d935246502d137848ac4416b5f3e6",
+      "internal/core/verify.go": "c242d964deb83a3fbb77da1e9c5b5e34e9115e1264a951c51efe99351883a97c",
+      "internal/core/volume_other.go": "570d429f95225c26b4fac812f265e4c97e8699c4f0fc9030bc2cbafd51eee5b2",
+      "internal/core/volume_unix.go": "76b6ec51b79b960ddea220246c5bb06d55e2a2b98cd791b4dd34afb3fd6618de",
+      "internal/core/volume_windows.go": "827a2bb3f51446050cfe75e7647081d680112cde830554c0cfa1c395001b628e",
+      "internal/core/windows_xml.go": "3bf987374cd68f54555b36c6dc30d5fec2ceb8fb2c6e9d85cf73fdb1c16de545",
+      "internal/core/windows_xml_export.go": "a9025c63f385bbdf597dbf8869c3438628a9642a366f68bc0a59353602dc9160",
+      "internal/core/windows_xml_test.go": "4133a657b46076a48937190c1e110ee76c8fdd7f127b31cb85adfe42ec0fe6ec",
+      "internal/core/work_status.go": "bda89b4f806abd5374aa1d6ca04ff34c697d93c57b8d340febd2ed7264344b07",
+      "scripts/check_static.py": "52f0b41713165e2c059a783e065b436eaa094557f9ae787d78e12981138f8875",
+      "scripts/crypto_interop.py": "cf2e1befafda9990e6bd8b6f30d15eb06d969f9659442e5a659a99e06a48cd2c",
+      "scripts/custody_integration.py": "ba8b497602257b5016b666645bec53c845920d79327247aeef42cb0cbfbbf98f",
+      "scripts/encrypted_integration.py": "6af55f88b868cd094857820706f989e3612c6c0ebe4fe37b492cd69c5ef8867f",
+      "scripts/full_integration.py": "c2ff0bef57b08c42749d67f2546d97a6522927ddd3996bb60d678bed78087598",
+      "scripts/integration.py": "d584ddb6ff09911c886b62c033cefe9bb6151393bafddfb5b510c9b9f4204747",
+      "scripts/pcap_integration.py": "fa948b3ae221c5aed2a7841ec7008b0eece13ceb7f8c33a1b43663678bb29854",
+      "scripts/pcapng_integration.py": "c8645ae936178f954d2ede0c6e1513d6df98bd431e4cdb1e8f314d1997c38f9b",
+      "scripts/preflight_integration.py": "4198f3fc3b5a9250047e84ea1283df05c4b055042cccb6562888e062e5dece81",
+      "scripts/resume_integration.py": "5584bd7e1d69fc184898ec11bdc7b8e9bc661f24ab1be310b5c156ce059ee09d",
+      "scripts/review_integration.py": "1b932a6ea85069e735825abd36b07ec2cc247805858b4d8a9444e0f2f16895c9",
+      "scripts/share_integration.py": "196ca9464c3142324c05883702116ae36dfcd6fca272fea2eea5f781d0069302",
+      "scripts/structured_integration.py": "1fdf417b8147284f633f3af9d3542cb98f16565190f4989529ab8276588fe06c",
+      "scripts/test_support.py": "b1a4f9247fd4254f04e21139c502ee77020e00026c1f66d7afc883cf43f7c75d",
+      "scripts/validate.py": "3fd5ae26a5cbdb082a771523961fbfd6a3520f97c78f7f15f8784da6335ba454",
+      "scripts/windows_xml_integration.py": "c77c39ba5be368bf964632b11d5e9962e2b5c2da384d7c0aa580cd3130ebf419"
+    }
+  },
+  "limitations": [
+    "Existing distribution artifacts were not regenerated; listed working-tree source and documentation hashes differ.",
+    "No native Windows, macOS, ARM64 or physical-device validation was performed.",
+    "Short fuzz runs do not certify parser security or forensic accuracy."
+  ]
+}

@@ -15,8 +15,5 @@ func exportCustodyCSV(s *CustodyStatus, path string) error {
 		w.Write([]string{strconv.Itoa(e.Sequence), e.Action, csvSafe(e.Actor), csvSafe(e.From), csvSafe(e.To), csvSafe(e.Location), csvSafe(e.Note), e.OccurredAt.Format(time.RFC3339Nano), e.RecordedAt.Format(time.RFC3339Nano), e.Signer, e.Previous})
 	}
 	w.Flush()
-	if e := w.Error(); e != nil {
-		return e
-	}
 	return WriteNew(path, b.Bytes())
 }

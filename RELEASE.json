@@ -1,12 +1,20 @@
 {
+  "schema": "k957-release/1",
   "name": "k957",
-  "version": "0.12.0",
+  "version": "0.15.0",
+  "license": "AGPL-3.0-or-later",
   "status": "developer-preview",
-  "build_toolchain": "go1.26.8",
-  "go_module_dependencies": [],
-  "runtime_tested": [
-    "linux/amd64"
-  ],
+  "production_validated": false,
+  "developer": {
+    "name": "Cuma Kurt",
+    "email": "cumakurt@gmail.com",
+    "repository": "https://github.com/cumakurt/k957",
+    "linkedin": "https://www.linkedin.com/in/cuma-kurt-34414917/"
+  },
+  "generated": "2026-10-04T12:44:18.231320+00:00",
+  "build_toolchain": "go version go1.26.8 linux/amd64",
+  "source_manifest": "SOURCE.json",
+  "source_sha256": "41535d7226d87ad2293d06c043aaec4401d33c81c078cfddea0de2252be4fdac",
   "cross_compiled": [
     "linux/amd64",
     "linux/arm64",
@@ -15,83 +23,278 @@
     "darwin/amd64",
     "darwin/arm64"
   ],
-  "test_coverage_total_percent": 84.3,
-  "production_validated": false,
-  "resumable_acquisition": true,
-  "accepted_evidence_schemas": [
-    "k957-evidence/1",
-    "k957-evidence/2"
-  ],
-  "process_kill_recovery_tested": true,
-  "physical_usb_disconnect_tested": false,
-  "analyst_review": true,
-  "signed_review_history": true,
-  "structured_csv_jsonl": true,
-  "cross_evidence_entity_correlations": true,
-  "encrypted_staging": true,
-  "streaming_encrypted_acquisition_output": true,
-  "encrypted_process_kill_recovery_tested": true,
-  "metadata_preflight": true,
-  "filesystem_capacity_estimates": true,
-  "optional_collection_preflight_gate": true,
-  "physical_device_separation_verified": false,
-  "signed_custody_events": true,
-  "recipient_acceptance_required": true,
-  "external_actor_key_trust": true,
-  "optional_external_custody_head_check": true,
-  "custody_formats": [
-    "k957-custody/1",
-    "k957-custody-event/1",
-    "k957-custody-trust/1"
-  ],
-  "trusted_timestamp_authority": false,
-  "redacted_share_reports": true,
-  "separate_shared_report_schema": "k957-shared-report/1",
-  "share_policy_schema": "k957-share-policy/1",
-  "shared_free_text_omitted": true,
-  "anonymity_guaranteed": false,
-  "classic_pcap_header_analysis": true,
-  "pcapng_analysis": true,
-  "live_packet_capture": false,
-  "tcp_udp_directional_flows": true,
-  "packet_payload_analysis": false,
-  "packet_checksum_validation": false,
-  "ip_fragment_reassembly": false,
-  "pcapng_enhanced_packet_blocks": true,
-  "pcapng_mixed_sections": true,
-  "pcapng_interface_provenance": true,
-  "linux_sll_sll2_header_analysis": true,
-  "packaged_example_report_version": "0.9.0",
-  "compatibility_runtime_tested": [
-    {
-      "target": "windows/amd64",
-      "environment": "Wine 10.0",
-      "unit_tests": true,
-      "integration_scripts_passed": 12
-    }
+  "runtime_tested": [
+    "linux/amd64",
+    "windows/amd64"
   ],
   "native_platform_tests_pending": [
     "linux/arm64",
-    "windows/amd64",
     "windows/arm64",
     "darwin/amd64",
     "darwin/arm64"
   ],
-  "platform_test_receipts": [
-    "docs/validation/0.12.0/linux-amd64/validation.json",
-    "docs/validation/0.12.0/windows-amd64-wine/validation.json"
+  "validation": {
+    "name": "docs/validation/0.15.0/linux-amd64-developer-20261004/validation.json",
+    "sha256": "e7333d21d27a0171ace498535b2e004b18b01ce9c5db62c3fb73070d0cba498d",
+    "target": "linux/amd64"
+  },
+  "validations": [
+    {
+      "name": "docs/validation/0.15.0/linux-amd64-developer-20261004/validation.json",
+      "sha256": "e7333d21d27a0171ace498535b2e004b18b01ce9c5db62c3fb73070d0cba498d",
+      "target": "linux/amd64"
+    },
+    {
+      "name": "docs/validation/0.15.0/windows-amd64-developer-20261004/validation.json",
+      "sha256": "de1fd1577de2040963819b4728db0f956c5273fd4b645d3d764b6da7b04f30cc",
+      "target": "windows/amd64"
+    }
   ],
-  "ci_workflow": ".github/workflows/platform-tests.yml",
-  "ci_workflow_executed": false,
-  "test_coverage_platform": "linux/amd64",
-  "resume_preflight": true,
-  "optional_resumed_collection_preflight_gate": true,
-  "windows_event_xml": true,
-  "native_evtx_analysis": false,
-  "windows_event_xml_encodings": [
-    "UTF-8",
-    "UTF-16LE with BOM",
-    "UTF-16BE with BOM"
+  "test_coverage_total_percent": 75.6,
+  "test_coverage_by_target": {
+    "linux/amd64": 75.6,
+    "windows/amd64": 74.1
+  },
+  "local_assistant_evaluation": null,
+  "go_module_dependencies": [
+    {
+      "path": "github.com/Velocidex/json",
+      "version": "v0.0.0-20220224052537-92f3c0326e5a",
+      "sum": "h1:AeXPUzhU0yhID/v5JJEIkjaE85ASe+Vh4Kuv1RSLL+4=",
+      "notices": [
+        "licenses/github.com__Velocidex__json@v0.0.0-20220224052537-92f3c0326e5a/LICENSE"
+      ]
+    },
+    {
+      "path": "github.com/Velocidex/ordereddict",
+      "version": "v0.0.0-20250821063524-02dc06e46238",
+      "sum": "h1:Q2DFf1f4fiz1/V4cu2wojDKF6/DfjIY7QmfVAr/UnJY=",
+      "notices": [
+        "licenses/github.com__Velocidex__ordereddict@v0.0.0-20250821063524-02dc06e46238/LICENSE"
+      ]
+    },
+    {
+      "path": "github.com/Velocidex/yaml/v2",
+      "version": "v2.2.8",
+      "sum": "h1:GUrSy4SBJ6RjGt43k6MeBKtw2z/27gh4A3hfFmFY3No=",
+      "notices": [
+        "licenses/github.com__Velocidex__yaml__v2@v2.2.8/LICENSE",
+        "licenses/github.com__Velocidex__yaml__v2@v2.2.8/LICENSE.libyaml",
+        "licenses/github.com__Velocidex__yaml__v2@v2.2.8/NOTICE"
+      ]
+    },
+    {
+      "path": "github.com/davecgh/go-spew",
+      "version": "v1.1.1",
+      "sum": "h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=",
+      "notices": [
+        "licenses/github.com__davecgh__go-spew@v1.1.1/LICENSE"
+      ]
+    },
+    {
+      "path": "github.com/dustin/go-humanize",
+      "version": "v1.0.1",
+      "sum": "h1:GzkhY7T5VNhEkwH0PVJgjz+fX1rhBrR7pRT3mDkpeCY=",
+      "notices": [
+        "licenses/github.com__dustin__go-humanize@v1.0.1/LICENSE"
+      ]
+    },
+    {
+      "path": "github.com/google/uuid",
+      "version": "v1.6.0",
+      "sum": "h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=",
+      "notices": [
+        "licenses/github.com__google__uuid@v1.6.0/LICENSE"
+      ]
+    },
+    {
+      "path": "github.com/phpdave11/gofpdi",
+      "version": "v1.0.14-0.20211212211723-1f10f9844311",
+      "sum": "h1:zyWXQ6vu27ETMpYsEMAsisQ+GqJ4e1TPvSNfdOPF0no=",
+      "notices": [
+        "licenses/github.com__phpdave11__gofpdi@v1.0.14-0.20211212211723-1f10f9844311/LICENSE"
+      ]
+    },
+    {
+      "path": "github.com/pkg/errors",
+      "version": "v0.9.1",
+      "sum": "h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4=",
+      "notices": [
+        "licenses/github.com__pkg__errors@v0.9.1/LICENSE"
+      ]
+    },
+    {
+      "path": "github.com/remyoudompheng/bigfft",
+      "version": "v0.0.0-20230129092748-24d4a6f8daec",
+      "sum": "h1:W09IVJc94icq4NjY3clb7Lk8O1qJ8BdBEF8z0ibU0rE=",
+      "notices": [
+        "licenses/github.com__remyoudompheng__bigfft@v0.0.0-20230129092748-24d4a6f8daec/LICENSE"
+      ]
+    },
+    {
+      "path": "github.com/signintech/gopdf",
+      "version": "v0.38.1",
+      "sum": "h1:mMdVMPKrvHCskYmjet/uTuXRAEV742oTM7GdFcuhuwM=",
+      "notices": [
+        "licenses/github.com__signintech__gopdf@v0.38.1/LICENSE"
+      ]
+    },
+    {
+      "path": "golang.org/x/sys",
+      "version": "v0.48.0",
+      "sum": "h1:bbX/i/6MgT9BVLM9RT1thmxL04yeTAhbEz4SyadbXoo=",
+      "notices": [
+        "licenses/golang.org__x__sys@v0.48.0/LICENSE"
+      ]
+    },
+    {
+      "path": "howett.net/plist",
+      "version": "v1.0.1",
+      "sum": "h1:37GdZ8tP09Q35o9ych3ehygcsL+HqKSwzctveSlarvM=",
+      "notices": [
+        "licenses/howett.net__plist@v1.0.1/LICENSE"
+      ]
+    },
+    {
+      "path": "modernc.org/libc",
+      "version": "v1.77.1",
+      "sum": "h1:Ct8j47QtiZ1Enj2DtFXQtUqrPCAjdCmPjtCuvrYQ0Hs=",
+      "notices": [
+        "licenses/modernc.org__libc@v1.77.1/LICENSE",
+        "licenses/modernc.org__libc@v1.77.1/LICENSE-3RD-PARTY.md"
+      ]
+    },
+    {
+      "path": "modernc.org/mathutil",
+      "version": "v1.7.1",
+      "sum": "h1:GCZVGXdaN8gTqB1Mf/usp1Y/hSqgI2vAGGP4jZMCxOU=",
+      "notices": [
+        "licenses/modernc.org__mathutil@v1.7.1/LICENSE"
+      ]
+    },
+    {
+      "path": "modernc.org/memory",
+      "version": "v1.12.1",
+      "sum": "h1:nFMiWrpStgZczNl6XI9GnIk/rWhYIyHGUaR04pGbp9g=",
+      "notices": [
+        "licenses/modernc.org__memory@v1.12.1/LICENSE",
+        "licenses/modernc.org__memory@v1.12.1/LICENSE-GO",
+        "licenses/modernc.org__memory@v1.12.1/LICENSE-LOGO",
+        "licenses/modernc.org__memory@v1.12.1/LICENSE-MMAP-GO"
+      ]
+    },
+    {
+      "path": "modernc.org/sqlite",
+      "version": "v1.60.0",
+      "sum": "h1:7AZh8lREDo8x3j7aSdF7KGpAKUkJExJ1p67tcRnmttM=",
+      "notices": [
+        "licenses/modernc.org__sqlite@v1.60.0/LICENSE",
+        "licenses/modernc.org__sqlite@v1.60.0/LICENSE-3RD-PARTY.md",
+        "licenses/modernc.org__sqlite@v1.60.0/LICENSE-SQLITE",
+        "licenses/modernc.org__sqlite@v1.60.0/LICENSE-SQLITE_VEC"
+      ]
+    },
+    {
+      "path": "www.velocidex.com/golang/evtx",
+      "version": "v0.2.1-0.20260916104054-0ef2ce4e83a8",
+      "sum": "h1:Me1/9DB8ZMH6+ZNFWPlfn3JEFgZNH59Cfk83wcQ2PEk=",
+      "notices": [
+        "licenses/www.velocidex.com__golang__evtx@v0.2.1-0.20260916104054-0ef2ce4e83a8/LICENSE"
+      ]
+    }
   ],
-  "shared_windows_context_omitted": true
+  "artifacts": [
+    {
+      "target": "linux/amd64",
+      "name": "dist/k957-linux-amd64",
+      "bytes": 18968738,
+      "sha256": "e9583368d53207c6186395571ac5b6157307af16edec23e6484512610579834f",
+      "static_check": "/depo/cuma/projelerim/k957/dist/k957-linux-amd64: elf static check passed (0 platform libraries)",
+      "native_runtime": "passed retained validation; device scenarios not validated",
+      "platform_signature": "unsigned"
+    },
+    {
+      "target": "linux/arm64",
+      "name": "dist/k957-linux-arm64",
+      "bytes": 17957026,
+      "sha256": "7e14b333c24993246115f06ff8f90f36ab467b6bf25a0d92ddfa93f23a9efef2",
+      "static_check": "/depo/cuma/projelerim/k957/dist/k957-linux-arm64: elf static check passed (0 platform libraries)",
+      "native_runtime": "unvalidated",
+      "platform_signature": "unsigned"
+    },
+    {
+      "target": "windows/amd64",
+      "name": "dist/k957-windows-amd64.exe",
+      "bytes": 19275776,
+      "sha256": "df296695bd3b309740c633e1371dcdb0ad0849f514988b27ad0fa6cb8f943009",
+      "static_check": "/depo/cuma/projelerim/k957/dist/k957-windows-amd64.exe: pe static check passed (1 platform libraries)",
+      "native_runtime": "passed retained validation; device scenarios not validated",
+      "platform_signature": "unsigned"
+    },
+    {
+      "target": "windows/arm64",
+      "name": "dist/k957-windows-arm64.exe",
+      "bytes": 17948160,
+      "sha256": "2e6cb8df9dc16975b2f5510ee8541ad513f4a43be8fc9c636ad432b998141a85",
+      "static_check": "/depo/cuma/projelerim/k957/dist/k957-windows-arm64.exe: pe static check passed (1 platform libraries)",
+      "native_runtime": "unvalidated",
+      "platform_signature": "unsigned"
+    },
+    {
+      "target": "darwin/amd64",
+      "name": "dist/k957-darwin-amd64",
+      "bytes": 19032448,
+      "sha256": "b7efb408c48cadcfc9e7500e3c624ff0d852f6f4d08583c1d02a2b17cbcac944",
+      "static_check": "/depo/cuma/projelerim/k957/dist/k957-darwin-amd64: mach-o static check passed (4 platform libraries)",
+      "native_runtime": "unvalidated",
+      "platform_signature": "unsigned"
+    },
+    {
+      "target": "darwin/arm64",
+      "name": "dist/k957-darwin-arm64",
+      "bytes": 18078098,
+      "sha256": "4e9baf253e17688253c4bbf14e33bdbbf96ac76b6e7523195d1b3e05da5ecf14",
+      "static_check": "/depo/cuma/projelerim/k957/dist/k957-darwin-arm64: mach-o static check passed (4 platform libraries)",
+      "native_runtime": "unvalidated",
+      "platform_signature": "unsigned"
+    }
+  ],
+  "documentation": "docs/EXAMINATION_WORKFLOWS.md",
+  "supported_native_parsers": [
+    "selected SQLite/WAL browser visits",
+    "EVTX system metadata",
+    "clean primary Registry keys/selected values",
+    "binary launchd plist fields",
+    "offline USN v2/v3 journal records"
+  ],
+  "external_tools": [
+    "optional offline Volatility 3",
+    "optional Sleuth Kit fls/icat",
+    "optional loopback Ollama"
+  ],
+  "external_assurance": {
+    "physical_usb_disconnect_tested": false,
+    "physical_device_separation_verified": false,
+    "trusted_timestamp_authority": false,
+    "hardware_signing": false,
+    "real_model_inference_validated": false,
+    "real_model_inference_protocol_tested": false,
+    "real_model_forensic_quality_validated": false,
+    "valid_kernel_ram_corpus_validated": false,
+    "ci_workflow_executed": false,
+    "notarized": false
+  },
+  "accepted_evidence_schemas": [
+    "k957-evidence/1",
+    "k957-evidence/2"
+  ],
+  "default_report_formats": [
+    "html",
+    "pdf",
+    "json",
+    "csv"
+  ],
+  "complete_memory_results": "private JSONL; no automatic image/result/tool-output/runtime cap",
+  "kernel_memory_scope": "installed platform/global Volatility plugins, offline symbols, retained failed/unavailable methods",
+  "packaged_example_report_version": "0.15.0"
 }

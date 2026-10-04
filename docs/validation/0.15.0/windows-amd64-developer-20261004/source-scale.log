@@ -1,0 +1,4 @@
+RUN collect
+RUN verify
+RUN case
+PASSED: C:\Users\cmk\AppData\Local\Temp\k957-native-validation-20261002\validation-07\source-scale

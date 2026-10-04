@@ -1,0 +1,362 @@
+{
+  "schema": "k957-validation/1",
+  "started": "2026-09-30T08:35:46.173622+00:00",
+  "target": "linux/amd64",
+  "environment": {
+    "kind": "native",
+    "version": "#1 SMP PREEMPT_DYNAMIC Fri Aug 21 09:59:27 +03 2026"
+  },
+  "python": "3.14.7",
+  "python_platform": "linux-x86_64",
+  "binary": "/tmp/k957-recheck-build/k957",
+  "result": "passed",
+  "steps": [
+    {
+      "name": "go-version",
+      "command": [
+        "go",
+        "version"
+      ],
+      "status": "passed",
+      "log": "go-version.log",
+      "exit_code": 0,
+      "duration_seconds": 0.008
+    },
+    {
+      "name": "format",
+      "command": [
+        "gofmt",
+        "-l",
+        "/depo/cuma/projelerim/k957/cmd/k957/cover_cli_test.go",
+        "/depo/cuma/projelerim/k957/cmd/k957/custody.go",
+        "/depo/cuma/projelerim/k957/cmd/k957/custody_test.go",
+        "/depo/cuma/projelerim/k957/cmd/k957/full_cmd.go",
+        "/depo/cuma/projelerim/k957/cmd/k957/hashset_review_test.go",
+        "/depo/cuma/projelerim/k957/cmd/k957/interrupt.go",
+        "/depo/cuma/projelerim/k957/cmd/k957/interrupt_test.go",
+        "/depo/cuma/projelerim/k957/cmd/k957/interrupt_unix_test.go",
+        "/depo/cuma/projelerim/k957/cmd/k957/main.go",
+        "/depo/cuma/projelerim/k957/cmd/k957/main_test.go",
+        "/depo/cuma/projelerim/k957/cmd/k957/progress.go",
+        "/depo/cuma/projelerim/k957/cmd/k957/progress_test.go",
+        "/depo/cuma/projelerim/k957/cmd/k957/share_test.go",
+        "/depo/cuma/projelerim/k957/cmd/k957/summary.go",
+        "/depo/cuma/projelerim/k957/cmd/k957/summary_test.go",
+        "/depo/cuma/projelerim/k957/cmd/k957/wizard.go",
+        "/depo/cuma/projelerim/k957/internal/core/activity.go",
+        "/depo/cuma/projelerim/k957/internal/core/activity_test.go",
+        "/depo/cuma/projelerim/k957/internal/core/analyze.go",
+        "/depo/cuma/projelerim/k957/internal/core/artifacts.go",
+        "/depo/cuma/projelerim/k957/internal/core/artifacts_test.go",
+        "/depo/cuma/projelerim/k957/internal/core/bodyfile.go",
+        "/depo/cuma/projelerim/k957/internal/core/case.go",
+        "/depo/cuma/projelerim/k957/internal/core/case_test.go",
+        "/depo/cuma/projelerim/k957/internal/core/checkpoint_other.go",
+        "/depo/cuma/projelerim/k957/internal/core/checkpoint_test.go",
+        "/depo/cuma/projelerim/k957/internal/core/checkpoint_windows.go",
+        "/depo/cuma/projelerim/k957/internal/core/checkpoint_windows_test.go",
+        "/depo/cuma/projelerim/k957/internal/core/collect.go",
+        "/depo/cuma/projelerim/k957/internal/core/collect_portability_test.go",
+        "/depo/cuma/projelerim/k957/internal/core/core_test.go",
+        "/depo/cuma/projelerim/k957/internal/core/correlate.go",
+        "/depo/cuma/projelerim/k957/internal/core/cover_gaps_test.go",
+        "/depo/cuma/projelerim/k957/internal/core/cover_more_test.go",
+        "/depo/cuma/projelerim/k957/internal/core/cover_resume_test.go",
+        "/depo/cuma/projelerim/k957/internal/core/cover_store_test.go",
+        "/depo/cuma/projelerim/k957/internal/core/crypto.go",
+        "/depo/cuma/projelerim/k957/internal/core/custody.go",
+        "/depo/cuma/projelerim/k957/internal/core/custody_export.go",
+        "/depo/cuma/projelerim/k957/internal/core/custody_test.go",
+        "/depo/cuma/projelerim/k957/internal/core/full.go",
+        "/depo/cuma/projelerim/k957/internal/core/full_test.go",
+        "/depo/cuma/projelerim/k957/internal/core/hashset.go",
+        "/depo/cuma/projelerim/k957/internal/core/identify.go",
+        "/depo/cuma/projelerim/k957/internal/core/identify_test.go",
+        "/depo/cuma/projelerim/k957/internal/core/logs.go",
+        "/depo/cuma/projelerim/k957/internal/core/memory.go",
+        "/depo/cuma/projelerim/k957/internal/core/memory_observe.go",
+        "/depo/cuma/projelerim/k957/internal/core/memory_observe_test.go",
+        "/depo/cuma/projelerim/k957/internal/core/memory_scan.go",
+        "/depo/cuma/projelerim/k957/internal/core/model.go",
+        "/depo/cuma/projelerim/k957/internal/core/pcap.go",
+        "/depo/cuma/projelerim/k957/internal/core/pcap_export.go",
+        "/depo/cuma/projelerim/k957/internal/core/pcap_share.go",
+        "/depo/cuma/projelerim/k957/internal/core/pcap_test.go",
+        "/depo/cuma/projelerim/k957/internal/core/pcapng.go",
+        "/depo/cuma/projelerim/k957/internal/core/pcapng_test.go",
+        "/depo/cuma/projelerim/k957/internal/core/platform_parse.go",
+        "/depo/cuma/projelerim/k957/internal/core/platform_parse_test.go",
+        "/depo/cuma/projelerim/k957/internal/core/preflight.go",
+        "/depo/cuma/projelerim/k957/internal/core/preflight_resume.go",
+        "/depo/cuma/projelerim/k957/internal/core/preflight_resume_test.go",
+        "/depo/cuma/projelerim/k957/internal/core/preflight_test.go",
+        "/depo/cuma/projelerim/k957/internal/core/privilege_other.go",
+        "/depo/cuma/projelerim/k957/internal/core/privilege_unix.go",
+        "/depo/cuma/projelerim/k957/internal/core/privilege_windows.go",
+        "/depo/cuma/projelerim/k957/internal/core/profile_darwin.go",
+        "/depo/cuma/projelerim/k957/internal/core/profile_linux.go",
+        "/depo/cuma/projelerim/k957/internal/core/profile_other.go",
+        "/depo/cuma/projelerim/k957/internal/core/profile_windows.go",
+        "/depo/cuma/projelerim/k957/internal/core/progress.go",
+        "/depo/cuma/projelerim/k957/internal/core/progress_test.go",
+        "/depo/cuma/projelerim/k957/internal/core/quality_regression_test.go",
+        "/depo/cuma/projelerim/k957/internal/core/recheck_test.go",
+        "/depo/cuma/projelerim/k957/internal/core/report_html.go",
+        "/depo/cuma/projelerim/k957/internal/core/report_html_test.go",
+        "/depo/cuma/projelerim/k957/internal/core/report_template.go",
+        "/depo/cuma/projelerim/k957/internal/core/resume.go",
+        "/depo/cuma/projelerim/k957/internal/core/resume_test.go",
+        "/depo/cuma/projelerim/k957/internal/core/review.go",
+        "/depo/cuma/projelerim/k957/internal/core/review_test.go",
+        "/depo/cuma/projelerim/k957/internal/core/share.go",
+        "/depo/cuma/projelerim/k957/internal/core/share_export.go",
+        "/depo/cuma/projelerim/k957/internal/core/share_test.go",
+        "/depo/cuma/projelerim/k957/internal/core/stage_crypto.go",
+        "/depo/cuma/projelerim/k957/internal/core/stage_crypto_test.go",
+        "/depo/cuma/projelerim/k957/internal/core/store.go",
+        "/depo/cuma/projelerim/k957/internal/core/structured.go",
+        "/depo/cuma/projelerim/k957/internal/core/structured_test.go",
+        "/depo/cuma/projelerim/k957/internal/core/system.go",
+        "/depo/cuma/projelerim/k957/internal/core/verify.go",
+        "/depo/cuma/projelerim/k957/internal/core/volume_other.go",
+        "/depo/cuma/projelerim/k957/internal/core/volume_unix.go",
+        "/depo/cuma/projelerim/k957/internal/core/volume_windows.go",
+        "/depo/cuma/projelerim/k957/internal/core/windows_xml.go",
+        "/depo/cuma/projelerim/k957/internal/core/windows_xml_export.go",
+        "/depo/cuma/projelerim/k957/internal/core/windows_xml_test.go",
+        "/depo/cuma/projelerim/k957/internal/core/work_status.go"
+      ],
+      "status": "passed",
+      "log": "format.log",
+      "exit_code": 0,
+      "duration_seconds": 0.064
+    },
+    {
+      "name": "vet",
+      "command": [
+        "go",
+        "vet",
+        "./..."
+      ],
+      "status": "passed",
+      "log": "vet.log",
+      "exit_code": 0,
+      "duration_seconds": 0.767
+    },
+    {
+      "name": "unit",
+      "command": [
+        "go",
+        "test",
+        "-count=1",
+        "-json",
+        "-coverprofile=/tmp/k957-recheck-validation-final/coverage.out",
+        "./..."
+      ],
+      "status": "passed",
+      "log": "unit.log",
+      "exit_code": 0,
+      "duration_seconds": 4.634
+    },
+    {
+      "name": "coverage",
+      "command": [
+        "go",
+        "tool",
+        "cover",
+        "-func=/tmp/k957-recheck-validation-final/coverage.out"
+      ],
+      "status": "passed",
+      "log": "coverage.log",
+      "exit_code": 0,
+      "duration_seconds": 0.166
+    },
+    {
+      "name": "race",
+      "command": [
+        "go",
+        "test",
+        "-race",
+        "-count=1",
+        "./..."
+      ],
+      "status": "passed",
+      "log": "race.log",
+      "exit_code": 0,
+      "duration_seconds": 48.484
+    },
+    {
+      "name": "build",
+      "command": [
+        "go",
+        "build",
+        "-trimpath",
+        "-buildvcs=false",
+        "-ldflags=-s -w",
+        "-o",
+        "/tmp/k957-recheck-build/k957",
+        "./cmd/k957"
+      ],
+      "status": "passed",
+      "log": "build.log",
+      "exit_code": 0,
+      "duration_seconds": 0.767
+    },
+    {
+      "name": "version",
+      "command": [
+        "/tmp/k957-recheck-build/k957",
+        "version"
+      ],
+      "status": "passed",
+      "log": "version.log",
+      "exit_code": 0,
+      "duration_seconds": 0.008
+    },
+    {
+      "name": "custody_integration",
+      "command": [
+        "/usr/bin/python3",
+        "/depo/cuma/projelerim/k957/scripts/custody_integration.py"
+      ],
+      "status": "passed",
+      "log": "custody_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.215
+    },
+    {
+      "name": "encrypted_integration",
+      "command": [
+        "/usr/bin/python3",
+        "/depo/cuma/projelerim/k957/scripts/encrypted_integration.py"
+      ],
+      "status": "passed",
+      "log": "encrypted_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 2.925
+    },
+    {
+      "name": "full_integration",
+      "command": [
+        "/usr/bin/python3",
+        "/depo/cuma/projelerim/k957/scripts/full_integration.py"
+      ],
+      "status": "passed",
+      "log": "full_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.165
+    },
+    {
+      "name": "integration",
+      "command": [
+        "/usr/bin/python3",
+        "/depo/cuma/projelerim/k957/scripts/integration.py"
+      ],
+      "status": "passed",
+      "log": "integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.165
+    },
+    {
+      "name": "pcap_integration",
+      "command": [
+        "/usr/bin/python3",
+        "/depo/cuma/projelerim/k957/scripts/pcap_integration.py"
+      ],
+      "status": "passed",
+      "log": "pcap_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.165
+    },
+    {
+      "name": "pcapng_integration",
+      "command": [
+        "/usr/bin/python3",
+        "/depo/cuma/projelerim/k957/scripts/pcapng_integration.py"
+      ],
+      "status": "passed",
+      "log": "pcapng_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.115
+    },
+    {
+      "name": "preflight_integration",
+      "command": [
+        "/usr/bin/python3",
+        "/depo/cuma/projelerim/k957/scripts/preflight_integration.py"
+      ],
+      "status": "passed",
+      "log": "preflight_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.165
+    },
+    {
+      "name": "resume_integration",
+      "command": [
+        "/usr/bin/python3",
+        "/depo/cuma/projelerim/k957/scripts/resume_integration.py"
+      ],
+      "status": "passed",
+      "log": "resume_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 2.022
+    },
+    {
+      "name": "review_integration",
+      "command": [
+        "/usr/bin/python3",
+        "/depo/cuma/projelerim/k957/scripts/review_integration.py"
+      ],
+      "status": "passed",
+      "log": "review_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.215
+    },
+    {
+      "name": "share_integration",
+      "command": [
+        "/usr/bin/python3",
+        "/depo/cuma/projelerim/k957/scripts/share_integration.py"
+      ],
+      "status": "passed",
+      "log": "share_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.215
+    },
+    {
+      "name": "structured_integration",
+      "command": [
+        "/usr/bin/python3",
+        "/depo/cuma/projelerim/k957/scripts/structured_integration.py"
+      ],
+      "status": "passed",
+      "log": "structured_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.115
+    },
+    {
+      "name": "windows_xml_integration",
+      "command": [
+        "/usr/bin/python3",
+        "/depo/cuma/projelerim/k957/scripts/windows_xml_integration.py"
+      ],
+      "status": "passed",
+      "log": "windows_xml_integration.log",
+      "exit_code": 0,
+      "duration_seconds": 0.115
+    },
+    {
+      "name": "crypto_interop",
+      "command": [
+        "/usr/bin/python3",
+        "/depo/cuma/projelerim/k957/scripts/crypto_interop.py"
+      ],
+      "status": "passed",
+      "log": "crypto_interop.log",
+      "exit_code": 0,
+      "duration_seconds": 0.165
+    }
+  ],
+  "binary_sha256": "34c7b18beeac74cda8b6ff83a24ee96926cc8a382792d1d181ad240050cc252f",
+  "finished": "2026-09-30T08:36:47.854776+00:00"
+}

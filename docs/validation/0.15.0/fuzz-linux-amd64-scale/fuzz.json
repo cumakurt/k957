@@ -1,0 +1,173 @@
+{
+  "schema": "k957-fuzz/1",
+  "source_sha256": "4e755340e3196b288a74a76f6b6cd34d75d3d71cfe3163cdc9b0758d9934cf66",
+  "target": "linux/amd64",
+  "started": "2026-10-01T12:02:37.121333+00:00",
+  "result": "passed",
+  "steps": [
+    {
+      "name": "FuzzRules",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzRules$",
+        "-fuzztime=10s",
+        "-fuzzminimizetime=1s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "log": "FuzzRules.log",
+      "exit_code": 0,
+      "executions": 91374,
+      "duration_seconds": 15.489
+    },
+    {
+      "name": "FuzzEnvelope",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzEnvelope$",
+        "-fuzztime=10s",
+        "-fuzzminimizetime=1s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "log": "FuzzEnvelope.log",
+      "exit_code": 0,
+      "executions": 153903,
+      "duration_seconds": 10.819
+    },
+    {
+      "name": "FuzzStructuredLogs",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzStructuredLogs$",
+        "-fuzztime=10s",
+        "-fuzzminimizetime=1s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "log": "FuzzStructuredLogs.log",
+      "exit_code": 0,
+      "executions": 84218,
+      "duration_seconds": 10.736
+    },
+    {
+      "name": "FuzzPCAP",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzPCAP$",
+        "-fuzztime=10s",
+        "-fuzzminimizetime=1s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "log": "FuzzPCAP.log",
+      "exit_code": 0,
+      "executions": 112905,
+      "duration_seconds": 10.764
+    },
+    {
+      "name": "FuzzPCAPNG",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzPCAPNG$",
+        "-fuzztime=10s",
+        "-fuzzminimizetime=1s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "log": "FuzzPCAPNG.log",
+      "exit_code": 0,
+      "executions": 241122,
+      "duration_seconds": 11.249
+    },
+    {
+      "name": "FuzzWindowsXML",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzWindowsXML$",
+        "-fuzztime=10s",
+        "-fuzzminimizetime=1s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "log": "FuzzWindowsXML.log",
+      "exit_code": 0,
+      "executions": 76499,
+      "duration_seconds": 10.848
+    },
+    {
+      "name": "FuzzRegistry",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzRegistry$",
+        "-fuzztime=10s",
+        "-fuzzminimizetime=1s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "log": "FuzzRegistry.log",
+      "exit_code": 0,
+      "executions": 44614,
+      "duration_seconds": 10.992
+    },
+    {
+      "name": "FuzzBinaryPlist",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzBinaryPlist$",
+        "-fuzztime=10s",
+        "-fuzzminimizetime=1s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "log": "FuzzBinaryPlist.log",
+      "exit_code": 0,
+      "executions": 183345,
+      "duration_seconds": 11.005
+    },
+    {
+      "name": "FuzzExternalJSON",
+      "command": [
+        "go",
+        "test",
+        "./internal/core",
+        "-run=^$",
+        "-fuzz=^FuzzExternalJSON$",
+        "-fuzztime=10s",
+        "-fuzzminimizetime=1s",
+        "-parallel=2"
+      ],
+      "status": "passed",
+      "log": "FuzzExternalJSON.log",
+      "exit_code": 0,
+      "executions": 97445,
+      "duration_seconds": 11.29
+    }
+  ],
+  "source_unchanged": true,
+  "finished": "2026-10-01T12:04:20.343414+00:00"
+}

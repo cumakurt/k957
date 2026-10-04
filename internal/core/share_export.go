@@ -2,6 +2,7 @@ package core
 
 import (
 	"bytes"
+	"context"
 	"encoding/csv"
 	"errors"
 	"html/template"
@@ -20,21 +21,15 @@ func sharedTime(t *time.Time) string {
 func sharedCSV(path string, header []string, rows [][]string) error {
 	var b bytes.Buffer
 	w := csv.NewWriter(&b)
-	if e := w.Write(header); e != nil {
-		return e
-	}
+	// bytes.Buffer writes cannot fail; Flush still finalizes the record.
+	_ = w.Write(header)
 	for _, r := range rows {
 		for i := range r {
 			r[i] = csvSafe(r[i])
 		}
-		if e := w.Write(r); e != nil {
-			return e
-		}
+		_ = w.Write(r)
 	}
 	w.Flush()
-	if e := w.Error(); e != nil {
-		return e
-	}
 	return WriteNew(path, b.Bytes())
 }
 func ExportShared(s SharedReport, out string) (err error) {
@@ -50,7 +45,7 @@ func ExportShared(s SharedReport, out string) (err error) {
 			os.RemoveAll(out)
 		}
 	}()
-	if err = WriteNew(filepath.Join(out, "shared.json"), JSON(s)); err != nil {
+	if err = WriteJSONNew(filepath.Join(out, "shared.json"), s); err != nil {
 		return err
 	}
 	rows := [][]string{}
@@ -111,24 +106,26 @@ func ExportShared(s SharedReport, out string) (err error) {
 	if err = WriteNew(filepath.Join(out, "report.html"), b.Bytes()); err != nil {
 		return err
 	}
+	if e := exportSharedPDF(context.Background(), s, out); e != nil {
+		return e
+	}
 	ok = true
 	return nil
 }
 
-const sharedTemplate = `<!doctype html><html lang="tr"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>k957 · Maskelenmiş paylaşım</title><style>
-:root{color-scheme:dark}body{font:15px system-ui;background:#0a1220;color:#dce6f4;margin:0}main{max-width:1200px;margin:auto;padding:36px}header{border-bottom:1px solid #334155;padding-bottom:22px}h1{font-size:36px;color:#62e3b7}h2{margin-top:34px}small{color:#b4bfd1}.notice{padding:18px;border-left:4px solid #e6b566;background:#242434}.grid{display:flex;gap:16px;flex-wrap:wrap}.card{padding:18px;background:#142236;border-radius:10px;flex:1}table{border-collapse:collapse;width:100%;background:#111e30}td,th{border-bottom:1px solid #304158;padding:10px;text-align:left;vertical-align:top;overflow-wrap:anywhere}.scroll{overflow:auto;max-height:550px}a{color:#62e3b7}input{padding:12px;background:#17273d;color:white;border:1px solid #536b88;width:90%;margin:20px 0}@media print{body{background:white;color:black}main{padding:0}.card,table,.notice{background:white;color:black}.scroll{max-height:none;overflow:visible}input{display:none}tr{break-inside:avoid}}
-</style><main><header><small>k957 v{{.Version}} · TÜREV RAPOR</small><h1>Maskelenmiş paylaşım raporu</h1><p>Vaka: {{.Case}} · Cihaz: {{.Host}} · Operatör: {{.Operator}}</p><small>Paylaşım kimliği: {{.ID}} · Üretim: {{.Created}}</small></header>
-<p class="notice">Bu çıktı özgün delil veya dijital imzalı kayıt değildir. Kaynak doğrulaması ve incelemesinden türetilmiştir. Serbest metinler çıkarılmıştır; anonimlik garantisi verilmez.</p>
-<section class="grid"><p class="card">Delil nesnesi: <b>{{len .Items}}</b></p><p class="card">Bulgu: <b>{{len .Findings}}</b></p><p class="card">Toplama sorunu: <b>{{.SourceIssueCount}}</b></p><p class="card">Toplama durumu: <b>{{.CollectionStatus}}</b></p></section>
-<h2>Paylaşım kapsamı</h2><p>Açık bırakılması istenen alanlar: {{range .Policy.Keep}}{{.}} · {{else}}Yok{{end}}<br>Ek maskeleme ifadesi sayısı: {{.Policy.LiteralCount}}. Özgün rapordan çıkarılan yöntem/sınırlama notu sayısı: {{.SourceNoteCount}}.</p>
-<input id="search" placeholder="Paylaşım raporunda ara…" aria-label="Paylaşım raporunda ara">
-<h2>Bulgular</h2><div class="scroll"><table><thead><tr><th>Bulgu / Kural</th><th>Delil / Kaynak</th><th>Satır</th><th>Değerlendirme</th></tr></thead><tbody>{{range .Findings}}<tr><td>{{.ID}} / {{.Rule}}</td><td><a href="#{{.Evidence}}">{{.Evidence}}</a><br>{{.Source}}</td><td>{{.Line}}</td><td>{{.Review}}<br>{{.Reviewer}}</td></tr>{{else}}<tr><td colspan="4">Gösterilecek bulgu yok.</td></tr>{{end}}</tbody></table></div>
-<h2>Delil envanteri</h2><div class="scroll"><table><thead><tr><th>Kimlik / Kaynak</th><th>Tür / Bayt</th><th>Değiştirilme / Toplanma</th><th>Edinim sırasında değişim</th></tr></thead><tbody>{{range .Items}}<tr id="{{.ID}}"><td>{{.ID}}<br>{{.Source}}</td><td>{{.Kind}} / {{.Size}}</td><td>{{stamp .Modified}}<br>{{stamp .Collected}}</td><td>{{.Changed}}</td></tr>{{end}}</tbody></table></div>
-<h2>Zaman çizelgesi</h2><p>Zamanlar yalnızca politika açık bırakmışsa gösterilir; kaynak olay sırası korunur.</p><div class="scroll"><table><thead><tr><th>Zaman / Olay</th><th>Delil / Konum</th><th>Kullanıcı / Cihaz</th><th>IP</th></tr></thead><tbody>{{range .Timeline}}<tr><td>{{stamp .Time}}<br>{{.Type}}</td><td>{{.Evidence}} · {{.Source}}<br>Satır {{.Line}} / Byte {{.ByteOffset}} {{if .Packet}} / Paket {{.Packet}}{{if .Section}} / Bölüm {{.Section}} / Arayüz {{.InterfaceID}}{{end}}<br>{{.Protocol}} {{.SourcePort}} → {{.DestinationPort}}{{end}}</td><td>{{.User}}<br>{{.Host}}</td><td>{{.SourceIP}} → {{.DestinationIP}}</td></tr>{{end}}</tbody></table></div>
-<h2>Ortak değerler</h2><div class="scroll"><table><thead><tr><th>Tür / Değer</th><th>Olay / Delil sayısı</th><th>Referanslar</th></tr></thead><tbody>{{range .Correlations}}<tr><td>{{.Kind}} / {{.Value}}</td><td>{{.Events}} / {{.Sources}}</td><td>{{range .References}}{{.Evidence}}:{{.Line}} {{if .Packet}}paket {{.Packet}}{{if .Section}} / Bölüm {{.Section}} / Arayüz {{.InterfaceID}}{{end}}{{end}} ({{.Role}})<br>{{end}}{{if .Truncated}}Liste sınırlandı.{{end}}</td></tr>{{end}}</tbody></table></div>
-{{if .Reviews}}<h2>Analist kararları</h2><div class="scroll"><table><thead><tr><th>Sıra / Bulgu</th><th>Karar / Analist</th><th>Zaman</th></tr></thead><tbody>{{range .Reviews}}<tr><td>{{.Sequence}} / {{.Finding}}</td><td>{{.Decision}} / {{.Analyst}}</td><td>{{stamp .Created}}</td></tr>{{end}}</tbody></table></div>{{end}}
-{{if .Custody}}<h2>Devir geçmişinin maskelenmiş özeti</h2><p>Kayda göre sorumlu: {{.CurrentHolder}}. {{if .PendingTo}}Bekleyen alıcı: {{.PendingTo}}{{end}} İmzalar ve doğrulama özetleri bu paylaşım kopyasına aktarılmamıştır.</p><div class="scroll"><table><thead><tr><th>Sıra / İşlem</th><th>İmzalayan / Taraflar</th><th>Konum</th><th>Beyan / Kayıt zamanı</th></tr></thead><tbody>{{range .Custody}}<tr><td>{{.Sequence}} / {{.Action}}</td><td>{{.Actor}}<br>{{.From}} → {{.To}}</td><td>{{.Location}}</td><td>{{stamp .OccurredAt}}<br>{{stamp .RecordedAt}}</td></tr>{{end}}</tbody></table></div>{{end}}
-{{if .CaptureSummaries}}<h2>PCAP / PCAPNG kapsamı</h2><div class="scroll"><table><thead><tr><th>Delil / Biçim</th><th>Kayıt / Ayrıştırılan / Atlanan</th><th>Eksik yakalama / Akış dışı</th><th>Atlama nedenleri / Sınır / Hata</th></tr></thead><tbody>{{range .CaptureSummaries}}<tr><td>{{.Evidence}} / {{.Format}}{{if .Sections}}<br>Bölüm: {{.Sections}} / Arayüz: {{.InterfaceCount}} / Blok: {{.Blocks}} / İncelenmeyen blok: {{.IgnoredBlocks}}{{end}}</td><td>{{.Records}} / {{.Parsed}} / {{.Skipped}}</td><td>{{.TruncatedPackets}} / {{.FlowOmittedPackets}}</td><td>{{range $key,$value := .SkipReasons}}{{$key}}: {{$value}}<br>{{end}}{{.Limited}} / {{.HasError}}</td></tr>{{end}}</tbody></table></div>{{end}}
-{{if .NetworkFlows}}<h2>Yönlü ağ akışları</h2><div class="scroll"><table><thead><tr><th>Delil / Protokol</th><th>Kaynak → Hedef</th><th>Paket / Yakalanan / Bildirilen bayt</th><th>İlk / Son</th><th>Paket referansları</th></tr></thead><tbody>{{range .NetworkFlows}}<tr><td>{{.Evidence}} / {{.Protocol}}{{if .Section}}<br>Bölüm {{.Section}} / Arayüz {{.InterfaceID}}{{end}}</td><td>{{endpoint .SourceIP .SourcePort}} → {{endpoint .DestinationIP .DestinationPort}}</td><td>{{.Packets}} / {{.CapturedBytes}} / {{.OriginalBytes}}</td><td>{{stamp .First}}<br>{{stamp .Last}}</td><td>{{range .References}}Paket {{.Packet}}{{if .Section}} / Bölüm {{.Section}} / Arayüz {{.InterfaceID}}{{end}}, byte {{.ByteOffset}}<br>{{end}}{{if .ReferencesTruncated}}Referans listesi sınırlandı.{{end}}</td></tr>{{end}}</tbody></table></div>{{end}}
-<h2>Ayrıştırma kapsamı</h2><div class="scroll"><table><thead><tr><th>Delil / Biçim</th><th>Okunan / Olay / Atlanan</th><th>Sınır / Hata</th></tr></thead><tbody>{{range .ParseSummaries}}<tr><td>{{.Evidence}} / {{.Format}}</td><td>{{.Rows}} / {{.Parsed}} / {{.Skipped}}</td><td>{{.Limited}} / {{.HasError}}</td></tr>{{end}}</tbody></table></div>
-<h2>Sınırlamalar</h2>{{range .Notes}}<p>{{.}}</p>{{end}}<footer><small>k957 · Paylaşım kopyası · Özgün rapora dönüş eşlemesi içermez.</small></footer></main><script>document.getElementById('search').addEventListener('input',function(){const q=this.value.toLocaleLowerCase();document.querySelectorAll('tbody tr').forEach(r=>{r.hidden=!r.textContent.toLocaleLowerCase().includes(q)})})</script></html>`
+const sharedTemplate = `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>k957 · Masked sharing</title><style>` + reportStyle + `</style><main><header><small>k957 v{{.Version}} · DERIVED REPORT</small><h1>Masked sharing report</h1><p>Case: {{.Case}} · Host: {{.Host}} · Operator: {{.Operator}}</p><small>Sharing ID: {{.ID}} · Created: {{.Created}}</small><p class="reading-edition"><a href="report.pdf">PDF reading edition</a> · <a href="documents.json">Document coverage</a></p></header>
+<p class="notice">This output is not original evidence or a digitally signed record. It is derived from source verification and examination. Free text has been omitted; anonymity is not guaranteed.</p>
+{{if .FindingsTruncated}}<p class="notice">The finding limit was reached; additional findings were omitted. The finding count is a lower bound.</p>{{end}}
+<section class="grid"><p class="card">Evidence objects: <b>{{len .Items}}</b></p><p class="card">Findings: <b>{{len .Findings}}</b></p><p class="card">Collection issues: <b>{{.SourceIssueCount}}</b></p><p class="card">Collection status: <b>{{.CollectionStatus}}</b></p></section>
+<h2>Sharing scope</h2><p>Fields explicitly retained: {{range .Policy.Keep}}{{.}} · {{else}}None{{end}}<br>Additional masking expressions: {{.Policy.LiteralCount}}. Method/limitation notes omitted from the original report: {{.SourceNoteCount}}.</p>
+<input id="search" placeholder="Search the sharing report…" aria-label="Search the sharing report">
+<h2>Findings</h2><div class="scroll"><table><thead><tr><th>Finding / Rule</th><th>Evidence / Source</th><th>Line</th><th>Review</th></tr></thead><tbody>{{range .Findings}}<tr><td>{{.ID}} / {{.Rule}}</td><td><a href="#{{.Evidence}}">{{.Evidence}}</a><br>{{.Source}}</td><td>{{.Line}}</td><td>{{.Review}}<br>{{.Reviewer}}</td></tr>{{else}}<tr><td colspan="4">No findings to display.</td></tr>{{end}}</tbody></table></div>
+<h2>Evidence inventory</h2><div class="scroll"><table><thead><tr><th>ID / Source</th><th>Kind / Bytes</th><th>Modified / Collected</th><th>Changed during acquisition</th></tr></thead><tbody>{{range .Items}}<tr id="{{.ID}}"><td>{{.ID}}<br>{{.Source}}</td><td>{{.Kind}} / {{.Size}}</td><td>{{stamp .Modified}}<br>{{stamp .Collected}}</td><td>{{.Changed}}</td></tr>{{end}}</tbody></table></div>
+<h2>Timeline</h2><p>Times appear only when explicitly retained by the policy; source event order is preserved.</p><div class="scroll"><table><thead><tr><th>Time / Event</th><th>Evidence / Position</th><th>User / Host</th><th>IP</th></tr></thead><tbody>{{range .Timeline}}<tr><td>{{stamp .Time}}<br>{{.Type}}</td><td>{{.Evidence}} · {{.Source}}<br>Line {{.Line}} / Byte {{.ByteOffset}} {{if .Packet}} / Packet {{.Packet}}{{if .Section}} / Section {{.Section}} / Interface {{.InterfaceID}}{{end}}<br>{{.Protocol}} {{.SourcePort}} → {{.DestinationPort}}{{end}}</td><td>{{.User}}<br>{{.Host}}</td><td>{{.SourceIP}} → {{.DestinationIP}}</td></tr>{{end}}</tbody></table></div>
+<h2>Shared values</h2><div class="scroll"><table><thead><tr><th>Kind / Value</th><th>Event / Evidence count</th><th>References</th></tr></thead><tbody>{{range .Correlations}}<tr><td>{{.Kind}} / {{.Value}}</td><td>{{.Events}} / {{.Sources}}</td><td>{{range .References}}{{.Evidence}}:{{.Line}} {{if .Packet}}packet {{.Packet}}{{if .Section}} / Section {{.Section}} / Interface {{.InterfaceID}}{{end}}{{end}} ({{.Role}})<br>{{end}}{{if .Truncated}}List truncated.{{end}}</td></tr>{{end}}</tbody></table></div>
+{{if .Reviews}}<h2>Examiner decisions</h2><div class="scroll"><table><thead><tr><th>Sequence / Finding</th><th>Decision / Examiner</th><th>Time</th></tr></thead><tbody>{{range .Reviews}}<tr><td>{{.Sequence}} / {{.Finding}}</td><td>{{.Decision}} / {{.Analyst}}</td><td>{{stamp .Created}}</td></tr>{{end}}</tbody></table></div>{{end}}
+{{if .Custody}}<h2>Masked custody history summary</h2><p>Recorded holder: {{.CurrentHolder}}. {{if .PendingTo}}Pending recipient: {{.PendingTo}}{{end}} Signatures and verification digests are omitted from this sharing copy.</p><div class="scroll"><table><thead><tr><th>Sequence / Action</th><th>Signer / Parties</th><th>Location</th><th>Declared / Recorded time</th></tr></thead><tbody>{{range .Custody}}<tr><td>{{.Sequence}} / {{.Action}}</td><td>{{.Actor}}<br>{{.From}} → {{.To}}</td><td>{{.Location}}</td><td>{{stamp .OccurredAt}}<br>{{stamp .RecordedAt}}</td></tr>{{end}}</tbody></table></div>{{end}}
+{{if .CaptureSummaries}}<h2>PCAP / PCAPNG coverage</h2><div class="scroll"><table><thead><tr><th>Evidence / Format</th><th>Records / Parsed / Skipped</th><th>Truncated packets / Outside flow budget</th><th>Skip reasons / Limited / Error</th></tr></thead><tbody>{{range .CaptureSummaries}}<tr><td>{{.Evidence}} / {{.Format}}{{if .Sections}}<br>Section: {{.Sections}} / Interface: {{.InterfaceCount}} / Blocks: {{.Blocks}} / Ignored blocks: {{.IgnoredBlocks}}{{end}}</td><td>{{.Records}} / {{.Parsed}} / {{.Skipped}}</td><td>{{.TruncatedPackets}} / {{.FlowOmittedPackets}}</td><td>{{range $key,$value := .SkipReasons}}{{$key}}: {{$value}}<br>{{end}}{{.Limited}} / {{.HasError}}</td></tr>{{end}}</tbody></table></div>{{end}}
+{{if .NetworkFlows}}<h2>Directional network flows</h2><div class="scroll"><table><thead><tr><th>Evidence / Protocol</th><th>Source → Destination</th><th>Packets / Captured / Reported bytes</th><th>First / Last</th><th>Packet references</th></tr></thead><tbody>{{range .NetworkFlows}}<tr><td>{{.Evidence}} / {{.Protocol}}{{if .Section}}<br>Section {{.Section}} / Interface {{.InterfaceID}}{{end}}</td><td>{{endpoint .SourceIP .SourcePort}} → {{endpoint .DestinationIP .DestinationPort}}</td><td>{{.Packets}} / {{.CapturedBytes}} / {{.OriginalBytes}}</td><td>{{stamp .First}}<br>{{stamp .Last}}</td><td>{{range .References}}Packet {{.Packet}}{{if .Section}} / Section {{.Section}} / Interface {{.InterfaceID}}{{end}}, byte {{.ByteOffset}}<br>{{end}}{{if .ReferencesTruncated}}Reference list truncated.{{end}}</td></tr>{{end}}</tbody></table></div>{{end}}
+<h2>Parsing coverage</h2><div class="scroll"><table><thead><tr><th>Evidence / Format</th><th>Read / Events / Skipped</th><th>Limited / Error</th></tr></thead><tbody>{{range .ParseSummaries}}<tr><td>{{.Evidence}} / {{.Format}}</td><td>{{.Rows}} / {{.Parsed}} / {{.Skipped}}</td><td>{{.Limited}} / {{.HasError}}</td></tr>{{end}}</tbody></table></div>
+<h2>Limitations</h2>{{range .Notes}}<p>{{.}}</p>{{end}}<footer><small>k957 · Sharing copy · No reverse mapping to the original report is included.</small>` + developerHTML + `</footer></main><script>document.getElementById('search').addEventListener('input',function(){const q=this.value.toLocaleLowerCase();document.querySelectorAll('tbody tr').forEach(r=>{r.hidden=!r.textContent.toLocaleLowerCase().includes(q)})})</script></html>`

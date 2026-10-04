@@ -9,6 +9,30 @@ import (
 	"time"
 )
 
+func TestSharedReportEnglishPresentation(t *testing.T) {
+	a, _ := sharedFixture(t)
+	s, err := BuildSharedReport(a, SharePolicy{Schema: sharePolicySchema})
+	if err != nil {
+		t.Fatal(err)
+	}
+	out := filepath.Join(t.TempDir(), "shared")
+	if err = ExportShared(s, out); err != nil {
+		t.Fatal(err)
+	}
+	html, err := os.ReadFile(filepath.Join(out, "report.html"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, label := range []string{`<html lang="en">`, "Masked sharing report", "Evidence inventory", "Examiner decisions", "Masked custody history summary", "Limitations", "Search the sharing report"} {
+		if !strings.Contains(string(html), label) {
+			t.Errorf("missing English presentation label %q", label)
+		}
+	}
+	if len(s.Notes) != 5 || !strings.HasPrefix(s.Notes[0], "This is a masked derived report") {
+		t.Fatalf("unexpected sharing limitations: %v", s.Notes)
+	}
+}
+
 func sharedFixture(t *testing.T) (Analysis, []string) {
 	t.Helper()
 	_, a := reviewFixture(t)
@@ -78,7 +102,7 @@ func TestShareDefaultNoSensitiveValuesOrSourceMutation(t *testing.T) {
 	if e != nil {
 		t.Fatal(e)
 	}
-	if len(entries) != 8 {
+	if len(entries) != 10 {
 		t.Fatalf("unexpected files: %d", len(entries))
 	}
 	for _, f := range entries {

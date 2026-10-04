@@ -22,7 +22,7 @@ const chunkSize = 1 << 20
 
 func EncryptionKey(path string) error {
 	b := make([]byte, 32)
-	if _, e := rand.Read(b); e != nil {
+	if _, e := io.ReadFull(rand.Reader, b); e != nil {
 		return e
 	}
 	return WriteNew(path, []byte(hex.EncodeToString(b)+"\n"))
@@ -36,12 +36,17 @@ func cryptKey(path string) (cipher.AEAD, error) {
 	if e != nil || len(key) != 32 {
 		return nil, errors.New("encryption key must be 32 bytes hex")
 	}
+	return buildAEAD(key)
+}
+
+var buildAEAD = func(key []byte) (cipher.AEAD, error) {
 	block, e := aes.NewCipher(key)
 	if e != nil {
 		return nil, e
 	}
 	return cipher.NewGCM(block)
 }
+
 func Transform(in, out, key string, decrypt bool) (err error) {
 	a, e := cryptKey(key)
 	if e != nil {
@@ -87,16 +92,20 @@ func nonce(header []byte, index uint32) []byte {
 	return n
 }
 func encryptStream(r io.Reader, w io.Writer, a cipher.AEAD) error {
+	return encryptIndexed(r, w, a, 0)
+}
+
+func encryptIndexed(r io.Reader, w io.Writer, a cipher.AEAD, index uint32) error {
 	header := make([]byte, 16)
 	copy(header, magic)
-	if _, e := rand.Read(header[8:]); e != nil {
+	if _, e := io.ReadFull(rand.Reader, header[8:]); e != nil {
 		return e
 	}
 	if _, e := w.Write(header); e != nil {
 		return e
 	}
 	buf := make([]byte, chunkSize)
-	for i := uint32(0); ; i++ {
+	for i := index; ; i++ {
 		if i == ^uint32(0) {
 			return errors.New("nonce limit")
 		}
@@ -117,6 +126,10 @@ func encryptStream(r io.Reader, w io.Writer, a cipher.AEAD) error {
 	}
 }
 func decryptStream(r io.Reader, w io.Writer, a cipher.AEAD) error {
+	return decryptIndexed(r, w, a, 0)
+}
+
+func decryptIndexed(r io.Reader, w io.Writer, a cipher.AEAD, index uint32) error {
 	header := make([]byte, 16)
 	if _, e := io.ReadFull(r, header); e != nil {
 		return e
@@ -124,7 +137,7 @@ func decryptStream(r io.Reader, w io.Writer, a cipher.AEAD) error {
 	if !bytes.Equal(header[:8], magic) {
 		return errors.New("invalid envelope")
 	}
-	for i := uint32(0); ; i++ {
+	for i := index; ; i++ {
 		if i == ^uint32(0) {
 			return errors.New("nonce limit")
 		}

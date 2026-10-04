@@ -1,0 +1,1 @@
+PASS: two signer keys, preserved event signatures, independent Ed25519/domain/hash verification, acceptance state, external-head rollback rejection, tamper rejection, safe HTML/CSV, unchanged package/history

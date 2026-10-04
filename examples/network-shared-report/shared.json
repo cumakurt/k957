@@ -1,4 +1,123 @@
 {
+  "coverage": [
+    {
+      "schema": "k957-coverage/1",
+      "stage": "inventory",
+      "unit": "objects",
+      "status": "complete",
+      "eligible": 4,
+      "emitted": 4,
+      "omitted": 0,
+      "total_known": true
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "parser",
+      "format": "JSONL",
+      "unit": "records",
+      "status": "complete",
+      "eligible": 1,
+      "emitted": 1,
+      "omitted": 0,
+      "total_known": true
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "parser",
+      "format": "PCAP",
+      "unit": "records",
+      "status": "partial",
+      "eligible": 10,
+      "emitted": 6,
+      "omitted": 4,
+      "total_known": true
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "parser",
+      "format": "PCAPNG",
+      "unit": "records",
+      "status": "partial",
+      "eligible": 0,
+      "emitted": 0,
+      "omitted": 0,
+      "total_known": false,
+      "reasons": {
+        "parser_error": 1
+      }
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "findings",
+      "unit": "findings",
+      "status": "complete",
+      "eligible": 0,
+      "emitted": 0,
+      "omitted": 0,
+      "total_known": true,
+      "limit": 10000
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "acquisition_metadata",
+      "unit": "objects",
+      "status": "complete",
+      "eligible": 4,
+      "emitted": 4,
+      "omitted": 0,
+      "total_known": true
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "network_protocols",
+      "unit": "observations",
+      "status": "partial",
+      "eligible": 0,
+      "emitted": 0,
+      "omitted": 0,
+      "total_known": false,
+      "limit": 5000,
+      "reasons": {
+        "other": 1
+      }
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "network_protocols",
+      "unit": "observations",
+      "status": "partial",
+      "eligible": 0,
+      "emitted": 0,
+      "omitted": 0,
+      "total_known": false,
+      "limit": 5000,
+      "reasons": {
+        "other": 4
+      }
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "network_protocols",
+      "unit": "observations",
+      "status": "complete",
+      "eligible": 0,
+      "emitted": 0,
+      "omitted": 0,
+      "total_known": true,
+      "limit": 5000
+    },
+    {
+      "schema": "k957-coverage/1",
+      "stage": "correlation_references",
+      "unit": "references",
+      "status": "complete",
+      "eligible": 11,
+      "emitted": 11,
+      "omitted": 0,
+      "total_known": true,
+      "limit": 200
+    }
+  ],
   "capture_summaries": [
     {
       "evidence": "E000001",
@@ -159,9 +278,9 @@
     }
   ],
   "schema": "k957-shared-report/1",
-  "version": "0.9.0",
-  "id": "c6c206c92ca5d886ffd2954aa10f0caa",
-  "created": "2026-09-28T09:28:42.187689104Z",
+  "version": "0.15.0",
+  "id": "e1673161219cacc81b47734726e7197d",
+  "created": "2026-10-01T18:14:14.152696552Z",
   "policy": {
     "keep": [],
     "literal_count": 0,
@@ -172,7 +291,7 @@
   "operator": "[ACTORS-000001]",
   "collection_status": "complete",
   "source_issue_count": 0,
-  "source_note_count": 6,
+  "source_note_count": 12,
   "items": [
     {
       "id": "E000001",
@@ -307,13 +426,6 @@
     },
     {
       "type": "file_modified",
-      "evidence": "E000003",
-      "source": "[PATHS-000003]",
-      "line": 0,
-      "byte_offset": 0
-    },
-    {
-      "type": "file_modified",
       "evidence": "E000001",
       "source": "[PATHS-000001]",
       "line": 0,
@@ -321,15 +433,22 @@
     },
     {
       "type": "file_modified",
-      "evidence": "E000004",
-      "source": "[PATHS-000004]",
+      "evidence": "E000002",
+      "source": "[PATHS-000002]",
       "line": 0,
       "byte_offset": 0
     },
     {
       "type": "file_modified",
-      "evidence": "E000002",
-      "source": "[PATHS-000002]",
+      "evidence": "E000003",
+      "source": "[PATHS-000003]",
+      "line": 0,
+      "byte_offset": 0
+    },
+    {
+      "type": "file_modified",
+      "evidence": "E000004",
+      "source": "[PATHS-000004]",
       "line": 0,
       "byte_offset": 0
     },
@@ -510,11 +629,11 @@
     }
   ],
   "notes": [
-    "Bu çıktı maskelenmiş türev rapordur; özgün delil, analist kararı veya imzalı devir kaydı yerine kullanılamaz.",
-    "Alıntılar, olay açıklamaları, kural içerikleri, notlar, hata metinleri, kapsam, imzalar, hashler ve özgün kimlikler çıkarıldı. Ayrıntılı sınırlamalar özgün raporda bulunur.",
-    "Takma değerler yalnızca bu raporda tutarlıdır; geri eşleme tablosu verilmez. Sayılar, dosya boyutları, ilişkiler, satır/byte konumları ve sıralama korunur; anonimlik garantisi yoktur.",
-    "Açık bırakılan metin alanlarında bilinen maskeli değerler ve ek literal ifadeler büyük/küçük harf duyarsız değiştirilir. Alternatif yazımlar, kodlamalar veya bilinmeyen kişisel bilgiler otomatik tespit edilmez.",
-    "Paylaşmadan önce raporu inceleyin. Rapordaki oluşturma zamanı bu türev rapora aittir; kaynak zamanları yalnızca timestamps açık bırakılmışsa gösterilir.",
-    "PCAP yalnızca TCP/UDP başlıklarını kapsar; payload, checksum, yeniden birleştirme veya oturum analizi yoktur. Akışlar aynı yönlü 5'li değerleri paket bazında toplar; MAC/VLAN kimliği gruplamaya dahil değildir. Portlar, uzunluklar, sayaçlar ve paket konumları paylaşımda korunur; atlanan kayıtları kapsam tablosundan inceleyin."
+    "This is a masked derived report; it cannot replace original evidence, examiner decisions or signed custody records.",
+    "Quotations, event descriptions, rule contents, notes, error messages, scope, signatures, hashes and original identifiers were omitted. Detailed limitations remain in the original report.",
+    "Aliases are consistent only within this report; no reverse mapping is provided. Counts, file sizes, relationships, line/byte positions and ordering are retained; anonymity is not guaranteed.",
+    "Known masked values and additional literal expressions are replaced case-insensitively in retained text fields. Alternative spellings, encodings and unknown personal information are not detected automatically.",
+    "Inspect the report before sharing. Its creation time belongs to this derived report; source times appear only when timestamps are explicitly retained.",
+    "Shared PCAP/PCAPNG fields contain TCP/UDP packet headers and directional flow totals; payload bytes, checksum details and session reconstruction are omitted from this projection. Flows group packets by directional five-tuple, separately for each PCAPNG section/interface. MAC/VLAN and SLL2 operating-system interface identity are not grouping keys. Untimed/obsolete packet blocks are skipped; other blocks are counted only. Ports, lengths, counts and packet positions are retained; inspect the coverage table for omissions."
   ]
 }

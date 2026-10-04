@@ -1,0 +1,1 @@
+PASS: PCAPNG mixed sections, four interfaces, SLL/SLL2, independent timestamps/offsets, interface-separated flows, malformed-tail accounting, skipped blocks, correlation, HTML/CSV provenance, masked exports, metadata omission, unchanged evidence

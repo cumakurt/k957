@@ -1,0 +1,200 @@
+{
+  "schema": "k957-source-scale/1",
+  "started": "2026-10-04T10:22:17.808260+00:00",
+  "environment": {
+    "kind": "native",
+    "version": "10.0.26200"
+  },
+  "objects": 2000,
+  "result": "passed",
+  "steps": [
+    {
+      "name": "collect",
+      "status": "passed",
+      "stdout": "collect.json",
+      "stderr": "collect.log",
+      "exit_code": 0,
+      "duration_seconds": 10.136,
+      "sampled_rss_bytes": null,
+      "stdout_sha256": "27da5afc279b27f7a9231694ad9ac583333a04d4299904fce991f3a7fc98b794",
+      "stderr_sha256": "c006b186b4e1120d47576e49c4050999d732693d94ce442f6f9a65297264ec65"
+    },
+    {
+      "name": "verify",
+      "status": "passed",
+      "stdout": "verify.json",
+      "stderr": "verify.log",
+      "exit_code": 0,
+      "duration_seconds": 0.11,
+      "sampled_rss_bytes": null,
+      "stdout_sha256": "2d8945c8c97770f2ac134cd12a7d4b576c96d9a7bf2c747eaab31ea19dcfc17e",
+      "stderr_sha256": "7b3ad1d06668ceed05380f6e93ba96cb247d6602d2c9055c6a97179b539f6f4c"
+    },
+    {
+      "name": "case",
+      "status": "passed",
+      "stdout": "case.json",
+      "stderr": "case.log",
+      "exit_code": 0,
+      "duration_seconds": 0.832,
+      "sampled_rss_bytes": null,
+      "stdout_sha256": "d5ce71834e23e5b688acb569d19e49a6c2fb390f503cc5ef4248f347b5562e99",
+      "stderr_sha256": "8d4c018a9292fda760eb164bbd620d8846129da2c765a5746425492e93f0e5fe"
+    }
+  ],
+  "scope": "Synthetic small regular files; full-mode filesystem collection, independent signatures/hashes, verification, case exports/index. No RAM, live system, OS profile or device acquisition.",
+  "rss_method": "Sampled Linux /proc/<pid>/status VmRSS every 50ms for the command process only; not exact peak, child processes or Go heap.",
+  "binary_sha256": "df296695bd3b309740c633e1371dcdb0ad0849f514988b27ad0fa6cb8f943009",
+  "build": {
+    "developer": {
+      "name": "Cuma Kurt",
+      "email": "cumakurt@gmail.com",
+      "repository": "https://github.com/cumakurt/k957",
+      "linkedin": "https://www.linkedin.com/in/cuma-kurt-34414917/"
+    },
+    "schema": "k957-build/1",
+    "version": "0.15.0",
+    "source_sha256": "41535d7226d87ad2293d06c043aaec4401d33c81c078cfddea0de2252be4fdac",
+    "toolchain": "go1.26.8",
+    "target": "windows/amd64",
+    "modules": [
+      {
+        "Path": "github.com/Velocidex/json",
+        "Version": "v0.0.0-20220224052537-92f3c0326e5a",
+        "Sum": "h1:AeXPUzhU0yhID/v5JJEIkjaE85ASe+Vh4Kuv1RSLL+4="
+      },
+      {
+        "Path": "github.com/Velocidex/ordereddict",
+        "Version": "v0.0.0-20250821063524-02dc06e46238",
+        "Sum": "h1:Q2DFf1f4fiz1/V4cu2wojDKF6/DfjIY7QmfVAr/UnJY="
+      },
+      {
+        "Path": "github.com/Velocidex/pkcs7",
+        "Version": "v0.0.0-20230220112103-d4ed02e1862a",
+        "Sum": "h1:H7dVazNcaE80V8cy99TF7LPpwzvr1uJ4I2nDjb5ek7E="
+      },
+      {
+        "Path": "github.com/Velocidex/yaml/v2",
+        "Version": "v2.2.8",
+        "Sum": "h1:GUrSy4SBJ6RjGt43k6MeBKtw2z/27gh4A3hfFmFY3No="
+      },
+      {
+        "Path": "github.com/davecgh/go-spew",
+        "Version": "v1.1.1",
+        "Sum": "h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c="
+      },
+      {
+        "Path": "github.com/dustin/go-humanize",
+        "Version": "v1.0.1",
+        "Sum": "h1:GzkhY7T5VNhEkwH0PVJgjz+fX1rhBrR7pRT3mDkpeCY="
+      },
+      {
+        "Path": "github.com/hashicorp/golang-lru",
+        "Version": "v1.0.2",
+        "Sum": "h1:dV3g9Z/unq5DpblPpw+Oqcv4dU/1omnb4Ok8iPY6p1c="
+      },
+      {
+        "Path": "github.com/mattn/go-isatty",
+        "Version": "v0.0.24",
+        "Sum": "h1:tGZZoVgT/KiqK1c8ocVLeDS8BSWMRd47J3Lbz7vsReI="
+      },
+      {
+        "Path": "github.com/ncruces/go-strftime",
+        "Version": "v1.0.0",
+        "Sum": "h1:HMFp8mLCTPp341M/ZnA4qaf7ZlsbTc+miZjCLOFAw7w="
+      },
+      {
+        "Path": "github.com/phpdave11/gofpdi",
+        "Version": "v1.0.14-0.20211212211723-1f10f9844311",
+        "Sum": "h1:zyWXQ6vu27ETMpYsEMAsisQ+GqJ4e1TPvSNfdOPF0no="
+      },
+      {
+        "Path": "github.com/pkg/errors",
+        "Version": "v0.9.1",
+        "Sum": "h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4="
+      },
+      {
+        "Path": "github.com/remyoudompheng/bigfft",
+        "Version": "v0.0.0-20230129092748-24d4a6f8daec",
+        "Sum": "h1:W09IVJc94icq4NjY3clb7Lk8O1qJ8BdBEF8z0ibU0rE="
+      },
+      {
+        "Path": "github.com/signintech/gopdf",
+        "Version": "v0.38.1",
+        "Sum": "h1:mMdVMPKrvHCskYmjet/uTuXRAEV742oTM7GdFcuhuwM="
+      },
+      {
+        "Path": "golang.org/x/sys",
+        "Version": "v0.48.0",
+        "Sum": "h1:bbX/i/6MgT9BVLM9RT1thmxL04yeTAhbEz4SyadbXoo="
+      },
+      {
+        "Path": "golang.org/x/text",
+        "Version": "v0.38.0",
+        "Sum": "h1:sXmwo9DwP3OK9EZ7PqAdaooSGozfl/3a6/xJcbzPRhE="
+      },
+      {
+        "Path": "howett.net/plist",
+        "Version": "v1.0.1",
+        "Sum": "h1:37GdZ8tP09Q35o9ych3ehygcsL+HqKSwzctveSlarvM="
+      },
+      {
+        "Path": "modernc.org/libc",
+        "Version": "v1.77.1",
+        "Sum": "h1:Ct8j47QtiZ1Enj2DtFXQtUqrPCAjdCmPjtCuvrYQ0Hs="
+      },
+      {
+        "Path": "modernc.org/mathutil",
+        "Version": "v1.7.1",
+        "Sum": "h1:GCZVGXdaN8gTqB1Mf/usp1Y/hSqgI2vAGGP4jZMCxOU="
+      },
+      {
+        "Path": "modernc.org/memory",
+        "Version": "v1.12.1",
+        "Sum": "h1:nFMiWrpStgZczNl6XI9GnIk/rWhYIyHGUaR04pGbp9g="
+      },
+      {
+        "Path": "modernc.org/sqlite",
+        "Version": "v1.60.0",
+        "Sum": "h1:7AZh8lREDo8x3j7aSdF7KGpAKUkJExJ1p67tcRnmttM="
+      },
+      {
+        "Path": "www.velocidex.com/golang/binparsergen",
+        "Version": "v0.1.1-0.20240404114946-8f66c7cf586e",
+        "Sum": "h1:uf1AsYiIzUMJMIdFsVdrIw/BjrGzZbrsnz9xmeZmlYU="
+      },
+      {
+        "Path": "www.velocidex.com/golang/evtx",
+        "Version": "v0.2.1-0.20260916104054-0ef2ce4e83a8",
+        "Sum": "h1:Me1/9DB8ZMH6+ZNFWPlfn3JEFgZNH59Cfk83wcQ2PEk="
+      },
+      {
+        "Path": "www.velocidex.com/golang/go-pe",
+        "Version": "v0.1.1-0.20251107001057-f93001158cd9",
+        "Sum": "h1:y5nOjOAyjH36mEGZsX2Wx3XpS78e9Jk2wK1M99rn4TY="
+      }
+    ]
+  },
+  "script_sha256": "c4a4a5b3e00ce42a0a10b65e0b286ab06376469d4d2465acbd9e0d5b210781ba",
+  "fixture_seconds": 0.76,
+  "manifest_bytes": 2367922,
+  "package_bytes": 468879,
+  "index_rows": 6002,
+  "independent_checks": [
+    "collection/manifest Ed25519 signatures",
+    "every acquired/source byte and signed SHA-256/size",
+    "manifest, CSV, bodyfile and SQLite counts",
+    "chronological timeline",
+    "last inventory source reference",
+    "duplicate count"
+  ],
+  "manifest_sha256": "56bc8800041ec376a84c670a9864ddb5020c106965520548f8fe8062b2d8ef3e",
+  "index_bytes": 8503296,
+  "export_bytes": {
+    "inventory.csv": 602077,
+    "timeline.csv": 489648,
+    "examination.csv": 2111153,
+    "bodyfile.txt": 280000
+  },
+  "finished": "2026-10-04T10:22:30.161379+00:00"
+}

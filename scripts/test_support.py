@@ -34,3 +34,40 @@ def execution_environment():
             return {'kind': 'wine', 'version': get_version().decode('ascii')}
     return {'kind': 'native', 'version': platform.version()}
 
+
+
+def report_text(path):
+    """Read report text; independently extract binary PDFs when available."""
+    if path.suffix.lower() != '.pdf':
+        return path.read_text(encoding='utf-8')
+    import shutil
+    import subprocess
+    tool = shutil.which('pdftotext')
+    if not tool:
+        print('PDF privacy text extraction not run: pdftotext unavailable; ordinary report checks continue.')
+        return None
+    result = subprocess.run([tool, '-enc', 'UTF-8', str(path), '-'], capture_output=True, text=True, encoding='utf-8',
+                            timeout=60, check=True)
+    return ' '.join(result.stdout.split())
+
+
+def executable_python_fixture(path, body):
+    """Create a test-only executable Python fixture, including a Windows launcher."""
+    import json
+    import subprocess
+    if os.name != 'nt':
+        path.write_text('#!' + sys.executable + '\n' + body, encoding='utf-8')
+        path.chmod(0o700)
+        return path
+    script = path.with_suffix('.py')
+    script.write_text(body, encoding='utf-8')
+    launcher = path.with_suffix('.go')
+    launcher.write_text('package main\nimport("os";"os/exec")\nfunc main(){\n'
+                        'args:=append([]string{' + json.dumps(str(script), ensure_ascii=False) + '},os.Args[1:]...)\n'
+                        'cmd:=exec.Command(' + json.dumps(sys.executable, ensure_ascii=False) + ',args...)\n'
+                        'cmd.Stdin=os.Stdin;cmd.Stdout=os.Stdout;cmd.Stderr=os.Stderr\n'
+                        'if err:=cmd.Run();err!=nil {if e,ok:=err.(*exec.ExitError);ok{os.Exit(e.ExitCode())};os.Exit(127)}\n}\n', encoding='utf-8')
+    executable = path.with_suffix('.exe')
+    subprocess.run(['go', 'build', '-o', str(executable), str(launcher)],
+                   env=dict(os.environ, CGO_ENABLED='0'), check=True, capture_output=True, timeout=180)
+    return executable

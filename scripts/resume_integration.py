@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Native process-termination/restart test with independently checked parts."""
 from test_support import default_binary
-import hashlib,json,pathlib,subprocess,tempfile,time,zipfile
+import errno,hashlib,json,os,pathlib,subprocess,tempfile,time,zipfile
 base=pathlib.Path(__file__).resolve().parents[1]
 exe=str(default_binary())
 with tempfile.TemporaryDirectory() as d:
@@ -11,7 +11,7 @@ with tempfile.TemporaryDirectory() as d:
  package=p/'case.k957';work=p/'work'
  args=[exe,'collect','--root',str(root),'--out',str(package),'--work',str(work),'--case','RESTART','--operator','Test','--scope','Synthetic interruption test']
  proc=subprocess.Popen(args,stdout=subprocess.DEVNULL,stderr=subprocess.PIPE)
- deadline=time.monotonic()+20;interrupted=False
+ deadline=time.monotonic()+20;interrupted=False;last_poll_error=None
  try:
   while time.monotonic()<deadline:
    if proc.poll() is not None:break
@@ -20,11 +20,17 @@ with tempfile.TemporaryDirectory() as d:
     if state['files'][0]['item'].get('parts') and not state['files'][0]['complete']:
      proc.kill();proc.wait(timeout=10);interrupted=True;break
    except (FileNotFoundError,json.JSONDecodeError,IndexError):pass
+   except PermissionError as error:
+    # Windows CRT open() can expose replacement/sharing denial as EACCES
+    # without a winerror. Retry only this active-writer poll; permanent denial
+    # still fails the original bounded interruption assertion.
+    if os.name != 'nt' or error.errno != errno.EACCES:raise
+    last_poll_error=str(error)
    time.sleep(.005)
  finally:
   if proc.poll() is None:proc.kill();proc.wait()
  stderr=proc.stderr.read().decode('utf-8',errors='replace');proc.stderr.close()
- assert interrupted,f'did not hit a saved mid-file checkpoint (exit {proc.returncode}): {stderr}'
+ assert interrupted,f'did not hit a saved mid-file checkpoint (exit {proc.returncode}): {stderr}; last checkpoint read error: {last_poll_error}'
  assert (work/'active.lock').exists(),'expected stale lock after forced process termination'
  checkpoint=(work/'state.json').read_bytes()
  plan_args=[exe,'preflight','--resume','--root',str(root),'--out',str(package),'--work',str(work),'--reserve','0']
@@ -57,5 +63,5 @@ with tempfile.TemporaryDirectory() as d:
    assert not f.read(1)
   assert full.hexdigest()==item['sha256']
  subprocess.run([exe,'analyze','--in',str(package),'--out',str(p/'report')],check=True,capture_output=True)
- report=(p/'report'/'report.html').read_text(encoding="utf-8");assert 'Edinim dönemleri' in report
+ report=(p/'report'/'report.html').read_text(encoding="utf-8");assert 'Acquisition epochs' in report
  print('PASS: forced process termination after checkpoint, stale lock preflight rejection, read-only remaining-space plan, gated recovery, source-prefix validation, independent 192 MiB/24-part hashes, two epochs, report')

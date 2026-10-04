@@ -2,7 +2,7 @@
 """Build synthetic PCAP with Python struct; independently check Go summaries.
 Use --examples DIR to also save the synthetic input files for packaged examples.
 """
-from test_support import default_binary
+from test_support import default_binary, report_text
 import argparse
 import csv
 import datetime
@@ -122,11 +122,15 @@ with tempfile.TemporaryDirectory() as directory:
     with (p / 'report/network.csv').open(encoding="utf-8") as f:
         assert len(list(csv.DictReader(f))) == 5
     for f in (p / 'report').iterdir():
-        assert 'PAYLOAD_DO_NOT_EXPORT' not in f.read_text(encoding="utf-8") or f.name == 'analysis.json'  # The rule definition itself is included in the full analysis.
+        contents=report_text(f)
+        if contents is None: continue
+        assert 'PAYLOAD_DO_NOT_EXPORT' not in contents or f.name == 'analysis.json'  # The rule definition itself is included in the full analysis.
     run('share', '--in', package, '--out', p / 'shared', '--rules', rules)
     shared = json.loads((p / 'shared/shared.json').read_text(encoding="utf-8"))
     assert len(shared['network_flows']) == 5 and len(shared['capture_summaries']) == 3
     for f in (p / 'shared').iterdir():
-        assert all(value not in f.read_text(encoding="utf-8") for value in ('192.0.2.77', '198.51.100.8', '2001:db8::77', '2001:db8::88', 'traffic.pcap', '2020-09-13', 'PAYLOAD_DO_NOT_EXPORT')), f.name
+        contents=report_text(f)
+        if contents is None: continue
+        assert all(value not in contents for value in ('192.0.2.77', '198.51.100.8', '2001:db8::77', '2001:db8::88', 'traffic.pcap', '2020-09-13', 'PAYLOAD_DO_NOT_EXPORT')), f.name
     assert hashlib.sha256(package.read_bytes()).hexdigest() == before
     print('PASS: independent PCAP records/offsets/byte counts/UTC, four directional flows plus raw-IP capture, IPv6 TCP extension, truncation and four skip reasons, truncated PCAPNG rejection, cross-log IP correlation, no payload findings, masked network exports, unchanged package')

@@ -1,0 +1,15 @@
+fuzz: elapsed: 0s, gathering baseline coverage: 0/3 completed
+fuzz: elapsed: 0s, gathering baseline coverage: 3/3 completed, now fuzzing with 2 workers
+fuzz: elapsed: 3s, execs: 521 (174/sec), new interesting: 1 (total: 4)
+fuzz: elapsed: 6s, execs: 1970 (483/sec), new interesting: 4 (total: 7)
+fuzz: elapsed: 9s, execs: 3949 (660/sec), new interesting: 6 (total: 9)
+fuzz: elapsed: 12s, execs: 7289 (1113/sec), new interesting: 11 (total: 14)
+fuzz: elapsed: 15s, execs: 11246 (1319/sec), new interesting: 15 (total: 18)
+fuzz: elapsed: 18s, execs: 14475 (1076/sec), new interesting: 20 (total: 23)
+fuzz: elapsed: 21s, execs: 20268 (1931/sec), new interesting: 25 (total: 28)
+fuzz: elapsed: 24s, execs: 27806 (2512/sec), new interesting: 29 (total: 32)
+fuzz: elapsed: 27s, execs: 38358 (3518/sec), new interesting: 32 (total: 35)
+fuzz: elapsed: 30s, execs: 55012 (5551/sec), new interesting: 35 (total: 38)
+fuzz: elapsed: 31s, execs: 55012 (0/sec), new interesting: 35 (total: 38)
+PASS
+ok  	k957/internal/core	30.582s
